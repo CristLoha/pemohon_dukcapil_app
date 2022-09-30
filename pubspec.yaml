@@ -8,9 +8,10 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
-  firebase_core: 1.24.0
+  firebase_core: 1.20.0
   firebase_auth: 3.11.0
   cloud_firestore: 3.5.0
+  lottie: 1.4.3
   flutter: 
     sdk: flutter
 
@@ -21,5 +22,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter: 
+  assets: 
+    - assets/img/
+    - assets/icon/
+    - assets/lottie/
   uses-material-design: true
 
