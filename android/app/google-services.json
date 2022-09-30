@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644776125159",
+    "project_id": "aplikasi-dukcapil-pemohon",
+    "storage_bucket": "aplikasi-dukcapil-pemohon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644776125159:android:ca08b4082284e132c5f842",
+        "android_client_info": {
+          "package_name": "com.dukcapil.halbar.pemohon_dukcapil_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644776125159-m48bfcvpfjg3rbdbae063c4v7k5ccnbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmtqCZ_QXh3SrO2HZ2m75J_PSlnKdbDOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644776125159-m48bfcvpfjg3rbdbae063c4v7k5ccnbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
