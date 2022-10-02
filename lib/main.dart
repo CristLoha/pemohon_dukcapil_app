@@ -17,6 +17,14 @@ void main() async {
   Future<FirebaseApp> initialization = Firebase.initializeApp();
 
   runApp(
+    //   DevicePreview(
+    //       builder: (context) => GetMaterialApp(
+    //             debugShowCheckedModeBanner: false,
+    //             title: "Application",
+    //             initialRoute: Routes.LOGIN,
+    //             getPages: AppPages.routes,
+    //           )),
+    // );
     FutureBuilder(
       future: initialization,
       builder: (context, snapshot) {

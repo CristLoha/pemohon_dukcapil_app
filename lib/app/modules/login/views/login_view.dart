@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:fluttericon/modern_pictograms_icons.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 
 import '../../../shared/theme.dart';
 import '../../../utils/custom_tittle_form.dart';
@@ -12,13 +13,13 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     Widget titleWelcome() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 40),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
               'assets/img/logo.png',
-              height: 65,
+              height: 80,
             ),
             SizedBox(height: 20),
             Text(
@@ -45,16 +46,16 @@ class LoginView extends GetView<LoginController> {
             SizedBox(height: 12),
             TextFormField(
               cursorColor: kGreyColor,
-              keyboardType: TextInputType.number,
+              keyboardType: TextInputType.emailAddress,
               autocorrect: false,
               controller: controller.emailC,
               decoration: InputDecoration(
                 prefixIcon: Icon(
-                  Icons.person_outlined,
+                  ModernPictograms.at,
                   color: kBlackColor,
                 ),
                 hintStyle: greyTextStyle,
-                hintText: 'Masukan Email anda',
+                hintText: 'Masukan Email',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -73,6 +74,7 @@ class LoginView extends GetView<LoginController> {
               () => TextFormField(
                 cursorColor: kGreyColor,
                 obscureText: controller.isHidden.value,
+                keyboardType: TextInputType.visiblePassword,
                 autocorrect: false,
                 controller: controller.passC,
                 decoration: InputDecoration(
@@ -80,11 +82,11 @@ class LoginView extends GetView<LoginController> {
                     onPressed: () => controller.isHidden.toggle(),
                     icon: controller.isHidden.isFalse
                         ? Icon(
-                            Icons.remove_red_eye_outlined,
+                            FontAwesome.eye,
                             color: kBlackColor,
                           )
                         : Icon(
-                            Icons.remove_red_eye_rounded,
+                            FontAwesome.eye_off,
                             color: kBlackColor,
                           ),
                   ),
@@ -93,7 +95,7 @@ class LoginView extends GetView<LoginController> {
                     color: kBlackColor,
                   ),
                   hintStyle: greyTextStyle,
-                  hintText: 'Masukan kata sandi anda',
+                  hintText: 'Masukan kata sandi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -108,6 +110,7 @@ class LoginView extends GetView<LoginController> {
             ),
             Obx(
               () => CheckboxListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 0),
                 activeColor: kPrimaryColor,
                 value: controller.isSelected.value,
                 controlAffinity: ListTileControlAffinity.leading,
@@ -116,14 +119,68 @@ class LoginView extends GetView<LoginController> {
                 },
                 title: Text(
                   'Ingat Saya',
-                  style: blackTextStyle.copyWith(fontSize: 14),
+                  style: blackTextStyle.copyWith(
+                    fontSize: 14,
+                  ),
                 ),
                 secondary: TextButton(
                   onPressed: () {},
                   child: Text(
                     'Lupa Kata Sandi?',
-                    style: blueTextStyle,
+                    style: blueTextStyle.copyWith(fontWeight: semiBold),
                   ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    Widget butonLogin() {
+      return Container(
+        height: 50,
+        margin: EdgeInsets.only(top: 30),
+        child: Container(
+          child: ElevatedButton(
+            onPressed: () => Get.toNamed(Routes.HOME),
+            child: Text(
+              'Masuk',
+              style: whiteTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              backgroundColor: kPrimaryColor,
+            ),
+          ),
+        ),
+      );
+    }
+
+    Widget register() {
+      return Padding(
+        padding: const EdgeInsets.only(top: 5),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Belum punya akun?',
+              style: greyTextStyle,
+            ),
+            SizedBox(width: 4),
+            TextButton(
+              onPressed: () => Get.toNamed(
+                Routes.REGISTER,
+              ),
+              child: Text(
+                'REGISTRASI',
+                style: blueTextStyle.copyWith(
+                  fontWeight: semiBold,
                 ),
               ),
             ),
@@ -135,13 +192,15 @@ class LoginView extends GetView<LoginController> {
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.only(
-          top: defaultPadding,
-          left: defaultPadding,
-          right: defaultPadding,
-        ),
+            top: defaultPadding,
+            left: defaultPadding,
+            right: defaultPadding,
+            bottom: defaultPadding),
         children: [
           titleWelcome(),
           formLogin(),
+          butonLogin(),
+          register(),
         ],
       ),
     );
