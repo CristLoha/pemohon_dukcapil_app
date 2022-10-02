@@ -43,6 +43,9 @@ class RegisterView extends GetView<RegisterController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/img/add_user.png',
+            ),
             CustomTitleWidget(tittle: 'Nama Lengkap'),
             SizedBox(height: 12),
             TextFormField(
