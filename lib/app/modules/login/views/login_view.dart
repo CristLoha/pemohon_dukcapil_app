@@ -17,11 +17,6 @@ class LoginView extends GetView<LoginController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/img/logo.png',
-              height: 80,
-            ),
-            SizedBox(height: 20),
             Text(
               'Selamat Datang',
               style: blackTextStyle.copyWith(
@@ -55,7 +50,6 @@ class LoginView extends GetView<LoginController> {
                   color: kBlackColor,
                 ),
                 hintStyle: greyTextStyle,
-                hintText: 'Masukan Email',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -91,11 +85,10 @@ class LoginView extends GetView<LoginController> {
                           ),
                   ),
                   prefixIcon: Icon(
-                    Icons.lock_outline,
+                    Icons.lock,
                     color: kBlackColor,
                   ),
                   hintStyle: greyTextStyle,
-                  hintText: 'Masukan kata sandi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

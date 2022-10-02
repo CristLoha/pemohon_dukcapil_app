@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
-
 import 'package:get/get.dart';
-
 import '../../../routes/app_pages.dart';
 import '../../../shared/theme.dart';
+import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
-    Widget titleWelcome() {
+    Widget titleNotice() {
       return Container(
         margin: EdgeInsets.only(top: 40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
             Image.asset(
-              'assets/img/logo.png',
-              height: 80,
+              'assets/icon/megaphone.png',
+              fit: BoxFit.cover,
+              width: 40,
             ),
-            SizedBox(height: 20),
-            Text(
-              'Selamat Datang',
-              style: blackTextStyle.copyWith(
-                  fontSize: 24, fontWeight: semiBold, letterSpacing: 1),
-            ),
-            Text(
-              'Isi Data Pribadi Anda ',
-              style: greyTextStyle,
+            SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Silahkan diisi Data dengan Benar!',
+                  style: greyTextStyle.copyWith(fontSize: 13),
+                ),
+                Text(
+                  'Verifikasi membutuhkan waktu maksimal 1x24\njam',
+                  style: redTextStyle.copyWith(
+                    fontSize: 13,
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
@@ -39,38 +46,62 @@ class RegisterView extends GetView<RegisterController> {
 
     Widget formRegister() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              'assets/img/add_user.png',
-            ),
+            /// NAMA
             CustomTitleWidget(tittle: 'Nama Lengkap'),
             SizedBox(height: 12),
-            TextFormField(
-              cursorColor: kGreyColor,
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-              controller: controller.emailC,
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  Icons.person,
-                  color: kBlackColor,
-                ),
-                hintStyle: greyTextStyle,
-                hintText: 'Masukan Nama',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: kPrimaryColor,
-                  ),
-                ),
+            CustomFormField(
+              icon: Icon(
+                Icons.person,
+                color: kBlackColor,
               ),
+              keyboardType: TextInputType.name,
+              textEditingController: controller.nameC,
             ),
+            SizedBox(height: 20),
+
+            /// NIK
+            CustomTitleWidget(tittle: 'NIK'),
+            SizedBox(height: 12),
+            CustomFormField(
+              icon: Icon(
+                FontAwesome5.id_card,
+                color: kBlackColor,
+              ),
+              keyboardType: TextInputType.number,
+              textEditingController: controller.nikC,
+            ),
+            SizedBox(height: 20),
+
+            /// EMAIL
+            CustomTitleWidget(tittle: 'Email'),
+            SizedBox(height: 12),
+            CustomFormField(
+              icon: Icon(
+                ModernPictograms.at,
+                color: kBlackColor,
+              ),
+              keyboardType: TextInputType.emailAddress,
+              textEditingController: controller.emailC,
+            ),
+
+            SizedBox(height: 20),
+
+            /// EMAIL
+            CustomTitleWidget(tittle: 'Nomor Telepon'),
+            SizedBox(height: 12),
+            CustomFormField(
+              icon: Icon(
+                FontAwesome.phone,
+                color: kBlackColor,
+              ),
+              keyboardType: TextInputType.phone,
+              textEditingController: controller.emailC,
+            ),
+
             SizedBox(height: 20),
             CustomTitleWidget(tittle: 'Kata Sandi'),
             SizedBox(height: 12),
@@ -95,11 +126,10 @@ class RegisterView extends GetView<RegisterController> {
                           ),
                   ),
                   prefixIcon: Icon(
-                    Icons.lock_outline,
+                    Icons.lock,
                     color: kBlackColor,
                   ),
                   hintStyle: greyTextStyle,
-                  hintText: 'Masukan kata sandi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -108,30 +138,6 @@ class RegisterView extends GetView<RegisterController> {
                     borderSide: BorderSide(
                       color: kPrimaryColor,
                     ),
-                  ),
-                ),
-              ),
-            ),
-            Obx(
-              () => CheckboxListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                activeColor: kPrimaryColor,
-                value: controller.isSelected.value,
-                controlAffinity: ListTileControlAffinity.leading,
-                onChanged: (value) {
-                  controller.isSelected.toggle();
-                },
-                title: Text(
-                  'Ingat Saya',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 14,
-                  ),
-                ),
-                secondary: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Lupa Kata Sandi?',
-                    style: blueTextStyle.copyWith(fontWeight: semiBold),
                   ),
                 ),
               ),
@@ -149,7 +155,7 @@ class RegisterView extends GetView<RegisterController> {
           child: ElevatedButton(
             onPressed: () => Get.toNamed(Routes.HOME),
             child: Text(
-              'Masuk',
+              'Daftar',
               style: whiteTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -201,7 +207,7 @@ class RegisterView extends GetView<RegisterController> {
             right: defaultPadding,
             bottom: defaultPadding),
         children: [
-          titleWelcome(),
+          titleNotice(),
           formRegister(),
           butonRegister(),
           login(),

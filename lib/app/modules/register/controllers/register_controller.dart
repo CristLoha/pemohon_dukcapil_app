@@ -3,8 +3,7 @@ import 'package:get/get.dart';
 
 class RegisterController extends GetxController {
   TextEditingController nikC = TextEditingController();
-  TextEditingController firstNameC = TextEditingController();
-  TextEditingController lastNameC = TextEditingController();
+  TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
   TextEditingController passC = TextEditingController();

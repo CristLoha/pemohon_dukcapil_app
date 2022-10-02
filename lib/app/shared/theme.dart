@@ -8,6 +8,7 @@ Color kPrimaryColor = Color(0xff1F68B5);
 Color kBlueColor = Color(0xffB8DFF3);
 Color kBlackColor = Color(0xff3A3A3A);
 Color kGreyColor = Color(0xffAAAAAA);
+Color kRedColor = Color(0xffF12B2C);
 
 Color kWhiteColor = Color(0xffFFFFFF);
 
@@ -24,6 +25,10 @@ TextStyle blueTextStyle = GoogleFonts.poppins(
 
 TextStyle greyTextStyle = GoogleFonts.poppins(
   color: kGreyColor,
+);
+
+TextStyle redTextStyle = GoogleFonts.poppins(
+  color: kRedColor,
 );
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
