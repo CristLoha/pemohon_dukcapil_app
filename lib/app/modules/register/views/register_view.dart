@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
@@ -14,27 +15,27 @@ class RegisterView extends GetView<RegisterController> {
   Widget build(BuildContext context) {
     Widget titleNotice() {
       return Container(
-        margin: EdgeInsets.only(top: 40),
+        margin: EdgeInsets.only(top: 40.h),
         child: Row(
           children: [
             Image.asset(
               'assets/icon/megaphone.png',
               fit: BoxFit.cover,
-              width: 40,
+              width: 40.h,
             ),
-            SizedBox(width: 8),
+            SizedBox(width: 8.h),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     'Silahkan diisi Data dengan Benar!',
-                    style: greyTextStyle.copyWith(fontSize: 13),
+                    style: greyTextStyle.copyWith(fontSize: 13.sp),
                   ),
                   Text(
                     'Verifikasi membutuhkan waktu maksimal 1x24 jam',
                     style: redTextStyle.copyWith(
-                      fontSize: 13,
+                      fontSize: 13.sp,
                       fontWeight: semiBold,
                     ),
                   ),
@@ -48,13 +49,13 @@ class RegisterView extends GetView<RegisterController> {
 
     Widget formRegister() {
       return Container(
-        margin: EdgeInsets.only(top: 30),
+        margin: EdgeInsets.only(top: 30.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// NAMA
             CustomTitleWidget(tittle: 'Nama Lengkap'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             CustomFormField(
               icon: Icon(
                 Icons.person,
@@ -63,11 +64,11 @@ class RegisterView extends GetView<RegisterController> {
               keyboardType: TextInputType.name,
               textEditingController: controller.nameC,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             /// NIK
             CustomTitleWidget(tittle: 'NIK'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             CustomFormField(
               icon: Icon(
                 FontAwesome5.id_card,
@@ -76,11 +77,11 @@ class RegisterView extends GetView<RegisterController> {
               keyboardType: TextInputType.number,
               textEditingController: controller.nikC,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             /// EMAIL
             CustomTitleWidget(tittle: 'Email'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             CustomFormField(
               icon: Icon(
                 ModernPictograms.at,
@@ -90,11 +91,11 @@ class RegisterView extends GetView<RegisterController> {
               textEditingController: controller.emailC,
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
 
             /// EMAIL
             CustomTitleWidget(tittle: 'Nomor Telepon'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             CustomFormField(
               icon: Icon(
                 FontAwesome.phone,
@@ -104,9 +105,9 @@ class RegisterView extends GetView<RegisterController> {
               textEditingController: controller.emailC,
             ),
 
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             CustomTitleWidget(tittle: 'Kata Sandi'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Obx(
               () => TextFormField(
                 cursorColor: kGreyColor,
@@ -151,15 +152,15 @@ class RegisterView extends GetView<RegisterController> {
 
     Widget butonRegister() {
       return Container(
-        height: 50,
-        margin: EdgeInsets.only(top: 30),
+        height: 50.h,
+        margin: EdgeInsets.only(top: 30.h),
         child: Container(
           child: ElevatedButton(
             onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
             child: Text(
               'Daftar',
               style: whiteTextStyle.copyWith(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: medium,
               ),
             ),
@@ -176,7 +177,7 @@ class RegisterView extends GetView<RegisterController> {
 
     Widget login() {
       return Padding(
-        padding: const EdgeInsets.only(top: 10),
+        padding: EdgeInsets.only(top: 10.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -184,7 +185,7 @@ class RegisterView extends GetView<RegisterController> {
               'Sudah punya akun?',
               style: greyTextStyle,
             ),
-            SizedBox(width: 2),
+            SizedBox(width: 2.h),
             TextButton(
               onPressed: () => Get.toNamed(
                 Routes.LOGIN,

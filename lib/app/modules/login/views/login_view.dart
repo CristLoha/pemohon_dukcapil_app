@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
 import 'package:get/get.dart';
@@ -13,19 +14,19 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     Widget titleWelcome() {
       return Container(
-        margin: EdgeInsets.only(top: 80),
+        margin: EdgeInsets.only(top: 80.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
               'assets/img/logo.png',
-              height: 85,
+              height: 85.h,
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             Text(
               'Selamat Datang',
               style: blackTextStyle.copyWith(
-                  fontSize: 24, fontWeight: semiBold, letterSpacing: 1),
+                  fontSize: 24.sp, fontWeight: semiBold, letterSpacing: 1),
             ),
             Text(
               'Isi Data Pribadi Anda ',
@@ -38,12 +39,12 @@ class LoginView extends GetView<LoginController> {
 
     Widget formLogin() {
       return Container(
-        margin: EdgeInsets.only(top: 20),
+        margin: EdgeInsets.only(top: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomTitleWidget(tittle: 'Email'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             TextFormField(
               cursorColor: kGreyColor,
               keyboardType: TextInputType.emailAddress,
@@ -66,9 +67,9 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 20.h),
             CustomTitleWidget(tittle: 'Kata Sandi'),
-            SizedBox(height: 12),
+            SizedBox(height: 12.h),
             Obx(
               () => TextFormField(
                 cursorColor: kGreyColor,
@@ -118,7 +119,7 @@ class LoginView extends GetView<LoginController> {
                 title: Text(
                   'Ingat Saya',
                   style: blackTextStyle.copyWith(
-                    fontSize: 14,
+                    fontSize: 14.sp,
                   ),
                 ),
                 secondary: TextButton(
@@ -137,15 +138,15 @@ class LoginView extends GetView<LoginController> {
 
     Widget butonLogin() {
       return Container(
-        height: 50,
-        margin: EdgeInsets.only(top: 30),
+        height: 50.h,
+        margin: EdgeInsets.only(top: 30.h),
         child: Container(
           child: ElevatedButton(
             onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
             child: Text(
               'Masuk',
               style: whiteTextStyle.copyWith(
-                fontSize: 16,
+                fontSize: 16.sp,
                 fontWeight: medium,
               ),
             ),
@@ -162,7 +163,7 @@ class LoginView extends GetView<LoginController> {
 
     Widget register() {
       return Padding(
-        padding: const EdgeInsets.only(top: 5),
+        padding: EdgeInsets.only(top: 5.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -170,7 +171,7 @@ class LoginView extends GetView<LoginController> {
               'Belum punya akun?',
               style: greyTextStyle,
             ),
-            SizedBox(width: 4),
+            SizedBox(width: 4.w),
             TextButton(
               onPressed: () => Get.toNamed(
                 Routes.REGISTER,

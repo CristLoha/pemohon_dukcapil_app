@@ -4,29 +4,29 @@ import 'package:get/get.dart';
 import '../shared/theme.dart';
 
 class CustomMenusCard extends StatelessWidget {
-  final EdgeInsetsGeometry padding;
   final String icon;
   final String title;
   final double height;
+  final double bottom;
   final double widthIcon;
   const CustomMenusCard({
-    required this.padding,
     required this.icon,
     required this.title,
     required this.height,
+    required this.bottom,
     required this.widthIcon,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: padding,
+    return InkWell(
+      onTap: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: height),
+            padding: EdgeInsets.only(bottom: bottom),
             child: Image.asset(
               icon,
               width: widthIcon,
@@ -35,8 +35,7 @@ class CustomMenusCard extends StatelessWidget {
           Text(
             title,
             style: blackTextStyle.copyWith(
-              fontSize: 11,
-              fontWeight: medium,
+              fontSize: height,
             ),
             textAlign: TextAlign.center,
           ),

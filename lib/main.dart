@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pemohon_dukcapil_app/app/utils/error_screen.dart';
-import 'package:pemohon_dukcapil_app/app/utils/loading_screen.dart';
-import 'package:pemohon_dukcapil_app/app/utils/splash_screen.dart';
 import 'app/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -16,12 +14,21 @@ void main() async {
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<FirebaseApp> initialization = Firebase.initializeApp();
 
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: "Application",
-    initialRoute: Routes.LOGIN,
-    getPages: AppPages.routes,
-  ));
+  runApp(
+    ScreenUtilInit(
+      designSize: const Size(360, 720),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (BuildContext context, Widget? child) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "Application",
+          initialRoute: Routes.LOGIN,
+          getPages: AppPages.routes,
+        );
+      },
+    ),
+  );
 
   //   DevicePreview(
   //       builder: (context) => GetMaterialApp(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../shared/theme.dart';
 
 class BottomBar extends StatelessWidget {
@@ -26,19 +27,20 @@ class BottomBar extends StatelessWidget {
                 color: kBlueColor,
                 borderRadius: BorderRadius.circular(30),
               ),
-              padding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
+              padding:
+                  EdgeInsets.only(left: 14.w, right: 14, top: 6, bottom: 6),
               child: Row(
                 children: [
                   Icon(
                     icons,
                     color: kPrimaryColor,
                   ),
-                  SizedBox(width: 8),
+                  SizedBox(width: 8.w),
                   Text(
                     text,
                     style: blueTextStyle.copyWith(
                       fontWeight: bold,
-                      fontSize: 15,
+                      fontSize: 13.sp,
                     ),
                   ),
                 ],
