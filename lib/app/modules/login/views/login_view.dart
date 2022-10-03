@@ -13,10 +13,15 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     Widget titleWelcome() {
       return Container(
-        margin: EdgeInsets.only(top: 40),
+        margin: EdgeInsets.only(top: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/img/logo.png',
+              height: 85,
+            ),
+            SizedBox(height: 20),
             Text(
               'Selamat Datang',
               style: blackTextStyle.copyWith(
@@ -136,7 +141,7 @@ class LoginView extends GetView<LoginController> {
         margin: EdgeInsets.only(top: 30),
         child: Container(
           child: ElevatedButton(
-            onPressed: () => Get.toNamed(Routes.HOME),
+            onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
             child: Text(
               'Masuk',
               style: whiteTextStyle.copyWith(

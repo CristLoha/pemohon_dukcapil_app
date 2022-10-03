@@ -16,41 +16,47 @@ void main() async {
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<FirebaseApp> initialization = Firebase.initializeApp();
 
-  runApp(
-    //   DevicePreview(
-    //       builder: (context) => GetMaterialApp(
-    //             debugShowCheckedModeBanner: false,
-    //             title: "Application",
-    //             initialRoute: Routes.LOGIN,
-    //             getPages: AppPages.routes,
-    //           )),
-    // );
-    FutureBuilder(
-      future: initialization,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return ErrorScreen();
-        }
-        if (snapshot.connectionState == ConnectionState.done) {
-          return FutureBuilder(
-            future: Future.delayed(
-              Duration(seconds: 3),
-            ),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return GetMaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: "Application",
-                  initialRoute: Routes.LOGIN,
-                  getPages: AppPages.routes,
-                );
-              }
-              return SplashhScreen();
-            },
-          );
-        }
-        return LoadingScreen();
-      },
-    ),
-  );
+  runApp(GetMaterialApp(
+    debugShowCheckedModeBanner: false,
+    title: "Application",
+    initialRoute: Routes.LOGIN,
+    getPages: AppPages.routes,
+  ));
+
+  //   DevicePreview(
+  //       builder: (context) => GetMaterialApp(
+  //             debugShowCheckedModeBanner: false,
+  //             title: "Application",
+  //             initialRoute: Routes.LOGIN,
+  //             getPages: AppPages.routes,
+  //           )),
+  // );
+  //   FutureBuilder(
+  //     future: initialization,
+  //     builder: (context, snapshot) {
+  //       if (snapshot.hasError) {
+  //         return ErrorScreen();
+  //       }
+  //       if (snapshot.connectionState == ConnectionState.done) {
+  //         return FutureBuilder(
+  //           future: Future.delayed(
+  //             Duration(seconds: 3),
+  //           ),
+  //           builder: (context, snapshot) {
+  //             if (snapshot.connectionState == ConnectionState.done) {
+  //               return GetMaterialApp(
+  //                 debugShowCheckedModeBanner: false,
+  //                 title: "Application",
+  //                 initialRoute: Routes.LOGIN,
+  //                 getPages: AppPages.routes,
+  //               );
+  //             }
+  //             return SplashhScreen();
+  //           },
+  //         );
+  //       }
+  //       return LoadingScreen();
+  //     },
+  //   ),
+  // );
 }

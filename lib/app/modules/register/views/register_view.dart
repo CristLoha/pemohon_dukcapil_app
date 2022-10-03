@@ -23,21 +23,23 @@ class RegisterView extends GetView<RegisterController> {
               width: 40,
             ),
             SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Silahkan diisi Data dengan Benar!',
-                  style: greyTextStyle.copyWith(fontSize: 13),
-                ),
-                Text(
-                  'Verifikasi membutuhkan waktu maksimal 1x24\njam',
-                  style: redTextStyle.copyWith(
-                    fontSize: 13,
-                    fontWeight: semiBold,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Silahkan diisi Data dengan Benar!',
+                    style: greyTextStyle.copyWith(fontSize: 13),
                   ),
-                ),
-              ],
+                  Text(
+                    'Verifikasi membutuhkan waktu maksimal 1x24 jam',
+                    style: redTextStyle.copyWith(
+                      fontSize: 13,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -153,7 +155,7 @@ class RegisterView extends GetView<RegisterController> {
         margin: EdgeInsets.only(top: 30),
         child: Container(
           child: ElevatedButton(
-            onPressed: () => Get.toNamed(Routes.HOME),
+            onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
             child: Text(
               'Daftar',
               style: whiteTextStyle.copyWith(

@@ -6,6 +6,8 @@ import 'package:pemohon_dukcapil_app/app/modules/landing_screen/bindings/landing
 import 'package:pemohon_dukcapil_app/app/modules/landing_screen/views/landing_screen_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/login/bindings/login_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/login/views/login_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/main_page/bindings/main_page_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/main_page/views/main_page_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/views/register_view.dart';
 
@@ -36,6 +38,11 @@ class AppPages {
       name: _Paths.REGISTER,
       page: () => RegisterView(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: _Paths.MAIN_PAGE,
+      page: () => MainPageView(),
+      binding: MainPageBinding(),
     ),
   ];
 }
