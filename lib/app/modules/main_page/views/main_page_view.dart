@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/profile/views/profile_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/settings/views/settings_view.dart';
 
 import '../../../utils/bottom_bar.dart';
 import '../../home/views/home_view.dart';
@@ -19,13 +22,13 @@ class MainPageView extends GetView<MainPageController> {
                 ? HomeView()
                 : Container(),
             controller.selected.value == ButtonIcons.history
-                ? HomeView()
+                ? HistoryView()
                 : Container(),
             controller.selected.value == ButtonIcons.profile
-                ? HomeView()
+                ? ProfileView()
                 : Container(),
             controller.selected.value == ButtonIcons.settings
-                ? HomeView()
+                ? SettingsView()
                 : Container(),
             Align(
               alignment: Alignment.bottomLeft,

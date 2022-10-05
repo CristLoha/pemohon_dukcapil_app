@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
-
 import '../../../utils/custom_menus_card.dart';
 import '../controllers/home_controller.dart';
 
@@ -15,28 +12,33 @@ class HomeView extends GetView<HomeController> {
       return Stack(
         children: [
           Container(
-            height: 320.h,
+            height: 310.h,
             decoration: BoxDecoration(
               color: kPrimaryColor.withOpacity(0.90),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(top: 220.h, left: 20.w, right: 20.w),
-            child: Card(
-              elevation: 1,
-              child: Center(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 38.h),
+              Center(
+                child: Image.asset(
+                  'assets/img/ilustration1.png',
+                  width: 240.w,
+                ),
+              ),
+              Center(
                 child: Container(
-                  width: 340.w,
-                  height: Get.height * 0.49,
-                  decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
+                  width: 360.w,
                   child: Padding(
-                    padding: EdgeInsets.only(top: 27.h, left: 6.w, right: 6.w),
+                    padding: EdgeInsets.only(
+                      left: 6.w,
+                      right: 6.w,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        SizedBox(height: 20.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -94,7 +96,7 @@ class HomeView extends GetView<HomeController> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 30.w, right: 30.w),
+                              padding: EdgeInsets.only(left: 45.w, right: 47.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/update.png',
                                 title: 'Perubahan \nKK',
@@ -114,19 +116,27 @@ class HomeView extends GetView<HomeController> {
                               ),
                             ),
                           ],
-                        )
+                        ),
+                        SizedBox(height: 70.h),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
+            ],
           ),
         ],
       );
     }
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: Text(
+          'Pelayanan Dokumen Dukcapil',
+          style: whiteTextStyle,
+        ),
+      ),
       body: ListView(
         children: [
           backround(),
