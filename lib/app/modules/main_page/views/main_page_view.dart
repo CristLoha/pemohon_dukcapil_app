@@ -60,7 +60,7 @@ class MainPageView extends GetView<MainPageController> {
                       icons2: EvaIcons.fileTextOutline,
                     ),
 
-                    /// CHAT
+                    /// PROFILE
                     BottomBar(
                       onPressed: () => controller.chatButton(),
                       bottomIcons:
