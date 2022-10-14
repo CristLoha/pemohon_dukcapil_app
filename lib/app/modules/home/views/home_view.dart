@@ -22,103 +22,114 @@ class HomeView extends GetView<HomeController> {
             children: [
               SizedBox(height: 38.h),
               Center(
-                child: Image.asset(
-                  'assets/img/ilustration1.png',
-                  width: 240.w,
+                child: Flexible(
+                  flex: 1,
+                  child: Container(
+                    width: 250.w,
+                    child: Image.asset(
+                      'assets/img/ilustration1.png',
+                    ),
+                  ),
                 ),
               ),
               Center(
-                child: Container(
-                  width: 360.w,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 6.w,
-                      right: 6.w,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 20.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CustomMenusCard(
-                              icon: 'assets/icon/id-card.png',
-                              title: 'Registrasi \ne-KTP',
-                              height: 11.sp,
-                              bottom: 18.h,
-                              widthIcon: 38.w,
-                            ),
-                            CustomMenusCard(
-                              icon: 'assets/icon/exchange.png',
-                              title: 'Perubahan \ne-KTP',
-                              height: 11.sp,
-                              bottom: 12,
-                              widthIcon: 38.w,
-                            ),
-                            CustomMenusCard(
-                              icon: 'assets/icon/address.png',
-                              title: 'Perpindahan\nKeluar',
-                              height: 11.sp,
-                              bottom: 12,
-                              widthIcon: 38.w,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 22),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            CustomMenusCard(
-                              icon: 'assets/icon/card-birth.png',
-                              title: 'Registrasi \nAkta Kelahiran',
-                              height: 11.sp,
-                              bottom: 7.h,
-                              widthIcon: 36.w,
-                            ),
-                            CustomMenusCard(
-                              icon: 'assets/icon/certificate.png',
-                              title: 'Perubahan \ne-KTP',
-                              height: 11.sp,
-                              bottom: 12.h,
-                              widthIcon: 37.w,
-                            ),
-                            CustomMenusCard(
-                              icon: 'assets/icon/death-certificate.png',
-                              title: 'Registrasi\nAkta Kematian',
-                              height: 11.sp,
-                              bottom: 13.h,
-                              widthIcon: 32.w,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 22.h),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 45.w, right: 47.w),
-                              child: CustomMenusCard(
-                                icon: 'assets/icon/update.png',
-                                title: 'Perubahan \nKK',
+                child: Flexible(
+                  flex: 2,
+                  child: Container(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        left: 6.w,
+                        right: 6.w,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 20.h),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 7),
+                                child: CustomMenusCard(
+                                  icon: 'assets/icon/id-card.png',
+                                  title: 'Registrasi \ne-KTP',
+                                  height: 11.sp,
+                                  bottom: 14.h,
+                                  widthIcon: 36.w,
+                                ),
+                              ),
+                              CustomMenusCard(
+                                icon: 'assets/icon/exchange.png',
+                                title: 'Perubahan \ne-KTP',
+                                height: 11.sp,
+                                bottom: 12,
+                                widthIcon: 38.w,
+                              ),
+                              CustomMenusCard(
+                                icon: 'assets/icon/address.png',
+                                title: 'Perpindahan\nKeluar',
+                                height: 11.sp,
+                                bottom: 12,
+                                widthIcon: 38.w,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 22),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              CustomMenusCard(
+                                icon: 'assets/icon/card-birth.png',
+                                title: 'Registrasi \nAkta Kelahiran',
+                                height: 11.sp,
+                                bottom: 6.h,
+                                widthIcon: 34.w,
+                              ),
+                              CustomMenusCard(
+                                icon: 'assets/icon/certificate.png',
+                                title: 'Perubahan \ne-KTP',
                                 height: 11.sp,
                                 bottom: 12.h,
-                                widthIcon: 36.w,
+                                widthIcon: 37.w,
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 3.h),
-                              child: CustomMenusCard(
-                                icon: 'assets/icon/id_kia.png',
-                                title: 'Registrasi \nKIA',
+                              CustomMenusCard(
+                                icon: 'assets/icon/death-certificate.png',
+                                title: 'Registrasi\nAkta Kematian',
                                 height: 11.sp,
-                                bottom: 15.h,
-                                widthIcon: 39.w,
+                                bottom: 13.h,
+                                widthIcon: 32.w,
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 70.h),
-                      ],
+                            ],
+                          ),
+                          SizedBox(height: 22.h),
+                          Row(
+                            children: [
+                              Padding(
+                                padding:
+                                    EdgeInsets.only(left: 45.w, right: 47.w),
+                                child: CustomMenusCard(
+                                  icon: 'assets/icon/update.png',
+                                  title: 'Perubahan \nKK',
+                                  height: 11.sp,
+                                  bottom: 12.h,
+                                  widthIcon: 36.w,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 3.h),
+                                child: CustomMenusCard(
+                                  icon: 'assets/icon/id_kia.png',
+                                  title: 'Registrasi \nKIA',
+                                  height: 11.sp,
+                                  bottom: 15.h,
+                                  widthIcon: 39.w,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 80.h),
+                        ],
+                      ),
                     ),
                   ),
                 ),
