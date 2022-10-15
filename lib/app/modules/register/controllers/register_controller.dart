@@ -34,8 +34,20 @@ class RegisterController extends GetxController {
         );
         print(credential);
         isLoading.value = false;
+        if (credential.user!.emailVerified == false) {
+          Get.snackbar(
+            'Peringatan',
+            'Link verifikasi telah terkirim',
+            backgroundColor: kBlackColor,
+            colorText: kWhiteColor,
+            snackPosition: SnackPosition.TOP,
+            isDismissible: true,
+            forwardAnimationCurve: Curves.easeOutBack,
+          );
 
-        Get.offAllNamed(Routes.MAIN_PAGE);
+          Get.offAllNamed(Routes.LOGIN);
+          await credential.user!.sendEmailVerification();
+        }
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         if (e.code == 'weak-password') {

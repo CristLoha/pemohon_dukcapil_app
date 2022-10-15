@@ -25,13 +25,27 @@ class LoginController extends GetxController {
 
         print(credential);
         isLoading.value = false;
-        Get.offAllNamed(Routes.MAIN_PAGE);
+
+        if (credential.user!.emailVerified == true) {
+          Get.offAllNamed(Routes.MAIN_PAGE);
+        } else {
+          Get.snackbar(
+            'Peringatan',
+            'Email belum terverifikasi',
+            backgroundColor: kBlackColor,
+            colorText: kWhiteColor,
+            snackPosition: SnackPosition.TOP,
+            isDismissible: true,
+            forwardAnimationCurve: Curves.easeOutBack,
+          );
+          print('Email belum terverifikasi & tidak dapat masuk');
+        }
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         if (e.code == 'user-not-found') {
           Get.snackbar(
             'Peringatan',
-            'Pengguna tidak ditemukan ',
+            'Pengguna tidak ditemukan',
             backgroundColor: kBlackColor,
             colorText: kWhiteColor,
             snackPosition: SnackPosition.TOP,
