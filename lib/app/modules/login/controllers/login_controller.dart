@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
@@ -29,16 +29,49 @@ class LoginController extends GetxController {
         if (credential.user!.emailVerified == true) {
           Get.offAllNamed(Routes.MAIN_PAGE);
         } else {
-          Get.snackbar(
-            'Peringatan',
-            'Email belum terverifikasi',
-            backgroundColor: kBlackColor,
-            colorText: kWhiteColor,
-            snackPosition: SnackPosition.TOP,
-            isDismissible: true,
-            forwardAnimationCurve: Curves.easeOutBack,
-          );
           print('Email belum terverifikasi & tidak dapat masuk');
+          Get.defaultDialog(
+            title: 'Belum terverifikasi',
+            middleText: 'Apakah kamu ingin mengirim email verifikasi kembali?',
+            actions: [
+              OutlinedButton(
+                onPressed: () => Get.back(),
+                child: Text('Tidak'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    print('Kirim ulang verifikasi');
+                    await credential.user!.sendEmailVerification();
+                    Get.back();
+                    print('Berhasil mengirim email verifikasi');
+                    Get.snackbar(
+                      'Berhasil',
+                      'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi',
+                      backgroundColor: kBlackColor,
+                      colorText: kWhiteColor,
+                      snackPosition: SnackPosition.TOP,
+                      isDismissible: true,
+                      forwardAnimationCurve: Curves.easeOutBack,
+                    );
+                  } catch (e) {
+                    Get.back();
+
+                    Get.snackbar(
+                      'Gagal',
+                      'Kamu terlalu banyak meminta kirim email verifikasi',
+                      backgroundColor: kBlackColor,
+                      colorText: kWhiteColor,
+                      snackPosition: SnackPosition.TOP,
+                      isDismissible: true,
+                      forwardAnimationCurve: Curves.easeOutBack,
+                    );
+                  }
+                },
+                child: Text('Kirim Lagi'),
+              )
+            ],
+          );
         }
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;

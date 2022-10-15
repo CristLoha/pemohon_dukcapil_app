@@ -36,8 +36,8 @@ class RegisterController extends GetxController {
         isLoading.value = false;
         if (credential.user!.emailVerified == false) {
           Get.snackbar(
-            'Peringatan',
-            'Link verifikasi telah terkirim',
+            'Berhasil',
+            'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi',
             backgroundColor: kBlackColor,
             colorText: kWhiteColor,
             snackPosition: SnackPosition.TOP,
