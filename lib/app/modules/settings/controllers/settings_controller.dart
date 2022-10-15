@@ -1,20 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 
 class SettingsController extends GetxController {
-  //TODO: Implement SettingsController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  void logout() async {
+    try {
+      await auth.signOut();
+      Get.offAllNamed(Routes.LOGIN);
+    } catch (e) {
+      print(e);
+    }
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

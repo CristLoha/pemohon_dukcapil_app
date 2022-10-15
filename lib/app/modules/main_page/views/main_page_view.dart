@@ -14,6 +14,7 @@ import '../controllers/main_page_controller.dart';
 class MainPageView extends GetView<MainPageController> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(360, 690));
     return Scaffold(
       body: Obx(
         () => Stack(

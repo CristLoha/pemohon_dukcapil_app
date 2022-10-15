@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 import '../shared/theme.dart';
 
 class CustomMenusCard extends StatelessWidget {
@@ -20,29 +18,26 @@ class CustomMenusCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      flex: 3,
-      child: InkWell(
-        onTap: () {},
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: bottom),
-              child: Image.asset(
-                icon,
-                width: widthIcon,
-              ),
+    return InkWell(
+      onTap: () {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: bottom),
+            child: Image.asset(
+              icon,
+              width: widthIcon,
             ),
-            Text(
-              title,
-              style: blackTextStyle.copyWith(
-                fontSize: height,
-              ),
-              textAlign: TextAlign.center,
+          ),
+          Text(
+            title,
+            style: blackTextStyle.copyWith(
+              fontSize: height,
             ),
-          ],
-        ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

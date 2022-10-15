@@ -12,6 +12,7 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(360, 690));
     Widget titleWelcome() {
       return Container(
         margin: EdgeInsets.only(top: 80.h),
@@ -46,6 +47,14 @@ class LoginView extends GetView<LoginController> {
             CustomTitleWidget(tittle: 'Email'),
             SizedBox(height: 12.h),
             TextFormField(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (!GetUtils.isEmail(value!)) {
+                  return 'Email tidak valid';
+                } else {
+                  return null;
+                }
+              },
               cursorColor: kGreyColor,
               keyboardType: TextInputType.emailAddress,
               autocorrect: false,
@@ -74,6 +83,14 @@ class LoginView extends GetView<LoginController> {
               () => TextFormField(
                 cursorColor: kGreyColor,
                 obscureText: controller.isHidden.value,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (!GetUtils.isLengthGreaterThan(value, 5)) {
+                    return 'Minimal 5 karakter';
+                  } else {
+                    return null;
+                  }
+                },
                 keyboardType: TextInputType.visiblePassword,
                 autocorrect: false,
                 controller: controller.passC,
@@ -141,20 +158,24 @@ class LoginView extends GetView<LoginController> {
         height: 50.h,
         margin: EdgeInsets.only(top: 30.h),
         child: Container(
-          child: ElevatedButton(
-            onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
-            child: Text(
-              'Masuk',
-              style: whiteTextStyle.copyWith(
-                fontSize: 16.sp,
-                fontWeight: medium,
+          child: Obx(
+            () => ElevatedButton(
+              onPressed: () {
+                controller.login();
+              },
+              child: Text(
+                controller.isLoading.isFalse ? 'Masuk' : 'Memuat...',
+                style: whiteTextStyle.copyWith(
+                  fontSize: 16.sp,
+                  fontWeight: medium,
+                ),
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                backgroundColor: kPrimaryColor,
               ),
-              backgroundColor: kPrimaryColor,
             ),
           ),
         ),
