@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -63,6 +64,14 @@ class RegisterView extends GetView<RegisterController> {
               ),
               keyboardType: TextInputType.name,
               textEditingController: controller.nameC,
+              validator: (value) {
+                if (value!.isEmpty ||
+                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                  return "Masukan nama yang benar";
+                } else {
+                  return null;
+                }
+              },
             ),
             SizedBox(height: 20.h),
 
@@ -76,6 +85,17 @@ class RegisterView extends GetView<RegisterController> {
               ),
               keyboardType: TextInputType.number,
               textEditingController: controller.nikC,
+              validator: (value) {
+                if (value!.isEmpty ||
+                    !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                        .hasMatch(value)) {
+                  return "Masukan NIK yang benar";
+                } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                  return 'NIK harus 16 karakter';
+                } else {
+                  return null;
+                }
+              },
             ),
             SizedBox(height: 20.h),
 
@@ -89,11 +109,18 @@ class RegisterView extends GetView<RegisterController> {
               ),
               keyboardType: TextInputType.emailAddress,
               textEditingController: controller.emailC,
+              validator: (value) {
+                if (!GetUtils.isEmail(value!)) {
+                  return 'Email tidak valid';
+                } else {
+                  return null;
+                }
+              },
             ),
 
             SizedBox(height: 20.h),
 
-            /// EMAIL
+            /// Nomor Telepon
             CustomTitleWidget(tittle: 'Nomor Telepon'),
             SizedBox(height: 12.h),
             CustomFormField(
@@ -102,7 +129,18 @@ class RegisterView extends GetView<RegisterController> {
                 color: kBlackColor,
               ),
               keyboardType: TextInputType.phone,
-              textEditingController: controller.emailC,
+              textEditingController: controller.noTelpC,
+              validator: (value) {
+                if (value!.isEmpty ||
+                    !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                        .hasMatch(value)) {
+                  return "Masukan nomor yang benar";
+                } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
+                  return 'Minimal 12 karakter';
+                } else {
+                  return null;
+                }
+              },
             ),
 
             SizedBox(height: 20.h),
@@ -113,6 +151,14 @@ class RegisterView extends GetView<RegisterController> {
                 cursorColor: kGreyColor,
                 obscureText: controller.isHidden.value,
                 keyboardType: TextInputType.visiblePassword,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (!GetUtils.isLengthGreaterThan(value, 5)) {
+                    return 'Minimal 5 karakter';
+                  } else {
+                    return null;
+                  }
+                },
                 autocorrect: false,
                 controller: controller.passC,
                 decoration: InputDecoration(
@@ -155,20 +201,24 @@ class RegisterView extends GetView<RegisterController> {
         height: 50.h,
         margin: EdgeInsets.only(top: 30.h),
         child: Container(
-          child: ElevatedButton(
-            onPressed: () => Get.offAllNamed(Routes.MAIN_PAGE),
-            child: Text(
-              'Daftar',
-              style: whiteTextStyle.copyWith(
-                fontSize: 16.sp,
-                fontWeight: medium,
+          child: Obx(
+            () => ElevatedButton(
+              onPressed: () {
+                controller.register();
+              },
+              child: Text(
+                controller.isLoading.isFalse ? 'Daftar' : 'Memuat...',
+                style: whiteTextStyle.copyWith(
+                  fontSize: 16.sp,
+                  fontWeight: medium,
+                ),
               ),
-            ),
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                backgroundColor: kPrimaryColor,
               ),
-              backgroundColor: kPrimaryColor,
             ),
           ),
         ),

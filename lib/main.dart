@@ -41,6 +41,7 @@ void main() async {
             initialRoute:
                 snapshot.data != null ? Routes.MAIN_PAGE : Routes.LOGIN,
             getPages: AppPages.routes,
+            builder: EasyLoading.init(),
           );
         }),
   );

@@ -44,13 +44,16 @@ class LoginView extends GetView<LoginController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            /// EMAIL
             CustomTitleWidget(tittle: 'Email'),
             SizedBox(height: 12.h),
             TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                if (!GetUtils.isEmail(value!)) {
-                  return 'Email tidak valid';
+                if (value!.isEmpty ||
+                    !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                        .hasMatch(value)) {
+                  return "Email tidak valid";
                 } else {
                   return null;
                 }
