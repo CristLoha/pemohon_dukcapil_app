@@ -1,20 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 
 class LandingScreenController extends GetxController {
-  //TODO: Implement LandingScreenController
+  FirebaseAuth auth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  User? userPemohon = FirebaseAuth.instance.currentUser;
+  RxBool isLoading = false.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  final CollectionReference collectionPemohon =
+      FirebaseFirestore.instance.collection('pemohon');
+  void signOut() {
+    auth.signOut();
+    Get.offAllNamed(Routes.LOGIN);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-  void increment() => count.value++;
 }

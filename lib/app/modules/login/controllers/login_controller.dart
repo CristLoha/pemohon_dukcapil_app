@@ -39,7 +39,7 @@ class LoginController extends GetxController {
         isLoading.value = false;
 
         if (credential.user!.emailVerified == true) {
-          Get.offAllNamed(Routes.MAIN_PAGE);
+          Get.offAllNamed(Routes.LANDING_SCREEN);
         } else {
           print('Email belum terverifikasi & tidak dapat masuk');
           Get.defaultDialog(

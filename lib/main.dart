@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+
 import 'package:get/get.dart';
 import 'app/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -38,7 +39,7 @@ void main() async {
             debugShowCheckedModeBanner: false,
             title: "Application",
             initialRoute:
-                snapshot.data != null ? Routes.MAIN_PAGE : Routes.LOGIN,
+                snapshot.data != null ? Routes.LANDING_SCREEN : Routes.LOGIN,
             getPages: AppPages.routes,
             builder: EasyLoading.init(),
           );

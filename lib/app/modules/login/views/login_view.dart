@@ -12,6 +12,7 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context, designSize: const Size(360, 690));
     Widget titleWelcome() {
       return Container(
         margin: EdgeInsets.only(top: 80.h),
