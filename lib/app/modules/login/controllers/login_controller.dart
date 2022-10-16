@@ -6,6 +6,18 @@ import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 class LoginController extends GetxController {
+  void infoMsg(String msg1, String msg2) {
+    Get.snackbar(
+      msg1,
+      msg2,
+      backgroundColor: kBlackColor,
+      colorText: kWhiteColor,
+      snackPosition: SnackPosition.TOP,
+      isDismissible: true,
+      forwardAnimationCurve: Curves.easeOutBack,
+    );
+  }
+
   Timer? timer;
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
@@ -45,28 +57,19 @@ class LoginController extends GetxController {
                     await credential.user!.sendEmailVerification();
                     Get.back();
                     print('Berhasil mengirim email verifikasi');
-                    Get.snackbar(
-                      'Berhasil',
+                    infoMsg(
+                      'BERHASIL',
                       'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi',
-                      backgroundColor: kBlackColor,
-                      colorText: kWhiteColor,
-                      snackPosition: SnackPosition.TOP,
-                      isDismissible: true,
-                      forwardAnimationCurve: Curves.easeOutBack,
                     );
                   } catch (e) {
                     Get.back();
-
-                    Get.snackbar(
-                      'Gagal',
-                      'Kamu terlalu banyak meminta kirim email verifikasi',
-                      backgroundColor: kBlackColor,
-                      colorText: kWhiteColor,
-                      snackPosition: SnackPosition.TOP,
-                      isDismissible: true,
-                      forwardAnimationCurve: Curves.easeOutBack,
-                    );
+                    infoMsg('TERJADI KESALAHAN',
+                        'Kamu terlalu banyak meminta kirim email verifikasi');
                   }
+                  infoMsg(
+                    'TERJADI KESALAHAN',
+                    'Kamu terlalu banyak meminta kirim email verifikasi',
+                  );
                 },
                 child: Text('Kirim Lagi'),
               )
@@ -76,29 +79,15 @@ class LoginController extends GetxController {
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
         if (e.code == 'user-not-found') {
-          Get.snackbar(
-            'Peringatan',
-            'Pengguna tidak ditemukan',
-            backgroundColor: kBlackColor,
-            colorText: kWhiteColor,
-            snackPosition: SnackPosition.TOP,
-            isDismissible: true,
-            forwardAnimationCurve: Curves.easeOutBack,
-          );
+          infoMsg('TERJADI KESALAHAN', 'Pengguna tidak ditemukan');
           print('No user found for that email.');
         } else if (e.code == 'wrong-password') {
-          Get.snackbar(
-            'Peringatan',
-            'Kata sandi salah',
-            backgroundColor: kBlackColor,
-            colorText: kWhiteColor,
-            snackPosition: SnackPosition.TOP,
-            isDismissible: true,
-            forwardAnimationCurve: Curves.easeOutBack,
-          );
+          infoMsg('TERJADI KESALAHAN', 'Kata sandi salah');
           print('Wrong password provided for that user.');
         }
       }
+    } else {
+      infoMsg('TERJADI KESALAHAN', 'Email atau kata sandi harus diisi');
     }
   }
 }

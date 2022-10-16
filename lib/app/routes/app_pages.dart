@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/bindings/home_binding.dart';
