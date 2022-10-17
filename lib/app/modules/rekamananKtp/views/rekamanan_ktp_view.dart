@@ -193,8 +193,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
               textEditingController: controller.kecamatanC,
               onTap: () {},
               validator: (value) {
-                if (!GetUtils.isEmail(value!)) {
-                  return 'Email tidak valid';
+                if (value!.isEmpty ||
+                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                  return "Masukan nama kecamatan yang benar";
                 } else {
                   return null;
                 }
@@ -209,8 +210,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
               keyboardType: TextInputType.emailAddress,
               textEditingController: controller.emailC,
               validator: (value) {
-                if (!GetUtils.isEmail(value!)) {
-                  return 'Email tidak valid';
+                if (value!.isEmpty ||
+                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                  return "Masukan nama desa yang benar";
                 } else {
                   return null;
                 }
