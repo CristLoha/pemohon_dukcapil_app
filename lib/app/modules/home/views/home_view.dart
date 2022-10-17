@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import '../../../utils/custom_menus_card.dart';
 import '../controllers/home_controller.dart';
@@ -51,6 +52,7 @@ class HomeView extends GetView<HomeController> {
                                 height: 11.sp,
                                 bottom: 14.h,
                                 widthIcon: 36.w,
+                                onTap: () => Get.toNamed(Routes.REKAMANAN_KTP),
                               ),
                             ),
                             CustomMenusCard(
@@ -59,6 +61,7 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
+                              onTap: () {},
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/address.png',
@@ -66,6 +69,7 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
+                              onTap: () {},
                             ),
                           ],
                         ),
@@ -79,6 +83,7 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 6.h,
                               widthIcon: 34.w,
+                              onTap: () {},
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
@@ -86,6 +91,7 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,
+                              onTap: () {},
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/death-certificate.png',
@@ -93,6 +99,7 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 13.h,
                               widthIcon: 32.w,
+                              onTap: () {},
                             ),
                           ],
                         ),
@@ -107,6 +114,7 @@ class HomeView extends GetView<HomeController> {
                                 height: 11.sp,
                                 bottom: 12.h,
                                 widthIcon: 36.w,
+                                onTap: () {},
                               ),
                             ),
                             Padding(
@@ -117,6 +125,7 @@ class HomeView extends GetView<HomeController> {
                                 height: 11.sp,
                                 bottom: 15.h,
                                 widthIcon: 39.w,
+                                onTap: () {},
                               ),
                             ),
                           ],

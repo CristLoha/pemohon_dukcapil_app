@@ -7,10 +7,12 @@ class CustomMenusCard extends StatelessWidget {
   final double height;
   final double bottom;
   final double widthIcon;
+  final Function() onTap;
   const CustomMenusCard({
     required this.icon,
     required this.title,
     required this.height,
+    required this.onTap,
     required this.bottom,
     required this.widthIcon,
     Key? key,
@@ -19,7 +21,7 @@ class CustomMenusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

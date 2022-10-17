@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/modules/main_page/controllers/main_page_controller.dart';
+import 'package:pemohon_dukcapil_app/app/modules/settings/controllers/settings_controller.dart';
 
 import '../controllers/landing_screen_controller.dart';
 
@@ -12,6 +13,9 @@ class LandingScreenBinding extends Bindings {
 
     Get.lazyPut<MainPageController>(
       () => MainPageController(),
+    );
+    Get.lazyPut<SettingsController>(
+      () => SettingsController(),
     );
   }
 }

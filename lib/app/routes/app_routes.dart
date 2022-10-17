@@ -13,6 +13,7 @@ abstract class Routes {
   static const HISTORY = _Paths.HISTORY;
   static const PROFILE = _Paths.PROFILE;
   static const SETTINGS = _Paths.SETTINGS;
+  static const REKAMANAN_KTP = _Paths.REKAMANAN_KTP;
 }
 
 abstract class _Paths {
@@ -25,4 +26,5 @@ abstract class _Paths {
   static const HISTORY = '/history';
   static const PROFILE = '/profile';
   static const SETTINGS = '/settings';
+  static const REKAMANAN_KTP = '/rekamanan-ktp';
 }

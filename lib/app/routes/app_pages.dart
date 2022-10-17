@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/bindings/home_binding.dart';
@@ -13,6 +14,8 @@ import 'package:pemohon_dukcapil_app/app/modules/profile/bindings/profile_bindin
 import 'package:pemohon_dukcapil_app/app/modules/profile/views/profile_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/views/register_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/bindings/rekamanan_ktp_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/views/rekamanan_ktp_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/bindings/settings_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/views/settings_view.dart';
 
@@ -63,6 +66,11 @@ class AppPages {
       name: _Paths.SETTINGS,
       page: () => SettingsView(),
       binding: SettingsBinding(),
+    ),
+    GetPage(
+      name: _Paths.REKAMANAN_KTP,
+      page: () => RekamananKtpView(),
+      binding: RekamananKtpBinding(),
     ),
   ];
 }
