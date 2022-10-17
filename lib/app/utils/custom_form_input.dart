@@ -4,15 +4,19 @@ import 'package:pemohon_dukcapil_app/app/modules/register/controllers/register_c
 import '../shared/theme.dart';
 
 class CustomFormField extends GetView<RegisterController> {
-  final TextInputType keyboardType;
-  final Icon icon;
+  final TextInputType? keyboardType;
+  final Icon? icon;
+  final bool? readOnly;
+  final Function()? onTap;
   final String? Function(String?)? validator;
   final TextEditingController textEditingController;
 
   const CustomFormField(
       {Key? key,
-      required this.keyboardType,
-      required this.icon,
+      this.keyboardType,
+      this.icon,
+      this.readOnly,
+      this.onTap,
       required this.validator,
       required this.textEditingController})
       : super(key: key);
@@ -23,6 +27,7 @@ class CustomFormField extends GetView<RegisterController> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       cursorColor: kGreyColor,
+      onTap: onTap,
       keyboardType: keyboardType,
       autocorrect: false,
       controller: textEditingController,
