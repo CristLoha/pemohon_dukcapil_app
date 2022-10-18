@@ -3,6 +3,7 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 class RekamananKtpController extends GetxController {
   RxInt currentStep = 0.obs;
@@ -22,10 +23,23 @@ class RekamananKtpController extends GetxController {
     update();
   }
 
+  void infoMsg(String msg1, String msg2) {
+    Get.snackbar(
+      msg1,
+      msg2,
+      backgroundColor: kBlackColor,
+      colorText: kWhiteColor,
+      snackPosition: SnackPosition.TOP,
+      isDismissible: true,
+      forwardAnimationCurve: Curves.easeOutBack,
+    );
+  }
+
   void selectImage() async {
     try {
-      final dataImage =
-          await imagePicker.pickImage(source: ImageSource.gallery);
+      final dataImage = await imagePicker.pickImage(
+        source: ImageSource.gallery,
+      );
 
       if (dataImage != null) {
         print(dataImage.name);

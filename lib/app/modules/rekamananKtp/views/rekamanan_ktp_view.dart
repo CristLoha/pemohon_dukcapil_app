@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_form_input.dart';
+import 'package:photo_view/photo_view.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/rekamanan_ktp_controller.dart';
 
@@ -239,9 +240,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             SizedBox(height: 12.h),
             Center(
               child: Container(
-                padding: EdgeInsets.only(left: 10, top: 20, right: 10),
+                padding: EdgeInsets.only(left: 15, top: 20, right: 10),
                 width: 315.w,
-                height: 120.h,
+                height: 140.h,
                 decoration: BoxDecoration(
                   border: Border.all(
                     color: kGreyColor,
@@ -251,9 +252,23 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                   children: [
                     GetBuilder<RekamananKtpController>(
                       builder: (c) => c.pickedImage != null
-                          ? Text(
-                              c.pickedImage!.name,
-                              style: blackTextStyle.copyWith(),
+                          ? Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    c.pickedImage!.name,
+                                    style: blackTextStyle.copyWith(),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () => c.resetImage(),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: kRedColor,
+                                  ),
+                                ),
+                              ],
                             )
                           : Text(
                               '*Maks 5 Mb',
@@ -271,24 +286,62 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(7),
                           ),
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Lihat',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 16.sp,
-                                fontWeight: medium,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                side: BorderSide(
-                                  color: kGreyColor,
-                                ),
-                              ),
-                              backgroundColor: kWhiteColor,
-                            ),
+                          child: GetBuilder<RekamananKtpController>(
+                            builder: (c) {
+                              return c.pickedImage != null
+                                  ? ElevatedButton(
+                                      onPressed: () {
+                                        Get.dialog(
+                                          Container(
+                                            child: PhotoView(
+                                              imageProvider: FileImage(
+                                                File(c.pickedImage!.path),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {
+                                        controller.infoMsg('PERINGATAN',
+                                            'Jangan biarkan data kosong');
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ));
+                            },
                           ),
                         ),
                         Container(
