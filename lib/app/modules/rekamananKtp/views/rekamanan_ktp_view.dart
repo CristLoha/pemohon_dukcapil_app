@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_form_input.dart';
@@ -52,8 +55,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                               child: Text(
                                 controller.currentStep.value ==
                                         formStep().length - 1
-                                    ? "KIRIM"
-                                    : 'Berikut',
+                                    ? "Kirim"
+                                    : 'Selanjutnya',
                                 style: whiteTextStyle.copyWith(
                                   fontSize: 16,
                                   fontWeight: medium,
@@ -226,9 +229,101 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
       ),
       Step(
         title: Text('Persyaratan'),
-        content: Container(
-          height: 100,
-          color: Colors.green,
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Unggah Kartu Keluarga',
+              style: blackTextStyle.copyWith(),
+            ),
+            SizedBox(height: 12.h),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(left: 10, top: 20, right: 10),
+                width: 315.w,
+                height: 120.h,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kGreyColor,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    GetBuilder<RekamananKtpController>(
+                      builder: (c) => c.pickedImage != null
+                          ? Text(
+                              c.pickedImage!.name,
+                              style: blackTextStyle.copyWith(),
+                            )
+                          : Text(
+                              '*Maks 5 Mb',
+                              style: redTextStyle.copyWith(),
+                            ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            child: Text(
+                              'Lihat',
+                              style: blackTextStyle.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: medium,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                side: BorderSide(
+                                  color: kGreyColor,
+                                ),
+                              ),
+                              backgroundColor: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.selectImage();
+                            },
+                            child: Text(
+                              'Pilih File',
+                              style: blackTextStyle.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: medium,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                side: BorderSide(
+                                  color: kGreyColor,
+                                ),
+                              ),
+                              backgroundColor: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 240.h),
+          ],
         ),
         isActive: controller.currentStep.value >= 1,
       ),

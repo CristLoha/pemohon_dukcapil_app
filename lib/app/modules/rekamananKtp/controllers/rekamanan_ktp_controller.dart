@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 class RekamananKtpController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-
+  final ImagePicker imagePicker = ImagePicker();
   TextEditingController nikC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController dateC = TextEditingController();
@@ -14,6 +15,30 @@ class RekamananKtpController extends GetxController {
   TextEditingController desaC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
+  XFile? pickedImage;
+
+  void resetImage() {
+    pickedImage = null;
+    update();
+  }
+
+  void selectImage() async {
+    try {
+      final dataImage =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImage = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImage = null;
+      update();
+    }
+  }
 
   ///UNTUK FORM
   void dateLocal() async {
@@ -21,7 +46,7 @@ class RekamananKtpController extends GetxController {
       Get.context!,
       locale: LocaleType.id,
       minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime.now(),
+      maxTime: DateTime(2006, 12, 31),
     ).then((selectedDate) {
       if (selectedDate != null) {
         dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);

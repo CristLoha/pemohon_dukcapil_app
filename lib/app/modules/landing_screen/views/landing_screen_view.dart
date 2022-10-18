@@ -39,7 +39,7 @@ class LandingScreenView extends GetView<LandingScreenController> {
 
             if (data == null) {
               return Center(
-                child: Container(),
+                child: CircularProgressIndicator(),
               );
             }
             if (!snapshot.data!.exists) {
