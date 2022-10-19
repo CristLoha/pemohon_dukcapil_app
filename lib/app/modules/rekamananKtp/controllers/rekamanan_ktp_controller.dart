@@ -1,8 +1,14 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 class RekamananKtpController extends GetxController {
@@ -14,13 +20,67 @@ class RekamananKtpController extends GetxController {
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
-  TextEditingController emailC = TextEditingController();
-  TextEditingController noTelpC = TextEditingController();
+
   XFile? pickedImage;
+  FirebaseStorage storage = FirebaseStorage.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   void resetImage() {
     pickedImage = null;
     update();
+  }
+
+  void addrekamanKTP() async {
+    if (nikC.text.isNotEmpty &&
+        nameC.text.isNotEmpty &&
+        dateC.text.isNotEmpty &&
+        kecamatanC.text.isNotEmpty &&
+        desaC.text.isNotEmpty) {
+      String uid = auth.currentUser!.uid;
+      try {
+        await firestore
+            .collection('ktp')
+            .add(
+              ({
+                'nik': nikC.text,
+                'nama': nameC.text,
+                'tgl_lahir': dateC.text,
+                'kecamatan': kecamatanC.text,
+                'desa': desaC.text,
+                'uid': uid,
+                'proses': 'PROSES VERIFIKASI',
+                'createdAt': DateTime.now().toIso8601String(),
+              }),
+            )
+            .then(
+          (value) {
+            EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+            Get.offNamed(Routes.MAIN_PAGE);
+          },
+        ).catchError(
+          (error) {
+            print("Failed to add user: $error");
+          },
+        );
+      } catch (e) {
+        print('bla bla');
+      }
+    } else {
+      EasyLoading.showError('Data tidak boleh kosong');
+      print('data tidak boleh kosong');
+    }
+  }
+
+  void uploadImage() async {
+    Reference storageRef = storage.ref("rekamanKTP/kk.png");
+    File file = File(pickedImage!.path);
+    try {
+      final dataUpload = await storageRef.putFile(file);
+      print(dataUpload);
+    } catch (e) {
+      print('err');
+    }
   }
 
   void infoMsg(String msg1, String msg2) {

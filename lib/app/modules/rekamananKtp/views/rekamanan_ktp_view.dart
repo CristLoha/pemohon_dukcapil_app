@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_form_input.dart';
@@ -26,7 +25,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
               steps: formStep(),
               onStepContinue: () {
                 if (controller.currentStep.value == formStep().length - 1) {
-                  print('send data to server');
+                  controller.addrekamanKTP();
                 } else {
                   controller.currentStep.value++;
                 }
@@ -211,8 +210,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'Desa'),
             SizedBox(height: 12.h),
             CustomFormField(
-              keyboardType: TextInputType.emailAddress,
-              textEditingController: controller.emailC,
+              keyboardType: TextInputType.name,
+              textEditingController: controller.desaC,
               validator: (value) {
                 if (value!.isEmpty ||
                     !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
@@ -321,8 +320,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                                     )
                                   : ElevatedButton(
                                       onPressed: () {
-                                        controller.infoMsg('PERINGATAN',
-                                            'Jangan biarkan data kosong');
+                                        EasyLoading.showError(
+                                          'Masukan file terlebihi dahulu',
+                                        );
                                       },
                                       child: Text(
                                         'Lihat',
