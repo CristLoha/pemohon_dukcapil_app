@@ -24,6 +24,7 @@ class RekamananKtpController extends GetxController {
   XFile? pickedImage;
   FirebaseStorage storage = FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  FirebaseFirestore firestore2 = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   void resetImage() {
@@ -38,24 +39,33 @@ class RekamananKtpController extends GetxController {
         kecamatanC.text.isNotEmpty &&
         desaC.text.isNotEmpty) {
       String uid = auth.currentUser!.uid;
+
+      ///COLLECTION 2
       try {
-        await firestore
-            .collection('ktp')
-            .add(
-              ({
-                'nik': nikC.text,
-                'nama': nameC.text,
-                'tgl_lahir': dateC.text,
-                'kecamatan': kecamatanC.text,
-                'desa': desaC.text,
-                'uid': uid,
-                'proses': 'PROSES VERIFIKASI',
-                'createdAt': DateTime.now().toIso8601String(),
-              }),
-            )
-            .then(
+        await firestore.collection('pemohon').doc(uid).collection('ktp').add({
+          'nik': nikC.text,
+          'nama': nameC.text,
+          'tgl_lahir': dateC.text,
+          'kecamatan': kecamatanC.text,
+          'desa': desaC.text,
+          'uid': uid,
+          'proses': 'PROSES VERIFIKASI',
+          'createdAt': DateTime.now().toIso8601String(),
+        });
+
+        await firestore.collection('ktp').add({
+          'nik': nikC.text,
+          'nama': nameC.text,
+          'tgl_lahir': dateC.text,
+          'kecamatan': kecamatanC.text,
+          'desa': desaC.text,
+          'uid': uid,
+          'proses': 'PROSES VERIFIKASI',
+          'createdAt': DateTime.now().toIso8601String(),
+        }).then(
           (value) {
             EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+
             Get.offNamed(Routes.MAIN_PAGE);
           },
         ).catchError(

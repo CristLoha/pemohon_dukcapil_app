@@ -12,7 +12,7 @@ class HistoryView extends GetView<HistoryController> {
         title: Text('Riwayat'),
         backgroundColor: kPrimaryColor,
       ),
-      body: StreamBuilder<QuerySnapshot<Object?>>(
+      body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: controller.streamKTP(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -29,7 +29,8 @@ class HistoryView extends GetView<HistoryController> {
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
-                var allKTP = snapshot.data!.docs[index];
+                var docKTP = snapshot.data!.docs[index];
+                Map<String, dynamic> note = docKTP.data();
                 return ListTile(
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class HistoryView extends GetView<HistoryController> {
                         ),
                       ),
                       Text(
-                        "${(allKTP.data() as Map<String, dynamic>)["nama"]}",
+                        "${docKTP['nama']}",
                         style: blackTextStyle.copyWith(
                           fontWeight: medium,
                           fontSize: 13,
@@ -57,8 +58,7 @@ class HistoryView extends GetView<HistoryController> {
                         style: greyTextStyle.copyWith(fontSize: 10),
                       ),
                       SizedBox(width: 5),
-                      if ("${(allKTP.data() as Map<String, dynamic>)["proses"]}" ==
-                          'PROSES VERIFIKASI')
+                      if ("${docKTP['proses']}" == 'PROSES VERIFIKASI')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
@@ -70,8 +70,7 @@ class HistoryView extends GetView<HistoryController> {
                             style: whiteTextStyle.copyWith(fontSize: 9),
                           ),
                         )
-                      else if ("${(allKTP.data() as Map<String, dynamic>)["proses"]}" ==
-                          'SIAP AMBIL')
+                      else if ("${docKTP['proses']}" == 'SIAP AMBIL')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
@@ -83,8 +82,7 @@ class HistoryView extends GetView<HistoryController> {
                             style: whiteTextStyle.copyWith(fontSize: 9),
                           ),
                         ),
-                      if ("${(allKTP.data() as Map<String, dynamic>)["proses"]}" ==
-                          'DITOLAK')
+                      if ("${docKTP['proses']}" == 'DITOLAK')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
