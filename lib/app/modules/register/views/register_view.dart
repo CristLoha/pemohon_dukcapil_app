@@ -57,6 +57,7 @@ class RegisterView extends GetView<RegisterController> {
             CustomTitleWidget(tittle: 'Nama Lengkap'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               icon: Icon(
                 Icons.person,
                 color: kBlackColor,
@@ -78,6 +79,7 @@ class RegisterView extends GetView<RegisterController> {
             CustomTitleWidget(tittle: 'NIK'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               icon: Icon(
                 FontAwesome5.id_card,
                 color: kBlackColor,
@@ -102,6 +104,7 @@ class RegisterView extends GetView<RegisterController> {
             CustomTitleWidget(tittle: 'Email'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               icon: Icon(
                 ModernPictograms.at,
                 color: kBlackColor,
@@ -123,6 +126,7 @@ class RegisterView extends GetView<RegisterController> {
             CustomTitleWidget(tittle: 'Nomor Telepon'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               icon: Icon(
                 FontAwesome.phone,
                 color: kBlackColor,
@@ -147,6 +151,7 @@ class RegisterView extends GetView<RegisterController> {
             SizedBox(height: 12.h),
             Obx(
               () => TextFormField(
+                textInputAction: TextInputAction.done,
                 cursorColor: kGreyColor,
                 obscureText: controller.isHidden.value,
                 keyboardType: TextInputType.visiblePassword,

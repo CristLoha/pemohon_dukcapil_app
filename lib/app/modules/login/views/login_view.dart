@@ -48,6 +48,7 @@ class LoginView extends GetView<LoginController> {
             CustomTitleWidget(tittle: 'Email'),
             SizedBox(height: 12.h),
             TextFormField(
+              textInputAction: TextInputAction.next,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value!.isEmpty ||
@@ -84,6 +85,7 @@ class LoginView extends GetView<LoginController> {
             SizedBox(height: 12.h),
             Obx(
               () => TextFormField(
+                textInputAction: TextInputAction.done,
                 cursorColor: kGreyColor,
                 obscureText: controller.isHidden.value,
                 autovalidateMode: AutovalidateMode.onUserInteraction,

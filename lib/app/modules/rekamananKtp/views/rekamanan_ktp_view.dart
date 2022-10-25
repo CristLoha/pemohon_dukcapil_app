@@ -128,6 +128,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'NIK'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
               textEditingController: controller.nikC,
               validator: (value) {
@@ -146,6 +147,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'Nama Lengkap'),
             SizedBox(height: 12.h),
             CustomFormField(
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty ||
@@ -161,6 +163,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'Tanggal lahir'),
             SizedBox(height: 12.h),
             TextFormField(
+              textInputAction: TextInputAction.next,
               controller: controller.dateC,
               readOnly: true,
               onTap: () {
@@ -192,13 +195,13 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'Kecamatan'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.next,
               keyboardType: TextInputType.name,
               textEditingController: controller.kecamatanC,
               onTap: () {},
               validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                  return "Masukan nama kecamatan yang benar";
+                if (value!.isEmpty) {
+                  return "Masukan nama kecamatan";
                 } else {
                   return null;
                 }
@@ -210,12 +213,12 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             CustomTitleWidget(tittle: 'Desa'),
             SizedBox(height: 12.h),
             CustomFormField(
+              textInputAction: TextInputAction.done,
               keyboardType: TextInputType.name,
               textEditingController: controller.desaC,
               validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                  return "Masukan nama desa yang benar";
+                if (value!.isEmpty) {
+                  return "Masukan nama desa";
                 } else {
                   return null;
                 }

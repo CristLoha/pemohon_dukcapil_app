@@ -7,6 +7,7 @@ class CustomFormField extends GetView<RegisterController> {
   final TextInputType? keyboardType;
   final Icon? icon;
   final bool? readOnly;
+  final TextInputAction? textInputAction;
   final Function()? onTap;
   final String? Function(String?)? validator;
   final TextEditingController textEditingController;
@@ -15,6 +16,7 @@ class CustomFormField extends GetView<RegisterController> {
       {Key? key,
       this.keyboardType,
       this.icon,
+      this.textInputAction,
       this.readOnly,
       this.onTap,
       required this.validator,
@@ -24,6 +26,7 @@ class CustomFormField extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: textInputAction,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
       cursorColor: kGreyColor,
