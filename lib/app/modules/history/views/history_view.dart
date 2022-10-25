@@ -30,7 +30,7 @@ class HistoryView extends GetView<HistoryController> {
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 var docKTP = snapshot.data!.docs[index];
-                Map<String, dynamic> note = docKTP.data();
+                Map<String, dynamic> ktp = docKTP.data();
                 return ListTile(
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +43,7 @@ class HistoryView extends GetView<HistoryController> {
                         ),
                       ),
                       Text(
-                        "${docKTP['nama']}",
+                        "${ktp['nama']}",
                         style: blackTextStyle.copyWith(
                           fontWeight: medium,
                           fontSize: 13,
@@ -58,7 +58,7 @@ class HistoryView extends GetView<HistoryController> {
                         style: greyTextStyle.copyWith(fontSize: 10),
                       ),
                       SizedBox(width: 5),
-                      if ("${docKTP['proses']}" == 'PROSES VERIFIKASI')
+                      if ("${ktp['proses']}" == 'PROSES VERIFIKASI')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
@@ -70,7 +70,7 @@ class HistoryView extends GetView<HistoryController> {
                             style: whiteTextStyle.copyWith(fontSize: 9),
                           ),
                         )
-                      else if ("${docKTP['proses']}" == 'SIAP AMBIL')
+                      else if ("${ktp['proses']}" == 'SIAP AMBIL')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(
@@ -82,7 +82,7 @@ class HistoryView extends GetView<HistoryController> {
                             style: whiteTextStyle.copyWith(fontSize: 9),
                           ),
                         ),
-                      if ("${docKTP['proses']}" == 'DITOLAK')
+                      if ("${ktp['proses']}" == 'DITOLAK')
                         Container(
                           padding: EdgeInsets.all(4),
                           decoration: BoxDecoration(

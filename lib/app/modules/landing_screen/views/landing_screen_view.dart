@@ -1,20 +1,17 @@
-// ignore_for_file: unnecessary_null_comparison
-
-import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:pemohon_dukcapil_app/app/data/models/pemohon.dart';
 import 'package:pemohon_dukcapil_app/app/modules/login/views/login_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/main_page/views/main_page_view.dart';
 
+import '../../../data/models/pemohon_model.dart';
 import '../../../shared/theme.dart';
+import '../../register/controllers/register_controller.dart';
 import '../controllers/landing_screen_controller.dart';
 
 class LandingScreenView extends GetView<LandingScreenController> {
+  final register = Get.put(RegisterController());
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 690));

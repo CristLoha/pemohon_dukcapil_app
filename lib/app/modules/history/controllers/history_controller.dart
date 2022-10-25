@@ -7,6 +7,8 @@ class HistoryController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
+  User? userPemohon = FirebaseAuth.instance.currentUser;
+
   CollectionReference ktp = FirebaseFirestore.instance.collection('ktp');
 
   // Stream<QuerySnapshot<Object?>> streamKTP() {
@@ -15,10 +17,6 @@ class HistoryController extends GetxController {
 
   Stream<QuerySnapshot<Map<String, dynamic>>> streamKTP() async* {
     String uid = auth.currentUser!.uid;
-    yield* firestore
-        .collection('pemohon')
-        .doc(uid)
-        .collection('ktp')
-        .snapshots();
+    yield* firestore.collection('ktp').where('uid', isEqualTo: uid).snapshots();
   }
 }

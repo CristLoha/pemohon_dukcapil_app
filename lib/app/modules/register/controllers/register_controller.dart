@@ -2,11 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/data/models/pemohon_model.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 import '../../../routes/app_pages.dart';
 
 class RegisterController extends GetxController {
+  User? userPemohon = FirebaseAuth.instance.currentUser;
+  Pemohon pemohonC = Pemohon();
+
   TextEditingController nikC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
@@ -44,6 +48,7 @@ class RegisterController extends GetxController {
       isLoading.value = true;
 
       try {
+        CollectionReference pemohon = firestore.collection('pemohon');
         UserCredential credential = await auth.createUserWithEmailAndPassword(
           email: emailC.text,
           password: passC.text,
@@ -56,7 +61,11 @@ class RegisterController extends GetxController {
 
           Get.offAllNamed(Routes.LOGIN);
           await credential.user!.sendEmailVerification();
-          await firestore.collection('pemohon').doc(credential.user!.uid).set(
+          await pemohon
+              .doc(
+                credential.user!.uid,
+              )
+              .set(
                 ({
                   'nama': nameC.text,
                   'nik': nikC.text,
@@ -64,9 +73,26 @@ class RegisterController extends GetxController {
                   'nomor_telp': noTelpC.text,
                   'validasi': false,
                   'uid': credential.user!.uid,
-                  'createdAt': DateTime.now().toIso8601String(),
+                  "creationTime":
+                      credential.user!.metadata.creationTime!.toIso8601String(),
+                  "lastSignTime": credential.user!.metadata.lastSignInTime!
+                      .toIso8601String(),
+                  "updatedTime": DateTime.now().toIso8601String(),
                 }),
               );
+
+          final curPemohon = await pemohon.doc(userPemohon!.email).get();
+          final curPemohonData = curPemohon.data() as Map<String, dynamic>;
+          Pemohon(
+              uid: curPemohonData['uid'],
+              nama: curPemohonData['nama'],
+              email: curPemohonData['email'],
+              nik: curPemohonData['nik'],
+              nomorTelp: curPemohonData['nomor_telp'],
+              validasi: false,
+              updatedTime: 'updated_time',
+              creationTime: 'creation_time',
+              lastSignTime: 'last_sign_time');
         }
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
