@@ -81,7 +81,7 @@ class RegisterController extends GetxController {
                 }),
               );
 
-          final curPemohon = await pemohon.doc(userPemohon!.email).get();
+          final curPemohon = await pemohon.doc(userPemohon!.uid).get();
           final curPemohonData = curPemohon.data() as Map<String, dynamic>;
           Pemohon(
               uid: curPemohonData['uid'],

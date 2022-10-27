@@ -16,7 +16,9 @@ class HistoryController extends GetxController {
   // }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> streamKTP() async* {
-    String uid = auth.currentUser!.uid;
-    yield* firestore.collection('ktp').where('uid', isEqualTo: uid).snapshots();
+    yield* firestore
+        .collection('ktp')
+        .where('email', isEqualTo: userPemohon!.email)
+        .snapshots();
   }
 }

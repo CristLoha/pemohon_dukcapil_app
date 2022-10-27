@@ -40,22 +40,22 @@ class RekamananKtpController extends GetxController {
         kecamatanC.text.isNotEmpty &&
         desaC.text.isNotEmpty) {
       String uid = auth.currentUser!.uid;
+      CollectionReference rekamanKtp = firestore.collection('ktp');
 
-      ///COLLECTION 2
-
-      await firestore.collection('ktp').doc(userPemohon!.uid).set({
+      await rekamanKtp.doc(userPemohon!.uid).set({
         'nik': nikC.text,
         'nama': nameC.text,
         'tgl_lahir': dateC.text,
         'kecamatan': kecamatanC.text,
+        'email': userPemohon!.email,
         'desa': desaC.text,
         'uid': uid,
         'proses': 'PROSES VERIFIKASI',
-        'createdAt': DateTime.now().toIso8601String(),
+        'creationTime': DateTime.now().toIso8601String(),
+        'updatedTime': DateTime.now().toIso8601String(),
       }).then(
         (value) {
           EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-
           Get.offNamed(Routes.MAIN_PAGE);
         },
       ).catchError(
