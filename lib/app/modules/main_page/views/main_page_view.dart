@@ -33,58 +33,64 @@ class MainPageView extends GetView<MainPageController> {
                 : Container(),
             Align(
               alignment: Alignment.bottomLeft,
-              child: Container(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    /// HOME
-                    BottomBar(
-                      onPressed: () => controller.homeButton(),
-                      bottomIcons: controller.selected.value == ButtonIcons.home
-                          ? true
-                          : false,
-                      icons: EvaIcons.home,
-                      text: "Beranda",
-                      icons2: EvaIcons.home,
-                    ),
+              child: Material(
+                elevation: 20,
+                child: Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.only(
+                      left: 24.w, right: 24.w, bottom: 20.h, top: 20.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      /// HOME
+                      BottomBar(
+                        onPressed: () => controller.homeButton(),
+                        bottomIcons:
+                            controller.selected.value == ButtonIcons.home
+                                ? true
+                                : false,
+                        icons: EvaIcons.home,
+                        text: "Beranda",
+                        icons2: EvaIcons.home,
+                      ),
 
-                    /// HISTORY
-                    BottomBar(
-                      onPressed: () => controller.historyButton(),
-                      bottomIcons:
-                          controller.selected.value == ButtonIcons.history
-                              ? true
-                              : false,
-                      icons: EvaIcons.fileTextOutline,
-                      text: 'Riwayat',
-                      icons2: EvaIcons.fileTextOutline,
-                    ),
+                      /// HISTORY
+                      BottomBar(
+                        onPressed: () => controller.historyButton(),
+                        bottomIcons:
+                            controller.selected.value == ButtonIcons.history
+                                ? true
+                                : false,
+                        icons: EvaIcons.fileTextOutline,
+                        text: 'Riwayat',
+                        icons2: EvaIcons.fileTextOutline,
+                      ),
 
-                    /// PROFILE
-                    BottomBar(
-                      onPressed: () => controller.chatButton(),
-                      bottomIcons:
-                          controller.selected.value == ButtonIcons.profile
-                              ? true
-                              : false,
-                      icons: EvaIcons.personOutline,
-                      text: 'Profil',
-                      icons2: EvaIcons.personOutline,
-                    ),
+                      /// PROFILE
+                      BottomBar(
+                        onPressed: () => controller.chatButton(),
+                        bottomIcons:
+                            controller.selected.value == ButtonIcons.profile
+                                ? true
+                                : false,
+                        icons: EvaIcons.personOutline,
+                        text: 'Profil',
+                        icons2: EvaIcons.personOutline,
+                      ),
 
-                    /// SETTINGS
-                    BottomBar(
-                      onPressed: () => controller.settingsButton(),
-                      bottomIcons:
-                          controller.selected.value == ButtonIcons.settings
-                              ? true
-                              : false,
-                      icons: EvaIcons.settingsOutline,
-                      text: 'Pengaturan',
-                      icons2: EvaIcons.settingsOutline,
-                    ),
-                  ],
+                      /// SETTINGS
+                      BottomBar(
+                        onPressed: () => controller.settingsButton(),
+                        bottomIcons:
+                            controller.selected.value == ButtonIcons.settings
+                                ? true
+                                : false,
+                        icons: EvaIcons.settingsOutline,
+                        text: 'Pengaturan',
+                        icons2: EvaIcons.settingsOutline,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

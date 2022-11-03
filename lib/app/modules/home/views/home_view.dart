@@ -24,7 +24,7 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 38.h),
               Center(
                 child: Container(
-                  width: 250.w,
+                  width: 235.w,
                   child: Image.asset(
                     'assets/img/ilustration1.png',
                   ),
@@ -107,7 +107,7 @@ class HomeView extends GetView<HomeController> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 45.w, right: 47.w),
+                              padding: EdgeInsets.only(left: 40.w, right: 47.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/update.png',
                                 title: 'Perubahan \nKK',
@@ -130,7 +130,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 80.h),
+                        SizedBox(height: 100.h),
                       ],
                     ),
                   ),

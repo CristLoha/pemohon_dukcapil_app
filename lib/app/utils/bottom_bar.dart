@@ -19,7 +19,7 @@ class BottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onPressed,
       child: bottomIcons == true
           ? Container(
@@ -29,21 +29,23 @@ class BottomBar extends StatelessWidget {
               ),
               padding:
                   EdgeInsets.only(left: 14.w, right: 14, top: 6, bottom: 6),
-              child: Row(
-                children: [
-                  Icon(
-                    icons,
-                    color: kPrimaryColor,
-                  ),
-                  SizedBox(width: 8.w),
-                  Text(
-                    text,
-                    style: blueTextStyle.copyWith(
-                      fontWeight: bold,
-                      fontSize: 13.sp,
+              child: Container(
+                child: Row(
+                  children: [
+                    Icon(
+                      icons,
+                      color: kPrimaryColor,
                     ),
-                  ),
-                ],
+                    SizedBox(width: 8.w),
+                    Text(
+                      text,
+                      style: blueTextStyle.copyWith(
+                        fontWeight: bold,
+                        fontSize: 13.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           : Icon(icons2),
