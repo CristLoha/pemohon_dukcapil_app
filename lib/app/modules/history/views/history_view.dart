@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import '../controllers/history_controller.dart';
 
@@ -20,11 +23,26 @@ class HistoryView extends GetView<HistoryController> {
                 child: CircularProgressIndicator(),
               );
             }
+            if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 48),
+                  child: Column(
+                    children: [
+                      LottieBuilder.asset('assets/lottie/empty_box.json'),
+                      Text('Belum ada data',
+                          style: blackTextStyle.copyWith(fontSize: 16.h))
+                    ],
+                  ),
+                ),
+              );
+            }
 
             return ListView.builder(
               padding: EdgeInsets.only(
                 left: 5,
                 right: 10,
+                top: 10,
                 bottom: 75,
               ),
               itemCount: snapshot.data!.docs.length,
@@ -39,14 +57,14 @@ class HistoryView extends GetView<HistoryController> {
                         'Perekaman e-KTP',
                         style: blackTextStyle.copyWith(
                           fontWeight: semiBold,
-                          fontSize: 13,
+                          fontSize: 13.h,
                         ),
                       ),
                       Text(
                         "${ktp['nama']}",
                         style: blackTextStyle.copyWith(
                           fontWeight: medium,
-                          fontSize: 13,
+                          fontSize: 13.h,
                         ),
                       ),
                     ],
@@ -55,7 +73,7 @@ class HistoryView extends GetView<HistoryController> {
                     children: [
                       Text(
                         'Status',
-                        style: greyTextStyle.copyWith(fontSize: 10),
+                        style: greyTextStyle.copyWith(fontSize: 10.h),
                       ),
                       SizedBox(width: 5),
                       if ("${ktp['proses']}" == 'PROSES VERIFIKASI')
@@ -67,7 +85,7 @@ class HistoryView extends GetView<HistoryController> {
                           ),
                           child: Text(
                             "PROSES VERIFIKASI",
-                            style: whiteTextStyle.copyWith(fontSize: 9),
+                            style: whiteTextStyle.copyWith(fontSize: 9.h),
                           ),
                         )
                       else if ("${ktp['proses']}" == 'SIAP AMBIL')
@@ -100,12 +118,26 @@ class HistoryView extends GetView<HistoryController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '2022-11-05',
-                        style: blackTextStyle.copyWith(fontSize: 12),
+                        DateFormat(
+                          "d MMMM yyyy",
+                          "id_ID",
+                        ).format(
+                          DateTime.parse(
+                            "${ktp['updatedTime']}",
+                          ),
+                        ),
+                        style: blackTextStyle.copyWith(fontSize: 12.h),
                       ),
                       Text(
-                        '12:05',
-                        style: blackTextStyle.copyWith(fontSize: 10),
+                        DateFormat(
+                          "hh:mm aaa",
+                          "id_ID",
+                        ).format(
+                          DateTime.parse(
+                            "${ktp['updatedTime']}",
+                          ),
+                        ),
+                        style: blackTextStyle.copyWith(fontSize: 10.h),
                       ),
                     ],
                   ),

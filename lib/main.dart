@@ -8,6 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'app/utils/error_screen.dart';
 import 'app/utils/splash_screen.dart';
 import 'firebase_options.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,33 +17,27 @@ void main() async {
   );
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  runApp(
-    //   DevicePreview(
-    //       builder: (context) => GetMaterialApp(
-    //             debugShowCheckedModeBanner: false,
-    //             title: "Application",
-    //             initialRoute: Routes.LOGIN,
-    //             getPages: AppPages.routes,
-    //           )),
-    // );
-    StreamBuilder<User?>(
-        stream: auth.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return ErrorScreen();
-          }
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return SplashhScreen();
-          }
+  await initializeDateFormatting('id_ID', null).then(
+    (_) => runApp(
+      StreamBuilder<User?>(
+          stream: auth.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return ErrorScreen();
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return SplashhScreen();
+            }
 
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: "Application",
-            initialRoute:
-                snapshot.data != null ? Routes.LANDING_SCREEN : Routes.LOGIN,
-            getPages: AppPages.routes,
-            builder: EasyLoading.init(),
-          );
-        }),
+            return GetMaterialApp(
+              debugShowCheckedModeBanner: false,
+              title: "Application",
+              initialRoute:
+                  snapshot.data != null ? Routes.LANDING_SCREEN : Routes.LOGIN,
+              getPages: AppPages.routes,
+              builder: EasyLoading.init(),
+            );
+          }),
+    ),
   );
 }

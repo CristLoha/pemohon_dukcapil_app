@@ -73,10 +73,7 @@ class RegisterController extends GetxController {
                   'nomor_telp': noTelpC.text,
                   'validasi': false,
                   'uid': credential.user!.uid,
-                  "creationTime":
-                      credential.user!.metadata.creationTime!.toIso8601String(),
-                  "lastSignTime": credential.user!.metadata.lastSignInTime!
-                      .toIso8601String(),
+                  "creationTime": DateTime.now().toIso8601String(),
                   "updatedTime": DateTime.now().toIso8601String(),
                 }),
               );
@@ -91,8 +88,7 @@ class RegisterController extends GetxController {
               nomorTelp: curPemohonData['nomor_telp'],
               validasi: false,
               updatedTime: 'updated_time',
-              creationTime: 'creation_time',
-              lastSignTime: 'last_sign_time');
+              creationTime: 'creation_time');
         }
       } on FirebaseAuthException catch (e) {
         isLoading.value = false;
