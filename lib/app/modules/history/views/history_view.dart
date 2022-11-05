@@ -42,14 +42,17 @@ class HistoryView extends GetView<HistoryController> {
               padding: EdgeInsets.only(
                 left: 5,
                 right: 10,
-                top: 10,
-                bottom: 75,
+                top: 20,
+                bottom: 5,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 var docKTP = snapshot.data!.docs[index];
                 Map<String, dynamic> ktp = docKTP.data();
                 return ListTile(
+                  onTap: () {
+                    print('satu dua $index');
+                  },
                   title: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

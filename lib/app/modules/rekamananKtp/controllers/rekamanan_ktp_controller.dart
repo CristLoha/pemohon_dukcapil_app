@@ -1,7 +1,8 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_storage/firebase_storage.dart' as s;
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -22,61 +23,61 @@ class RekamananKtpController extends GetxController {
   TextEditingController desaC = TextEditingController();
 
   XFile? pickedImage;
-  FirebaseStorage storage = FirebaseStorage.instance;
+  s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void resetImage() {
-    pickedImage = null;
-    update();
-  }
-
   void addrekamanKTP() async {
-    if (nikC.text.isNotEmpty &&
-        nameC.text.isNotEmpty &&
-        dateC.text.isNotEmpty &&
-        kecamatanC.text.isNotEmpty &&
-        desaC.text.isNotEmpty) {
-      String uid = auth.currentUser!.uid;
-      CollectionReference rekamanKtp = firestore.collection('ktp');
+    String uid = auth.currentUser!.uid;
+    Random random = Random();
+    int randomNumber = random.nextInt(100000) + 1;
+    if (pickedImage != null) {
+      String ext = pickedImage!.name.split(".").last;
+      await storage.ref('rekamanKTP').child('rekKtp$randomNumber.$ext').putFile(
+            File(pickedImage!.path),
+          );
 
-      await rekamanKtp.doc(userPemohon!.uid).set({
-        'nik': nikC.text,
-        'nama': nameC.text,
-        'tgl_lahir': dateC.text,
-        'kecamatan': kecamatanC.text,
-        'email': userPemohon!.email,
-        'desa': desaC.text,
-        'uid': uid,
-        'proses': 'PROSES VERIFIKASI',
-        'creationTime': DateTime.now().toIso8601String(),
-        'updatedTime': DateTime.now().toIso8601String(),
-      }).then(
-        (value) {
-          EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-          Get.offNamed(Routes.MAIN_PAGE);
-        },
-      ).catchError(
-        (error) {
-          print("Failed to add user: $error");
-        },
-      );
-    } else {
-      EasyLoading.showError('Data tidak boleh kosong');
-      print('data tidak boleh kosong');
-    }
-  }
+      String fotoKK = await storage
+          .ref('rekamanKTP')
+          .child('rekKtp$randomNumber.$ext')
+          .getDownloadURL();
 
-  void uploadImage() async {
-    Reference storageRef = storage.ref("rekamanKTP/kk.png");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
+      if (nikC.text.isNotEmpty &&
+          nameC.text.isNotEmpty &&
+          dateC.text.isNotEmpty &&
+          kecamatanC.text.isNotEmpty &&
+          desaC.text.isNotEmpty) {
+        CollectionReference rekamanKtp = firestore.collection('ktp');
+
+        await rekamanKtp.add({
+          'nik': nikC.text,
+          'nama': nameC.text,
+          'fotoKK': fotoKK,
+          'tgl_lahir': dateC.text,
+          'kecamatan': kecamatanC.text,
+          'email': userPemohon!.email,
+          'desa': desaC.text,
+          'uid': uid,
+          'proses': 'PROSES VERIFIKASI',
+          'creationTime': DateTime.now().toIso8601String(),
+          'updatedTime': DateTime.now().toIso8601String(),
+        }).then(
+          (value) {
+            EasyLoading.showProgress(100);
+            EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+            Get.offNamed(Routes.MAIN_PAGE);
+          },
+        ).catchError(
+          (error) {
+            print("Failed to add user: $error");
+          },
+        );
+      } else {
+        EasyLoading.showError('Data tidak boleh kosong');
+        print('data tidak boleh kosong');
+      }
     }
   }
 
@@ -90,6 +91,11 @@ class RekamananKtpController extends GetxController {
       isDismissible: true,
       forwardAnimationCurve: Curves.easeOutBack,
     );
+  }
+
+  void resetImage() {
+    pickedImage = null;
+    update();
   }
 
   void selectImage() async {
@@ -108,6 +114,17 @@ class RekamananKtpController extends GetxController {
       print(err);
       pickedImage = null;
       update();
+    }
+  }
+
+  void uploadImage() async {
+    s.Reference storageRef = storage.ref("rekamanKTP/kk.png");
+    File file = File(pickedImage!.path);
+    try {
+      final dataUpload = await storageRef.putFile(file);
+      print(dataUpload);
+    } catch (e) {
+      print('err');
     }
   }
 
