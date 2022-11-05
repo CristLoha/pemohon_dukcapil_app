@@ -51,7 +51,7 @@ class RekamananKtpController extends GetxController {
           desaC.text.isNotEmpty) {
         CollectionReference rekamanKtp = firestore.collection('ktp');
 
-        await rekamanKtp.add({
+        await rekamanKtp.doc(auth.currentUser!.uid).set({
           'nik': nikC.text,
           'nama': nameC.text,
           'fotoKK': fotoKK,

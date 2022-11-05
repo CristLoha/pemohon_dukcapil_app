@@ -13,7 +13,7 @@ class HomeView extends GetView<HomeController> {
       return Stack(
         children: [
           Container(
-            height: 310.h,
+            height: 260.h,
             decoration: BoxDecoration(
               color: kPrimaryColor.withOpacity(0.90),
             ),
@@ -21,10 +21,10 @@ class HomeView extends GetView<HomeController> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 38.h),
+              SizedBox(height: 20.h),
               Center(
                 child: Container(
-                  width: 235.w,
+                  width: 227.w,
                   child: Image.asset(
                     'assets/img/ilustration1.png',
                   ),

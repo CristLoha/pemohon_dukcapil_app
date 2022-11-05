@@ -378,7 +378,6 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                 ),
               ),
             ),
-            SizedBox(height: 240.h),
           ],
         ),
         isActive: controller.currentStep.value >= 1,

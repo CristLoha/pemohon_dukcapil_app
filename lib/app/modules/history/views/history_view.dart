@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
@@ -40,113 +41,130 @@ class HistoryView extends GetView<HistoryController> {
 
             return ListView.builder(
               padding: EdgeInsets.only(
-                left: 5,
-                right: 10,
-                top: 20,
-                bottom: 5,
+                top: 10,
+                bottom: 10,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 var docKTP = snapshot.data!.docs[index];
                 Map<String, dynamic> ktp = docKTP.data();
-                return ListTile(
-                  onTap: () {
-                    print('satu dua $index');
-                  },
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Perekaman e-KTP',
-                        style: blackTextStyle.copyWith(
-                          fontWeight: semiBold,
-                          fontSize: 13.h,
-                        ),
+                return Column(
+                  children: [
+                    ListTile(
+                      onTap: () {
+                        print('satu dua $index');
+                      },
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Perekaman e-KTP',
+                            style: blackTextStyle.copyWith(
+                              fontWeight: semiBold,
+                              fontSize: 13.h,
+                            ),
+                          ),
+                          Text(
+                            "${ktp['nama']}",
+                            style: blackTextStyle.copyWith(
+                              fontWeight: medium,
+                              fontSize: 13.h,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "${ktp['nama']}",
-                        style: blackTextStyle.copyWith(
-                          fontWeight: medium,
-                          fontSize: 13.h,
-                        ),
+                      trailing: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(width: 5),
+                          if ("${ktp['proses']}" == 'PROSES VERIFIKASI')
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 5,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  "PROSES VERIFIKASI",
+                                  style: whiteTextStyle.copyWith(
+                                      fontSize: 10, fontWeight: semiBold),
+                                ),
+                              ),
+                            )
+                          else if ("${ktp['proses']}" == 'SIAP AMBIL')
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 3,
+                                top: 3,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  "SIAP AMBIL",
+                                  style: whiteTextStyle.copyWith(
+                                      fontSize: 10, fontWeight: semiBold),
+                                ),
+                              ),
+                            ),
+                          if ("${ktp['proses']}" == 'DITOLAK')
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                left: 3,
+                                top: 3,
+                              ),
+                              child: Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Text(
+                                  "DITOLAK",
+                                  style: whiteTextStyle.copyWith(
+                                      fontSize: 10, fontWeight: semiBold),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                    ],
-                  ),
-                  subtitle: Row(
-                    children: [
-                      Text(
-                        'Status',
-                        style: greyTextStyle.copyWith(fontSize: 10.h),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            DateFormat(
+                              "d MMMM yyyy",
+                              "id_ID",
+                            ).format(
+                              DateTime.parse(
+                                "${ktp['updatedTime']}",
+                              ),
+                            ),
+                            style: greyTextStyle.copyWith(fontSize: 10.h),
+                          ),
+                          Text(
+                            DateFormat(
+                              "hh:mm aaa",
+                              "id_ID",
+                            ).format(
+                              DateTime.parse(
+                                "${ktp['updatedTime']}",
+                              ),
+                            ),
+                            style: greyTextStyle.copyWith(fontSize: 8.h),
+                          ),
+                        ],
                       ),
-                      SizedBox(width: 5),
-                      if ("${ktp['proses']}" == 'PROSES VERIFIKASI')
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "PROSES VERIFIKASI",
-                            style: whiteTextStyle.copyWith(fontSize: 9.h),
-                          ),
-                        )
-                      else if ("${ktp['proses']}" == 'SIAP AMBIL')
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "SIAP AMBIL",
-                            style: whiteTextStyle.copyWith(fontSize: 9),
-                          ),
-                        ),
-                      if ("${ktp['proses']}" == 'DITOLAK')
-                        Container(
-                          padding: EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Text(
-                            "DITOLAK",
-                            style: whiteTextStyle.copyWith(fontSize: 9),
-                          ),
-                        ),
-                    ],
-                  ),
-                  trailing: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        DateFormat(
-                          "d MMMM yyyy",
-                          "id_ID",
-                        ).format(
-                          DateTime.parse(
-                            "${ktp['updatedTime']}",
-                          ),
-                        ),
-                        style: blackTextStyle.copyWith(fontSize: 12.h),
-                      ),
-                      Text(
-                        DateFormat(
-                          "hh:mm aaa",
-                          "id_ID",
-                        ).format(
-                          DateTime.parse(
-                            "${ktp['updatedTime']}",
-                          ),
-                        ),
-                        style: blackTextStyle.copyWith(fontSize: 10.h),
-                      ),
-                    ],
-                  ),
-                  leading: Icon(
-                    Icons.card_giftcard,
-                  ),
+                    ),
+                    Container(height: 1, color: kGreyColor),
+                  ],
                 );
               }),
             );
