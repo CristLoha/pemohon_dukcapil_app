@@ -9,15 +9,13 @@ class HistoryController extends GetxController {
 
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  CollectionReference ktp = FirebaseFirestore.instance.collection('ktp');
-
   // Stream<QuerySnapshot<Object?>> streamKTP() {
   //   return ktp.orderBy('createdAt', descending: true).snapshots();
   // }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> streamKTP() async* {
     yield* firestore
-        .collection('ktp')
+        .collection('layanan')
         .where('email', isEqualTo: userPemohon!.email)
         .snapshots();
   }

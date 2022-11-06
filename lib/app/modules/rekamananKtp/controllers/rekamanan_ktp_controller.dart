@@ -49,13 +49,14 @@ class RekamananKtpController extends GetxController {
           dateC.text.isNotEmpty &&
           kecamatanC.text.isNotEmpty &&
           desaC.text.isNotEmpty) {
-        CollectionReference rekamanKtp = firestore.collection('ktp');
+        CollectionReference rekamanKtp = firestore.collection('layanan');
 
         await rekamanKtp.doc(auth.currentUser!.uid).set({
           'nik': nikC.text,
           'nama': nameC.text,
           'fotoKK': fotoKK,
           'tgl_lahir': dateC.text,
+          'kategori': 'Perekaman e-KTP',
           'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
           'desa': desaC.text,
@@ -65,7 +66,6 @@ class RekamananKtpController extends GetxController {
           'updatedTime': DateTime.now().toIso8601String(),
         }).then(
           (value) {
-            EasyLoading.showProgress(100);
             EasyLoading.showSuccess('Data Berhasil Ditambahakan');
             Get.offNamed(Routes.MAIN_PAGE);
           },
