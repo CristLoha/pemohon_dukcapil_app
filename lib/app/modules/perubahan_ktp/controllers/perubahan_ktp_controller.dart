@@ -2,17 +2,18 @@ import 'dart:io';
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_storage/firebase_storage.dart' as s;
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+import 'package:firebase_storage/firebase_storage.dart' as s;
 import 'package:image_picker/image_picker.dart';
-import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
-import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
+import 'package:intl/intl.dart';
 
-class RekamananKtpController extends GetxController {
+import '../../../routes/app_pages.dart';
+import '../../../shared/theme.dart';
+
+class PerubahanKtpController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
@@ -29,19 +30,22 @@ class RekamananKtpController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addrekamanKTP() async {
+  void addPerubahanKTP() async {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImage != null) {
       String ext = pickedImage!.name.split(".").last;
-      await storage.ref('rekamanKTP').child('rekKtp$randomNumber.$ext').putFile(
+      await storage
+          .ref('perubahanKTP')
+          .child('perKTP$randomNumber.$ext')
+          .putFile(
             File(pickedImage!.path),
           );
 
       String fotoKK = await storage
-          .ref('rekamanKTP')
-          .child('rekKtp$randomNumber.$ext')
+          .ref('perubahanKTP')
+          .child('perKTP$randomNumber.$ext')
           .getDownloadURL();
 
       if (nikC.text.isNotEmpty &&
@@ -56,7 +60,7 @@ class RekamananKtpController extends GetxController {
           'nama': nameC.text,
           'fotoKK': fotoKK,
           'tgl_lahir': dateC.text,
-          'kategori': 'Perekaman e-KTP',
+          'kategori': 'Perubahan e-KTP',
           'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
           'desa': desaC.text,
@@ -118,7 +122,7 @@ class RekamananKtpController extends GetxController {
   }
 
   void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
+    s.Reference storageRef = storage.ref("perubahanKTP/kk.jpg");
     File file = File(pickedImage!.path);
     try {
       final dataUpload = await storageRef.putFile(file);
@@ -141,31 +145,4 @@ class RekamananKtpController extends GetxController {
       }
     });
   }
-
-  ///JENIS KALENDER
-  // void date() async {
-  //   await showDatePicker(
-  //     context: Get.context!,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime.now(),
-  //   ).then((selectedDate) {
-  //     if (selectedDate != null) {
-  //       dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-  //     }
-  //   });
-  // }
-
-  ///UNTUK MENAMPILKAN DI TEXT BIASA
-  // void chooseDate() async {
-  //   DateTime? picketDate = await showDatePicker(
-  //     context: Get.context!,
-  //     initialDate: selectedDate.value,
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime(2023),
-  //   );
-  //   if (picketDate != null && picketDate != selectedDate.value) {
-  //     selectedDate.value = picketDate;
-  //   }
-  // }
 }

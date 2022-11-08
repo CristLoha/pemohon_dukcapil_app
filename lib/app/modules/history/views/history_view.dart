@@ -57,7 +57,7 @@ class HistoryView extends GetView<HistoryController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Perekaman e-KTP',
+                            "${ktp['kategori']}",
                             style: blackTextStyle.copyWith(
                               fontWeight: semiBold,
                               fontSize: 13.h,

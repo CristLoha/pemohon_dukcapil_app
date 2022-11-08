@@ -10,6 +10,8 @@ import 'package:pemohon_dukcapil_app/app/modules/login/bindings/login_binding.da
 import 'package:pemohon_dukcapil_app/app/modules/login/views/login_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/main_page/bindings/main_page_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/main_page/views/main_page_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/perubahan_ktp/bindings/perubahan_ktp_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/perubahan_ktp/views/perubahan_ktp_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/profile/bindings/profile_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/profile/views/profile_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_binding.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.REKAMANAN_KTP,
       page: () => RekamananKtpView(),
       binding: RekamananKtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.PERUBAHAN_KTP,
+      page: () => PerubahanKtpView(),
+      binding: PerubahanKtpBinding(),
     ),
   ];
 }
