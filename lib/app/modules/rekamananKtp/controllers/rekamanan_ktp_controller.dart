@@ -56,6 +56,7 @@ class RekamananKtpController extends GetxController {
           'nama': nameC.text,
           'fotoKK': fotoKK,
           'tgl_lahir': dateC.text,
+          "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Perekaman e-KTP',
           'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
@@ -67,7 +68,7 @@ class RekamananKtpController extends GetxController {
         }).then(
           (value) {
             EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-            Get.offNamed(Routes.MAIN_PAGE);
+            Get.offAllNamed(Routes.MAIN_PAGE);
           },
         ).catchError(
           (error) {

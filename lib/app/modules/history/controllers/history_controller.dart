@@ -17,6 +17,7 @@ class HistoryController extends GetxController {
     yield* firestore
         .collection('layanan')
         .where('email', isEqualTo: userPemohon!.email)
+        .orderBy('updatedTime', descending: true)
         .snapshots();
   }
 }
