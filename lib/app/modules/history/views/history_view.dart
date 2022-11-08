@@ -53,24 +53,12 @@ class HistoryView extends GetView<HistoryController> {
                       onTap: () {
                         print('satu dua $index');
                       },
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${ktp['kategori']}",
-                            style: blackTextStyle.copyWith(
-                              fontWeight: semiBold,
-                              fontSize: 13.h,
-                            ),
-                          ),
-                          Text(
-                            "${ktp['nama']}",
-                            style: blackTextStyle.copyWith(
-                              fontWeight: medium,
-                              fontSize: 13.h,
-                            ),
-                          ),
-                        ],
+                      title: Text(
+                        "${ktp['kategori']}",
+                        style: blackTextStyle.copyWith(
+                          fontWeight: semiBold,
+                          fontSize: 13.h,
+                        ),
                       ),
                       trailing: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
