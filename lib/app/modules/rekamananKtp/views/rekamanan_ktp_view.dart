@@ -23,9 +23,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
               elevation: 1,
               type: StepperType.horizontal,
               steps: formStep(),
-              onStepContinue: () async {
+              onStepContinue: () {
                 if (controller.currentStep.value == formStep().length - 1) {
-                  await EasyLoading.show(status: 'Memuat...');
                   controller.addrekamanKTP();
                 } else {
                   controller.currentStep.value++;

@@ -11,7 +11,9 @@ import '../controllers/perubahan_ktp_controller.dart';
 
 class PerubahanKtpView extends GetView<PerubahanKtpController> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -23,9 +25,13 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
               elevation: 1,
               type: StepperType.horizontal,
               steps: formStep(),
-              onStepContinue: () async {
+              onStepContinue: () {
+                if (!controller.formKeys[controller.index].currentState!
+                    .validate()) {
+                  return;
+                }
                 if (controller.currentStep.value == formStep().length - 1) {
-                  await EasyLoading.show(status: 'Memuat...');
+                  EasyLoading.show(status: 'memuat...');
                   controller.addPerubahanKTP();
                 } else {
                   controller.currentStep.value++;
@@ -47,7 +53,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       Expanded(
                         child: (Container(
                           height: 50,
-                          width: 120,
+                          width: 80,
                           margin:
                               EdgeInsets.only(top: 30, bottom: 40, left: 20),
                           child: (Container(
@@ -84,16 +90,17 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                                 onPressed: details.onStepCancel,
                                 child: Text(
                                   'Kembali',
-                                  style: whiteTextStyle.copyWith(
+                                  style: blackTextStyle.copyWith(
                                     fontSize: 16,
                                     fontWeight: medium,
                                   ),
                                 ),
                                 style: ElevatedButton.styleFrom(
+                                  side: BorderSide(width: 1, color: kGreyColor),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  backgroundColor: kRedColor,
+                                  backgroundColor: kWhiteColor,
                                 ),
                               ),
                             )),
@@ -127,111 +134,127 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
               } else {
                 controller.nameC.text = snapshot.data!["nama"];
                 controller.nikC.text = snapshot.data!["nik"];
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        'Formulir Pendaftaran Antrian Perubahan e-KTP',
-                        style: blackTextStyle.copyWith(
-                          fontWeight: semiBold,
+                return Form(
+                  key: controller.formKeys[0],
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Formulir Pendaftaran Antrian Perubahan e-KTP',
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 20.h),
+                      SizedBox(height: 20.h),
 
-                    /// NIK
-                    CustomTitleWidget(tittle: 'NIK'),
-                    SizedBox(height: 12.h),
-                    CustomFormField(
-                      readOnly: true,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.number,
-                      textEditingController: controller.nikC,
-                    ),
-                    SizedBox(height: 12.h),
-                    CustomTitleWidget(tittle: 'Nama Lengkap'),
-                    SizedBox(height: 12.h),
-                    CustomFormField(
-                        readOnly: true,
+                      /// NO KK
+                      CustomTitleWidget(tittle: 'NO KK'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
                         textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.noKKC,
                         validator: (value) {
                           if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama yang benar";
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(value)) {
+                            return "Masukan Nomor KK yang benar";
+                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                            return 'NIK harus 16 karakter';
+                          }
+                        },
+                      ),
+                      SizedBox(height: 12.h),
+
+                      /// NIK
+                      CustomTitleWidget(tittle: 'NIK'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: true,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.nikC,
+                      ),
+
+                      SizedBox(height: 12.h),
+                      CustomTitleWidget(tittle: 'Nama Lengkap'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                          readOnly: true,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          textEditingController: controller.nameC),
+
+                      SizedBox(height: 12.h),
+                      CustomTitleWidget(tittle: 'Tanggal lahir'),
+                      SizedBox(height: 12.h),
+                      TextFormField(
+                        controller: controller.dateC,
+                        readOnly: true,
+                        onTap: () {
+                          controller.dateLocal();
+                        },
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Masukan tanggal lahir';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          hintStyle: greyTextStyle,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide(
+                              color: kPrimaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      SizedBox(height: 12.h),
+
+                      /// Kecamatan
+                      CustomTitleWidget(tittle: 'Kecamatan'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kecamatanC,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Masukan nama kecamatan';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 12.h),
+
+                      /// DESA
+                      CustomTitleWidget(tittle: 'Desa'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.desaC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Masukan nama desa";
                           } else {
                             return null;
                           }
                         },
-                        textEditingController: controller.nameC),
-
-                    SizedBox(height: 12.h),
-                    CustomTitleWidget(tittle: 'Tanggal lahir'),
-                    SizedBox(height: 12.h),
-                    TextFormField(
-                      textInputAction: TextInputAction.next,
-                      controller: controller.dateC,
-                      readOnly: true,
-                      onTap: () {
-                        controller.dateLocal();
-                      },
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Silahkan masukkan tanggal lahir';
-                        }
-                        return null;
-                      },
-                      decoration: InputDecoration(
-                        hintStyle: greyTextStyle,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                            color: kPrimaryColor,
-                          ),
-                        ),
                       ),
-                    ),
-
-                    SizedBox(height: 12.h),
-
-                    /// Kecamatan
-                    CustomTitleWidget(tittle: 'Kecamatan'),
-                    SizedBox(height: 12.h),
-                    CustomFormField(
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.name,
-                      textEditingController: controller.kecamatanC,
-                      onTap: () {},
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Masukan nama kecamatan";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    SizedBox(height: 12.h),
-
-                    /// DESA
-                    CustomTitleWidget(tittle: 'Desa'),
-                    SizedBox(height: 12.h),
-                    CustomFormField(
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.name,
-                      textEditingController: controller.desaC,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Masukan nama desa";
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               }
             }),
@@ -241,153 +264,466 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
       ),
       Step(
         title: Text('Persyaratan'),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Unggah Kartu Keluarga',
-              style: blackTextStyle.copyWith(),
-            ),
-            SizedBox(height: 12.h),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(left: 15, top: 20, right: 10),
-                width: 315.w,
-                height: 140.h,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kGreyColor,
-                  ),
+        content: Form(
+          key: controller.formKeys[1],
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// FOTO KK
+                Text(
+                  'Unggah Foto KK',
+                  style: blackTextStyle.copyWith(),
                 ),
-                child: Column(
-                  children: [
-                    GetBuilder<PerubahanKtpController>(
-                      builder: (c) => c.pickedImage != null
-                          ? Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    c.pickedImage!.name,
-                                    style: blackTextStyle.copyWith(),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () => c.resetImage(),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: kRedColor,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Text(
-                              '*Maks 5 Mb',
-                              style: redTextStyle.copyWith(),
-                            ),
+                SizedBox(height: 12.h),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                    width: 315.w,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: kGreyColor,
+                      ),
                     ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                    child: Column(
                       children: [
-                        Container(
-                          width: 120.w,
-                          height: 40.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: GetBuilder<PerubahanKtpController>(
-                            builder: (c) {
-                              return c.pickedImage != null
-                                  ? ElevatedButton(
-                                      onPressed: () {
-                                        Get.dialog(
-                                          Container(
-                                            child: PhotoView(
-                                              imageProvider: FileImage(
-                                                File(c.pickedImage!.path),
+                        GetBuilder<PerubahanKtpController>(
+                          builder: (c) => c.pickedImageKK != null
+                              ? Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        c.pickedImageKK!.name,
+                                        style: blackTextStyle.copyWith(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => c.resetImage(),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: kRedColor,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  '*Maks 5 Mb',
+                                  style: redTextStyle.copyWith(),
+                                ),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              child: Container(
+                                width: 120.w,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                                child: GetBuilder<PerubahanKtpController>(
+                                  builder: (c) {
+                                    return c.pickedImageKK != null
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              Get.dialog(
+                                                Container(
+                                                  child: PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(c
+                                                          .pickedImageKK!.path),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        'Lihat',
-                                        style: blackTextStyle.copyWith(
-                                          fontSize: 16.sp,
-                                          fontWeight: medium,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          side: BorderSide(
-                                            color: kGreyColor,
-                                          ),
-                                        ),
-                                        backgroundColor: kWhiteColor,
-                                      ),
-                                    )
-                                  : ElevatedButton(
-                                      onPressed: () {
-                                        EasyLoading.showError(
-                                          'Masukan file terlebihi dahulu',
-                                        );
-                                      },
-                                      child: Text(
-                                        'Lihat',
-                                        style: blackTextStyle.copyWith(
-                                          fontSize: 16.sp,
-                                          fontWeight: medium,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          side: BorderSide(
-                                            color: kGreyColor,
-                                          ),
-                                        ),
-                                        backgroundColor: kWhiteColor,
-                                      ));
-                            },
-                          ),
-                        ),
-                        Container(
-                          width: 120.w,
-                          height: 40.h,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              controller.selectImage();
-                            },
-                            child: Text(
-                              'Pilih File',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 16.sp,
-                                fontWeight: medium,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                side: BorderSide(
-                                  color: kGreyColor,
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: () {
+                                              EasyLoading.showError(
+                                                'Masukan file terlebihi dahulu',
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ));
+                                  },
                                 ),
                               ),
-                              backgroundColor: kWhiteColor,
                             ),
-                          ),
+                            Container(
+                              width: 120.w,
+                              height: 40.h,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  controller.selectImageKK();
+                                },
+                                child: Text(
+                                  'Pilih File',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 16.sp,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side: BorderSide(
+                                      color: kGreyColor,
+                                    ),
+                                  ),
+                                  backgroundColor: kWhiteColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  height: 12,
+                ),
+
+                // /// FOTO KTP
+                // Text(
+                //   'Unggah Foto KTP',
+                //   style: blackTextStyle.copyWith(),
+                // ),
+                // SizedBox(height: 12.h),
+                // Center(
+                //   child: Container(
+                //     padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                //     width: 315.w,
+                //     height: 140.h,
+                //     decoration: BoxDecoration(
+                //       border: Border.all(
+                //         color: kGreyColor,
+                //       ),
+                //     ),
+                //     child: Column(
+                //       children: [
+                //         GetBuilder<PerubahanKtpController>(
+                //           builder: (c) => c.pickedImage != null
+                //               ? Row(
+                //                   children: [
+                //                     Expanded(
+                //                       child: Text(
+                //                         c.pickedImage!.name,
+                //                         style: blackTextStyle.copyWith(),
+                //                         overflow: TextOverflow.ellipsis,
+                //                       ),
+                //                     ),
+                //                     TextButton(
+                //                       onPressed: () => c.resetImage(),
+                //                       child: Icon(
+                //                         Icons.delete,
+                //                         color: kRedColor,
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 )
+                //               : Text(
+                //                   '*Maks 5 Mb',
+                //                   style: redTextStyle.copyWith(),
+                //                 ),
+                //         ),
+                //         SizedBox(height: 20),
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //           crossAxisAlignment: CrossAxisAlignment.end,
+                //           children: [
+                //             GestureDetector(
+                //               child: Container(
+                //                 width: 120.w,
+                //                 height: 40.h,
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.circular(7),
+                //                 ),
+                //                 child: GetBuilder<PerubahanKtpController>(
+                //                   builder: (c) {
+                //                     return c.pickedImage != null
+                //                         ? ElevatedButton(
+                //                             onPressed: () {
+                //                               Get.dialog(
+                //                                 Container(
+                //                                   child: PhotoView(
+                //                                     imageProvider: FileImage(
+                //                                       File(c.pickedImage!.path),
+                //                                     ),
+                //                                   ),
+                //                                 ),
+                //                               );
+                //                             },
+                //                             child: Text(
+                //                               'Lihat',
+                //                               style: blackTextStyle.copyWith(
+                //                                 fontSize: 16.sp,
+                //                                 fontWeight: medium,
+                //                               ),
+                //                             ),
+                //                             style: ElevatedButton.styleFrom(
+                //                               shape: RoundedRectangleBorder(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(7),
+                //                                 side: BorderSide(
+                //                                   color: kGreyColor,
+                //                                 ),
+                //                               ),
+                //                               backgroundColor: kWhiteColor,
+                //                             ),
+                //                           )
+                //                         : ElevatedButton(
+                //                             onPressed: () {
+                //                               EasyLoading.showError(
+                //                                 'Masukan file terlebihi dahulu',
+                //                               );
+                //                             },
+                //                             child: Text(
+                //                               'Lihat',
+                //                               style: blackTextStyle.copyWith(
+                //                                 fontSize: 16.sp,
+                //                                 fontWeight: medium,
+                //                               ),
+                //                             ),
+                //                             style: ElevatedButton.styleFrom(
+                //                               shape: RoundedRectangleBorder(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(7),
+                //                                 side: BorderSide(
+                //                                   color: kGreyColor,
+                //                                 ),
+                //                               ),
+                //                               backgroundColor: kWhiteColor,
+                //                             ));
+                //                   },
+                //                 ),
+                //               ),
+                //             ),
+                //             Container(
+                //               width: 120.w,
+                //               height: 40.h,
+                //               child: ElevatedButton(
+                //                 onPressed: () {
+                //                   controller.selectImage();
+                //                 },
+                //                 child: Text(
+                //                   'Pilih File',
+                //                   style: blackTextStyle.copyWith(
+                //                     fontSize: 16.sp,
+                //                     fontWeight: medium,
+                //                   ),
+                //                 ),
+                //                 style: ElevatedButton.styleFrom(
+                //                   shape: RoundedRectangleBorder(
+                //                     borderRadius: BorderRadius.circular(7),
+                //                     side: BorderSide(
+                //                       color: kGreyColor,
+                //                     ),
+                //                   ),
+                //                   backgroundColor: kWhiteColor,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+
+                // SizedBox(height: 12.h),
+
+                // /// SURAT KETERANGAN KEHILANGAN
+                // /// FOTO KK
+                // Text(
+                //   'Unggah Foto Surat Ket Kehilangan (Jika KTP Hilang)',
+                //   style: blackTextStyle.copyWith(),
+                // ),
+                // SizedBox(height: 12.h),
+                // Center(
+                //   child: Container(
+                //     padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                //     width: 315.w,
+                //     height: 140.h,
+                //     decoration: BoxDecoration(
+                //       border: Border.all(
+                //         color: kGreyColor,
+                //       ),
+                //     ),
+                //     child: Column(
+                //       children: [
+                //         GetBuilder<PerubahanKtpController>(
+                //           builder: (c) => c.pickedImage != null
+                //               ? Row(
+                //                   children: [
+                //                     Expanded(
+                //                       child: Text(
+                //                         c.pickedImage!.name,
+                //                         style: blackTextStyle.copyWith(),
+                //                         overflow: TextOverflow.ellipsis,
+                //                       ),
+                //                     ),
+                //                     TextButton(
+                //                       onPressed: () => c.resetImage(),
+                //                       child: Icon(
+                //                         Icons.delete,
+                //                         color: kRedColor,
+                //                       ),
+                //                     ),
+                //                   ],
+                //                 )
+                //               : Text(
+                //                   '*Maks 5 Mb',
+                //                   style: redTextStyle.copyWith(),
+                //                 ),
+                //         ),
+                //         SizedBox(height: 20),
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //           crossAxisAlignment: CrossAxisAlignment.end,
+                //           children: [
+                //             GestureDetector(
+                //               child: Container(
+                //                 width: 120.w,
+                //                 height: 40.h,
+                //                 decoration: BoxDecoration(
+                //                   borderRadius: BorderRadius.circular(7),
+                //                 ),
+                //                 child: GetBuilder<PerubahanKtpController>(
+                //                   builder: (c) {
+                //                     return c.pickedImage != null
+                //                         ? ElevatedButton(
+                //                             onPressed: () {
+                //                               Get.dialog(
+                //                                 Container(
+                //                                   child: PhotoView(
+                //                                     imageProvider: FileImage(
+                //                                       File(c.pickedImage!.path),
+                //                                     ),
+                //                                   ),
+                //                                 ),
+                //                               );
+                //                             },
+                //                             child: Text(
+                //                               'Lihat',
+                //                               style: blackTextStyle.copyWith(
+                //                                 fontSize: 16.sp,
+                //                                 fontWeight: medium,
+                //                               ),
+                //                             ),
+                //                             style: ElevatedButton.styleFrom(
+                //                               shape: RoundedRectangleBorder(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(7),
+                //                                 side: BorderSide(
+                //                                   color: kGreyColor,
+                //                                 ),
+                //                               ),
+                //                               backgroundColor: kWhiteColor,
+                //                             ),
+                //                           )
+                //                         : ElevatedButton(
+                //                             onPressed: () {
+                //                               EasyLoading.showError(
+                //                                 'Masukan file terlebihi dahulu',
+                //                               );
+                //                             },
+                //                             child: Text(
+                //                               'Lihat',
+                //                               style: blackTextStyle.copyWith(
+                //                                 fontSize: 16.sp,
+                //                                 fontWeight: medium,
+                //                               ),
+                //                             ),
+                //                             style: ElevatedButton.styleFrom(
+                //                               shape: RoundedRectangleBorder(
+                //                                 borderRadius:
+                //                                     BorderRadius.circular(7),
+                //                                 side: BorderSide(
+                //                                   color: kGreyColor,
+                //                                 ),
+                //                               ),
+                //                               backgroundColor: kWhiteColor,
+                //                             ));
+                //                   },
+                //                 ),
+                //               ),
+                //             ),
+                //             Container(
+                //               width: 120.w,
+                //               height: 40.h,
+                //               child: ElevatedButton(
+                //                 onPressed: () {
+                //                   controller.selectImage();
+                //                 },
+                //                 child: Text(
+                //                   'Pilih File',
+                //                   style: blackTextStyle.copyWith(
+                //                     fontSize: 16.sp,
+                //                     fontWeight: medium,
+                //                   ),
+                //                 ),
+                //                 style: ElevatedButton.styleFrom(
+                //                   shape: RoundedRectangleBorder(
+                //                     borderRadius: BorderRadius.circular(7),
+                //                     side: BorderSide(
+                //                       color: kGreyColor,
+                //                     ),
+                //                   ),
+                //                   backgroundColor: kWhiteColor,
+                //                 ),
+                //               ),
+                //             ),
+                //           ],
+                //         ),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 12,
+                // ),
+              ],
             ),
-          ],
+          ),
         ),
         isActive: controller.currentStep.value >= 1,
       ),
