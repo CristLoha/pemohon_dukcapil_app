@@ -151,6 +151,7 @@ class HistoryView extends GetView<HistoryController> {
                       ),
                     ),
                     Container(height: 1, color: kGreyColor),
+                    SizedBox(height: 30),
                   ],
                 );
               }),
