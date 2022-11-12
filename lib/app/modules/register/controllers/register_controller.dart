@@ -25,6 +25,7 @@ class RegisterController extends GetxController {
 
   RxBool isLoading = false.obs;
   FirebaseAuth auth = FirebaseAuth.instance;
+
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   void infoMsg(String msg1, String msg2) {

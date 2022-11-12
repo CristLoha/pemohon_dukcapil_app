@@ -19,7 +19,7 @@ class CustomFormField extends GetView<RegisterController> {
       this.textInputAction,
       this.readOnly,
       this.onTap,
-      required this.validator,
+      this.validator,
       required this.textEditingController})
       : super(key: key);
 
@@ -31,6 +31,7 @@ class CustomFormField extends GetView<RegisterController> {
       validator: validator,
       cursorColor: kGreyColor,
       onTap: onTap,
+      readOnly: readOnly!,
       keyboardType: keyboardType,
       autocorrect: false,
       controller: textEditingController,

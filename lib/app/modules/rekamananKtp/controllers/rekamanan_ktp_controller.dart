@@ -143,6 +143,20 @@ class RekamananKtpController extends GetxController {
     });
   }
 
+  Future<Map<String, dynamic>?> getProfile() async {
+    try {
+      String uid = auth.currentUser!.uid;
+      DocumentSnapshot<Map<String, dynamic>> docUser =
+          await firestore.collection("pemohon").doc(uid).get();
+
+      return docUser.data();
+    } catch (e) {
+      print(e);
+      Get.snackbar("TERJADI KESALAHAN", "Tidak dapat get data user.");
+      return null;
+    }
+  }
+
   ///JENIS KALENDER
   // void date() async {
   //   await showDatePicker(

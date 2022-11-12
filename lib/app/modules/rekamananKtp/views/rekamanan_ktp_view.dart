@@ -23,8 +23,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
               elevation: 1,
               type: StepperType.horizontal,
               steps: formStep(),
-              onStepContinue: () {
+              onStepContinue: () async {
                 if (controller.currentStep.value == formStep().length - 1) {
+                  await EasyLoading.show(status: 'Memuat...');
                   controller.addrekamanKTP();
                 } else {
                   controller.currentStep.value++;
@@ -111,121 +112,124 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
     return [
       Step(
         title: Text('Pemohon'),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: Text(
-                'Formulir Pendaftaran Antrian Perekaman e-KTP',
-                style: blackTextStyle.copyWith(
-                  fontWeight: semiBold,
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
+        content: FutureBuilder<Map<String, dynamic>?>(
+            future: controller.getProfile(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (snapshot.data == null) {
+                return Center(
+                  child: Text("Tidak ada data user."),
+                );
+              } else {
+                controller.nameC.text = snapshot.data!["nama"];
+                controller.nikC.text = snapshot.data!["nik"];
 
-            /// NIK
-            CustomTitleWidget(tittle: 'NIK'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.number,
-              textEditingController: controller.nikC,
-              validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                        .hasMatch(value)) {
-                  return "Masukan NIK yang benar";
-                } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                  return 'NIK harus 16 karakter';
-                } else {
-                  return null;
-                }
-              },
-            ),
-            SizedBox(height: 12.h),
-            CustomTitleWidget(tittle: 'Nama Lengkap'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama yang benar";
-                  } else {
-                    return null;
-                  }
-                },
-                textEditingController: controller.nameC),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        'Formulir Pendaftaran Antrian Perekaman e-KTP',
+                        style: blackTextStyle.copyWith(
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
 
-            SizedBox(height: 12.h),
-            CustomTitleWidget(tittle: 'Tanggal lahir'),
-            SizedBox(height: 12.h),
-            TextFormField(
-              textInputAction: TextInputAction.next,
-              controller: controller.dateC,
-              readOnly: true,
-              onTap: () {
-                controller.dateLocal();
-              },
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Silahkan masukkan tanggal lahir';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                hintStyle: greyTextStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
+                    /// NIK
+                    CustomTitleWidget(tittle: 'NIK'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.nikC,
+                    ),
+                    SizedBox(height: 12.h),
+                    CustomTitleWidget(tittle: 'Nama Lengkap'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: true,
+                      textEditingController: controller.nameC,
+                      keyboardType: TextInputType.name,
+                    ),
 
-            SizedBox(height: 12.h),
+                    SizedBox(height: 12.h),
+                    CustomTitleWidget(tittle: 'Tanggal lahir'),
+                    SizedBox(height: 12.h),
+                    TextFormField(
+                      textInputAction: TextInputAction.next,
+                      controller: controller.dateC,
+                      readOnly: true,
+                      onTap: () {
+                        controller.dateLocal();
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Silahkan masukkan tanggal lahir';
+                        }
+                        return null;
+                      },
+                      decoration: InputDecoration(
+                        hintStyle: greyTextStyle,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide(
+                            color: kPrimaryColor,
+                          ),
+                        ),
+                      ),
+                    ),
 
-            /// Kecamatan
-            CustomTitleWidget(tittle: 'Kecamatan'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.name,
-              textEditingController: controller.kecamatanC,
-              onTap: () {},
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Masukan nama kecamatan";
-                } else {
-                  return null;
-                }
-              },
-            ),
-            SizedBox(height: 12.h),
+                    SizedBox(height: 12.h),
 
-            /// DESA
-            CustomTitleWidget(tittle: 'Desa'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.name,
-              textEditingController: controller.desaC,
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Masukan nama desa";
-                } else {
-                  return null;
-                }
-              },
-            ),
-          ],
-        ),
+                    /// Kecamatan
+                    CustomTitleWidget(tittle: 'Kecamatan'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.kecamatanC,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama kecamatan";
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                    SizedBox(height: 12.h),
+
+                    /// DESA
+                    CustomTitleWidget(tittle: 'Desa'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.desaC,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama desa";
+                        } else {
+                          return null;
+                        }
+                      },
+                    ),
+                  ],
+                );
+              }
+            }),
         isActive: controller.currentStep.value >= 0,
         state:
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
@@ -378,7 +382,6 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                 ),
               ),
             ),
-            SizedBox(height: 240.h),
           ],
         ),
         isActive: controller.currentStep.value >= 1,
