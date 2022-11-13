@@ -18,7 +18,11 @@ class PerubahanKtpController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
+
   final ImagePicker imagePickerKTP = ImagePicker();
+  XFile? pickedImageKTP;
+  final ImagePicker imagePickerSURKER = ImagePicker();
+  XFile? pickedImageSURKER;
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
   TextEditingController nameC = TextEditingController();
@@ -41,18 +45,51 @@ class PerubahanKtpController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null) {
-      String ext = pickedImageKK!.name.split(".").last;
+    if (pickedImageKK != null &&
+        pickedImageKTP != null &&
+        pickedImageSURKER != null) {
+      String extKK = pickedImageKK!.name.split(".").last;
+
       await storage
           .ref('perubahanKTP')
-          .child('perKTP$randomNumber.$ext')
+          .child('perKTP_KK$randomNumber.$extKK')
           .putFile(
             File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
           .ref('perubahanKTP')
-          .child('perKTP$randomNumber.$ext')
+          .child('perKTP_KK$randomNumber.$extKK')
+          .getDownloadURL();
+
+      /// FOTO KTP
+      String extKTP = pickedImageKTP!.name.split(".").last;
+
+      await storage
+          .ref('perubahanKTP')
+          .child('perKTP_KTP$randomNumber.$extKTP')
+          .putFile(
+            File(pickedImageKTP!.path),
+          );
+
+      String fotoKTP = await storage
+          .ref('perubahanKTP')
+          .child('perKTP_KTP$randomNumber.$extKTP')
+          .getDownloadURL();
+
+      /// FOTO SURAT KETERANGAN
+      String extSurker = pickedImageSURKER!.name.split(".").last;
+
+      await storage
+          .ref('perubahanKTP')
+          .child('perKTP_SURKER$randomNumber.$extSurker')
+          .putFile(
+            File(pickedImageSURKER!.path),
+          );
+
+      String fotoSurker = await storage
+          .ref('perubahanKTP')
+          .child('perKTP_SURKER$randomNumber.$extSurker')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -64,6 +101,7 @@ class PerubahanKtpController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Perubahan e-KTP',
@@ -107,6 +145,7 @@ class PerubahanKtpController extends GetxController {
     update();
   }
 
+  /// FOTO KK
   void selectImageKK() async {
     try {
       final dataImage = await imagePickerKK.pickImage(
@@ -126,37 +165,47 @@ class PerubahanKtpController extends GetxController {
     }
   }
 
-  // void selectImageKTP() async {
-  //   try {
-  //     final dataImage = await imagePicker.pickImage(
-  //       source: ImageSource.gallery,
-  //     );
+  /// FOTO KTP
+  void selectImageKTP() async {
+    try {
+      final dataImage = await imagePickerKTP.pickImage(
+        source: ImageSource.gallery,
+      );
 
-  //     if (dataImage != null) {
-  //       print(dataImage.name);
-  //       print(dataImage.path);
-  //       pickedImage = dataImage;
-  //     }
-  //     update();
-  //   } catch (err) {
-  //     print(err);
-  //     pickedImage = null;
-  //     update();
-  //   }
-  // }
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKTP = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTP = null;
+      update();
+    }
+  }
 
-  // void uploadImageKK() async {
-  //   s.Reference storageRef = storage.ref("perubahanKTP/kk.jpg");
-  //   File file = File(pickedImage!.path);
-  //   try {
-  //     final dataUpload = await storageRef.putFile(file);
-  //     print(dataUpload);
-  //   } catch (e) {
-  //     print('err');
-  //   }
-  // }
+  /// FOTO SURAT KETERANGAN HILANG
+  void selectImageSurket() async {
+    try {
+      final dataImage = await imagePickerSURKER.pickImage(
+        source: ImageSource.gallery,
+      );
 
-  ///UNTUK FORM
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSURKER = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTP = null;
+      update();
+    }
+  }
+
+  ///UNTUK FORM TANGGAL
   void dateLocal() async {
     await DatePicker.showDatePicker(
       Get.context!,
