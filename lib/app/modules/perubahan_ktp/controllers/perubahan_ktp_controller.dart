@@ -45,9 +45,7 @@ class PerubahanKtpController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null &&
-        pickedImageKTP != null &&
-        pickedImageSURKER != null) {
+    if (pickedImageKK != null && pickedImageKTP != null) {
       String extKK = pickedImageKK!.name.split(".").last;
 
       await storage
@@ -102,6 +100,7 @@ class PerubahanKtpController extends GetxController {
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
           'fotoKTP': fotoKTP,
+          'fotoSURKER': fotoSurker,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Perubahan e-KTP',
@@ -140,8 +139,18 @@ class PerubahanKtpController extends GetxController {
     );
   }
 
-  void resetImage() {
+  void resetImageKK() {
     pickedImageKK = null;
+    update();
+  }
+
+  void resetImageKTP() {
+    pickedImageKTP = null;
+    update();
+  }
+
+  void resetImageSURKER() {
+    pickedImageSURKER = null;
     update();
   }
 

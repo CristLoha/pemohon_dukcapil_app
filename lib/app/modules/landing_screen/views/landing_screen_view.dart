@@ -29,14 +29,18 @@ class LandingScreenView extends GetView<LandingScreenController> {
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
               );
             }
             var data = snapshot.data?.data();
 
             if (data == null) {
               return Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
               );
             }
             if (!snapshot.data!.exists) {

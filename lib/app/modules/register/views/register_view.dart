@@ -50,152 +50,162 @@ class RegisterView extends GetView<RegisterController> {
     Widget formRegister() {
       return Container(
         margin: EdgeInsets.only(top: 30.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// NAMA
-            CustomTitleWidget(tittle: 'Nama Lengkap'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              icon: Icon(
-                Icons.person,
-                color: kBlackColor,
-              ),
-              keyboardType: TextInputType.name,
-              textEditingController: controller.nameC,
-              validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                  return "Masukan nama yang benar";
-                } else {
-                  return null;
-                }
-              },
-            ),
-            SizedBox(height: 20.h),
-
-            /// NIK
-            CustomTitleWidget(tittle: 'NIK'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              icon: Icon(
-                FontAwesome5.id_card,
-                color: kBlackColor,
-              ),
-              keyboardType: TextInputType.number,
-              textEditingController: controller.nikC,
-              validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                        .hasMatch(value)) {
-                  return "Masukan NIK yang benar";
-                } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                  return 'NIK harus 16 karakter';
-                } else {
-                  return null;
-                }
-              },
-            ),
-            SizedBox(height: 20.h),
-
-            /// EMAIL
-            CustomTitleWidget(tittle: 'Email'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              icon: Icon(
-                ModernPictograms.at,
-                color: kBlackColor,
-              ),
-              keyboardType: TextInputType.emailAddress,
-              textEditingController: controller.emailC,
-              validator: (value) {
-                if (!GetUtils.isEmail(value!)) {
-                  return 'Email tidak valid';
-                } else {
-                  return null;
-                }
-              },
-            ),
-
-            SizedBox(height: 20.h),
-
-            /// Nomor Telepon
-            CustomTitleWidget(tittle: 'Nomor Telepon'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              textInputAction: TextInputAction.next,
-              icon: Icon(
-                FontAwesome.phone,
-                color: kBlackColor,
-              ),
-              keyboardType: TextInputType.phone,
-              textEditingController: controller.noTelpC,
-              validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                        .hasMatch(value)) {
-                  return "Masukan nomor yang benar";
-                } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
-                  return 'Minimal 12 karakter';
-                } else {
-                  return null;
-                }
-              },
-            ),
-
-            SizedBox(height: 20.h),
-            CustomTitleWidget(tittle: 'Kata Sandi'),
-            SizedBox(height: 12.h),
-            Obx(
-              () => TextFormField(
-                textInputAction: TextInputAction.done,
-                cursorColor: kGreyColor,
-                obscureText: controller.isHidden.value,
-                keyboardType: TextInputType.visiblePassword,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Form(
+          key: controller.formKeys,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// NAMA
+              CustomTitleWidget(tittle: 'Nama Lengkap'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                icon: Icon(
+                  Icons.person,
+                  color: kBlackColor,
+                ),
+                keyboardType: TextInputType.name,
+                textEditingController: controller.nameC,
                 validator: (value) {
-                  if (!GetUtils.isLengthGreaterThan(value, 5)) {
-                    return 'Minimal 5 karakter';
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama yang benar";
                   } else {
                     return null;
                   }
                 },
-                autocorrect: false,
-                controller: controller.passC,
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () => controller.isHidden.toggle(),
-                    icon: controller.isHidden.isFalse
-                        ? Icon(
-                            FontAwesome.eye,
-                            color: kBlackColor,
-                          )
-                        : Icon(
-                            FontAwesome.eye_off,
-                            color: kBlackColor,
-                          ),
-                  ),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: kBlackColor,
-                  ),
-                  hintStyle: greyTextStyle,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(
-                      color: kPrimaryColor,
+              ),
+              SizedBox(height: 20.h),
+
+              /// NIK
+              CustomTitleWidget(tittle: 'NIK'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                icon: Icon(
+                  FontAwesome5.id_card,
+                  color: kBlackColor,
+                ),
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Masukan angka NIK";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  } else if (!RegExp(
+                          r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                      .hasMatch(value)) {
+                    return 'Masukkan angka nik yang benar';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// EMAIL
+              CustomTitleWidget(tittle: 'Email'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                icon: Icon(
+                  ModernPictograms.at,
+                  color: kBlackColor,
+                ),
+                keyboardType: TextInputType.emailAddress,
+                textEditingController: controller.emailC,
+                validator: (value) {
+                  if (!GetUtils.isEmail(value!)) {
+                    return 'Email tidak valid';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+
+              SizedBox(height: 20.h),
+
+              /// Nomor Telepon
+              CustomTitleWidget(tittle: 'Nomor Telepon'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                icon: Icon(
+                  FontAwesome.phone,
+                  color: kBlackColor,
+                ),
+                keyboardType: TextInputType.phone,
+                textEditingController: controller.noTelpC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan nomor yang benar";
+                  } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
+                    return 'Minimal 12 karakter';
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+
+              SizedBox(height: 20.h),
+              CustomTitleWidget(tittle: 'Kata Sandi'),
+              SizedBox(height: 12.h),
+              Obx(
+                () => TextFormField(
+                  readOnly: false,
+                  textInputAction: TextInputAction.done,
+                  cursorColor: kGreyColor,
+                  obscureText: controller.isHidden.value,
+                  keyboardType: TextInputType.visiblePassword,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (!GetUtils.isLengthGreaterThan(value, 5)) {
+                      return 'Minimal 5 karakter';
+                    } else {
+                      return null;
+                    }
+                  },
+                  autocorrect: false,
+                  controller: controller.passC,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.isHidden.toggle(),
+                      icon: controller.isHidden.isFalse
+                          ? Icon(
+                              FontAwesome.eye,
+                              color: kBlackColor,
+                            )
+                          : Icon(
+                              FontAwesome.eye_off,
+                              color: kBlackColor,
+                            ),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: kBlackColor,
+                    ),
+                    hintStyle: greyTextStyle,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: kPrimaryColor,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     }
@@ -208,6 +218,9 @@ class RegisterView extends GetView<RegisterController> {
           child: Obx(
             () => ElevatedButton(
               onPressed: () {
+                if (!controller.formKeys.currentState!.validate()) {
+                  return;
+                }
                 controller.register();
               },
               child: Text(

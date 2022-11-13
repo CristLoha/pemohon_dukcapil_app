@@ -10,6 +10,7 @@ import '../../../routes/app_pages.dart';
 class RegisterController extends GetxController {
   User? userPemohon = FirebaseAuth.instance.currentUser;
   Pemohon pemohonC = Pemohon();
+  final formKeys = GlobalKey<FormState>();
 
   TextEditingController nikC = TextEditingController();
   TextEditingController nameC = TextEditingController();

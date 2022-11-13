@@ -123,9 +123,8 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
             future: controller.getProfile(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
+                EasyLoading.show(status: 'memuat...');
+                EasyLoading.dismiss();
               }
               if (snapshot.data == null) {
                 return Center(
@@ -301,7 +300,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () => c.resetImage(),
+                                      onPressed: () => c.resetImageKK(),
                                       child: Icon(
                                         Icons.delete,
                                         color: kRedColor,
@@ -452,7 +451,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () => c.resetImage(),
+                                      onPressed: () => c.resetImageKTP(),
                                       child: Icon(
                                         Icons.delete,
                                         color: kRedColor,
@@ -572,156 +571,154 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
 
                 SizedBox(height: 12.h),
 
-                // /// SURAT KETERANGAN KEHILANGAN
-                // /// FOTO KK
-                // Text(
-                //   'Unggah Foto Surat Ket Kehilangan (Jika KTP Hilang)',
-                //   style: blackTextStyle.copyWith(),
-                // ),
-                // SizedBox(height: 12.h),
-                // Center(
-                //   child: Container(
-                //     padding: EdgeInsets.only(left: 15, top: 20, right: 10),
-                //     width: 315.w,
-                //     height: 140.h,
-                //     decoration: BoxDecoration(
-                //       border: Border.all(
-                //         color: kGreyColor,
-                //       ),
-                //     ),
-                //     child: Column(
-                //       children: [
-                //         GetBuilder<PerubahanKtpController>(
-                //           builder: (c) => c.pickedImage != null
-                //               ? Row(
-                //                   children: [
-                //                     Expanded(
-                //                       child: Text(
-                //                         c.pickedImage!.name,
-                //                         style: blackTextStyle.copyWith(),
-                //                         overflow: TextOverflow.ellipsis,
-                //                       ),
-                //                     ),
-                //                     TextButton(
-                //                       onPressed: () => c.resetImage(),
-                //                       child: Icon(
-                //                         Icons.delete,
-                //                         color: kRedColor,
-                //                       ),
-                //                     ),
-                //                   ],
-                //                 )
-                //               : Text(
-                //                   '*Maks 5 Mb',
-                //                   style: redTextStyle.copyWith(),
-                //                 ),
-                //         ),
-                //         SizedBox(height: 20),
-                //         Row(
-                //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                //           crossAxisAlignment: CrossAxisAlignment.end,
-                //           children: [
-                //             GestureDetector(
-                //               child: Container(
-                //                 width: 120.w,
-                //                 height: 40.h,
-                //                 decoration: BoxDecoration(
-                //                   borderRadius: BorderRadius.circular(7),
-                //                 ),
-                //                 child: GetBuilder<PerubahanKtpController>(
-                //                   builder: (c) {
-                //                     return c.pickedImage != null
-                //                         ? ElevatedButton(
-                //                             onPressed: () {
-                //                               Get.dialog(
-                //                                 Container(
-                //                                   child: PhotoView(
-                //                                     imageProvider: FileImage(
-                //                                       File(c.pickedImage!.path),
-                //                                     ),
-                //                                   ),
-                //                                 ),
-                //                               );
-                //                             },
-                //                             child: Text(
-                //                               'Lihat',
-                //                               style: blackTextStyle.copyWith(
-                //                                 fontSize: 16.sp,
-                //                                 fontWeight: medium,
-                //                               ),
-                //                             ),
-                //                             style: ElevatedButton.styleFrom(
-                //                               shape: RoundedRectangleBorder(
-                //                                 borderRadius:
-                //                                     BorderRadius.circular(7),
-                //                                 side: BorderSide(
-                //                                   color: kGreyColor,
-                //                                 ),
-                //                               ),
-                //                               backgroundColor: kWhiteColor,
-                //                             ),
-                //                           )
-                //                         : ElevatedButton(
-                //                             onPressed: () {
-                //                               EasyLoading.showError(
-                //                                 'Masukan file terlebihi dahulu',
-                //                               );
-                //                             },
-                //                             child: Text(
-                //                               'Lihat',
-                //                               style: blackTextStyle.copyWith(
-                //                                 fontSize: 16.sp,
-                //                                 fontWeight: medium,
-                //                               ),
-                //                             ),
-                //                             style: ElevatedButton.styleFrom(
-                //                               shape: RoundedRectangleBorder(
-                //                                 borderRadius:
-                //                                     BorderRadius.circular(7),
-                //                                 side: BorderSide(
-                //                                   color: kGreyColor,
-                //                                 ),
-                //                               ),
-                //                               backgroundColor: kWhiteColor,
-                //                             ));
-                //                   },
-                //                 ),
-                //               ),
-                //             ),
-                //             Container(
-                //               width: 120.w,
-                //               height: 40.h,
-                //               child: ElevatedButton(
-                //                 onPressed: () {
-                //                   controller.selectImage();
-                //                 },
-                //                 child: Text(
-                //                   'Pilih File',
-                //                   style: blackTextStyle.copyWith(
-                //                     fontSize: 16.sp,
-                //                     fontWeight: medium,
-                //                   ),
-                //                 ),
-                //                 style: ElevatedButton.styleFrom(
-                //                   shape: RoundedRectangleBorder(
-                //                     borderRadius: BorderRadius.circular(7),
-                //                     side: BorderSide(
-                //                       color: kGreyColor,
-                //                     ),
-                //                   ),
-                //                   backgroundColor: kWhiteColor,
-                //                 ),
-                //               ),
-                //             ),
-                //           ],
-                //         ),
-                //       ],
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 12,
-                // ),
+                ///  SURAT KETERANGAN KEHILANGAN
+
+                Text(
+                  'Unggah Foto Surat KET. Kehilangan (Jika KTP Hilang)',
+                  style: blackTextStyle.copyWith(),
+                ),
+                SizedBox(height: 12.h),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                    width: 315.w,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: kGreyColor,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        GetBuilder<PerubahanKtpController>(
+                          builder: (c) => c.pickedImageSURKER != null
+                              ? Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        c.pickedImageSURKER!.name,
+                                        style: blackTextStyle.copyWith(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => c.resetImageSURKER(),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: kRedColor,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  '*Maks 5 Mb',
+                                  style: redTextStyle.copyWith(),
+                                ),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              child: Container(
+                                width: 120.w,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                                child: GetBuilder<PerubahanKtpController>(
+                                  builder: (c) {
+                                    return c.pickedImageSURKER != null
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              Get.dialog(
+                                                Container(
+                                                  child: PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(c.pickedImageSURKER!
+                                                          .path),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: () {
+                                              EasyLoading.showError(
+                                                'Masukan file terlebihi dahulu',
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ));
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 120.w,
+                              height: 40.h,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  controller.selectImageSurket();
+                                },
+                                child: Text(
+                                  'Pilih File',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 16.sp,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side: BorderSide(
+                                      color: kGreyColor,
+                                    ),
+                                  ),
+                                  backgroundColor: kWhiteColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
