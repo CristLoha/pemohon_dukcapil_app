@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/data/models/pemohon_model.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
@@ -97,8 +98,10 @@ class RegisterController extends GetxController {
         isLoading.value = false;
         if (e.code == 'weak-password') {
           print('The password provided is too weak.');
+          EasyLoading.dismiss();
         } else if (e.code == 'email-already-in-use') {
           infoMsg('TERJADI KESALAHAN', 'Email sudah pernah digunakan');
+          EasyLoading.dismiss();
           print('The account already exists for that email.');
         }
       } catch (e) {

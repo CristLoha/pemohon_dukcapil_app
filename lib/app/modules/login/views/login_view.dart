@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
@@ -41,79 +42,33 @@ class LoginView extends GetView<LoginController> {
     Widget formLogin() {
       return Container(
         margin: EdgeInsets.only(top: 20.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /// EMAIL
-            CustomTitleWidget(tittle: 'Email'),
-            SizedBox(height: 12.h),
-            TextFormField(
-              textInputAction: TextInputAction.next,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                if (value!.isEmpty ||
-                    !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                        .hasMatch(value)) {
-                  return "Email tidak valid";
-                } else {
-                  return null;
-                }
-              },
-              cursorColor: kGreyColor,
-              keyboardType: TextInputType.emailAddress,
-              autocorrect: false,
-              controller: controller.emailC,
-              decoration: InputDecoration(
-                prefixIcon: Icon(
-                  ModernPictograms.at,
-                  color: kBlackColor,
-                ),
-                hintStyle: greyTextStyle,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(
-                    color: kPrimaryColor,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(height: 20.h),
-            CustomTitleWidget(tittle: 'Kata Sandi'),
-            SizedBox(height: 12.h),
-            Obx(
-              () => TextFormField(
-                textInputAction: TextInputAction.done,
-                cursorColor: kGreyColor,
-                obscureText: controller.isHidden.value,
+        child: Form(
+          key: controller.formKeys,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// EMAIL
+              CustomTitleWidget(tittle: 'Email'),
+              SizedBox(height: 12.h),
+              TextFormField(
+                textInputAction: TextInputAction.next,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (value) {
-                  if (!GetUtils.isLengthGreaterThan(value, 5)) {
-                    return 'Minimal 5 karakter';
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                          .hasMatch(value)) {
+                    return "Email tidak valid";
                   } else {
                     return null;
                   }
                 },
-                keyboardType: TextInputType.visiblePassword,
+                cursorColor: kGreyColor,
+                keyboardType: TextInputType.emailAddress,
                 autocorrect: false,
-                controller: controller.passC,
+                controller: controller.emailC,
                 decoration: InputDecoration(
-                  suffixIcon: IconButton(
-                    onPressed: () => controller.isHidden.toggle(),
-                    icon: controller.isHidden.isFalse
-                        ? Icon(
-                            FontAwesome.eye,
-                            color: kBlackColor,
-                          )
-                        : Icon(
-                            FontAwesome.eye_off,
-                            color: kBlackColor,
-                          ),
-                  ),
                   prefixIcon: Icon(
-                    Icons.lock,
+                    ModernPictograms.at,
                     color: kBlackColor,
                   ),
                   hintStyle: greyTextStyle,
@@ -128,32 +83,81 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-            ),
-            Obx(
-              () => CheckboxListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 0),
-                activeColor: kPrimaryColor,
-                value: controller.isSelected.value,
-                controlAffinity: ListTileControlAffinity.leading,
-                onChanged: (value) {
-                  controller.isSelected.toggle();
-                },
-                title: Text(
-                  'Ingat Saya',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 14.sp,
-                  ),
-                ),
-                secondary: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Lupa Kata Sandi?',
-                    style: blueTextStyle.copyWith(fontWeight: semiBold),
+              SizedBox(height: 20.h),
+              CustomTitleWidget(tittle: 'Kata Sandi'),
+              SizedBox(height: 12.h),
+              Obx(
+                () => TextFormField(
+                  textInputAction: TextInputAction.done,
+                  cursorColor: kGreyColor,
+                  obscureText: controller.isHidden.value,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (!GetUtils.isLengthGreaterThan(value, 5)) {
+                      return 'Minimal 5 karakter';
+                    } else {
+                      return null;
+                    }
+                  },
+                  keyboardType: TextInputType.visiblePassword,
+                  autocorrect: false,
+                  controller: controller.passC,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.isHidden.toggle(),
+                      icon: controller.isHidden.isFalse
+                          ? Icon(
+                              FontAwesome.eye,
+                              color: kBlackColor,
+                            )
+                          : Icon(
+                              FontAwesome.eye_off,
+                              color: kBlackColor,
+                            ),
+                    ),
+                    prefixIcon: Icon(
+                      Icons.lock,
+                      color: kBlackColor,
+                    ),
+                    hintStyle: greyTextStyle,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: kPrimaryColor,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+              Obx(
+                () => CheckboxListTile(
+                  contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                  activeColor: kPrimaryColor,
+                  value: controller.isSelected.value,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  onChanged: (value) {
+                    controller.isSelected.toggle();
+                  },
+                  title: Text(
+                    'Ingat Saya',
+                    style: blackTextStyle.copyWith(
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                  secondary: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Lupa Kata Sandi?',
+                      style: blueTextStyle.copyWith(fontWeight: semiBold),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -163,24 +167,26 @@ class LoginView extends GetView<LoginController> {
         height: 50.h,
         margin: EdgeInsets.only(top: 30.h),
         child: Container(
-          child: Obx(
-            () => ElevatedButton(
-              onPressed: () {
-                controller.login();
-              },
-              child: Text(
-                controller.isLoading.isFalse ? 'Masuk' : 'Memuat...',
-                style: whiteTextStyle.copyWith(
-                  fontSize: 16.sp,
-                  fontWeight: medium,
-                ),
+          child: ElevatedButton(
+            onPressed: () {
+              if (!controller.formKeys.currentState!.validate()) {
+                return;
+              }
+              EasyLoading.show(status: 'memuat...');
+              controller.login();
+            },
+            child: Text(
+              'Masuk',
+              style: whiteTextStyle.copyWith(
+                fontSize: 16.sp,
+                fontWeight: medium,
               ),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                backgroundColor: kPrimaryColor,
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
+              backgroundColor: kPrimaryColor,
             ),
           ),
         ),

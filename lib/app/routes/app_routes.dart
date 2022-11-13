@@ -15,6 +15,7 @@ abstract class Routes {
   static const SETTINGS = _Paths.SETTINGS;
   static const REKAMANAN_KTP = _Paths.REKAMANAN_KTP;
   static const PERUBAHAN_KTP = _Paths.PERUBAHAN_KTP;
+  static const DETAIL_RIWAYAT = _Paths.DETAIL_RIWAYAT;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const SETTINGS = '/settings';
   static const REKAMANAN_KTP = '/rekamanan-ktp';
   static const PERUBAHAN_KTP = '/perubahan-ktp';
+  static const DETAIL_RIWAYAT = '/detail-riwayat';
 }

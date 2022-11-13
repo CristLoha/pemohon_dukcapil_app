@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/bindings/detail_riwayat_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/views/detail_riwayat_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/bindings/home_binding.dart';
@@ -78,6 +80,11 @@ class AppPages {
       name: _Paths.PERUBAHAN_KTP,
       page: () => PerubahanKtpView(),
       binding: PerubahanKtpBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_RIWAYAT,
+      page: () => DetailRiwayatView(),
+      binding: DetailRiwayatBinding(),
     ),
   ];
 }

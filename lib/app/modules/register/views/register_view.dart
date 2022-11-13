@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
@@ -91,14 +92,12 @@ class RegisterView extends GetView<RegisterController> {
                 keyboardType: TextInputType.number,
                 textEditingController: controller.nikC,
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan angka NIK";
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan NIK yang benar";
                   } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                     return 'NIK harus 16 karakter';
-                  } else if (!RegExp(
-                          r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                      .hasMatch(value)) {
-                    return 'Masukkan angka nik yang benar';
                   } else {
                     return null;
                   }
@@ -215,27 +214,26 @@ class RegisterView extends GetView<RegisterController> {
         height: 50.h,
         margin: EdgeInsets.only(top: 30.h),
         child: Container(
-          child: Obx(
-            () => ElevatedButton(
-              onPressed: () {
-                if (!controller.formKeys.currentState!.validate()) {
-                  return;
-                }
-                controller.register();
-              },
-              child: Text(
-                controller.isLoading.isFalse ? 'Daftar' : 'Memuat...',
-                style: whiteTextStyle.copyWith(
-                  fontSize: 16.sp,
-                  fontWeight: medium,
-                ),
+          child: ElevatedButton(
+            onPressed: () {
+              if (!controller.formKeys.currentState!.validate()) {
+                return;
+              }
+              EasyLoading.show(status: 'memuat...');
+              controller.register();
+            },
+            child: Text(
+              'Daftar',
+              style: whiteTextStyle.copyWith(
+                fontSize: 16.sp,
+                fontWeight: medium,
               ),
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                backgroundColor: kPrimaryColor,
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
               ),
+              backgroundColor: kPrimaryColor,
             ),
           ),
         ),

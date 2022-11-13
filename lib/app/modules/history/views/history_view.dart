@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
+import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import '../controllers/history_controller.dart';
 
@@ -39,20 +40,18 @@ class HistoryView extends GetView<HistoryController> {
             }
 
             return ListView.builder(
-              padding: EdgeInsets.only(
-                top: 10,
-                bottom: 10,
-              ),
+              padding: EdgeInsets.only(top: 10, bottom: 20),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
-                var docKTP = snapshot.data!.docs[index];
-                Map<String, dynamic> ktp = docKTP.data();
+                var docRiwayat = snapshot.data!.docs[index];
+                Map<String, dynamic> ktp = docRiwayat.data();
                 return Column(
                   children: [
                     ListTile(
-                      onTap: () {
-                        print('satu dua $index');
-                      },
+                      onTap: () => Get.toNamed(
+                        Routes.DETAIL_RIWAYAT,
+                        arguments: docRiwayat.id,
+                      ),
                       title: Text(
                         "${ktp['kategori']}",
                         style: blackTextStyle.copyWith(
@@ -70,53 +69,97 @@ class HistoryView extends GetView<HistoryController> {
                                 top: 5,
                               ),
                               child: Container(
-                                padding: EdgeInsets.all(8),
+                                width: 102,
+                                height: 30,
                                 decoration: BoxDecoration(
-                                  color: Colors.amber,
+                                  color: Color(0xffff7f50),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Text(
-                                  "PROSES VERIFIKASI",
-                                  style: whiteTextStyle.copyWith(
-                                      fontSize: 10, fontWeight: semiBold),
+                                child: Center(
+                                  child: Text(
+                                    "PROSES VERIFIKASI",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
                                 ),
                               ),
                             )
-                          else if ("${ktp['proses']}" == 'SIAP AMBIL')
+                          else if ("${ktp['proses']}" == 'PENDING')
                             Padding(
-                              padding: const EdgeInsets.only(
-                                left: 3,
-                                top: 3,
-                              ),
+                              padding: const EdgeInsets.only(top: 10),
                               child: Container(
-                                padding: EdgeInsets.all(8),
+                                width: 102,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "PENDING",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
+                                ),
+                              ),
+                            )
+                          else if ("${ktp['proses']}" == 'DICETAK')
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                width: 102,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 211, 90, 156),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "PROSES PENCETAKAN",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
+                                ),
+                              ),
+                            )
+                          else if ("${ktp['proses']}" == 'AMBIL')
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                width: 102,
+                                height: 30,
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Text(
-                                  "SIAP AMBIL",
-                                  style: whiteTextStyle.copyWith(
-                                      fontSize: 10, fontWeight: semiBold),
+                                child: Center(
+                                  child: Text(
+                                    "SIAP AMBIL",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
                                 ),
                               ),
                             ),
                           if ("${ktp['proses']}" == 'DITOLAK')
                             Padding(
                               padding: const EdgeInsets.only(
-                                left: 3,
-                                top: 3,
+                                top: 10,
                               ),
                               child: Container(
+                                width: 102,
+                                height: 30,
                                 padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
-                                  color: Colors.red,
+                                  color: kRedColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Text(
-                                  "DITOLAK",
-                                  style: whiteTextStyle.copyWith(
-                                      fontSize: 10, fontWeight: semiBold),
+                                child: Center(
+                                  child: Text(
+                                    "DITOLAK",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
                                 ),
                               ),
                             ),
@@ -150,8 +193,7 @@ class HistoryView extends GetView<HistoryController> {
                         ],
                       ),
                     ),
-                    Container(height: 1, color: kGreyColor),
-                    SizedBox(height: 30),
+                    Container(height: 0.80, color: kGreyColor),
                   ],
                 );
               }),

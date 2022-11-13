@@ -21,6 +21,7 @@ class PerubahanKtpController extends GetxController {
 
   final ImagePicker imagePickerKTP = ImagePicker();
   XFile? pickedImageKTP;
+
   final ImagePicker imagePickerSURKER = ImagePicker();
   XFile? pickedImageSURKER;
   TextEditingController nikC = TextEditingController();
@@ -75,21 +76,6 @@ class PerubahanKtpController extends GetxController {
           .child('perKTP_KTP$randomNumber.$extKTP')
           .getDownloadURL();
 
-      /// FOTO SURAT KETERANGAN
-      String extSurker = pickedImageSURKER!.name.split(".").last;
-
-      await storage
-          .ref('perubahanKTP')
-          .child('perKTP_SURKER$randomNumber.$extSurker')
-          .putFile(
-            File(pickedImageSURKER!.path),
-          );
-
-      String fotoSurker = await storage
-          .ref('perubahanKTP')
-          .child('perKTP_SURKER$randomNumber.$extSurker')
-          .getDownloadURL();
-
       CollectionReference rekamanKtp = firestore.collection('layanan');
       try {
         String uid = auth.currentUser!.uid;
@@ -99,8 +85,8 @@ class PerubahanKtpController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'keterangan': '',
           'fotoKTP': fotoKTP,
-          'fotoSURKER': fotoSurker,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Perubahan e-KTP',
@@ -194,25 +180,25 @@ class PerubahanKtpController extends GetxController {
     }
   }
 
-  /// FOTO SURAT KETERANGAN HILANG
-  void selectImageSurket() async {
-    try {
-      final dataImage = await imagePickerSURKER.pickImage(
-        source: ImageSource.gallery,
-      );
+  // /// FOTO SURAT KETERANGAN HILANG
+  // void selectImageSurket() async {
+  //   try {
+  //     final dataImage = await imagePickerSURKER.pickImage(
+  //       source: ImageSource.gallery,
+  //     );
 
-      if (dataImage != null) {
-        print(dataImage.name);
-        print(dataImage.path);
-        pickedImageSURKER = dataImage;
-      }
-      update();
-    } catch (err) {
-      print(err);
-      pickedImageKTP = null;
-      update();
-    }
-  }
+  //     if (dataImage != null) {
+  //       print(dataImage.name);
+  //       print(dataImage.path);
+  //       pickedImageSURKER = dataImage;
+  //     }
+  //     update();
+  //   } catch (err) {
+  //     print(err);
+  //     pickedImageKTP = null;
+  //     update();
+  //   }
+  // }
 
   ///UNTUK FORM TANGGAL
   void dateLocal() async {

@@ -197,10 +197,11 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                           controller.dateLocal();
                         },
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
+                          if (value!.isEmpty) {
                             return 'Masukan tanggal lahir';
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                         decoration: InputDecoration(
                           hintStyle: greyTextStyle,
@@ -228,10 +229,12 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         textEditingController: controller.kecamatanC,
                         onTap: () {},
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Masukan nama kecamatan';
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama kecamatan yang benar";
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                       ),
                       SizedBox(height: 12.h),
@@ -245,8 +248,9 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         keyboardType: TextInputType.name,
                         textEditingController: controller.desaC,
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Masukan nama desa";
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama desa yang benar";
                           } else {
                             return null;
                           }
@@ -272,7 +276,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
               children: [
                 /// FOTO KK
                 Text(
-                  'Unggah Foto KK',
+                  'Unggah KK',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -423,7 +427,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
 
                 // /// FOTO KTP
                 Text(
-                  'Unggah Foto KTP',
+                  'Unggah KTP/SURAT KETERANGAN KEHILANGAN',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -570,155 +574,6 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                 ),
 
                 SizedBox(height: 12.h),
-
-                ///  SURAT KETERANGAN KEHILANGAN
-
-                Text(
-                  'Unggah Foto Surat KET. Kehilangan (Jika KTP Hilang)',
-                  style: blackTextStyle.copyWith(),
-                ),
-                SizedBox(height: 12.h),
-                Center(
-                  child: Container(
-                    padding: EdgeInsets.only(left: 15, top: 20, right: 10),
-                    width: 315.w,
-                    height: 140.h,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: kGreyColor,
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        GetBuilder<PerubahanKtpController>(
-                          builder: (c) => c.pickedImageSURKER != null
-                              ? Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        c.pickedImageSURKER!.name,
-                                        style: blackTextStyle.copyWith(),
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () => c.resetImageSURKER(),
-                                      child: Icon(
-                                        Icons.delete,
-                                        color: kRedColor,
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : Text(
-                                  '*Maks 5 Mb',
-                                  style: redTextStyle.copyWith(),
-                                ),
-                        ),
-                        SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            GestureDetector(
-                              child: Container(
-                                width: 120.w,
-                                height: 40.h,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                ),
-                                child: GetBuilder<PerubahanKtpController>(
-                                  builder: (c) {
-                                    return c.pickedImageSURKER != null
-                                        ? ElevatedButton(
-                                            onPressed: () {
-                                              Get.dialog(
-                                                Container(
-                                                  child: PhotoView(
-                                                    imageProvider: FileImage(
-                                                      File(c.pickedImageSURKER!
-                                                          .path),
-                                                    ),
-                                                  ),
-                                                ),
-                                              );
-                                            },
-                                            child: Text(
-                                              'Lihat',
-                                              style: blackTextStyle.copyWith(
-                                                fontSize: 16.sp,
-                                                fontWeight: medium,
-                                              ),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                                side: BorderSide(
-                                                  color: kGreyColor,
-                                                ),
-                                              ),
-                                              backgroundColor: kWhiteColor,
-                                            ),
-                                          )
-                                        : ElevatedButton(
-                                            onPressed: () {
-                                              EasyLoading.showError(
-                                                'Masukan file terlebihi dahulu',
-                                              );
-                                            },
-                                            child: Text(
-                                              'Lihat',
-                                              style: blackTextStyle.copyWith(
-                                                fontSize: 16.sp,
-                                                fontWeight: medium,
-                                              ),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(7),
-                                                side: BorderSide(
-                                                  color: kGreyColor,
-                                                ),
-                                              ),
-                                              backgroundColor: kWhiteColor,
-                                            ));
-                                  },
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 120.w,
-                              height: 40.h,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  controller.selectImageSurket();
-                                },
-                                child: Text(
-                                  'Pilih File',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 16.sp,
-                                    fontWeight: medium,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    side: BorderSide(
-                                      color: kGreyColor,
-                                    ),
-                                  ),
-                                  backgroundColor: kWhiteColor,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
