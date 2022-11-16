@@ -6,6 +6,7 @@ double defaultRadius = 17.0;
 double defaultPadding = 30.0;
 Color kPrimaryColor = Color(0xff1F68B5);
 Color kBlueColor = Color(0xffB8DFF3);
+Color kGreenColor = Color(0xff29CC97);
 Color kBlackColor = Color(0xff3A3A3A);
 Color kGreyColor = Color(0xffAAAAAA);
 Color kRedColor = Color(0xffF12B2C);

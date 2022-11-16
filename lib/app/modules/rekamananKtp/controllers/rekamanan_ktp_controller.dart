@@ -22,6 +22,12 @@ class RekamananKtpController extends GetxController {
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
 
+  int index = 0;
+  List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+  ];
+
   XFile? pickedImage;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -44,41 +50,35 @@ class RekamananKtpController extends GetxController {
           .child('rekKtp$randomNumber.$ext')
           .getDownloadURL();
 
-      if (nikC.text.isNotEmpty &&
-          nameC.text.isNotEmpty &&
-          dateC.text.isNotEmpty &&
-          kecamatanC.text.isNotEmpty &&
-          desaC.text.isNotEmpty) {
-        CollectionReference rekamanKtp = firestore.collection('layanan');
+      CollectionReference rekamanKtp = firestore.collection('layanan');
 
-        await rekamanKtp.add({
-          'nik': nikC.text,
-          'nama': nameC.text,
-          'fotoKK': fotoKK,
-          'tgl_lahir': dateC.text,
-          "keyName": nameC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'Perekaman e-KTP',
-          'kecamatan': kecamatanC.text,
-          'email': userPemohon!.email,
-          'desa': desaC.text,
-          'uid': uid,
-          'proses': 'PROSES VERIFIKASI',
-          'creationTime': DateTime.now().toIso8601String(),
-          'updatedTime': DateTime.now().toIso8601String(),
-        }).then(
-          (value) {
-            EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-            Get.offAllNamed(Routes.MAIN_PAGE);
-          },
-        ).catchError(
-          (error) {
-            print("Failed to add user: $error");
-          },
-        );
-      } else {
-        EasyLoading.showError('Data tidak boleh kosong');
-        print('data tidak boleh kosong');
-      }
+      await rekamanKtp.add({
+        'nik': nikC.text,
+        'nama': nameC.text,
+        'fotoKK': fotoKK,
+        'tgl_lahir': dateC.text,
+        "keyName": nameC.text.substring(0, 1).toUpperCase(),
+        'kategori': 'Perekaman e-KTP',
+        'kecamatan': kecamatanC.text,
+        'email': userPemohon!.email,
+        'desa': desaC.text,
+        'uid': uid,
+        'proses': 'PROSES VERIFIKASI',
+        'creationTime': DateTime.now().toIso8601String(),
+        'updatedTime': DateTime.now().toIso8601String(),
+      }).then(
+        (value) {
+          EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+          Get.offAllNamed(Routes.MAIN_PAGE);
+        },
+      ).catchError(
+        (error) {
+          print("Failed to add user: $error");
+        },
+      );
+    } else {
+      EasyLoading.showError('Data tidak boleh kosong');
+      print('data tidak boleh kosong');
     }
   }
 

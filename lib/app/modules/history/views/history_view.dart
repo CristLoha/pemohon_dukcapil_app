@@ -13,7 +13,11 @@ class HistoryView extends GetView<HistoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Riwayat'),
+        elevation: 0,
+        title: Text(
+          'Riwayat',
+          style: whiteTextStyle,
+        ),
         backgroundColor: kPrimaryColor,
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -40,7 +44,7 @@ class HistoryView extends GetView<HistoryController> {
             }
 
             return ListView.builder(
-              padding: EdgeInsets.only(top: 10, bottom: 20),
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: ((context, index) {
                 var docRiwayat = snapshot.data!.docs[index];
@@ -62,7 +66,6 @@ class HistoryView extends GetView<HistoryController> {
                       trailing: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(width: 5),
                           if ("${ktp['proses']}" == 'PROSES VERIFIKASI')
                             Padding(
                               padding: const EdgeInsets.only(
@@ -71,6 +74,7 @@ class HistoryView extends GetView<HistoryController> {
                               child: Container(
                                 width: 102,
                                 height: 30,
+                                padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: Color(0xffff7f50),
                                   borderRadius: BorderRadius.circular(20),
@@ -90,6 +94,7 @@ class HistoryView extends GetView<HistoryController> {
                               child: Container(
                                 width: 102,
                                 height: 30,
+                                padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: kPrimaryColor,
                                   borderRadius: BorderRadius.circular(20),
@@ -105,17 +110,20 @@ class HistoryView extends GetView<HistoryController> {
                             )
                           else if ("${ktp['proses']}" == 'DICETAK')
                             Padding(
-                              padding: const EdgeInsets.only(top: 10),
+                              padding: const EdgeInsets.only(
+                                top: 5,
+                              ),
                               child: Container(
                                 width: 102,
                                 height: 30,
+                                padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
                                   color: Color.fromARGB(255, 211, 90, 156),
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "PROSES PENCETAKAN",
+                                    "PENCETAKAN",
                                     style: whiteTextStyle.copyWith(
                                         fontSize: 9, fontWeight: semiBold),
                                   ),
@@ -128,13 +136,34 @@ class HistoryView extends GetView<HistoryController> {
                               child: Container(
                                 width: 102,
                                 height: 30,
+                                padding: EdgeInsets.all(8),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: kGreenColor,
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: Center(
                                   child: Text(
                                     "SIAP AMBIL",
+                                    style: whiteTextStyle.copyWith(
+                                        fontSize: 9, fontWeight: semiBold),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if ("${ktp['proses']}" == 'SELESAI')
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10),
+                              child: Container(
+                                width: 102,
+                                height: 30,
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: kGreenColor,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "SELESAI",
                                     style: whiteTextStyle.copyWith(
                                         fontSize: 9, fontWeight: semiBold),
                                   ),
