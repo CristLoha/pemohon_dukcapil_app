@@ -89,7 +89,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
-                              title: 'Perubahan \ne-KTP',
+                              title: 'Registrasi\nKK',
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,
@@ -101,7 +101,9 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 13.h,
                               widthIcon: 32.w,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.REGIS_AKTA_KEMATIAN);
+                              },
                             ),
                           ],
                         ),
