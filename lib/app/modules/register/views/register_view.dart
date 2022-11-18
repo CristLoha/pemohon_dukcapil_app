@@ -57,7 +57,7 @@ class RegisterView extends GetView<RegisterController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// NAMA
-              CustomTitleWidget(tittle: 'Nama Lengkap'),
+              CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -80,7 +80,7 @@ class RegisterView extends GetView<RegisterController> {
               SizedBox(height: 20.h),
 
               /// NIK
-              CustomTitleWidget(tittle: 'NIK'),
+              CustomTitleWidget(title: 'NIK'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -106,7 +106,7 @@ class RegisterView extends GetView<RegisterController> {
               SizedBox(height: 20.h),
 
               /// EMAIL
-              CustomTitleWidget(tittle: 'Email'),
+              CustomTitleWidget(title: 'Email'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -129,7 +129,7 @@ class RegisterView extends GetView<RegisterController> {
               SizedBox(height: 20.h),
 
               /// Nomor Telepon
-              CustomTitleWidget(tittle: 'Nomor Telepon'),
+              CustomTitleWidget(title: 'Nomor Telepon'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -154,7 +154,7 @@ class RegisterView extends GetView<RegisterController> {
               ),
 
               SizedBox(height: 20.h),
-              CustomTitleWidget(tittle: 'Kata Sandi'),
+              CustomTitleWidget(title: 'Kata Sandi'),
               SizedBox(height: 12.h),
               Obx(
                 () => TextFormField(

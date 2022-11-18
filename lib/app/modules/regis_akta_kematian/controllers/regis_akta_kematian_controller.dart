@@ -26,8 +26,10 @@ class RegisAktaKematianController extends GetxController {
   XFile? pickedImageSURKER;
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
-  TextEditingController nameJenisKelaminC = TextEditingController();
-  TextEditingController nameTempatLahir = TextEditingController();
+  TextEditingController jenisKelaminC = TextEditingController();
+  TextEditingController nameTempatLahirC = TextEditingController();
+  TextEditingController tempatKematianC = TextEditingController();
+  TextEditingController kewarganegaraanC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();

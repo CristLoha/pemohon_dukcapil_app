@@ -149,7 +149,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       SizedBox(height: 20.h),
 
                       /// NO KK
-                      CustomTitleWidget(tittle: 'NO KK'),
+                      CustomTitleWidget(title: 'NO KK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -169,7 +169,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       SizedBox(height: 12.h),
 
                       /// NIK
-                      CustomTitleWidget(tittle: 'NIK'),
+                      CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: true,
@@ -179,7 +179,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       ),
 
                       SizedBox(height: 12.h),
-                      CustomTitleWidget(tittle: 'Nama Lengkap'),
+                      CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                           readOnly: true,
@@ -188,7 +188,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                           textEditingController: controller.nameC),
 
                       SizedBox(height: 12.h),
-                      CustomTitleWidget(tittle: 'Tanggal lahir'),
+                      CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
                       TextFormField(
                         controller: controller.dateC,
@@ -220,7 +220,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       SizedBox(height: 12.h),
 
                       /// Kecamatan
-                      CustomTitleWidget(tittle: 'Kecamatan'),
+                      CustomTitleWidget(title: 'Kecamatan'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -240,7 +240,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       SizedBox(height: 12.h),
 
                       /// DESA
-                      CustomTitleWidget(tittle: 'Desa'),
+                      CustomTitleWidget(title: 'Desa'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,

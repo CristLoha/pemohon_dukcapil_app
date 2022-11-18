@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../shared/theme.dart';
 
 class CustomTitleWidget extends StatelessWidget {
-  final String tittle;
+  final String title;
   const CustomTitleWidget({
-    required this.tittle,
+    required this.title,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      tittle,
+      title,
       style: blackTextStyle.copyWith(
         fontSize: 16,
         fontWeight: medium,

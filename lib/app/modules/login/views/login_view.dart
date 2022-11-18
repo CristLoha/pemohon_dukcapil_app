@@ -48,7 +48,7 @@ class LoginView extends GetView<LoginController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// EMAIL
-              CustomTitleWidget(tittle: 'Email'),
+              CustomTitleWidget(title: 'Email'),
               SizedBox(height: 12.h),
               TextFormField(
                 textInputAction: TextInputAction.next,
@@ -84,7 +84,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              CustomTitleWidget(tittle: 'Kata Sandi'),
+              CustomTitleWidget(title: 'Kata Sandi'),
               SizedBox(height: 12.h),
               Obx(
                 () => TextFormField(

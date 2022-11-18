@@ -133,7 +133,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 20.h),
 
               /// NIK JENAZAH
-              CustomTitleWidget(tittle: 'NIK Jenazah'),
+              CustomTitleWidget(title: 'NIK Jenazah'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -155,7 +155,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 12.h),
 
               /// Nama Lengkap Jenazah
-              CustomTitleWidget(tittle: 'Nama Lengkap Jenazah*'),
+              CustomTitleWidget(title: 'Nama Lengkap Jenazah*'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: true,
@@ -165,17 +165,17 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 12.h),
 
               /// Jenis Kelamin
-              CustomTitleWidget(tittle: 'Jenis Kelamin*'),
+              CustomTitleWidget(title: 'Jenis Kelamin*'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: true,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
-                  textEditingController: controller.nameJenisKelaminC),
+                  textEditingController: controller.jenisKelaminC),
               SizedBox(height: 12.h),
 
               /// TANGGAL LAHIR
-              CustomTitleWidget(tittle: 'Tanggal lahir'),
+              CustomTitleWidget(title: 'Tanggal lahir'),
               SizedBox(height: 12.h),
               TextFormField(
                 controller: controller.dateC,
@@ -207,33 +207,33 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 12.h),
 
               /// Tempat lahir
-              CustomTitleWidget(tittle: 'Tempat Lahir*'),
+              CustomTitleWidget(title: 'Tempat Lahir*'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: true,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
-                  textEditingController: controller.nameTempatLahir),
+                  textEditingController: controller.nameTempatLahirC),
               SizedBox(height: 12.h),
 
               /// Kewarganegaraan
-              CustomTitleWidget(tittle: 'Kewarganegaraan*'),
+              CustomTitleWidget(title: 'Kewarganegaraan*'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: true,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
-                  textEditingController: controller.nameTempatLahir),
+                  textEditingController: controller.kewarganegaraanC),
               SizedBox(height: 12.h),
 
               /// Tempat kematian
-              CustomTitleWidget(tittle: 'Tempat Kematian (Kabupaten / Kota)*'),
+              CustomTitleWidget(title: 'Tempat Kematian (Kabupaten / Kota)*'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.kecamatanC,
+                textEditingController: controller.tempatKematianC,
                 onTap: () {},
                 validator: (value) {
                   if (value!.isEmpty ||
@@ -246,8 +246,40 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               ),
               SizedBox(height: 12.h),
 
-              /// DESA
-              CustomTitleWidget(tittle: 'Desa'),
+              /// TANGGAL KEMATIAN
+              CustomTitleWidget(title: 'Tanggal Kematian*'),
+              SizedBox(height: 12.h),
+              TextFormField(
+                controller: controller.dateC,
+                readOnly: true,
+                onTap: () {
+                  controller.dateLocal();
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Masukan tanggal lahir';
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  hintStyle: greyTextStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 12.h),
+
+              /// Keterangan
+              CustomTitleWidget(title: 'Keterangan'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -302,7 +334,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 20.h),
 
                       /// NO KK
-                      CustomTitleWidget(tittle: 'NO KK'),
+                      CustomTitleWidget(title: 'NO KK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -322,7 +354,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
 
                       /// NIK
-                      CustomTitleWidget(tittle: 'NIK'),
+                      CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: true,
@@ -332,7 +364,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
 
                       SizedBox(height: 12.h),
-                      CustomTitleWidget(tittle: 'Nama Lengkap'),
+                      CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                           readOnly: true,
@@ -341,7 +373,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           textEditingController: controller.nameC),
 
                       SizedBox(height: 12.h),
-                      CustomTitleWidget(tittle: 'Tanggal lahir'),
+                      CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
                       TextFormField(
                         controller: controller.dateC,
@@ -373,7 +405,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
 
                       /// Kecamatan
-                      CustomTitleWidget(tittle: 'Kecamatan'),
+                      CustomTitleWidget(title: 'Kecamatan'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -393,7 +425,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
 
                       /// DESA
-                      CustomTitleWidget(tittle: 'Desa'),
+                      CustomTitleWidget(title: 'Desa'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
