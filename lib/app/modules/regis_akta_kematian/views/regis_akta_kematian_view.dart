@@ -1,7 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
+import 'package:photo_view/photo_view.dart';
+import '../../../shared/theme.dart';
+import '../../../utils/custom_form_input.dart';
+import '../../../utils/custom_tittle_form.dart';
 import '../controllers/regis_akta_kematian_controller.dart';
 
 class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
@@ -111,6 +116,161 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
   List<Step> formStep() {
     return [
       Step(
+        title: Text('Akta Kematian'),
+        content: Form(
+          key: controller.formKeys[0],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(
+                  'Formulir Akta Kematian',
+                  style: blackTextStyle.copyWith(
+                    fontWeight: semiBold,
+                  ),
+                ),
+              ),
+              SizedBox(height: 20.h),
+
+              /// NIK JENAZAH
+              CustomTitleWidget(tittle: 'NIK Jenazah'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikJenazahC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan Nomor NIK Jenazah yang benar";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+
+              SizedBox(height: 12.h),
+
+              /// Nama Lengkap Jenazah
+              CustomTitleWidget(tittle: 'Nama Lengkap Jenazah*'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.nameJenazahC),
+              SizedBox(height: 12.h),
+
+              /// Jenis Kelamin
+              CustomTitleWidget(tittle: 'Jenis Kelamin*'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.nameJenisKelaminC),
+              SizedBox(height: 12.h),
+
+              /// TANGGAL LAHIR
+              CustomTitleWidget(tittle: 'Tanggal lahir'),
+              SizedBox(height: 12.h),
+              TextFormField(
+                controller: controller.dateC,
+                readOnly: true,
+                onTap: () {
+                  controller.dateLocal();
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Masukan tanggal lahir';
+                  } else {
+                    return null;
+                  }
+                },
+                decoration: InputDecoration(
+                  hintStyle: greyTextStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 12.h),
+
+              /// Tempat lahir
+              CustomTitleWidget(tittle: 'Tempat Lahir*'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.nameTempatLahir),
+              SizedBox(height: 12.h),
+
+              /// Kewarganegaraan
+              CustomTitleWidget(tittle: 'Kewarganegaraan*'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  readOnly: true,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.nameTempatLahir),
+              SizedBox(height: 12.h),
+
+              /// Tempat kematian
+              CustomTitleWidget(tittle: 'Tempat Kematian (Kabupaten / Kota)*'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.kecamatanC,
+                onTap: () {},
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama kecamatan yang benar";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+              SizedBox(height: 12.h),
+
+              /// DESA
+              CustomTitleWidget(tittle: 'Desa'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.desaC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama desa yang benar";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+        isActive: controller.currentStep.value >= 0,
+        state:
+            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
         title: Text('Pemohon'),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
@@ -127,7 +287,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 controller.nameC.text = snapshot.data!["nama"];
                 controller.nikC.text = snapshot.data!["nik"];
                 return Form(
-                  key: controller.formKeys[0],
+                  key: controller.formKeys[1],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -254,14 +414,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 );
               }
             }),
-        isActive: controller.currentStep.value >= 0,
+        isActive: controller.currentStep.value >= 1,
         state:
-            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text('Persyaratan'),
         content: Form(
-          key: controller.formKeys[1],
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -285,7 +444,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     ),
                     child: Column(
                       children: [
-                        GetBuilder<PerubahanKtpController>(
+                        GetBuilder<RegisAktaKematianController>(
                           builder: (c) => c.pickedImageKK != null
                               ? Row(
                                   children: [
@@ -322,7 +481,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
                                 ),
-                                child: GetBuilder<PerubahanKtpController>(
+                                child: GetBuilder<RegisAktaKematianController>(
                                   builder: (c) {
                                     return c.pickedImageKK != null
                                         ? ElevatedButton(
@@ -436,7 +595,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     ),
                     child: Column(
                       children: [
-                        GetBuilder<PerubahanKtpController>(
+                        GetBuilder<RegisAktaKematianController>(
                           builder: (c) => c.pickedImageKTP != null
                               ? Row(
                                   children: [
@@ -473,7 +632,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
                                 ),
-                                child: GetBuilder<PerubahanKtpController>(
+                                child: GetBuilder<RegisAktaKematianController>(
                                   builder: (c) {
                                     return c.pickedImageKTP != null
                                         ? ElevatedButton(
@@ -571,7 +730,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             ),
           ),
         ),
-        isActive: controller.currentStep.value >= 1,
+        isActive: controller.currentStep.value >= 2,
       ),
     ];
   }
