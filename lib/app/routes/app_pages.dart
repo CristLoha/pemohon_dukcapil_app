@@ -16,6 +16,8 @@ import 'package:pemohon_dukcapil_app/app/modules/perubahan_ktp/bindings/perubaha
 import 'package:pemohon_dukcapil_app/app/modules/perubahan_ktp/views/perubahan_ktp_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/profile/bindings/profile_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/profile/views/profile_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/regis_akta_kematian/bindings/regis_akta_kematian_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/regis_akta_kematian/views/regis_akta_kematian_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/views/register_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/bindings/rekamanan_ktp_binding.dart';
@@ -85,6 +87,11 @@ class AppPages {
       name: _Paths.DETAIL_RIWAYAT,
       page: () => DetailRiwayatView(),
       binding: DetailRiwayatBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGIS_AKTA_KEMATIAN,
+      page: () => RegisAktaKematianView(),
+      binding: RegisAktaKematianBinding(),
     ),
   ];
 }

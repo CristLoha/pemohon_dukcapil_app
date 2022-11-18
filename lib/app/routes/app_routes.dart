@@ -16,6 +16,7 @@ abstract class Routes {
   static const REKAMANAN_KTP = _Paths.REKAMANAN_KTP;
   static const PERUBAHAN_KTP = _Paths.PERUBAHAN_KTP;
   static const DETAIL_RIWAYAT = _Paths.DETAIL_RIWAYAT;
+  static const REGIS_AKTA_KEMATIAN = _Paths.REGIS_AKTA_KEMATIAN;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const REKAMANAN_KTP = '/rekamanan-ktp';
   static const PERUBAHAN_KTP = '/perubahan-ktp';
   static const DETAIL_RIWAYAT = '/detail-riwayat';
+  static const REGIS_AKTA_KEMATIAN = '/regis-akta-kematian';
 }
