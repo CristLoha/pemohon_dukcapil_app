@@ -21,42 +21,42 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
-        (() => Stepper(
-              elevation: 1,
-              type: StepperType.horizontal,
-              steps: formStep(),
-              onStepContinue: () {
-                if (!controller.formKeys[controller.index].currentState!
-                    .validate()) {
-                  return;
-                }
-                if (controller.currentStep.value == formStep().length - 1) {
-                  EasyLoading.show(status: 'memuat...');
-                  controller.addPerubahanKTP();
-                } else {
-                  controller.currentStep.value++;
-                }
-              },
-              onStepCancel: () {
-                controller.currentStep.value == 0
-                    ? null
-                    : controller.currentStep.value--;
-              },
-              onStepTapped: (index) {
-                controller.currentStep.value = index;
-              },
-              currentStep: controller.currentStep.value,
-              controlsBuilder: (context, details) {
-                return Container(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: (Container(
-                          height: 50,
-                          width: 80,
-                          margin:
-                              EdgeInsets.only(top: 30, bottom: 40, left: 20),
+        (() => Container(
+              child: Stepper(
+                elevation: 1,
+                type: StepperType.horizontal,
+                steps: formStep(),
+                onStepContinue: () {
+                  if (!controller.formKeys[controller.index].currentState!
+                      .validate()) {
+                    return;
+                  }
+                  if (controller.currentStep.value == formStep().length - 1) {
+                    EasyLoading.show(status: 'memuat...');
+                    controller.addPerubahanKTP();
+                  } else {
+                    controller.currentStep.value++;
+                  }
+                },
+                onStepCancel: () {
+                  controller.currentStep.value == 0
+                      ? null
+                      : controller.currentStep.value--;
+                },
+                onStepTapped: (index) {
+                  controller.currentStep.value = index;
+                },
+                currentStep: controller.currentStep.value,
+                controlsBuilder: (context, details) {
+                  return Container(
+                    margin: EdgeInsets.only(
+                      top: 30,
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
                           child: (Container(
+                            height: 50,
                             child: ElevatedButton(
                               onPressed: details.onStepContinue,
                               child: Text(
@@ -77,39 +77,39 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                               ),
                             ),
                           )),
-                        )),
-                      ),
-                      SizedBox(width: 16),
-                      if (controller.currentStep.value != 0)
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            margin: EdgeInsets.only(top: 30, bottom: 40),
-                            child: (Container(
-                              child: ElevatedButton(
-                                onPressed: details.onStepCancel,
-                                child: Text(
-                                  'Kembali',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: medium,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  side: BorderSide(width: 1, color: kGreyColor),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  backgroundColor: kWhiteColor,
-                                ),
-                              ),
-                            )),
-                          ),
                         ),
-                    ],
-                  ),
-                );
-              },
+                        SizedBox(width: 12),
+                        if (controller.currentStep.value != 0)
+                          Expanded(
+                            child: Container(
+                              height: 50,
+                              child: (Container(
+                                child: ElevatedButton(
+                                  onPressed: details.onStepCancel,
+                                  child: Text(
+                                    'Kembali',
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 16,
+                                      fontWeight: medium,
+                                    ),
+                                  ),
+                                  style: ElevatedButton.styleFrom(
+                                    side:
+                                        BorderSide(width: 1, color: kGreyColor),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    backgroundColor: kWhiteColor,
+                                  ),
+                                ),
+                              )),
+                            ),
+                          ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             )),
       ),
     );
@@ -118,7 +118,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
   List<Step> formStep() {
     return [
       Step(
-        title: Text('Akta Kematian'),
+        title: Text(
+          'Akta\nKematian',
+          style: blackTextStyle.copyWith(fontSize: 12),
+        ),
         content: Form(
           key: controller.formKeys[0],
           child: Column(
@@ -330,7 +333,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Pemohon'),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontSize: 12),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
@@ -478,7 +484,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             controller.currentStep > 1 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Persyaratan'),
+        title: Text(
+          'Persyaratan',
+          style: blackTextStyle.copyWith(fontSize: 12),
+        ),
         content: Form(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,

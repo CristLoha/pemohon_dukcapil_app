@@ -61,7 +61,7 @@ class RegisterController extends GetxController {
         if (credential.user!.emailVerified == false) {
           infoMsg('BERHASIL',
               'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi');
-
+          EasyLoading.dismiss();
           Get.offAllNamed(Routes.LOGIN);
           await credential.user!.sendEmailVerification();
           await pemohon
