@@ -30,6 +30,8 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController nameTempatLahirC = TextEditingController();
   TextEditingController tempatKematianC = TextEditingController();
   TextEditingController kewarganegaraanC = TextEditingController();
+  TextEditingController keteranganC = TextEditingController();
+  TextEditingController dateDeathC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
@@ -42,6 +44,17 @@ class RegisAktaKematianController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+  ];
+
+  List<Map<String, dynamic>> dataJenisKelamin = [
+    {
+      "jenisKelamin": "LAKI-LAKI",
+      "id": 1,
+    },
+    {
+      "jenisKelamin": "PEREMPUAN",
+      "id": 2,
+    }
   ];
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
@@ -57,14 +70,14 @@ class RegisAktaKematianController extends GetxController {
       String extKK = pickedImageKK!.name.split(".").last;
 
       await storage
-          .ref('perubahanKTP')
+          .ref('aktaKematian')
           .child('perKTP_KK$randomNumber.$extKK')
           .putFile(
             File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
-          .ref('perubahanKTP')
+          .ref('aktaKematian')
           .child('perKTP_KK$randomNumber.$extKK')
           .getDownloadURL();
 
@@ -72,31 +85,32 @@ class RegisAktaKematianController extends GetxController {
       String extKTP = pickedImageKTP!.name.split(".").last;
 
       await storage
-          .ref('perubahanKTP')
+          .ref('aktaKematian')
           .child('perKTP_KTP$randomNumber.$extKTP')
           .putFile(
             File(pickedImageKTP!.path),
           );
 
       String fotoKTP = await storage
-          .ref('perubahanKTP')
+          .ref('aktaKematian')
           .child('perKTP_KTP$randomNumber.$extKTP')
           .getDownloadURL();
 
-      CollectionReference rekamanKtp = firestore.collection('layanan');
       try {
         String uid = auth.currentUser!.uid;
-
+        CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
           'nik': nikC.text,
+          // 'nikJenazah': nikJenazahC,
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
-          'keterangan': '',
+          'jenisKelamin': jenisKelaminC.text,
+          // 'keterangan': keteranganC.text,
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'Perubahan e-KTP',
+          'kategori': 'Akta Kematian',
           'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
           'desa': desaC.text,
@@ -217,6 +231,19 @@ class RegisAktaKematianController extends GetxController {
     ).then((selectedDate) {
       if (selectedDate != null) {
         dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  void dateKematian() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        dateDeathC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }

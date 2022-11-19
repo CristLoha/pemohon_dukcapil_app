@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -159,7 +160,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomTitleWidget(title: 'Nama Lengkap Jenazah*'),
               SizedBox(height: 12.h),
               CustomFormField(
-                  readOnly: true,
+                  readOnly: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.nameJenazahC),
@@ -168,11 +169,27 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               /// Jenis Kelamin
               CustomTitleWidget(title: 'Jenis Kelamin*'),
               SizedBox(height: 12.h),
-              CustomFormField(
-                  readOnly: true,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.jenisKelaminC),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisKelamin,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) =>
+                    Text(selectedItem?["jenisKelamin"].toString() ?? "PILIH"),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(item["jenisKelamin"].toString()),
+                ),
+                selectedItem: {
+                  "jenisKelamin": "PRIA",
+                  "id": 1,
+                },
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jenisKelamin"]);
+                  controller.jenisKelaminC =
+                      TextEditingController(text: value["jenisKelamin"]);
+                },
+              ),
               SizedBox(height: 12.h),
 
               /// TANGGAL LAHIR
@@ -239,7 +256,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama kecamatan yang benar";
+                    return "Masukan nama kematian yang benar";
                   } else {
                     return null;
                   }
@@ -251,14 +268,14 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomTitleWidget(title: 'Tanggal Kematian*'),
               SizedBox(height: 12.h),
               TextFormField(
-                controller: controller.dateC,
+                controller: controller.dateDeathC,
                 readOnly: true,
                 onTap: () {
-                  controller.dateLocal();
+                  controller.dateKematian();
                 },
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Masukan tanggal lahir';
+                    return 'Masukan tanggal kematian';
                   } else {
                     return null;
                   }
@@ -285,7 +302,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomFormKeteranganField(
                 readOnly: false,
                 textInputAction: TextInputAction.done,
-                textEditingController: controller.desaC,
+                textEditingController: controller.keteranganC,
               ),
             ],
           ),
