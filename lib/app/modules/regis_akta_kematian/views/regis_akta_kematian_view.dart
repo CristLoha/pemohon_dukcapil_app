@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/utils/custom_input_keterangan.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
@@ -281,19 +282,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               /// Keterangan
               CustomTitleWidget(title: 'Keterangan'),
               SizedBox(height: 12.h),
-              CustomFormField(
+              CustomFormKeteranganField(
                 readOnly: false,
                 textInputAction: TextInputAction.done,
-                keyboardType: TextInputType.name,
                 textEditingController: controller.desaC,
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama desa yang benar";
-                  } else {
-                    return null;
-                  }
-                },
               ),
             ],
           ),
