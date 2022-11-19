@@ -229,7 +229,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomTitleWidget(title: 'Tempat Lahir*'),
               SizedBox(height: 12.h),
               CustomFormField(
-                  readOnly: true,
+                  readOnly: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.nameTempatLahirC),

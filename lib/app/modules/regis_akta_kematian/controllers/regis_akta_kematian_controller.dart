@@ -118,6 +118,8 @@ class RegisAktaKematianController extends GetxController {
           'fotoKK': fotoKK,
           'kewarganegaraan': kewarganegaraanC,
           'jenisKelamin': jenisKelaminC.text,
+          'tempatLahir': nameTempatLahirC,
+          'tempatKematian': tempatKematianC,
           'keterangan': keteranganC.text,
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
