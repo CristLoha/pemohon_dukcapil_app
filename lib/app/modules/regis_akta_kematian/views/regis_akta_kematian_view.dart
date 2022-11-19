@@ -174,15 +174,16 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 mode: Mode.MENU,
                 items: controller.dataJenisKelamin,
                 dropdownButtonSplashRadius: 10,
-                dropdownBuilder: (context, selectedItem) =>
-                    Text(selectedItem?["jenisKelamin"].toString() ?? "PILIH"),
-                popupItemBuilder: (context, item, isSelected) => ListTile(
-                  title: Text(item["jenisKelamin"].toString()),
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jenisKelamin"].toString() ?? "PILIH",
+                  style: blackTextStyle,
                 ),
-                selectedItem: {
-                  "jenisKelamin": "PRIA",
-                  "id": 1,
-                },
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jenisKelamin"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
                 showClearButton: true,
                 onChanged: (value) {
                   print(value!["jenisKelamin"]);
@@ -237,11 +238,28 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               /// Kewarganegaraan
               CustomTitleWidget(title: 'Kewarganegaraan*'),
               SizedBox(height: 12.h),
-              CustomFormField(
-                  readOnly: true,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.kewarganegaraanC),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisKewarganegaraan,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jenisK"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jenisK"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jenisK"]);
+                  controller.kewarganegaraanC =
+                      TextEditingController(text: value["jenisK"]);
+                },
+              ),
               SizedBox(height: 12.h),
 
               /// Tempat kematian

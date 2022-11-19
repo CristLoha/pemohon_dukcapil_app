@@ -57,6 +57,17 @@ class RegisAktaKematianController extends GetxController {
     }
   ];
 
+  List<Map<String, dynamic>> dataJenisKewarganegaraan = [
+    {
+      "jenisK": "WNI",
+      "id": 1,
+    },
+    {
+      "jenisK": "WNA",
+      "id": 2,
+    }
+  ];
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -101,12 +112,13 @@ class RegisAktaKematianController extends GetxController {
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
           'nik': nikC.text,
-          // 'nikJenazah': nikJenazahC,
+          'nikJenazah': nikJenazahC,
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'kewarganegaraan': kewarganegaraanC,
           'jenisKelamin': jenisKelaminC.text,
-          // 'keterangan': keteranganC.text,
+          'keterangan': keteranganC.text,
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
