@@ -160,17 +160,17 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 12.h),
 
               /// Nama Lengkap Jenazah
-              CustomTitleWidget(title: 'Nama Lengkap Jenazah*'),
+              CustomTitleWidget(title: 'Nama Lengkap Jenazah'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.nameJenazahC),
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Jenis Kelamin
-              CustomTitleWidget(title: 'Jenis Kelamin*'),
+              CustomTitleWidget(title: 'Jenis Kelamin'),
               SizedBox(height: 12.h),
               DropdownSearch<Map<String, dynamic>>(
                 dialogMaxWidth: 8,
@@ -194,7 +194,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       TextEditingController(text: value["jenisKelamin"]);
                 },
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// TANGGAL LAHIR
               CustomTitleWidget(title: 'Tanggal lahir'),
@@ -215,10 +215,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 decoration: InputDecoration(
                   hintStyle: greyTextStyle,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(
                       color: kPrimaryColor,
                     ),
@@ -226,20 +226,20 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 ),
               ),
 
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Tempat lahir
-              CustomTitleWidget(title: 'Tempat Lahir*'),
+              CustomTitleWidget(title: 'Tempat Lahir'),
               SizedBox(height: 12.h),
               CustomFormField(
                   readOnly: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.nameTempatLahirC),
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Kewarganegaraan
-              CustomTitleWidget(title: 'Kewarganegaraan*'),
+              CustomTitleWidget(title: 'Kewarganegaraan'),
               SizedBox(height: 12.h),
               DropdownSearch<Map<String, dynamic>>(
                 dialogMaxWidth: 8,
@@ -263,7 +263,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       TextEditingController(text: value["jenisK"]);
                 },
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Tempat kematian
               CustomTitleWidget(title: 'Tempat Kematian (Kabupaten / Kota)*'),
@@ -283,7 +283,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                   }
                 },
               ),
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// TANGGAL KEMATIAN
               CustomTitleWidget(title: 'Tanggal Kematian*'),
@@ -315,7 +315,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 ),
               ),
 
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Keterangan
               CustomTitleWidget(title: 'Keterangan'),
@@ -364,8 +364,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      /// NO KK
-                      CustomTitleWidget(title: 'NO KK'),
+                      /// NIK AYAH
+                      CustomTitleWidget(title: 'NIK Ayah'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -382,61 +382,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           }
                         },
                       ),
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 20.h),
 
-                      /// NIK
-                      CustomTitleWidget(title: 'NIK'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: true,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.nikC,
-                      ),
-
-                      SizedBox(height: 12.h),
-                      CustomTitleWidget(title: 'Nama Lengkap'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                          readOnly: true,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.name,
-                          textEditingController: controller.nameC),
-
-                      SizedBox(height: 12.h),
-                      CustomTitleWidget(title: 'Tanggal lahir'),
-                      SizedBox(height: 12.h),
-                      TextFormField(
-                        controller: controller.dateC,
-                        readOnly: true,
-                        onTap: () {
-                          controller.dateLocal();
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Masukan tanggal lahir';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintStyle: greyTextStyle,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(height: 12.h),
-
-                      /// Kecamatan
-                      CustomTitleWidget(title: 'Kecamatan'),
+                      /// Nama Ayah
+                      CustomTitleWidget(title: 'Nama Ayah'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -453,20 +402,41 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           }
                         },
                       ),
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 20.h),
 
-                      /// DESA
-                      CustomTitleWidget(title: 'Desa'),
+                      /// NIK IBU
+                      CustomTitleWidget(title: 'NIK Ibu'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
-                        textInputAction: TextInputAction.done,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.noKKC,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(value)) {
+                            return "Masukan Nomor KK yang benar";
+                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                            return 'NIK harus 16 karakter';
+                          }
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      /// Nama Ayah
+                      CustomTitleWidget(title: 'Nama Ibu'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.desaC,
+                        textEditingController: controller.kecamatanC,
+                        onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty ||
                               !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama desa yang benar";
+                            return "Masukan nama kecamatan yang benar";
                           } else {
                             return null;
                           }
