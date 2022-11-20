@@ -52,59 +52,57 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                     children: [
                       Expanded(
                         child: (Container(
+                          margin: EdgeInsets.only(
+                            top: 30,
+                          ),
                           height: 50,
-                          width: 80,
-                          margin:
-                              EdgeInsets.only(top: 30, bottom: 40, left: 20),
+                          child: ElevatedButton(
+                            onPressed: details.onStepContinue,
+                            child: Text(
+                              controller.currentStep.value ==
+                                      formStep().length - 1
+                                  ? "Kirim"
+                                  : 'Selanjutnya',
+                              style: whiteTextStyle.copyWith(
+                                fontSize: 16,
+                                fontWeight: medium,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              backgroundColor: kPrimaryColor,
+                            ),
+                          ),
+                        )),
+                      ),
+                      SizedBox(width: 12),
+                      if (controller.currentStep.value != 0)
+                        Expanded(
                           child: (Container(
+                            height: 50,
+                            margin: EdgeInsets.only(
+                              top: 30,
+                            ),
                             child: ElevatedButton(
-                              onPressed: details.onStepContinue,
+                              onPressed: details.onStepCancel,
                               child: Text(
-                                controller.currentStep.value ==
-                                        formStep().length - 1
-                                    ? "Kirim"
-                                    : 'Selanjutnya',
-                                style: whiteTextStyle.copyWith(
+                                'Kembali',
+                                style: blackTextStyle.copyWith(
                                   fontSize: 16,
                                   fontWeight: medium,
                                 ),
                               ),
                               style: ElevatedButton.styleFrom(
+                                side: BorderSide(width: 1, color: kGreyColor),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
-                                backgroundColor: kPrimaryColor,
+                                backgroundColor: kWhiteColor,
                               ),
                             ),
                           )),
-                        )),
-                      ),
-                      SizedBox(width: 16),
-                      if (controller.currentStep.value != 0)
-                        Expanded(
-                          child: Container(
-                            height: 50,
-                            margin: EdgeInsets.only(top: 30, bottom: 40),
-                            child: (Container(
-                              child: ElevatedButton(
-                                onPressed: details.onStepCancel,
-                                child: Text(
-                                  'Kembali',
-                                  style: blackTextStyle.copyWith(
-                                    fontSize: 16,
-                                    fontWeight: medium,
-                                  ),
-                                ),
-                                style: ElevatedButton.styleFrom(
-                                  side: BorderSide(width: 1, color: kGreyColor),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  backgroundColor: kWhiteColor,
-                                ),
-                              ),
-                            )),
-                          ),
                         ),
                     ],
                   ),
@@ -164,6 +162,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                             return 'NIK harus 16 karakter';
                           }
+                          return null;
                         },
                       ),
                       SizedBox(height: 12.h),
