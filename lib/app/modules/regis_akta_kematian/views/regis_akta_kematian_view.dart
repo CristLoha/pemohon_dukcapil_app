@@ -314,10 +314,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 decoration: InputDecoration(
                   hintStyle: greyTextStyle,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(4),
                   ),
                   focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(4),
                     borderSide: BorderSide(
                       color: kPrimaryColor,
                     ),
@@ -347,8 +347,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 showClearButton: true,
                 onChanged: (value) {
                   print(value!["menerangkan"]);
-                  controller.kewarganegaraanC =
-                      TextEditingController(text: value["jenisK"]);
+                  controller.menerangkanC =
+                      TextEditingController(text: value["menerangkan"]);
                 },
               ),
 

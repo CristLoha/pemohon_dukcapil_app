@@ -32,6 +32,7 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController tempatKematianC = TextEditingController();
   TextEditingController tanggalKematianC = TextEditingController();
   TextEditingController kewarganegaraanC = TextEditingController();
+  TextEditingController menerangkanC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
@@ -127,14 +128,15 @@ class RegisAktaKematianController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
-          'nikJenazah': nikJenazahC,
-          'anakKe': anakKe,
-          'namaLengkapJenazah': nameJenazahC,
-          'kewarganegaraan': kewarganegaraanC,
+          'nikJenazah': nikJenazahC.text,
+          'anakKe': anakKe.text,
+          'namaLengkapJenazah': nameJenazahC.text,
+          'menerangkan': menerangkanC.text,
+          'kewarganegaraan': kewarganegaraanC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tglKematian': tanggalKematianC.text,
-          'tempatLahir': nameTempatLahirC,
-          'tempatKematian': tempatKematianC,
+          'tempatLahir': nameTempatLahirC.text,
+          'tempatKematian': tempatKematianC.text,
           'keterangan': keteranganC.text,
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
