@@ -424,8 +424,69 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      /// Nama Ayah
+                      /// Nama Ibu
                       CustomTitleWidget(title: 'Nama Ibu'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kecamatanC,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama kecamatan yang benar";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      /// NIK Pelapor
+                      CustomTitleWidget(title: 'NIK Pelapor'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.noKKC,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(value)) {
+                            return "Masukan Nomor KK yang benar";
+                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                            return 'NIK harus 16 karakter';
+                          }
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      /// Nama Lengkap Pelapor
+                      CustomTitleWidget(title: 'Nama Lengkap Pelapor'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kecamatanC,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama kecamatan yang benar";
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+
+                      SizedBox(height: 20.h),
+
+                      /// No. Telepon
+                      CustomTitleWidget(title: 'No. Telepon'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
