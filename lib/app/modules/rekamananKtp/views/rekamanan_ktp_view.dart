@@ -112,7 +112,10 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
   List<Step> formStep() {
     return [
       Step(
-        title: Text('Pemohon'),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
@@ -241,7 +244,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Persyaratan'),
+        title: Text('Persyaratan',
+            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

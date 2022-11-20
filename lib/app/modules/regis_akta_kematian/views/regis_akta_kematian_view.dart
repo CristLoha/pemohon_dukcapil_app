@@ -120,7 +120,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
       Step(
         title: Text(
           'Akta\nKematian',
-          style: blackTextStyle.copyWith(fontSize: 12),
+          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[0],
@@ -333,10 +333,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text(
-          'Pemohon',
-          style: blackTextStyle.copyWith(fontSize: 12),
-        ),
+        title: Text('Pemohon',
+            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
@@ -486,7 +484,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
       Step(
         title: Text(
           'Persyaratan',
-          style: blackTextStyle.copyWith(fontSize: 12),
+          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
           child: SingleChildScrollView(
