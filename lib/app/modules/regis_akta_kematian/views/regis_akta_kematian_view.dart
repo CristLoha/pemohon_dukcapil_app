@@ -157,7 +157,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 },
               ),
 
-              SizedBox(height: 12.h),
+              SizedBox(height: 20.h),
 
               /// Nama Lengkap Jenazah
               CustomTitleWidget(title: 'Nama Lengkap Jenazah'),
@@ -266,7 +266,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 20.h),
 
               /// Tempat kematian
-              CustomTitleWidget(title: 'Tempat Kematian (Kabupaten / Kota)*'),
+              CustomTitleWidget(title: 'Tempat Kematian (Kabupaten / Kota)'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -285,11 +285,21 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               ),
               SizedBox(height: 20.h),
 
+              /// Anak Ke
+              CustomTitleWidget(title: 'Anak Ke'),
+              SizedBox(height: 12.h),
+              CustomFormKeteranganField(
+                readOnly: false,
+                textInputAction: TextInputAction.done,
+                textEditingController: controller.anakKe,
+              ),
+              SizedBox(height: 20.h),
+
               /// TANGGAL KEMATIAN
-              CustomTitleWidget(title: 'Tanggal Kematian*'),
+              CustomTitleWidget(title: 'Tanggal Kematian'),
               SizedBox(height: 12.h),
               TextFormField(
-                controller: controller.dateDeathC,
+                controller: controller.tanggalKematianC,
                 readOnly: true,
                 onTap: () {
                   controller.dateKematian();
@@ -313,6 +323,33 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(height: 20.h),
+
+              /// Yang menerangkan
+              CustomTitleWidget(title: 'Yang Menerangkan'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisYgMenerangkan,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["menerangkan"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["menerangkan"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["menerangkan"]);
+                  controller.kewarganegaraanC =
+                      TextEditingController(text: value["jenisK"]);
+                },
               ),
 
               SizedBox(height: 20.h),

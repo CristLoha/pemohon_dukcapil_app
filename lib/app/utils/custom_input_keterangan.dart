@@ -39,10 +39,10 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
         prefixIcon: icon,
         hintStyle: greyTextStyle,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(4),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(4),
           borderSide: BorderSide(
             color: kPrimaryColor,
           ),

@@ -26,12 +26,13 @@ class RegisAktaKematianController extends GetxController {
   XFile? pickedImageSURKER;
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
+  TextEditingController anakKe = TextEditingController();
   TextEditingController jenisKelaminC = TextEditingController();
   TextEditingController nameTempatLahirC = TextEditingController();
   TextEditingController tempatKematianC = TextEditingController();
+  TextEditingController tanggalKematianC = TextEditingController();
   TextEditingController kewarganegaraanC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
-  TextEditingController dateDeathC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
@@ -64,6 +65,17 @@ class RegisAktaKematianController extends GetxController {
     },
     {
       "jenisK": "WNA",
+      "id": 2,
+    }
+  ];
+
+  List<Map<String, dynamic>> dataJenisYgMenerangkan = [
+    {
+      "menerangkan": "DOKTER",
+      "id": 1,
+    },
+    {
+      "menerangkan": "POLISI",
       "id": 2,
     }
   ];
@@ -112,12 +124,15 @@ class RegisAktaKematianController extends GetxController {
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
           'nik': nikC.text,
-          'nikJenazah': nikJenazahC,
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'nikJenazah': nikJenazahC,
+          'anakKe': anakKe,
+          'namaLengkapJenazah': nameJenazahC,
           'kewarganegaraan': kewarganegaraanC,
           'jenisKelamin': jenisKelaminC.text,
+          'tglKematian': tanggalKematianC.text,
           'tempatLahir': nameTempatLahirC,
           'tempatKematian': tempatKematianC,
           'keterangan': keteranganC.text,
@@ -257,7 +272,7 @@ class RegisAktaKematianController extends GetxController {
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        dateDeathC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tanggalKematianC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }
