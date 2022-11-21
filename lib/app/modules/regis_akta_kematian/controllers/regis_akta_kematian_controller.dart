@@ -16,8 +16,8 @@ import '../../../shared/theme.dart';
 class RegisAktaKematianController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePickerKK = ImagePicker();
-  XFile? pickedImageKK;
+  final ImagePicker imagePickerKTPJenazah = ImagePicker();
+  XFile? pickedImageKTPJenazah;
 
   final ImagePicker imagePickerKTP = ImagePicker();
   XFile? pickedImageKTP;
@@ -99,19 +99,19 @@ class RegisAktaKematianController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null && pickedImageKTP != null) {
-      String extKK = pickedImageKK!.name.split(".").last;
+    if (pickedImageKTPJenazah != null && pickedImageKTP != null) {
+      String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('perKTP_KK$randomNumber.$extKK')
+          .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
           .putFile(
-            File(pickedImageKK!.path),
+            File(pickedImageKTPJenazah!.path),
           );
 
       String fotoKK = await storage
           .ref('aktaKematian')
-          .child('perKTP_KK$randomNumber.$extKK')
+          .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
           .getDownloadURL();
 
       /// FOTO KTP
@@ -192,7 +192,7 @@ class RegisAktaKematianController extends GetxController {
   }
 
   void resetImageKK() {
-    pickedImageKK = null;
+    pickedImageKTPJenazah = null;
     update();
   }
 
@@ -209,19 +209,19 @@ class RegisAktaKematianController extends GetxController {
   /// FOTO KK
   void selectImageKK() async {
     try {
-      final dataImage = await imagePickerKK.pickImage(
+      final dataImage = await imagePickerKTPJenazah.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        pickedImageKTPJenazah = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImageKK = null;
+      pickedImageKTPJenazah = null;
       update();
     }
   }
