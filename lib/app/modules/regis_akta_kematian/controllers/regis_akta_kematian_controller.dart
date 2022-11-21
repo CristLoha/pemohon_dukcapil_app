@@ -25,6 +25,9 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerAktaKelahiran = ImagePicker();
   XFile? pickedImageAktaKelahiran;
 
+  final ImagePicker imagePickerKTPPelapor = ImagePicker();
+  XFile? pickedImageKtpPelapor;
+
   /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
@@ -140,6 +143,21 @@ class RegisAktaKematianController extends GetxController {
           .child('AktaKelahiran$randomNumber.$extKK')
           .getDownloadURL();
 
+      /// KTP Pelapor
+      String extKtPPelapor = pickedImageKtpPelapor!.name.split(".").last;
+
+      await storage
+          .ref('aktaKematian')
+          .child('KK$randomNumber.$extKtPPelapor')
+          .putFile(
+            File(pickedImageKtpPelapor!.path),
+          );
+
+      String ktpPelaPor = await storage
+          .ref('aktaKematian')
+          .child('AktaPelapor$randomNumber.$extKtPPelapor')
+          .getDownloadURL();
+
       try {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -150,6 +168,7 @@ class RegisAktaKematianController extends GetxController {
           'fotoKK': fotoKK,
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
+          'fotoKTPPelapor': ktpPelaPor,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
