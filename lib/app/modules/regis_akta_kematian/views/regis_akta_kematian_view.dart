@@ -721,18 +721,18 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     child: Column(
                       children: [
                         GetBuilder<RegisAktaKematianController>(
-                          builder: (c) => c.pickedImageKTP != null
+                          builder: (c) => c.pickedImageKK != null
                               ? Row(
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        c.pickedImageKTP!.name,
+                                        c.pickedImageKK!.name,
                                         style: blackTextStyle.copyWith(),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () => c.resetImageKTP(),
+                                      onPressed: () => c.resetImageKK(),
                                       child: Icon(
                                         Icons.delete,
                                         color: kRedColor,
@@ -759,15 +759,15 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                 ),
                                 child: GetBuilder<RegisAktaKematianController>(
                                   builder: (c) {
-                                    return c.pickedImageKTP != null
+                                    return c.pickedImageKK != null
                                         ? ElevatedButton(
                                             onPressed: () {
                                               Get.dialog(
                                                 Container(
                                                   child: PhotoView(
                                                     imageProvider: FileImage(
-                                                      File(c.pickedImageKTP!
-                                                          .path),
+                                                      File(c
+                                                          .pickedImageKK!.path),
                                                     ),
                                                   ),
                                                 ),
@@ -823,7 +823,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                               height: 40.h,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  controller.selectImageKTP();
+                                  controller.selectImageKK();
                                 },
                                 child: Text(
                                   'Pilih File',
