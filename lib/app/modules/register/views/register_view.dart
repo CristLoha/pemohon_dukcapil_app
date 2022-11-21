@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -101,6 +102,32 @@ class RegisterView extends GetView<RegisterController> {
                   } else {
                     return null;
                   }
+                },
+              ),
+
+              /// Jenis Kelamin
+              CustomTitleWidget(title: 'Jenis Kelamin'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisKelamin,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jenisKelamin"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jenisKelamin"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jenisKelamin"]);
+                  controller.jenisKelaminC =
+                      TextEditingController(text: value["jenisKelamin"]);
                 },
               ),
               SizedBox(height: 20.h),

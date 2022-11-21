@@ -15,6 +15,7 @@ class RegisterController extends GetxController {
 
   TextEditingController nikC = TextEditingController();
   TextEditingController nameC = TextEditingController();
+  TextEditingController jenisKelaminC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
   TextEditingController passC = TextEditingController();
@@ -41,6 +42,17 @@ class RegisterController extends GetxController {
       forwardAnimationCurve: Curves.easeOutBack,
     );
   }
+
+  List<Map<String, dynamic>> dataJenisKelamin = [
+    {
+      "jenisKelamin": "LAKI-LAKI",
+      "id": 1,
+    },
+    {
+      "jenisKelamin": "PEREMPUAN",
+      "id": 2,
+    }
+  ];
 
   void register() async {
     if (nameC.text.isNotEmpty &&

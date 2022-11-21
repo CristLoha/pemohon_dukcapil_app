@@ -515,7 +515,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.kecamatanC,
+                        textEditingController: controller.noTeleponC,
                         onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty ||
