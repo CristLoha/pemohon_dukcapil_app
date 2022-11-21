@@ -22,9 +22,6 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
 
-  final ImagePicker imagePickerSURKER = ImagePicker();
-  XFile? pickedImage;
-
   /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
@@ -100,6 +97,7 @@ class RegisAktaKematianController extends GetxController {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKTPJenazah != null && pickedImageKK != null) {
+      /// KTP Jenazah
       String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
       await storage
@@ -114,7 +112,7 @@ class RegisAktaKematianController extends GetxController {
           .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
           .getDownloadURL();
 
-      /// FOTO KK
+      /// KK
       String extKK = pickedImageKK!.name.split(".").last;
 
       await storage
@@ -196,13 +194,8 @@ class RegisAktaKematianController extends GetxController {
     update();
   }
 
-  void resetImageKTPJenazah() {
-    pickedImageKTPJenazah = null;
-    update();
-  }
-
-  /// FOTO KK
-  void selectImageKK() async {
+  /// FOTO KTP JENAZAH
+  void selectImageKTPJenazah() async {
     try {
       final dataImage = await imagePickerKTPJenazah.pickImage(
         source: ImageSource.gallery,
@@ -221,8 +214,13 @@ class RegisAktaKematianController extends GetxController {
     }
   }
 
-  /// FOTO KTP
-  void selectImageKTPJenazah() async {
+  void resetImageKTPJenazah() {
+    pickedImageKTPJenazah = null;
+    update();
+  }
+
+  /// FOTO KK
+  void selectImageKK() async {
     try {
       final dataImage = await imagePickerKTPJenazah.pickImage(
         source: ImageSource.gallery,
