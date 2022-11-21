@@ -144,7 +144,7 @@ class RegisterView extends GetView<RegisterController> {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
                           .hasMatch(value)) {
-                    return "Masukan nomor yang benar";
+                    return "Masukan nomor telepon yang benar";
                   } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
                     return 'Minimal 12 karakter';
                   } else {

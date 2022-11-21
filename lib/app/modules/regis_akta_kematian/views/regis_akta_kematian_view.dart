@@ -473,7 +473,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        textEditingController: controller.noKKC,
+                        textEditingController: controller.nikC,
                         validator: (value) {
                           if (value!.isEmpty ||
                               !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -482,6 +482,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                             return 'NIK harus 16 karakter';
                           }
+                          return null;
                         },
                       ),
                       SizedBox(height: 20.h),
@@ -493,7 +494,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.kecamatanC,
+                        textEditingController: controller.nameC,
                         onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty ||
@@ -518,8 +519,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(value)) {
+                            return "Masukan nomor telepon yang benar";
+                          } else if (!GetUtils.isLengthGreaterOrEqual(
+                              value, 11)) {
+                            return 'Minimal 12 karakter';
                           } else {
                             return null;
                           }
