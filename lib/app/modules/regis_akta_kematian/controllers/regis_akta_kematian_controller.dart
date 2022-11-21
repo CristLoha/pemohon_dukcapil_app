@@ -148,14 +148,14 @@ class RegisAktaKematianController extends GetxController {
 
       await storage
           .ref('aktaKematian')
-          .child('KK$randomNumber.$extKtPPelapor')
+          .child('KtpPelapor$randomNumber.$extKtPPelapor')
           .putFile(
             File(pickedImageKtpPelapor!.path),
           );
 
       String ktpPelaPor = await storage
           .ref('aktaKematian')
-          .child('AktaPelapor$randomNumber.$extKtPPelapor')
+          .child('KtpPelapor$randomNumber.$extKtPPelapor')
           .getDownloadURL();
 
       try {
