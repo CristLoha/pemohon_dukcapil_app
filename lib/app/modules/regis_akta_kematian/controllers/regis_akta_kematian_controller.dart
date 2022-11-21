@@ -110,17 +110,17 @@ class RegisAktaKematianController extends GetxController {
           .child('KTPJenazah$randomNumber.$extKTPJenazah')
           .getDownloadURL();
 
-      // /// KK
-      // String extKK = pickedImageKK!.name.split(".").last;
+      /// KK
+      String extKK = pickedImageKK!.name.split(".").last;
 
-      // await storage.ref('aktaKematian').child('KK$randomNumber.$extKK').putFile(
-      //       File(pickedImageKK!.path),
-      //     );
+      await storage.ref('aktaKematian').child('KK$randomNumber.$extKK').putFile(
+            File(pickedImageKK!.path),
+          );
 
-      // String fotoKK = await storage
-      //     .ref('aktaKematian')
-      //     .child('KK$randomNumber.$extKK')
-      //     .getDownloadURL();
+      String fotoKK = await storage
+          .ref('aktaKematian')
+          .child('KK$randomNumber.$extKK')
+          .getDownloadURL();
 
       try {
         String uid = auth.currentUser!.uid;
@@ -129,7 +129,7 @@ class RegisAktaKematianController extends GetxController {
           'nik': nikC.text,
           'nama': nameC.text,
           'noKK': noKKC.text,
-          // 'fotoKK': fotoKK,
+          'fotoKK': fotoKK,
           'fotoKTPJenazah': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
@@ -208,30 +208,30 @@ class RegisAktaKematianController extends GetxController {
     update();
   }
 
-  // /// FOTO KK
-  // void selectImageKK() async {
-  //   try {
-  //     final dataImage = await imagePickerKK.pickImage(
-  //       source: ImageSource.gallery,
-  //     );
+  /// FOTO KK
+  void selectImageKK() async {
+    try {
+      final dataImage = await imagePickerKK.pickImage(
+        source: ImageSource.gallery,
+      );
 
-  //     if (dataImage != null) {
-  //       print(dataImage.name);
-  //       print(dataImage.path);
-  //       pickedImageKK = dataImage;
-  //     }
-  //     update();
-  //   } catch (err) {
-  //     print(err);
-  //     pickedImageKK = null;
-  //     update();
-  //   }
-  // }
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKK = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKK = null;
+      update();
+    }
+  }
 
-  // void resetImageKK() {
-  //   pickedImageKK = null;
-  //   update();
-  // }
+  void resetImageKK() {
+    pickedImageKK = null;
+    update();
+  }
 
   ///UNTUK FORM TANGGAL
   void dateLocal() async {
