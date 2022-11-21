@@ -131,11 +131,11 @@ class RegisAktaKematianController extends GetxController {
           .getDownloadURL();
 
       /// AKTAkelahiran
-      String extAktaKelahiran = pickedImageKK!.name.split(".").last;
+      String extAktaKelahiran = pickedImageAktaKelahiran!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('KK$randomNumber.$extAktaKelahiran')
+          .child('AktaKelahiran$randomNumber.$extAktaKelahiran')
           .putFile(
             File(pickedImageAktaKelahiran!.path),
           );
@@ -166,7 +166,6 @@ class RegisAktaKematianController extends GetxController {
         await rekamanKtp.add({
           'nik': nikC.text,
           'nama': nameC.text,
-          'noKK': noKKC.text,
           'fotoKK': fotoKK,
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
@@ -284,7 +283,7 @@ class RegisAktaKematianController extends GetxController {
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        pickedImageAktaKelahiran = dataImage;
       }
       update();
     } catch (err) {
@@ -300,7 +299,7 @@ class RegisAktaKematianController extends GetxController {
   }
 
   /// KTP PELAPOR
-  void ktpPelapor() async {
+  void selectKtpPelapor() async {
     try {
       final dataImage = await imagePickerKTPPelapor.pickImage(
         source: ImageSource.gallery,
@@ -309,7 +308,7 @@ class RegisAktaKematianController extends GetxController {
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        pickedImageKtpPelapor = dataImage;
       }
       update();
     } catch (err) {

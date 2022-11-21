@@ -974,7 +974,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                               height: 40.h,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  controller.selectImageKK();
+                                  controller.selectImageAktaKelahiran();
                                 },
                                 child: Text(
                                   'Pilih File',
@@ -1005,7 +1005,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 ///KTP PELAPOR
                 Text(
-                  'KTP PELAPOR',
+                  'Unggah KTP pelapor',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -1125,7 +1125,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                               height: 40.h,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  controller.selectImageKK();
+                                  controller.selectKtpPelapor();
                                 },
                                 child: Text(
                                   'Pilih File',
