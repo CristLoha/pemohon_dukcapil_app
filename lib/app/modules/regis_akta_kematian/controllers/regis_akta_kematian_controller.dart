@@ -22,6 +22,9 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
 
+  final ImagePicker imagePickerAktaKelahiran = ImagePicker();
+  XFile? pickedImageAktaKelahiran;
+
   /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
@@ -122,6 +125,21 @@ class RegisAktaKematianController extends GetxController {
           .child('KK$randomNumber.$extKK')
           .getDownloadURL();
 
+      /// AKTAkelahiran
+      String extAktaKelahiran = pickedImageKK!.name.split(".").last;
+
+      await storage
+          .ref('aktaKematian')
+          .child('KK$randomNumber.$extAktaKelahiran')
+          .putFile(
+            File(pickedImageAktaKelahiran!.path),
+          );
+
+      String fotoAktaKelahiran = await storage
+          .ref('aktaKematian')
+          .child('AktaKelahiran$randomNumber.$extKK')
+          .getDownloadURL();
+
       try {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -130,6 +148,7 @@ class RegisAktaKematianController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
@@ -230,6 +249,32 @@ class RegisAktaKematianController extends GetxController {
 
   void resetImageKK() {
     pickedImageKK = null;
+    update();
+  }
+
+  ///AKTA KELAHIRAN
+
+  void selectImageAktaKelahiran() async {
+    try {
+      final dataImage = await imagePickerAktaKelahiran.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKK = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageAktaKelahiran = null;
+      update();
+    }
+  }
+
+  void resetImageAktaKelahiran() {
+    pickedImageAktaKelahiran = null;
     update();
   }
 
