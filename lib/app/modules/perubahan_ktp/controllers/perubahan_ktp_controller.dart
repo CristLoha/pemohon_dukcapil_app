@@ -47,7 +47,6 @@ class PerubahanKtpController extends GetxController {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKK != null && pickedImageKTP != null) {
-      // FOTO KK
       String extKK = pickedImageKK!.name.split(".").last;
 
       await storage

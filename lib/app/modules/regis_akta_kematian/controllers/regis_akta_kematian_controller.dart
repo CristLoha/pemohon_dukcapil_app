@@ -100,7 +100,9 @@ class RegisAktaKematianController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKTPJenazah != null) {
+    if (pickedImageKTPJenazah != null &&
+        pickedImageAktaKelahiran != null &&
+        pickedImageKtpPelapor != null) {
       /// KTP Jenazah
       String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
@@ -294,6 +296,31 @@ class RegisAktaKematianController extends GetxController {
 
   void resetImageAktaKelahiran() {
     pickedImageAktaKelahiran = null;
+    update();
+  }
+
+  /// KTP PELAPOR
+  void ktpPelapor() async {
+    try {
+      final dataImage = await imagePickerKTPPelapor.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKK = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKtpPelapor = null;
+      update();
+    }
+  }
+
+  void resetImageKtpPelapor() {
+    pickedImageKtpPelapor = null;
     update();
   }
 
