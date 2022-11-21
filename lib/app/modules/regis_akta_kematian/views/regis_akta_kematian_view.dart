@@ -555,7 +555,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                   'Unggah KTP Jenazah',
                   style: blackTextStyle.copyWith(),
                 ),
-                SizedBox(height: 20.h),
+                SizedBox(height: 12.h),
                 Center(
                   child: Container(
                     padding: EdgeInsets.only(left: 15, top: 20, right: 10),
@@ -698,9 +698,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 12,
-                ),
+                SizedBox(height: 20),
 
                 /// KK
                 Text(
@@ -745,7 +743,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                   style: redTextStyle.copyWith(),
                                 ),
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: 20.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.end,
