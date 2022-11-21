@@ -19,11 +19,11 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKTPJenazah = ImagePicker();
   XFile? pickedImageKTPJenazah;
 
-  final ImagePicker imagePickerKTP = ImagePicker();
-  XFile? pickedImageKTP;
+  final ImagePicker imagePickerKK = ImagePicker();
+  XFile? pickedImageKK;
 
   final ImagePicker imagePickerSURKER = ImagePicker();
-  XFile? pickedImageSURKER;
+  XFile? pickedImage;
 
   /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
@@ -99,34 +99,34 @@ class RegisAktaKematianController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKTPJenazah != null && pickedImageKTP != null) {
+    if (pickedImageKTPJenazah != null && pickedImageKK != null) {
       String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
+          .child('aktaKematian_KK$randomNumber.$extKTPJenazah')
           .putFile(
             File(pickedImageKTPJenazah!.path),
           );
 
-      String fotoKK = await storage
+      String ktpJenazah = await storage
           .ref('aktaKematian')
           .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
           .getDownloadURL();
 
-      /// FOTO KTP
-      String extKTP = pickedImageKTP!.name.split(".").last;
+      /// FOTO KK
+      String extKK = pickedImageKK!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('perKTP_KTP$randomNumber.$extKTP')
+          .child('aktaKematian_KK$randomNumber.$extKK')
           .putFile(
-            File(pickedImageKTP!.path),
+            File(pickedImageKK!.path),
           );
 
       String fotoKTP = await storage
           .ref('aktaKematian')
-          .child('perKTP_KTP$randomNumber.$extKTP')
+          .child('aktaKematian_KK$randomNumber.$extKK')
           .getDownloadURL();
 
       try {
@@ -136,7 +136,7 @@ class RegisAktaKematianController extends GetxController {
           'nik': nikC.text,
           'nama': nameC.text,
           'noKK': noKKC.text,
-          'fotoKK': fotoKK,
+          'fotoKK': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
@@ -192,17 +192,12 @@ class RegisAktaKematianController extends GetxController {
   }
 
   void resetImageKK() {
+    pickedImageKK = null;
+    update();
+  }
+
+  void resetImageKTPJenazah() {
     pickedImageKTPJenazah = null;
-    update();
-  }
-
-  void resetImageKTP() {
-    pickedImageKTP = null;
-    update();
-  }
-
-  void resetImageSURKER() {
-    pickedImageSURKER = null;
     update();
   }
 
@@ -227,44 +222,24 @@ class RegisAktaKematianController extends GetxController {
   }
 
   /// FOTO KTP
-  void selectImageKTP() async {
+  void selectImageKTPJenazah() async {
     try {
-      final dataImage = await imagePickerKTP.pickImage(
+      final dataImage = await imagePickerKTPJenazah.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTP = dataImage;
+        pickedImageKTPJenazah = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImageKTP = null;
+      pickedImageKTPJenazah = null;
       update();
     }
   }
-
-  // /// FOTO SURAT KETERANGAN HILANG
-  // void selectImageSurket() async {
-  //   try {
-  //     final dataImage = await imagePickerSURKER.pickImage(
-  //       source: ImageSource.gallery,
-  //     );
-
-  //     if (dataImage != null) {
-  //       print(dataImage.name);
-  //       print(dataImage.path);
-  //       pickedImageSURKER = dataImage;
-  //     }
-  //     update();
-  //   } catch (err) {
-  //     print(err);
-  //     pickedImageKTP = null;
-  //     update();
-  //   }
-  // }
 
   ///UNTUK FORM TANGGAL
   void dateLocal() async {

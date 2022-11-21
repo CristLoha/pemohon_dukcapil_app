@@ -580,7 +580,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                       ),
                                     ),
                                     TextButton(
-                                      onPressed: () => c.resetImageKK(),
+                                      onPressed: () => c.resetImageKTPJenazah(),
                                       child: Icon(
                                         Icons.delete,
                                         color: kRedColor,
