@@ -408,12 +408,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        textEditingController: controller.noKKC,
+                        textEditingController: controller.nikAyahC,
                         validator: (value) {
                           if (value!.isEmpty ||
                               !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
                                   .hasMatch(value)) {
-                            return "Masukan Nomor KK yang benar";
+                            return "Masukan Nomor NIK yang benar";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                             return 'NIK harus 16 karakter';
                           }
@@ -428,16 +428,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.kecamatanC,
+                        textEditingController: controller.namaAyahC,
                         onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
                       SizedBox(height: 20.h),
 

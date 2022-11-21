@@ -24,6 +24,8 @@ class RegisAktaKematianController extends GetxController {
 
   final ImagePicker imagePickerSURKER = ImagePicker();
   XFile? pickedImageSURKER;
+
+  /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
   TextEditingController anakKe = TextEditingController();
@@ -34,6 +36,10 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController kewarganegaraanC = TextEditingController();
   TextEditingController menerangkanC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
+
+  /// PEMOHON
+  TextEditingController nikAyahC = TextEditingController();
+  TextEditingController namaAyahC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
