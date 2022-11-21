@@ -7,6 +7,7 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
   final Icon? icon;
   final double? maxLines;
   final bool? readOnly;
+
   final TextInputAction? textInputAction;
   final Function()? onTap;
 

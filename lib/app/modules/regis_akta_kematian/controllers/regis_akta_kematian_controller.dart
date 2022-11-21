@@ -44,8 +44,6 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
   TextEditingController nameC = TextEditingController();
-  TextEditingController kecamatanC = TextEditingController();
-  TextEditingController desaC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
@@ -96,36 +94,33 @@ class RegisAktaKematianController extends GetxController {
   void addPerubahanKTP() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKTPJenazah != null && pickedImageKK != null) {
+    if (pickedImageKTPJenazah != null) {
       /// KTP Jenazah
       String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('aktaKematian_KK$randomNumber.$extKTPJenazah')
+          .child('KTPJenazah$randomNumber.$extKTPJenazah')
           .putFile(
             File(pickedImageKTPJenazah!.path),
           );
 
       String ktpJenazah = await storage
           .ref('aktaKematian')
-          .child('aktaKematian_KTPJenazah$randomNumber.$extKTPJenazah')
+          .child('KTPJenazah$randomNumber.$extKTPJenazah')
           .getDownloadURL();
 
-      /// KK
-      String extKK = pickedImageKK!.name.split(".").last;
+      // /// KK
+      // String extKK = pickedImageKK!.name.split(".").last;
 
-      await storage
-          .ref('aktaKematian')
-          .child('aktaKematian_KK$randomNumber.$extKK')
-          .putFile(
-            File(pickedImageKK!.path),
-          );
+      // await storage.ref('aktaKematian').child('KK$randomNumber.$extKK').putFile(
+      //       File(pickedImageKK!.path),
+      //     );
 
-      String fotoKK = await storage
-          .ref('aktaKematian')
-          .child('aktaKematian_KK$randomNumber.$extKK')
-          .getDownloadURL();
+      // String fotoKK = await storage
+      //     .ref('aktaKematian')
+      //     .child('KK$randomNumber.$extKK')
+      //     .getDownloadURL();
 
       try {
         String uid = auth.currentUser!.uid;
@@ -134,34 +129,33 @@ class RegisAktaKematianController extends GetxController {
           'nik': nikC.text,
           'nama': nameC.text,
           'noKK': noKKC.text,
-          'fotoKTP': fotoKK,
+          // 'fotoKK': fotoKK,
           'fotoKTPJenazah': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
-          'noTelepon': noTeleponC,
+          'noTelepon': noTeleponC.text,
           'menerangkan': menerangkanC.text,
           'kewarganegaraan': kewarganegaraanC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tglKematian': tanggalKematianC.text,
           'NIKayah': nikAyahC.text,
-          'namaAyah': namaAyahC,
-          'NIKIbu': nikIbuC,
-          'NamaIbu': namaIbuC,
+          'namaAyah': namaAyahC.text,
+          'NIKIbu': nikIbuC.text,
+          'NamaIbu': namaIbuC.text,
           'tempatLahir': nameTempatLahirC.text,
           'tempatKematian': tempatKematianC.text,
           'keterangan': keteranganC.text,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Akta Kematian',
-          'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
-          'desa': desaC.text,
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),
           'updatedTime': DateTime.now().toIso8601String(),
         });
+
         EasyLoading.showSuccess('Data Berhasil Ditambahakan');
 
         Get.offAllNamed(Routes.MAIN_PAGE);
@@ -189,11 +183,6 @@ class RegisAktaKematianController extends GetxController {
     );
   }
 
-  void resetImageKK() {
-    pickedImageKK = null;
-    update();
-  }
-
   /// FOTO KTP JENAZAH
   void selectImageKTPJenazah() async {
     try {
@@ -219,25 +208,30 @@ class RegisAktaKematianController extends GetxController {
     update();
   }
 
-  /// FOTO KK
-  void selectImageKK() async {
-    try {
-      final dataImage = await imagePickerKK.pickImage(
-        source: ImageSource.gallery,
-      );
+  // /// FOTO KK
+  // void selectImageKK() async {
+  //   try {
+  //     final dataImage = await imagePickerKK.pickImage(
+  //       source: ImageSource.gallery,
+  //     );
 
-      if (dataImage != null) {
-        print(dataImage.name);
-        print(dataImage.path);
-        pickedImageKK = dataImage;
-      }
-      update();
-    } catch (err) {
-      print(err);
-      pickedImageKK = null;
-      update();
-    }
-  }
+  //     if (dataImage != null) {
+  //       print(dataImage.name);
+  //       print(dataImage.path);
+  //       pickedImageKK = dataImage;
+  //     }
+  //     update();
+  //   } catch (err) {
+  //     print(err);
+  //     pickedImageKK = null;
+  //     update();
+  //   }
+  // }
+
+  // void resetImageKK() {
+  //   pickedImageKK = null;
+  //   update();
+  // }
 
   ///UNTUK FORM TANGGAL
   void dateLocal() async {
