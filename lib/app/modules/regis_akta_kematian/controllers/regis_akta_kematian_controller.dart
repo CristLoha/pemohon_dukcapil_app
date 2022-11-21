@@ -122,7 +122,7 @@ class RegisAktaKematianController extends GetxController {
             File(pickedImageKK!.path),
           );
 
-      String fotoKTP = await storage
+      String fotoKK = await storage
           .ref('aktaKematian')
           .child('aktaKematian_KK$randomNumber.$extKK')
           .getDownloadURL();
@@ -134,7 +134,8 @@ class RegisAktaKematianController extends GetxController {
           'nik': nikC.text,
           'nama': nameC.text,
           'noKK': noKKC.text,
-          'fotoKK': ktpJenazah,
+          'fotoKTP': fotoKK,
+          'fotoKTPJenazah': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
@@ -150,7 +151,6 @@ class RegisAktaKematianController extends GetxController {
           'tempatLahir': nameTempatLahirC.text,
           'tempatKematian': tempatKematianC.text,
           'keterangan': keteranganC.text,
-          'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Akta Kematian',
@@ -222,19 +222,19 @@ class RegisAktaKematianController extends GetxController {
   /// FOTO KK
   void selectImageKK() async {
     try {
-      final dataImage = await imagePickerKTPJenazah.pickImage(
+      final dataImage = await imagePickerKK.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTPJenazah = dataImage;
+        pickedImageKK = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImageKTPJenazah = null;
+      pickedImageKK = null;
       update();
     }
   }
