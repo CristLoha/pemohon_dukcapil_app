@@ -40,6 +40,8 @@ class RegisAktaKematianController extends GetxController {
   /// PEMOHON
   TextEditingController nikAyahC = TextEditingController();
   TextEditingController namaAyahC = TextEditingController();
+  TextEditingController nikIbuC = TextEditingController();
+  TextEditingController namaIbuC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
