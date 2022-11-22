@@ -41,13 +41,13 @@ class RekamananKtpController extends GetxController {
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImage != null) {
       String ext = pickedImage!.name.split(".").last;
-      await storage.ref('rekamanKTP').child('rekKtp$randomNumber.$ext').putFile(
+      await storage.ref('perekamanKTP').child('KK$randomNumber.$ext').putFile(
             File(pickedImage!.path),
           );
 
       String fotoKK = await storage
-          .ref('rekamanKTP')
-          .child('rekKtp$randomNumber.$ext')
+          .ref('perekamanKTP')
+          .child('KK$randomNumber.$ext')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');

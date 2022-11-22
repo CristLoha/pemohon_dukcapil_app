@@ -250,7 +250,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Unggah Kartu Keluarga',
+              'Unggah KK',
               style: blackTextStyle.copyWith(),
             ),
             SizedBox(height: 12.h),
