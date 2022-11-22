@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../shared/theme.dart';
 
 class CustomOutputForm extends StatelessWidget {
@@ -27,14 +27,14 @@ class CustomOutputForm extends StatelessWidget {
               title,
               style: blackTextStyle.copyWith(
                 fontWeight: medium,
-                fontSize: 12,
+                fontSize: 12.sp,
               ),
             ),
           ),
         ),
         Text(
           subtitle,
-          style: blackTextStyle.copyWith(fontSize: 12),
+          style: blackTextStyle.copyWith(fontSize: 12.sp),
         )
       ],
     );

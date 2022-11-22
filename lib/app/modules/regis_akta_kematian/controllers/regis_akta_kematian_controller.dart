@@ -193,6 +193,7 @@ class RegisAktaKematianController extends GetxController {
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
           'noTelepon': noTeleponC.text,
+          'keteranganKonfirmasi': '',
           'menerangkan': menerangkanC.text,
           'kewarganegaraan': kewarganegaraanC.text,
           'jenisKelamin': jenisKelaminC.text,

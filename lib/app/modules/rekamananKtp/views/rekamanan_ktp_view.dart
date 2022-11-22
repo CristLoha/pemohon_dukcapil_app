@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_form_input.dart';
+import 'package:pemohon_dukcapil_app/app/utils/custom_input_keterangan.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/rekamanan_ktp_controller.dart';
@@ -156,7 +157,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
                       ),
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -165,7 +166,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         keyboardType: TextInputType.name,
                       ),
 
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
                       TextFormField(
@@ -195,7 +196,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         ),
                       ),
 
-                      SizedBox(height: 12.h),
+                      SizedBox(height: 20.h),
 
                       /// Kecamatan
                       CustomTitleWidget(title: 'Kecamatan'),
@@ -233,6 +234,16 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                             return null;
                           }
                         },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      ///Keterangan
+                      CustomTitleWidget(title: 'Keterangan'),
+                      SizedBox(height: 12.h),
+                      CustomFormKeteranganField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        textEditingController: controller.keteranganC,
                       ),
                     ],
                   ),

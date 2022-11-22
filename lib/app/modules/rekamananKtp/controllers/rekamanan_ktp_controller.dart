@@ -21,6 +21,7 @@ class RekamananKtpController extends GetxController {
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
+  TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
@@ -63,6 +64,8 @@ class RekamananKtpController extends GetxController {
         'email': userPemohon!.email,
         'desa': desaC.text,
         'uid': uid,
+        'keterangan': keteranganC.text,
+        'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
         'creationTime': DateTime.now().toIso8601String(),
         'updatedTime': DateTime.now().toIso8601String(),
