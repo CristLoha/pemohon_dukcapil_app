@@ -34,8 +34,11 @@ class HistoryController extends GetxController
     super.onClose();
   }
 
-  Future<QuerySnapshot<Object?>> getLayanan() async {
+  Stream<QuerySnapshot<Object?>> getLayanan() {
     CollectionReference layanan = firestore.collection('layanan');
-    return layanan.where('email', isEqualTo: userPemohon!.email).get();
+    return layanan
+        .where('email', isEqualTo: userPemohon!.email)
+        .orderBy('updatedTime', descending: true)
+        .snapshots();
   }
 }

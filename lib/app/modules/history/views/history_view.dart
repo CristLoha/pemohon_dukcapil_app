@@ -20,10 +20,10 @@ class HistoryView extends GetView<HistoryController> {
         ),
         backgroundColor: kPrimaryColor,
       ),
-      body: FutureBuilder<QuerySnapshot<Object?>>(
-        future: controller.getLayanan(),
+      body: StreamBuilder<QuerySnapshot<Object?>>(
+        stream: controller.getLayanan(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.data!.docs.isEmpty || snapshot.data == null) {
               return Center(
                 child: Padding(
@@ -132,7 +132,7 @@ class HistoryView extends GetView<HistoryController> {
                               ),
                             )
                           else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'AMBIL')
+                              'SIAP AMBIL')
                             Padding(
                               padding: const EdgeInsets.only(top: 10),
                               child: Container(

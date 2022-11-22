@@ -100,24 +100,12 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'DESA',
-                                        subtitle: "${data['kecamatan']}",
+                                        subtitle: "${data['desa']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'creationTime',
-                                        subtitle: DateFormat(
-                                          "d MMMM yyyy",
-                                          "id_ID",
-                                        ).format(
-                                          DateTime.parse(
-                                            "${data['updatedTime']}",
-                                          ),
-                                        ),
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
@@ -131,6 +119,14 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                           ),
                                         ),
                                       ),
+                                      SizedBox(height: 10.h),
+                                      if ("${data['keterangan']}".isEmpty)
+                                        Container(),
+                                      if ("${data['keterangan']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN',
+                                          subtitle: "${data['keterangan']}",
+                                        ),
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isEmpty)
                                         Container(),
@@ -175,7 +171,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         top: 13,
                         child: Container(
                           width: 320.w,
-                          height: 540.h,
+                          height: 550.h,
                           decoration: BoxDecoration(
                             color: kWhiteColor,
                             borderRadius: BorderRadius.circular(4),
@@ -192,8 +188,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                               bottom: 20.h,
                             ),
                             child: Container(
-                              width: Get.width * 0.5,
-                              height: 540.h,
+                              width: Get.width * 0.5.w,
+                              height: 550.h,
                               decoration: BoxDecoration(
                                 color: kWhiteColor,
                                 borderRadius: BorderRadius.circular(4),
@@ -219,20 +215,33 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
                                       CustomOutputForm(
-                                        title: 'NIK',
-                                        subtitle: "${data['nik']}",
+                                        title: 'NIK JENAZAH',
+                                        subtitle: "${data['nikJenazah']}",
                                       ),
                                       SizedBox(height: 10),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP',
-                                        subtitle: "${data['nama']}",
+                                        title: 'NAMA LENGKAP JENAZAH',
+                                        subtitle:
+                                            "${data['namaLengkapJenazah']}",
                                       ),
                                       SizedBox(height: 10),
+                                      CustomOutputForm(
+                                        title: 'NIK AYAH',
+                                        subtitle: "${data['NIKayah']}",
+                                      ),
                                       CustomOutputForm(
                                         title: 'NAMA AYAH',
                                         subtitle: "${data['namaAyah']}",
                                       ),
                                       SizedBox(height: 10),
+                                      CustomOutputForm(
+                                        title: 'NIK IBU',
+                                        subtitle: "${data['NIKIbu']}",
+                                      ),
+                                      CustomOutputForm(
+                                        title: 'NAMA Ibu',
+                                        subtitle: "${data['NamaIbu']}",
+                                      ),
                                       CustomOutputForm(
                                         title: 'JENIS KELAMIN',
                                         subtitle: "${data['jenisKelamin']}",
@@ -276,9 +285,27 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
                                       CustomOutputForm(
+                                        title: 'NAMA PELAPOR',
+                                        subtitle: "${data['nama']}",
+                                      ),
+                                      SizedBox(height: 10),
+                                      CustomOutputForm(
+                                        title: 'NIK PELAPOR',
+                                        subtitle: "${data['nik']}",
+                                      ),
+                                      SizedBox(height: 10),
+                                      CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
                                       ),
+                                      SizedBox(height: 10),
+                                      if ("${data['keterangan']}".isEmpty)
+                                        Container(),
+                                      if ("${data['keterangan']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN',
+                                          subtitle: "${data['keterangan']}",
+                                        ),
                                       SizedBox(height: 10),
                                       CustomOutputForm(
                                         title: 'TANGGAL KONFIRMASI',
@@ -335,7 +362,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         top: 13,
                         child: Container(
                           width: 320.w,
-                          height: 420.h,
+                          height: 528.h,
                           decoration: BoxDecoration(
                             color: kWhiteColor,
                             borderRadius: BorderRadius.circular(4),
@@ -346,14 +373,14 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                           ),
                           child: Container(
                             padding: EdgeInsets.only(
-                              top: 20,
-                              left: 20,
-                              right: 20,
-                              bottom: 20,
+                              top: 20.h,
+                              left: 20.w,
+                              right: 20.w,
+                              bottom: 20.h,
                             ),
                             child: Container(
-                              width: Get.width * 0.5,
-                              height: 420,
+                              width: Get.width * 0.5.w,
+                              height: 528.h,
                               decoration: BoxDecoration(
                                 color: kWhiteColor,
                                 borderRadius: BorderRadius.circular(4),
@@ -364,29 +391,80 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                               ),
                               child: Padding(
                                 padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "${data['proses']}",
-                                        style: blackTextStyle.copyWith(
-                                            fontWeight: semiBold),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${data['proses']}",
+                                          style: blackTextStyle.copyWith(
+                                              fontWeight: semiBold),
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(height: 10),
-                                    CustomOutputForm(
-                                      title: 'NIK',
-                                      subtitle: "${data['nik']}",
-                                    ),
-                                    SizedBox(height: 10),
-                                    CustomOutputForm(
-                                      title: 'NAMA LENGKAP',
-                                      subtitle: "${data['nama']}",
-                                    ),
-                                    SizedBox(height: 10),
-                                  ],
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK',
+                                        subtitle: "${data['nik']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP',
+                                        subtitle: "${data['nama']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR',
+                                        subtitle: "${data['tgl_lahir']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN',
+                                        subtitle: "${data['kecamatan']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA',
+                                        subtitle: "${data['desa']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'STATUS',
+                                        subtitle: "${data['proses']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'TANGGAL KONFIRMASI',
+                                        subtitle: DateFormat(
+                                          "d MMMM yyyy",
+                                          "id_ID",
+                                        ).format(
+                                          DateTime.parse(
+                                            "${data['updatedTime']}",
+                                          ),
+                                        ),
+                                      ),
+                                      if ("${data['keterangan']}".isEmpty)
+                                        Container(),
+                                      if ("${data['keterangan']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN',
+                                          subtitle: "${data['keterangan']}",
+                                        ),
+                                      if ("${data['keteranganKonfirmasi']}"
+                                          .isEmpty)
+                                        Container(),
+                                      if ("${data['keteranganKonfirmasi']}"
+                                          .isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN KONFIRMASI',
+                                          subtitle:
+                                              "${data['keteranganKonfirmasi']}",
+                                        ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

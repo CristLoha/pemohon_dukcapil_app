@@ -30,6 +30,7 @@ class PerubahanKtpController extends GetxController {
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
+  TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
@@ -85,7 +86,8 @@ class PerubahanKtpController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
-          'keterangan': '',
+          'keterangan': keteranganC.text,
+          'keteranganKonfirmasi': '',
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
