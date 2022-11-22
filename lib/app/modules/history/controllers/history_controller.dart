@@ -38,7 +38,10 @@ class HistoryController extends GetxController
     CollectionReference layanan = firestore.collection('layanan');
     return layanan
         .where('email', isEqualTo: userPemohon!.email)
-        .where('kategori', isNotEqualTo: 'Perubahan e-KTP')
+        .where(
+          'kategori',
+          isNotEqualTo: 'Perubahan e-KTP',
+        )
         .get();
   }
 

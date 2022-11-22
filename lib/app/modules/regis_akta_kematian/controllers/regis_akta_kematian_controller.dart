@@ -28,6 +28,9 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKTPPelapor = ImagePicker();
   XFile? pickedImageKtpPelapor;
 
+  final ImagePicker imagePickerKKPelapor = ImagePicker();
+  XFile? pickedImageKKPelapor;
+
   /// YANG MENINGGAL
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController nameJenazahC = TextEditingController();
@@ -160,6 +163,21 @@ class RegisAktaKematianController extends GetxController {
           .child('KtpPelapor$randomNumber.$extKtPPelapor')
           .getDownloadURL();
 
+      /// KKPelapor
+      String extKKpelapor = pickedImageKKPelapor!.name.split(".").last;
+
+      await storage
+          .ref('aktaKematian')
+          .child('KKpelapor$randomNumber.$extKKpelapor')
+          .putFile(
+            File(pickedImageKKPelapor!.path),
+          );
+
+      String fotoKKpelapor = await storage
+          .ref('aktaKematian')
+          .child('KKpelapor$randomNumber.$extKKpelapor')
+          .getDownloadURL();
+
       try {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -170,6 +188,7 @@ class RegisAktaKematianController extends GetxController {
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
           'fotoKTPPelapor': ktpPelaPor,
+          'fotoKKPelapor': fotoKKpelapor,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
@@ -320,6 +339,32 @@ class RegisAktaKematianController extends GetxController {
 
   void resetImageKtpPelapor() {
     pickedImageKtpPelapor = null;
+    update();
+  }
+
+  /// KK PELAPOR
+
+  void selectKKPelapor() async {
+    try {
+      final dataImage = await imagePickerKKPelapor.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKKPelapor = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKKPelapor = null;
+      update();
+    }
+  }
+
+  void resetImageKKPelapor() {
+    pickedImageKKPelapor = null;
     update();
   }
 

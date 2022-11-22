@@ -703,7 +703,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 /// KK
                 Text(
-                  'Unggah Kartu Keluarga',
+                  'Unggah KK',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -1126,6 +1126,157 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                               child: ElevatedButton(
                                 onPressed: () {
                                   controller.selectKtpPelapor();
+                                },
+                                child: Text(
+                                  'Pilih File',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 16.sp,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side: BorderSide(
+                                      color: kGreyColor,
+                                    ),
+                                  ),
+                                  backgroundColor: kWhiteColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// KK pelapor
+                Text(
+                  'Unggah KK pelapor',
+                  style: blackTextStyle.copyWith(),
+                ),
+                SizedBox(height: 12.h),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                    width: 315.w,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: kGreyColor,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        GetBuilder<RegisAktaKematianController>(
+                          builder: (c) => c.pickedImageKKPelapor != null
+                              ? Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        c.pickedImageKKPelapor!.name,
+                                        style: blackTextStyle.copyWith(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => c.resetImageKKPelapor(),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: kRedColor,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  '*Maks 5 Mb',
+                                  style: redTextStyle.copyWith(),
+                                ),
+                        ),
+                        SizedBox(height: 20.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              child: Container(
+                                width: 120.w,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                                child: GetBuilder<RegisAktaKematianController>(
+                                  builder: (c) {
+                                    return c.pickedImageKKPelapor != null
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              Get.dialog(
+                                                Container(
+                                                  child: PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(c
+                                                          .pickedImageKKPelapor!
+                                                          .path),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: () {
+                                              EasyLoading.showError(
+                                                'Masukan file terlebihi dahulu',
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ));
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 120.w,
+                              height: 40.h,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  controller.selectKKPelapor();
                                 },
                                 child: Text(
                                   'Pilih File',
