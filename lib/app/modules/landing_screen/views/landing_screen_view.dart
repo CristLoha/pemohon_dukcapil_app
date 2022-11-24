@@ -46,6 +46,7 @@ class LandingScreenView extends GetView<LandingScreenController> {
             if (!snapshot.data!.exists) {
               return LoginView();
             }
+
             Pemohon pemohon = Pemohon.fromJson(data as Map<String, dynamic>);
             if (pemohon.validasi == true) {
               return MainPageView();
@@ -55,7 +56,10 @@ class LandingScreenView extends GetView<LandingScreenController> {
               padding: EdgeInsets.symmetric(vertical: 300, horizontal: 30),
               children: [
                 Center(
-                  child: Text('Menunggu validasi dari Staff Pelayanan'),
+                  child: Text(
+                    'Menunggu validasi dari Staff Pelayanan',
+                    style: blackTextStyle.copyWith(fontSize: 14),
+                  ),
                 ),
                 SizedBox(height: 20),
                 Obx(

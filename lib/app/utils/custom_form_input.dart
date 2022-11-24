@@ -28,6 +28,7 @@ class CustomFormField extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      // textCapitalization: TextCapitalization.words,
       textInputAction: textInputAction,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,

@@ -41,6 +41,7 @@ class LoginController extends GetxController {
         Get.offAllNamed(Routes.LANDING_SCREEN);
       } else {
         print('Email belum terverifikasi & tidak dapat masuk');
+        await EasyLoading.dismiss();
         Get.defaultDialog(
           title: 'Belum terverifikasi',
           middleText: 'Apakah kamu ingin mengirim email verifikasi kembali?',

@@ -33,7 +33,9 @@ void main() async {
               debugShowCheckedModeBanner: false,
               title: "Application",
               initialRoute:
-                  snapshot.data != null ? Routes.LANDING_SCREEN : Routes.LOGIN,
+                  snapshot.data != null && snapshot.data!.emailVerified == true
+                      ? Routes.LANDING_SCREEN
+                      : Routes.LOGIN,
               getPages: AppPages.routes,
               builder: EasyLoading.init(),
             );

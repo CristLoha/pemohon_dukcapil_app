@@ -69,12 +69,13 @@ class RegisterController extends GetxController {
           password: passC.text,
         );
         print(credential);
-        isLoading.value = false;
+
         if (credential.user!.emailVerified == false) {
           infoMsg('BERHASIL',
               'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi');
           EasyLoading.dismiss();
           Get.offAllNamed(Routes.LOGIN);
+          EasyLoading.dismiss();
           await credential.user!.sendEmailVerification();
           await pemohon
               .doc(
@@ -120,6 +121,7 @@ class RegisterController extends GetxController {
         print(e);
       }
     } else {
+      EasyLoading.dismiss();
       infoMsg('TERJADI KESALAHAN', 'Semua data harus diisi');
     }
   }
