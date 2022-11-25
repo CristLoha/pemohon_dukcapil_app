@@ -18,6 +18,8 @@ import 'package:pemohon_dukcapil_app/app/modules/profile/bindings/profile_bindin
 import 'package:pemohon_dukcapil_app/app/modules/profile/views/profile_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/regis_akta_kematian/bindings/regis_akta_kematian_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/regis_akta_kematian/views/regis_akta_kematian_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/regist_kia/bindings/regist_kia_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/regist_kia/views/regist_kia_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/register/views/register_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/bindings/rekamanan_ktp_binding.dart';
@@ -92,6 +94,11 @@ class AppPages {
       name: _Paths.REGIS_AKTA_KEMATIAN,
       page: () => RegisAktaKematianView(),
       binding: RegisAktaKematianBinding(),
+    ),
+    GetPage(
+      name: _Paths.REGIST_KIA,
+      page: () => RegistKiaView(),
+      binding: RegistKiaBinding(),
     ),
   ];
 }

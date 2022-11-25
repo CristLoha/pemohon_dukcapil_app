@@ -129,7 +129,9 @@ class HomeView extends GetView<HomeController> {
                                 height: 11.sp,
                                 bottom: 15.h,
                                 widthIcon: 39.w,
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(Routes.REGIST_KIA);
+                                },
                               ),
                             ),
                           ],
