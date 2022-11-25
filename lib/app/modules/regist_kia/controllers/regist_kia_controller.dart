@@ -32,28 +32,21 @@ class RegistKiaController extends GetxController {
   final ImagePicker imagePickerKKPelapor = ImagePicker();
   XFile? pickedImageKKPelapor;
 
-  /// YANG MENINGGAL
-  TextEditingController nikJenazahC = TextEditingController();
-  TextEditingController nameJenazahC = TextEditingController();
-  TextEditingController anakKe = TextEditingController();
+  ///KIA
+  TextEditingController nikAnakC = TextEditingController();
+  TextEditingController noAktaKelahiranC = TextEditingController();
+  TextEditingController namaLengkapC = TextEditingController();
   TextEditingController jenisKelaminC = TextEditingController();
-  TextEditingController nameTempatLahirC = TextEditingController();
-  TextEditingController tempatKematianC = TextEditingController();
-  TextEditingController tanggalKematianC = TextEditingController();
-  TextEditingController kewarganegaraanC = TextEditingController();
-  TextEditingController menerangkanC = TextEditingController();
+  TextEditingController tglLahirC = TextEditingController();
+  TextEditingController kecamatanC = TextEditingController();
+  TextEditingController desaC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
 
-  /// PEMOHON
-  TextEditingController nikAyahC = TextEditingController();
-  TextEditingController namaAyahC = TextEditingController();
-  TextEditingController nikIbuC = TextEditingController();
-  TextEditingController namaIbuC = TextEditingController();
-  TextEditingController noTeleponC = TextEditingController();
-  TextEditingController dateC = TextEditingController();
-  TextEditingController nikC = TextEditingController();
-  TextEditingController noKKC = TextEditingController();
-  TextEditingController nameC = TextEditingController();
+  TextEditingController nikPemohonC = TextEditingController();
+  TextEditingController namaLengkapPemohonC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController kecamatanPemohonC = TextEditingController();
+  TextEditingController desaPemohonC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
@@ -73,35 +66,13 @@ class RegistKiaController extends GetxController {
     }
   ];
 
-  List<Map<String, dynamic>> dataJenisKewarganegaraan = [
-    {
-      "jenisK": "WNI",
-      "id": 1,
-    },
-    {
-      "jenisK": "WNA",
-      "id": 2,
-    }
-  ];
-
-  List<Map<String, dynamic>> dataJenisYgMenerangkan = [
-    {
-      "menerangkan": "DOKTER",
-      "id": 1,
-    },
-    {
-      "menerangkan": "POLISI",
-      "id": 2,
-    }
-  ];
-
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addPerubahanKTP() async {
+  void addKIA() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKTPJenazah != null &&
@@ -183,32 +154,20 @@ class RegistKiaController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
-          'nik': nikC.text,
-          'nama': nameC.text,
-          'fotoKK': fotoKK,
-          'fotoAktaKelahiran': fotoAktaKelahiran,
-          'fotoKTPJenazah': ktpJenazah,
-          'fotoKTPPelapor': ktpPelaPor,
-          'fotoKKPelapor': fotoKKpelapor,
-          'nikJenazah': nikJenazahC.text,
-          'anakKe': anakKe.text,
-          'namaLengkapJenazah': nameJenazahC.text,
-          'noTelepon': noTeleponC.text,
-          'keteranganKonfirmasi': '',
-          'menerangkan': menerangkanC.text,
-          'kewarganegaraan': kewarganegaraanC.text,
+          'nikAnak': nikAnakC.text,
+          'namaLengkap': namaLengkapC.text,
+          'kecamatan': kecamatanC.text,
+          'kecamatanPemohon': kecamatanPemohonC.text,
+          'desaPemohon': desaPemohonC.text,
+          'noAktaKelahiran': noAktaKelahiranC.text,
+          'nikPemohon': nikPemohonC.text,
+          'namaLengkapPemohon': namaLengkapC,
           'jenisKelamin': jenisKelaminC.text,
-          'tglKematian': tanggalKematianC.text,
-          'NIKayah': nikAyahC.text,
-          'namaAyah': namaAyahC.text,
-          'NIKIbu': nikIbuC.text,
-          'NamaIbu': namaIbuC.text,
-          'tempatLahir': nameTempatLahirC.text,
-          'tempatKematian': tempatKematianC.text,
+          'tgl_lahir': tglLahirC.text,
           'keterangan': keteranganC.text,
-          'tgl_lahir': dateC.text,
-          "keyName": nameC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'Akta Kematian',
+          'desa': desaC.text,
+          "keyName": namaLengkapC.text.substring(0, 1).toUpperCase(),
+          'kategori': 'KIA',
           'email': userPemohon!.email,
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
@@ -379,20 +338,7 @@ class RegistKiaController extends GetxController {
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
-  }
-
-  void dateKematian() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalKematianC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tglLahirC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }

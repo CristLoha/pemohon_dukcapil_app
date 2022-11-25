@@ -1,15 +1,11 @@
 import 'dart:io';
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-import 'package:pemohon_dukcapil_app/app/modules/regis_akta_kematian/controllers/regis_akta_kematian_controller.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
@@ -37,7 +33,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   }
                   if (controller.currentStep.value == formStep().length - 1) {
                     EasyLoading.show(status: 'memuat...');
-                    controller.addPerubahanKTP();
+                    controller.addKIA();
                   } else {
                     controller.currentStep.value++;
                   }
@@ -149,7 +145,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikJenazahC,
+                textEditingController: controller.nikAnakC,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -163,7 +159,6 @@ class RegistKiaView extends GetView<RegistKiaController> {
               ),
 
               SizedBox(height: 20.h),
-              SizedBox(height: 20.h),
 
               /// Nomor akta Kelahiran
               CustomTitleWidget(title: 'Nomor Akta Kelahiran'),
@@ -173,7 +168,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikJenazahC,
+                textEditingController: controller.noAktaKelahiranC,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -196,7 +191,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   readOnly: false,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
-                  textEditingController: controller.nameJenazahC),
+                  textEditingController: controller.namaLengkapC),
               SizedBox(height: 20.h),
 
               /// Jenis Kelamin
@@ -230,7 +225,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
               CustomTitleWidget(title: 'Tanggal lahir'),
               SizedBox(height: 12.h),
               TextFormField(
-                controller: controller.dateC,
+                controller: controller.tglLahirC,
                 readOnly: true,
                 onTap: () {
                   controller.dateLocal();
@@ -255,6 +250,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   ),
                 ),
               ),
+              SizedBox(height: 20.h),
 
               /// Kecamatan
               CustomTitleWidget(title: 'Kecamatan'),
@@ -263,7 +259,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.tempatKematianC,
+                textEditingController: controller.kecamatanC,
                 onTap: () {},
                 validator: (value) {
                   if (value!.isEmpty ||
@@ -285,7 +281,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.tempatKematianC,
+                textEditingController: controller.desaC,
                 onTap: () {},
                 validator: (value) {
                   if (value!.isEmpty ||
@@ -328,8 +324,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   child: Text("Tidak ada data user."),
                 );
               } else {
-                controller.nameC.text = snapshot.data!["nama"];
-                controller.nikC.text = snapshot.data!["nik"];
+                // controller.nameC.text = snapshot.data!["nama"];
+                // controller.nikC.text = snapshot.data!["nik"];
                 return Form(
                   key: controller.formKeys[1],
                   child: Column(
@@ -337,7 +333,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                     children: [
                       Center(
                         child: Text(
-                          'Formulir Pendaftaran Antrian Perubahan e-KTP',
+                          'Formulir Untuk Pemohon',
                           style: blackTextStyle.copyWith(
                             fontWeight: semiBold,
                           ),
@@ -346,13 +342,13 @@ class RegistKiaView extends GetView<RegistKiaController> {
                       SizedBox(height: 20.h),
 
                       /// NIK Pemohon
-                      CustomTitleWidget(title: 'NIK Pemohon'),
+                      CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
-                        textEditingController: controller.nikAyahC,
+                        textEditingController: controller.nikPemohonC,
                         validator: (value) {
                           if (value!.isEmpty ||
                               !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -366,28 +362,6 @@ class RegistKiaView extends GetView<RegistKiaController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      /// NIK Pelapor
-                      CustomTitleWidget(title: 'NIK'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.nikC,
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor nik yang benar";
-                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
-                          }
-                          return null;
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                      SizedBox(height: 20.h),
-
                       /// Nama Lengkap Pemohon
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
@@ -395,10 +369,53 @@ class RegistKiaView extends GetView<RegistKiaController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.nameC,
+                        textEditingController: controller.namaLengkapPemohonC,
                         textCapitalization: TextCapitalization.words,
                       ),
 
+                      SizedBox(height: 20.h),
+
+                      /// Kecamatan
+                      CustomTitleWidget(title: 'Kecamatan'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kecamatanPemohonC,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama kecamatan yang benar";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+
+                      SizedBox(height: 20.h),
+
+                      /// Desa
+                      CustomTitleWidget(title: 'Desa'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.desaPemohonC,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                            return "Masukan nama desa yang benar";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
                       SizedBox(height: 20.h),
 
                       /// Email
@@ -408,32 +425,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.nameC,
+                        textEditingController: controller.emailC,
                         textCapitalization: TextCapitalization.words,
-                      ),
-
-                      /// No. Telepon
-                      CustomTitleWidget(title: 'No. Telepon'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.noTeleponC,
-                        onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan nomor telepon yang benar";
-                          } else if (!GetUtils.isLengthGreaterOrEqual(
-                              value, 11)) {
-                            return 'Minimal 12 karakter';
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.none,
                       ),
                     ],
                   ),
