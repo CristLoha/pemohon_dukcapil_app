@@ -106,6 +106,7 @@ class RegisterView extends GetView<RegisterController> {
                 },
                 textCapitalization: TextCapitalization.none,
               ),
+              SizedBox(height: 20.h),
 
               /// Jenis Kelamin
               CustomTitleWidget(title: 'Jenis Kelamin'),

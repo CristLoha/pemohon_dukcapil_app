@@ -129,7 +129,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
             children: [
               Center(
                 child: Text(
-                  'Formulir Akta Kematian',
+                  'Formulir KIA',
                   style: blackTextStyle.copyWith(
                     fontWeight: semiBold,
                   ),
@@ -138,7 +138,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
               SizedBox(height: 20.h),
 
               /// NIK ANAK
-              CustomTitleWidget(title: 'NIK ANAK'),
+              CustomTitleWidget(title: 'NIK Anak'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -293,6 +293,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 },
                 textCapitalization: TextCapitalization.words,
               ),
+              SizedBox(height: 20.h),
 
               /// Keterangan
               CustomTitleWidget(title: 'Keterangan'),
@@ -324,8 +325,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   child: Text("Tidak ada data user."),
                 );
               } else {
-                // controller.nameC.text = snapshot.data!["nama"];
-                // controller.nikC.text = snapshot.data!["nik"];
+                controller.namaLengkapPemohonC.text = snapshot.data!["nama"];
+                controller.nikPemohonC.text = snapshot.data!["nik"];
                 return Form(
                   key: controller.formKeys[1],
                   child: Column(
@@ -345,19 +346,10 @@ class RegistKiaView extends GetView<RegistKiaController> {
                       CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
-                        readOnly: false,
+                        readOnly: true,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikPemohonC,
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor NIK yang benar";
-                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
-                          }
-                        },
                         textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
@@ -366,7 +358,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
-                        readOnly: false,
+                        readOnly: true,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         textEditingController: controller.namaLengkapPemohonC,
