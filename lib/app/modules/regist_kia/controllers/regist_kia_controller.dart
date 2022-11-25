@@ -17,20 +17,12 @@ import '../../../shared/theme.dart';
 class RegistKiaController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePickerKTPJenazah = ImagePicker();
-  XFile? pickedImageKTPJenazah;
 
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
 
   final ImagePicker imagePickerAktaKelahiran = ImagePicker();
   XFile? pickedImageAktaKelahiran;
-
-  final ImagePicker imagePickerKTPPelapor = ImagePicker();
-  XFile? pickedImageKtpPelapor;
-
-  final ImagePicker imagePickerKKPelapor = ImagePicker();
-  XFile? pickedImageKKPelapor;
 
   ///KIA
   TextEditingController nikAnakC = TextEditingController();
@@ -75,33 +67,16 @@ class RegistKiaController extends GetxController {
   void addKIA() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKTPJenazah != null &&
-        pickedImageAktaKelahiran != null &&
-        pickedImageKtpPelapor != null) {
-      /// KTP Jenazah
-      String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
-
-      await storage
-          .ref('aktaKematian')
-          .child('KTPJenazah$randomNumber.$extKTPJenazah')
-          .putFile(
-            File(pickedImageKTPJenazah!.path),
-          );
-
-      String ktpJenazah = await storage
-          .ref('aktaKematian')
-          .child('KTPJenazah$randomNumber.$extKTPJenazah')
-          .getDownloadURL();
-
+    if (pickedImageKK != null && pickedImageAktaKelahiran != null) {
       /// KK
       String extKK = pickedImageKK!.name.split(".").last;
 
-      await storage.ref('aktaKematian').child('KK$randomNumber.$extKK').putFile(
+      await storage.ref('KIA').child('KK$randomNumber.$extKK').putFile(
             File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
-          .ref('aktaKematian')
+          .ref('KIA')
           .child('KK$randomNumber.$extKK')
           .getDownloadURL();
 
@@ -109,45 +84,15 @@ class RegistKiaController extends GetxController {
       String extAktaKelahiran = pickedImageAktaKelahiran!.name.split(".").last;
 
       await storage
-          .ref('aktaKematian')
-          .child('AktaKelahiran$randomNumber.$extAktaKelahiran')
+          .ref('KIA')
+          .child('aktaKelahiran$randomNumber.$extAktaKelahiran')
           .putFile(
             File(pickedImageAktaKelahiran!.path),
           );
 
       String fotoAktaKelahiran = await storage
-          .ref('aktaKematian')
-          .child('AktaKelahiran$randomNumber.$extKK')
-          .getDownloadURL();
-
-      /// KTP Pelapor
-      String extKtPPelapor = pickedImageKtpPelapor!.name.split(".").last;
-
-      await storage
-          .ref('aktaKematian')
-          .child('KtpPelapor$randomNumber.$extKtPPelapor')
-          .putFile(
-            File(pickedImageKtpPelapor!.path),
-          );
-
-      String ktpPelaPor = await storage
-          .ref('aktaKematian')
-          .child('KtpPelapor$randomNumber.$extKtPPelapor')
-          .getDownloadURL();
-
-      /// KKPelapor
-      String extKKpelapor = pickedImageKKPelapor!.name.split(".").last;
-
-      await storage
-          .ref('aktaKematian')
-          .child('KKpelapor$randomNumber.$extKKpelapor')
-          .putFile(
-            File(pickedImageKKPelapor!.path),
-          );
-
-      String fotoKKpelapor = await storage
-          .ref('aktaKematian')
-          .child('KKpelapor$randomNumber.$extKKpelapor')
+          .ref('KIA')
+          .child('aktaKelahiran$randomNumber.$extKK')
           .getDownloadURL();
 
       try {
@@ -161,6 +106,8 @@ class RegistKiaController extends GetxController {
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
+          'kk': fotoKK,
+          'akta_kelahiran': fotoAktaKelahiran,
           'namaLengkapPemohon': namaLengkapC,
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
@@ -200,31 +147,6 @@ class RegistKiaController extends GetxController {
       isDismissible: true,
       forwardAnimationCurve: Curves.easeOutBack,
     );
-  }
-
-  /// FOTO KTP JENAZAH
-  void selectImageKTPJenazah() async {
-    try {
-      final dataImage = await imagePickerKTPJenazah.pickImage(
-        source: ImageSource.gallery,
-      );
-
-      if (dataImage != null) {
-        print(dataImage.name);
-        print(dataImage.path);
-        pickedImageKTPJenazah = dataImage;
-      }
-      update();
-    } catch (err) {
-      print(err);
-      pickedImageKTPJenazah = null;
-      update();
-    }
-  }
-
-  void resetImageKTPJenazah() {
-    pickedImageKTPJenazah = null;
-    update();
   }
 
   /// FOTO KK
@@ -275,57 +197,6 @@ class RegistKiaController extends GetxController {
 
   void resetImageAktaKelahiran() {
     pickedImageAktaKelahiran = null;
-    update();
-  }
-
-  /// KTP PELAPOR
-  void selectKtpPelapor() async {
-    try {
-      final dataImage = await imagePickerKTPPelapor.pickImage(
-        source: ImageSource.gallery,
-      );
-
-      if (dataImage != null) {
-        print(dataImage.name);
-        print(dataImage.path);
-        pickedImageKtpPelapor = dataImage;
-      }
-      update();
-    } catch (err) {
-      print(err);
-      pickedImageKtpPelapor = null;
-      update();
-    }
-  }
-
-  void resetImageKtpPelapor() {
-    pickedImageKtpPelapor = null;
-    update();
-  }
-
-  /// KK PELAPOR
-
-  void selectKKPelapor() async {
-    try {
-      final dataImage = await imagePickerKKPelapor.pickImage(
-        source: ImageSource.gallery,
-      );
-
-      if (dataImage != null) {
-        print(dataImage.name);
-        print(dataImage.path);
-        pickedImageKKPelapor = dataImage;
-      }
-      update();
-    } catch (err) {
-      print(err);
-      pickedImageKKPelapor = null;
-      update();
-    }
-  }
-
-  void resetImageKKPelapor() {
-    pickedImageKKPelapor = null;
     update();
   }
 
