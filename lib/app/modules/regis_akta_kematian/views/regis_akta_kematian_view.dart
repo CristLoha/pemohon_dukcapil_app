@@ -155,6 +155,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                   }
                   return null;
                 },
+                textCapitalization: TextCapitalization.none,
               ),
 
               SizedBox(height: 20.h),
@@ -163,10 +164,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomTitleWidget(title: 'Nama Lengkap Jenazah'),
               SizedBox(height: 12.h),
               CustomFormField(
-                  readOnly: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.nameJenazahC),
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.nameJenazahC,
+                textCapitalization: TextCapitalization.words,
+              ),
               SizedBox(height: 20.h),
 
               /// Jenis Kelamin
@@ -232,10 +235,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomTitleWidget(title: 'Tempat Lahir'),
               SizedBox(height: 12.h),
               CustomFormField(
-                  readOnly: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.nameTempatLahirC),
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.nameTempatLahirC,
+                textCapitalization: TextCapitalization.words,
+              ),
               SizedBox(height: 20.h),
 
               /// Kewarganegaraan
@@ -282,6 +287,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     return null;
                   }
                 },
+                textCapitalization: TextCapitalization.words,
               ),
               SizedBox(height: 20.h),
 
@@ -293,6 +299,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 textEditingController: controller.anakKe,
+                textCapitalization: TextCapitalization.none,
               ),
               SizedBox(height: 20.h),
 
@@ -419,6 +426,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                             return 'NIK harus 16 karakter';
                           }
                         },
+                        textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
 
@@ -431,6 +439,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         keyboardType: TextInputType.name,
                         textEditingController: controller.namaAyahC,
                         onTap: () {},
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),
 
@@ -452,6 +461,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           }
                           return null;
                         },
+                        textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
 
@@ -464,6 +474,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         keyboardType: TextInputType.name,
                         textEditingController: controller.namaIbuC,
                         onTap: () {},
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),
 
@@ -485,6 +496,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                           }
                           return null;
                         },
+                        textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
 
@@ -505,6 +517,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
                       ),
 
                       SizedBox(height: 20.h),
@@ -513,9 +526,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       CustomTitleWidget(title: 'No. Telepon'),
                       SizedBox(height: 12.h),
                       CustomFormField(
+                        textCapitalization: TextCapitalization.none,
                         readOnly: false,
                         textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.name,
+                        keyboardType: TextInputType.number,
                         textEditingController: controller.noTeleponC,
                         onTap: () {},
                         validator: (value) {

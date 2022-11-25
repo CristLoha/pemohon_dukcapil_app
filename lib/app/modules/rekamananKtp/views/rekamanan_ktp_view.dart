@@ -156,6 +156,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
+                        textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Nama Lengkap'),
@@ -164,6 +165,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         readOnly: true,
                         textEditingController: controller.nameC,
                         keyboardType: TextInputType.name,
+                        textCapitalization: TextCapitalization.words,
                       ),
 
                       SizedBox(height: 20.h),
@@ -215,6 +217,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 12.h),
 
@@ -234,6 +237,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),
 

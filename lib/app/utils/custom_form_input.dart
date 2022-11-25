@@ -5,6 +5,7 @@ import '../shared/theme.dart';
 
 class CustomFormField extends GetView<RegisterController> {
   final TextInputType? keyboardType;
+  final TextCapitalization textCapitalization;
   final Icon? icon;
   final double? maxLines;
   final bool? readOnly;
@@ -18,6 +19,7 @@ class CustomFormField extends GetView<RegisterController> {
       this.keyboardType,
       this.icon,
       this.maxLines,
+      required this.textCapitalization,
       this.textInputAction,
       this.readOnly,
       this.onTap,
@@ -28,7 +30,7 @@ class CustomFormField extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      // textCapitalization: TextCapitalization.words,
+      textCapitalization: textCapitalization,
       textInputAction: textInputAction,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,

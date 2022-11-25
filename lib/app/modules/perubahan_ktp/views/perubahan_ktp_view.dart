@@ -166,6 +166,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                           }
                           return null;
                         },
+                        textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 12.h),
 
@@ -177,16 +178,19 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
+                        textCapitalization: TextCapitalization.none,
                       ),
 
                       SizedBox(height: 12.h),
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
-                          readOnly: true,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.name,
-                          textEditingController: controller.nameC),
+                        readOnly: true,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.nameC,
+                        textCapitalization: TextCapitalization.words,
+                      ),
 
                       SizedBox(height: 12.h),
                       CustomTitleWidget(title: 'Tanggal lahir'),
@@ -237,6 +241,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 12.h),
 
@@ -256,6 +261,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),
 

@@ -77,6 +77,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   }
                 },
+                textCapitalization: TextCapitalization.words,
               ),
               SizedBox(height: 20.h),
 
@@ -103,6 +104,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   }
                 },
+                textCapitalization: TextCapitalization.none,
               ),
 
               /// Jenis Kelamin
@@ -151,6 +153,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   }
                 },
+                textCapitalization: TextCapitalization.none,
               ),
 
               SizedBox(height: 20.h),
@@ -178,6 +181,7 @@ class RegisterView extends GetView<RegisterController> {
                     return null;
                   }
                 },
+                textCapitalization: TextCapitalization.none,
               ),
 
               SizedBox(height: 20.h),
