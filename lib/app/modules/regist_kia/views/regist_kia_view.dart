@@ -119,7 +119,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
     return [
       Step(
         title: Text(
-          'Registrasi KIA',
+          'Registrasi\nKIA',
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(

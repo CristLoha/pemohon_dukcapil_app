@@ -197,7 +197,7 @@ class RegisterView extends GetView<RegisterController> {
                   keyboardType: TextInputType.visiblePassword,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
-                    if (!GetUtils.isLengthGreaterThan(value, 5)) {
+                    if (!GetUtils.isLengthGreaterThan(value, 4)) {
                       return 'Minimal 5 karakter';
                     } else {
                       return null;
