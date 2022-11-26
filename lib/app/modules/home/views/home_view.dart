@@ -48,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                               padding: const EdgeInsets.only(top: 7),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id-card.png',
-                                title: 'Registrasi \ne-KTP',
+                                title: 'Perekaman \ne-KTP',
                                 height: 11.sp,
                                 bottom: 14.h,
                                 widthIcon: 36.w,
