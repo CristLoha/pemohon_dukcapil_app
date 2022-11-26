@@ -108,12 +108,12 @@ class RegistKiaController extends GetxController {
           'nikPemohon': nikPemohonC.text,
           'kk': fotoKK,
           'akta_kelahiran': fotoAktaKelahiran,
-          'namaLengkapPemohon': namaLengkapC,
+          'namaLengkapPemohon': namaLengkapPemohonC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
           'keterangan': keteranganC.text,
           'desa': desaC.text,
-          "keyName": namaLengkapC.text.substring(0, 1).toUpperCase(),
+          'keyName': namaLengkapC.text.substring(0, 1).toUpperCase(),
           'kategori': 'KIA',
           'email': userPemohon!.email,
           'uid': uid,
@@ -129,6 +129,9 @@ class RegistKiaController extends GetxController {
         Get.back();
       } catch (e) {
         print(e);
+        EasyLoading.showError(
+          'Gagal mengirim data',
+        );
       }
     } else {
       EasyLoading.showError(

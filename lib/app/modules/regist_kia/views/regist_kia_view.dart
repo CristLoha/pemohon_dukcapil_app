@@ -119,7 +119,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
     return [
       Step(
         title: Text(
-          'Registrasi\nKIA',
+          'KIA',
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
@@ -592,7 +592,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
 
                 ///AKTA KELAHIRAN
                 Text(
-                  'Unggah Akta Kelahiran/Surat Pernyataan tidak memiliki Akta Kelahiran',
+                  'Unggah Akta Kelahiran',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
