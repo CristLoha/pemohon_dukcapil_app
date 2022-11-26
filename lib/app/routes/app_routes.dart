@@ -18,6 +18,7 @@ abstract class Routes {
   static const DETAIL_RIWAYAT = _Paths.DETAIL_RIWAYAT;
   static const REGIS_AKTA_KEMATIAN = _Paths.REGIS_AKTA_KEMATIAN;
   static const REGIST_KIA = _Paths.REGIST_KIA;
+  static const KARTU_KELUARGA = _Paths.KARTU_KELUARGA;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const DETAIL_RIWAYAT = '/detail-riwayat';
   static const REGIS_AKTA_KEMATIAN = '/regis-akta-kematian';
   static const REGIST_KIA = '/regist-kia';
+  static const KARTU_KELUARGA = '/kartu-keluarga';
 }

@@ -89,11 +89,13 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
-                              title: 'Registrasi\nKK',
+                              title: 'Registrasi\nKK Baru',
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.KARTU_KELUARGA);
+                              },
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/death-certificate.png',

@@ -6,6 +6,8 @@ import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_bindin
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/bindings/home_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/views/home_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/kartu_keluarga/bindings/kartu_keluarga_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/kartu_keluarga/views/kartu_keluarga_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/landing_screen/bindings/landing_screen_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/landing_screen/views/landing_screen_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/login/bindings/login_binding.dart';
@@ -99,6 +101,11 @@ class AppPages {
       name: _Paths.REGIST_KIA,
       page: () => RegistKiaView(),
       binding: RegistKiaBinding(),
+    ),
+    GetPage(
+      name: _Paths.KARTU_KELUARGA,
+      page: () => KartuKeluargaView(),
+      binding: KartuKeluargaBinding(),
     ),
   ];
 }
