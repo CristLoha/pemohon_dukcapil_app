@@ -115,8 +115,8 @@ class HomeView extends GetView<HomeController> {
                             Padding(
                               padding: EdgeInsets.only(left: 40.w, right: 47.w),
                               child: CustomMenusCard(
-                                icon: 'assets/icon/update.png',
-                                title: 'Perubahan \nKK',
+                                icon: 'assets/icon/marriage-certificate.png',
+                                title: 'Akta\nPernikahan',
                                 height: 11.sp,
                                 bottom: 12.h,
                                 widthIcon: 36.w,
@@ -127,7 +127,7 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(top: 3.h),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id_kia.png',
-                                title: 'Registrasi \nKIA',
+                                title: 'Registrasi\nKIA',
                                 height: 11.sp,
                                 bottom: 15.h,
                                 widthIcon: 39.w,
