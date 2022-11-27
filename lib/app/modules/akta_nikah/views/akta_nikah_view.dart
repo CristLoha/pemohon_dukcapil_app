@@ -195,14 +195,13 @@ class AktaNikahView extends GetView<AktaNikahController> {
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir Suami'),
               SizedBox(height: 12.h),
-
               CustomDateInput(
                 onTap: () => controller.tglLahirSuami(),
                 controller: controller.tanggalLahirSuamiC,
               ),
               SizedBox(height: 20.h),
 
-              /// Kewarganegaraan
+              /// Kewarganegaraan Suami
               CustomTitleWidget(title: 'Kewarganegaraan Suami'),
               SizedBox(height: 12.h),
               DropdownSearch<Map<String, dynamic>>(
