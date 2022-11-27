@@ -7,6 +7,7 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
   final Icon? icon;
   final double? maxLines;
   final bool? readOnly;
+  final String? hintText;
 
   final TextInputAction? textInputAction;
   final Function()? onTap;
@@ -17,6 +18,7 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
       {Key? key,
       this.icon,
       this.maxLines,
+      this.hintText,
       this.textInputAction,
       this.readOnly,
       this.onTap,
@@ -38,6 +40,7 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
       controller: textEditingController,
       decoration: InputDecoration(
         prefixIcon: icon,
+        hintText: hintText,
         hintStyle: greyTextStyle,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),

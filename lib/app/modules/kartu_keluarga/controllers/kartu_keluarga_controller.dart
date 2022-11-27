@@ -23,7 +23,7 @@ class KartuKeluargaController extends GetxController {
   XFile? pickedImageAktaKelahiran;
 
   ///KIA
-  TextEditingController nikAnakC = TextEditingController();
+  TextEditingController nik = TextEditingController();
   TextEditingController noAktaKelahiranC = TextEditingController();
   TextEditingController namaLengkapC = TextEditingController();
   TextEditingController jenisKelaminC = TextEditingController();
@@ -31,6 +31,7 @@ class KartuKeluargaController extends GetxController {
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
+  TextEditingController daftarAnggotaC = TextEditingController();
 
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
@@ -97,7 +98,7 @@ class KartuKeluargaController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
-          'nikAnak': nikAnakC.text,
+          'nikAnak': nik.text,
           'namaLengkap': namaLengkapC.text,
           'kecamatan': kecamatanC.text,
           'kecamatanPemohon': kecamatanPemohonC.text,

@@ -1,13 +1,10 @@
 import 'dart:io';
-
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_input_keterangan.dart';
@@ -27,7 +24,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
         (() => Container(
               child: Stepper(
                 elevation: 1,
-                type: StepperType.horizontal,
+                type: StepperType.vertical,
                 steps: formStep(),
                 onStepContinue: () {
                   if (!controller.formKeys[controller.index].currentState!
@@ -148,7 +145,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikAnakC,
+                textEditingController: controller.nik,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -182,7 +179,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikAnakC,
+                textEditingController: controller.nik,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -260,7 +257,6 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.words,
               ),
               SizedBox(height: 20.h),
-              SizedBox(height: 20.h),
 
               /// Kode Pos
               CustomTitleWidget(title: 'Kode Pos'),
@@ -270,7 +266,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikAnakC,
+                textEditingController: controller.nik,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -279,6 +275,40 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   }
                   return null;
                 },
+              ),
+              SizedBox(height: 20.h),
+              SizedBox(height: 20.h),
+
+              /// Jumlah Anggota Keluarga
+              CustomTitleWidget(title: 'Jml Anggota Keluarga'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nik,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan kode pos yang benar";
+                  }
+                  return null;
+                },
+              ),
+
+              SizedBox(height: 20.h),
+
+              /// Keterangan
+              CustomTitleWidget(title: 'Daftar Anggota'),
+              SizedBox(height: 12.h),
+              CustomFormKeteranganField(
+                hintText:
+                    'Cth: Nama\n\n1. Christ Henry Loha \n2. Steve Imanuel Loha \ndst..\nNIK:\n1. ',
+                readOnly: false,
+                textInputAction: TextInputAction.newline,
+                textEditingController: controller.daftarAnggotaC,
               ),
               SizedBox(height: 20.h),
 
@@ -298,120 +328,28 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Anggota\nPemohon',
+        title: Text('Daftar',
             style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
-        content: FutureBuilder<Map<String, dynamic>?>(
-            future: controller.getProfile(),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                EasyLoading.show(status: 'memuat...');
-                EasyLoading.dismiss();
-              }
-              if (snapshot.data == null) {
-                return Center(
-                  child: Text("Tidak ada data user."),
-                );
-              } else {
-                controller.namaLengkapPemohonC.text = snapshot.data!["nama"];
-                controller.nikPemohonC.text = snapshot.data!["nik"];
-                return Form(
-                  key: controller.formKeys[1],
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Text(
-                          'Formulir Untuk Pemohon',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
+        content: Form(
+          key: controller.formKeys[1],
+          child: HorizontalDataTable(
+            leftHandSideColumnWidth: 220,
+            rightHandSideColumnWidth: 100,
+            leftSideChildren: [
+              Text('1'),
+              Text('1'),
+              Text('1'),
+            ],
+            rightSideChildren: [
+              Text('1'),
+              Text('1'),
+              Text('1'),
+            ],
+            headerWidgets: [Text('1'), Text('2'), Text('3')],
+          ),
+        ),
 
-                      /// NIK Pemohon
-                      CustomTitleWidget(title: 'NIK'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: true,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.nikPemohonC,
-                        textCapitalization: TextCapitalization.none,
-                      ),
-                      SizedBox(height: 20.h),
-
-                      /// Nama Lengkap Pemohon
-                      CustomTitleWidget(title: 'Nama Lengkap'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: true,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        textEditingController: controller.namaLengkapPemohonC,
-                        textCapitalization: TextCapitalization.words,
-                      ),
-
-                      SizedBox(height: 20.h),
-
-                      /// Kecamatan
-                      CustomTitleWidget(title: 'Kecamatan'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        textEditingController: controller.kecamatanPemohonC,
-                        onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-
-                      SizedBox(height: 20.h),
-
-                      /// Desa
-                      CustomTitleWidget(title: 'Desa'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        textEditingController: controller.desaPemohonC,
-                        onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama desa yang benar";
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                      SizedBox(height: 20.h),
-
-                      /// Email
-                      CustomTitleWidget(title: 'Email'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        textEditingController: controller.emailC,
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                    ],
-                  ),
-                );
-              }
-            }),
+        ///
         isActive: controller.currentStep.value >= 1,
         state:
             controller.currentStep > 1 ? StepState.complete : StepState.indexed,

@@ -22,7 +22,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
       body: Obx(
         (() => Stepper(
               elevation: 1,
-              type: StepperType.horizontal,
+              type: StepperType.vertical,
               steps: formStep(),
               onStepContinue: () {
                 if (!controller.formKeys[controller.index].currentState!
@@ -115,7 +115,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
       Step(
         title: Text(
           'Pemohon',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
@@ -260,7 +260,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
       ),
       Step(
         title: Text('Persyaratan',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+            style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
