@@ -19,9 +19,19 @@ class AktaNikahController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController nikSuamiC = TextEditingController();
+  TextEditingController nikIstriC = TextEditingController();
+  TextEditingController nikSaksi1 = TextEditingController();
+  TextEditingController namaLengkapSaksi1 = TextEditingController();
+  TextEditingController nikSaksi2 = TextEditingController();
+  TextEditingController namaLengkapSaksi2 = TextEditingController();
   TextEditingController namaLengkapSuamiC = TextEditingController();
+  TextEditingController namaLengkapIstriC = TextEditingController();
   TextEditingController tempatLahirSuamiC = TextEditingController();
+  TextEditingController tempatLahirIstriC = TextEditingController();
   TextEditingController tanggalLahirSuamiC = TextEditingController();
+  TextEditingController tanggalLahirIstriC = TextEditingController();
+  TextEditingController kewarganegaraanSuamiC = TextEditingController();
+  TextEditingController kewarganegaraanIstriC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
@@ -31,6 +41,28 @@ class AktaNikahController extends GetxController {
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+  ];
+
+  List<Map<String, dynamic>> dataJenisKewarganegaraan = [
+    {
+      "jenisK": "WNI",
+      "id": 1,
+    },
+    {
+      "jenisK": "WNA",
+      "id": 2,
+    }
+  ];
+
+  List<Map<String, dynamic>> dataJenisYgMenerangkan = [
+    {
+      "menerangkan": "DOKTER",
+      "id": 1,
+    },
+    {
+      "menerangkan": "POLISI",
+      "id": 2,
+    }
   ];
 
   XFile? pickedImage;
@@ -160,6 +192,19 @@ class AktaNikahController extends GetxController {
     ).then((selectedDate) {
       if (selectedDate != null) {
         tanggalLahirSuamiC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  void tglLahirIstri() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirIstriC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -155,7 +156,6 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   return null;
                 },
               ),
-
               SizedBox(height: 20.h),
 
               /// Nama Lengkap Suami
@@ -189,12 +189,13 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 textCapitalization: TextCapitalization.words,
               ),
 
+              /// Tanggal Lahir suami
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir Suami'),
               SizedBox(height: 12.h),
               TextFormField(
                 textInputAction: TextInputAction.next,
-                controller: controller.dateC,
+                controller: controller.tanggalLahirSuamiC,
                 readOnly: true,
                 onTap: () {
                   controller.tglLahirSuami();
@@ -218,20 +219,81 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   ),
                 ),
               ),
+              SizedBox(height: 20.h),
 
-              /// Kecamatan
-              CustomTitleWidget(title: 'Kecamatan'),
+              /// Kewarganegaraan
+              CustomTitleWidget(title: 'Kewarganegaraan Suami'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisKewarganegaraan,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jenisK"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jenisK"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jenisK"]);
+                  controller.kewarganegaraanSuamiC =
+                      TextEditingController(text: value["jenisK"]);
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// NIK ISTRI
+              CustomTitleWidget(title: 'NIK Istri'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikIstriC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan Nomor NIK yang benar";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap Istri
+              CustomTitleWidget(title: 'Nama Lengkap Istri'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaLengkapIstriC),
+              SizedBox(height: 20.h),
+
+              /// Tempat Lahir Istri
+              CustomTitleWidget(title: 'Tempat Lahir Istri'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.kecamatanC,
+                textEditingController: controller.tempatLahirIstriC,
                 onTap: () {},
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama kecamatan yang benar";
+                    return "Masukan nama tempat lahir yang benar";
                   } else {
                     return null;
                   }
@@ -239,50 +301,131 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 textCapitalization: TextCapitalization.words,
               ),
 
+              /// TANGGAL LAHIR ISTRI
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Tanggal lahir Istri'),
+              SizedBox(height: 12.h),
+              TextFormField(
+                textInputAction: TextInputAction.next,
+                controller: controller.tanggalLahirIstriC,
+                readOnly: true,
+                onTap: () {
+                  controller.tglLahirIstri();
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Silahkan masukkan tanggal lahir';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintStyle: greyTextStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: BorderSide(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
+              ),
               SizedBox(height: 20.h),
 
-              /// Desa
-              CustomTitleWidget(title: 'Desa'),
+              /// Kewarganegaraan Istri
+              CustomTitleWidget(title: 'Kewarganegaraan Istri'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.dataJenisKewarganegaraan,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jenisK"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jenisK"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jenisK"]);
+                  controller.kewarganegaraanIstriC =
+                      TextEditingController(text: value["jenisK"]);
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// NIK SAKSI 1
+              CustomTitleWidget(title: 'NIK Saksi 1 (Satu)'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
+                textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.desaC,
-                onTap: () {},
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikSaksi1,
                 validator: (value) {
                   if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama desa yang benar";
-                  } else {
-                    return null;
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan Nomor NIK yang benar";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
                   }
+                  return null;
                 },
-                textCapitalization: TextCapitalization.words,
-              ),
-
-              SizedBox(height: 20.h),
-
-              /// Keterangan
-              CustomTitleWidget(title: 'Daftar Anggota'),
-              SizedBox(height: 12.h),
-              CustomFormKeteranganField(
-                hintText:
-                    'Cth: Nama\n\n1. Christ Henry Loha \n2. Steve Imanuel Loha \ndst..\nNIK:\n1. ',
-                readOnly: false,
-                textInputAction: TextInputAction.newline,
-                textEditingController: controller.keteranganC,
               ),
               SizedBox(height: 20.h),
 
-              /// Keterangan
-              CustomTitleWidget(title: 'Keterangan'),
+              /// Nama Lengkap Saksi 1
+              CustomTitleWidget(title: 'Nama Lengkap Saksi 1 (Satu)'),
               SizedBox(height: 12.h),
-              CustomFormKeteranganField(
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaLengkapSaksi1),
+              SizedBox(height: 20.h),
+              SizedBox(height: 20.h),
+
+              /// NIK SAKSI 2
+              CustomTitleWidget(title: 'NIK Saksi 2 (Dua)'),
+              SizedBox(height: 12.h),
+              CustomFormField(
                 readOnly: false,
-                textInputAction: TextInputAction.done,
-                textEditingController: controller.keteranganC,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikSaksi2,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan Nomor NIK yang benar";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
               ),
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap Saksi 2
+              CustomTitleWidget(title: 'Nama Lengkap Saksi 2 (Dua)'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaLengkapSaksi2),
+              SizedBox(height: 20.h),
             ],
           ),
         ),
