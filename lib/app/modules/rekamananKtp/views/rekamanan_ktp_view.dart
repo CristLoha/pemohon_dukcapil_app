@@ -16,7 +16,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Daftar rekam e-KTP'),
+        title: Text('Perekaman e-KTP'),
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
@@ -138,16 +138,6 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          'Formulir Pendaftaran Antrian Perekaman e-KTP',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-
                       /// NIK
                       CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
