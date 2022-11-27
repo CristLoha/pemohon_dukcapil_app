@@ -4,8 +4,10 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttericon/modern_pictograms_icons.dart';
 
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/utils/custom_date_input.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../../shared/theme.dart';
@@ -193,31 +195,10 @@ class AktaNikahView extends GetView<AktaNikahController> {
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir Suami'),
               SizedBox(height: 12.h),
-              TextFormField(
-                textInputAction: TextInputAction.next,
+
+              CustomDateInput(
+                onTap: () => controller.tglLahirSuami(),
                 controller: controller.tanggalLahirSuamiC,
-                readOnly: true,
-                onTap: () {
-                  controller.tglLahirSuami();
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Silahkan masukkan tanggal lahir';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintStyle: greyTextStyle,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: BorderSide(
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 20.h),
 
@@ -305,31 +286,9 @@ class AktaNikahView extends GetView<AktaNikahController> {
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir Istri'),
               SizedBox(height: 12.h),
-              TextFormField(
-                textInputAction: TextInputAction.next,
+              CustomDateInput(
+                onTap: () => controller.tglLahirIstri(),
                 controller: controller.tanggalLahirIstriC,
-                readOnly: true,
-                onTap: () {
-                  controller.tglLahirIstri();
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Silahkan masukkan tanggal lahir';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  hintStyle: greyTextStyle,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: BorderSide(
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 20.h),
 
@@ -392,7 +351,6 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   keyboardType: TextInputType.name,
                   textEditingController: controller.namaLengkapSaksi1),
               SizedBox(height: 20.h),
-              SizedBox(height: 20.h),
 
               /// NIK SAKSI 2
               CustomTitleWidget(title: 'NIK Saksi 2 (Dua)'),
@@ -426,6 +384,28 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   keyboardType: TextInputType.name,
                   textEditingController: controller.namaLengkapSaksi2),
               SizedBox(height: 20.h),
+
+              /// Nomor Telepon
+              CustomTitleWidget(title: 'Nomor Telepon'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.phone,
+                textEditingController: controller.noTelpC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                          .hasMatch(value)) {
+                    return "Masukan nomor telepon yang benar";
+                  } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
+                    return 'Minimal 12 karakter';
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.none,
+              ),
             ],
           ),
         ),

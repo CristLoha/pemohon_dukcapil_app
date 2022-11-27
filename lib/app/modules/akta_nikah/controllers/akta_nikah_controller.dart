@@ -23,6 +23,7 @@ class AktaNikahController extends GetxController {
   TextEditingController nikSaksi1 = TextEditingController();
   TextEditingController namaLengkapSaksi1 = TextEditingController();
   TextEditingController nikSaksi2 = TextEditingController();
+  TextEditingController noTelpC = TextEditingController();
   TextEditingController namaLengkapSaksi2 = TextEditingController();
   TextEditingController namaLengkapSuamiC = TextEditingController();
   TextEditingController namaLengkapIstriC = TextEditingController();
@@ -91,7 +92,9 @@ class AktaNikahController extends GetxController {
 
       await rekamanKtp.add({
         'nikSuami': nikSuamiC.text,
+        'nikIstri': nikIstriC.text,
         'namaLengkapSuami': namaLengkapSuamiC.text,
+        'namaLengkapIstri': namaLengkapIstriC.text,
         'tempatLahir': tempatLahirSuamiC.text,
         'fotoKK': fotoKK,
         'tgl_lahir': dateC.text,
