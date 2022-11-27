@@ -22,6 +22,7 @@ class AktaNikahController extends GetxController {
   TextEditingController nikIstriC = TextEditingController();
   TextEditingController nikSaksi1 = TextEditingController();
   TextEditingController namaLengkapSaksi1 = TextEditingController();
+  TextEditingController emailC = TextEditingController();
   TextEditingController nikSaksi2 = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
   TextEditingController namaLengkapSaksi2 = TextEditingController();
@@ -99,6 +100,7 @@ class AktaNikahController extends GetxController {
         'namaLengkapIstri': namaLengkapIstriC.text,
         'tempatLahirSuami': tempatLahirSuamiC.text,
         'tempatLahirIstri': tempatLahirIstriC.text,
+        'email': emailC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
         'kewarganegaranIstri': kewarganegaraanIstriC.text,
         'fotoKK': fotoKK,

@@ -1,18 +1,14 @@
 import 'dart:io';
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttericon/modern_pictograms_icons.dart';
-
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_date_input.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
-import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/akta_nikah_controller.dart';
 
@@ -399,6 +395,25 @@ class AktaNikahView extends GetView<AktaNikahController> {
                     return "Masukan nomor telepon yang benar";
                   } else if (!GetUtils.isLengthGreaterOrEqual(value, 11)) {
                     return 'Minimal 12 karakter';
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.none,
+              ),
+              SizedBox(height: 20.h),
+
+              /// EMAIL
+              CustomTitleWidget(title: 'Email'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                textEditingController: controller.emailC,
+                validator: (value) {
+                  if (!GetUtils.isEmail(value!)) {
+                    return 'Email tidak valid';
                   } else {
                     return null;
                   }
