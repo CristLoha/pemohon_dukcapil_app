@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/bindings/akta_nikah_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/views/akta_nikah_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/bindings/detail_riwayat_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/views/detail_riwayat_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
@@ -106,6 +108,11 @@ class AppPages {
       name: _Paths.KARTU_KELUARGA,
       page: () => KartuKeluargaView(),
       binding: KartuKeluargaBinding(),
+    ),
+    GetPage(
+      name: _Paths.AKTA_NIKAH,
+      page: () => AktaNikahView(),
+      binding: AktaNikahBinding(),
     ),
   ];
 }

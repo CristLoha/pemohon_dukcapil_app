@@ -116,11 +116,13 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(left: 40.w, right: 47.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/marriage-certificate.png',
-                                title: 'Akta\nPernikahan',
+                                title: 'Akta\nNikah',
                                 height: 11.sp,
                                 bottom: 12.h,
                                 widthIcon: 36.w,
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(Routes.AKTA_NIKAH);
+                                },
                               ),
                             ),
                             Padding(
