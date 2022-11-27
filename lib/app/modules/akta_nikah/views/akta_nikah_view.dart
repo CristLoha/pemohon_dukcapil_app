@@ -124,16 +124,6 @@ class AktaNikahView extends GetView<AktaNikahController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  'Formulir Perkawinan',
-                  style: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-
               /// NIK SUAMI
               CustomTitleWidget(title: 'NIK Suami'),
               SizedBox(height: 12.h),
@@ -408,7 +398,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 keyboardType: TextInputType.emailAddress,
                 textEditingController: controller.emailC,
                 validator: (value) {
@@ -428,13 +418,13 @@ class AktaNikahView extends GetView<AktaNikahController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Persyaratan',
+        title: Text('Upload Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Unggah KK',
+              'Upload Selfie Pelapor',
               style: blackTextStyle.copyWith(),
             ),
             SizedBox(height: 12.h),
