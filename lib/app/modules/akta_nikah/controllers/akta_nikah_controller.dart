@@ -55,19 +55,11 @@ class AktaNikahController extends GetxController {
     }
   ];
 
-  List<Map<String, dynamic>> dataJenisYgMenerangkan = [
-    {
-      "menerangkan": "DOKTER",
-      "id": 1,
-    },
-    {
-      "menerangkan": "POLISI",
-      "id": 2,
-    }
-  ];
-
   final ImagePicker imagePickerSelfie = ImagePicker();
   XFile? pickedImageSelfie;
+
+  final ImagePicker imagePickerSuratNikah = ImagePicker();
+  XFile? pickedImageSuratNikah;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -78,7 +70,9 @@ class AktaNikahController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageSelfie != null) {
+
+    ///FOTO SELFIE
+    if (pickedImageSelfie != null && pickedImageSuratNikah != null) {
       String ext = pickedImageSelfie!.name.split(".").last;
       await storage.ref('Akta Nikah').child('selfie$randomNumber.$ext').putFile(
             File(pickedImageSelfie!.path),
@@ -89,42 +83,59 @@ class AktaNikahController extends GetxController {
           .child('selfie$randomNumber.$ext')
           .getDownloadURL();
 
-      CollectionReference rekamanKtp = firestore.collection('layanan');
+      /// SURAT NKAH
+      if (pickedImageSuratNikah != null) {
+        String ext = pickedImageSuratNikah!.name.split(".").last;
+        await storage
+            .ref('Akta Nikah')
+            .child('suratNikah$randomNumber.$ext')
+            .putFile(
+              File(pickedImageSuratNikah!.path),
+            );
 
-      await rekamanKtp.add({
-        'nikSuami': nikSuamiC.text,
-        'nikIstri': nikIstriC.text,
-        'namaLengkapSuami': namaLengkapSuamiC.text,
-        'tanggalLahirSuami': tanggalLahirSuamiC.text,
-        'tanggalLahirIstri': tanggalLahirIstriC.text,
-        'namaLengkapIstri': namaLengkapIstriC.text,
-        'tempatLahirSuami': tempatLahirSuamiC.text,
-        'tempatLahirIstri': tempatLahirIstriC.text,
-        'email': emailC.text,
-        'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
-        'kewarganegaranIstri': kewarganegaraanIstriC.text,
-        'fotoSelfiePelapor': fotoSelfie,
-        "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
-        'kategori': 'Akta Nikah',
-        'uid': uid,
-        'keterangan': keteranganC.text,
-        'keteranganKonfirmasi': '',
-        'proses': 'PROSES VERIFIKASI',
-        'creationTime': DateTime.now().toIso8601String(),
-        'updatedTime': DateTime.now().toIso8601String(),
-      }).then(
-        (value) {
-          EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-          Get.offAllNamed(Routes.MAIN_PAGE);
-        },
-      ).catchError(
-        (error) {
-          print("Failed to add user: $error");
-        },
-      );
-    } else {
-      EasyLoading.showError('Data tidak boleh kosong');
-      print('data tidak boleh kosong');
+        String fotoSuratNikah = await storage
+            .ref('Akta Nikah')
+            .child('suratNikah$randomNumber.$ext')
+            .getDownloadURL();
+
+        CollectionReference rekamanKtp = firestore.collection('layanan');
+
+        await rekamanKtp.add({
+          'nikSuami': nikSuamiC.text,
+          'nikIstri': nikIstriC.text,
+          'namaLengkapSuami': namaLengkapSuamiC.text,
+          'tanggalLahirSuami': tanggalLahirSuamiC.text,
+          'tanggalLahirIstri': tanggalLahirIstriC.text,
+          'namaLengkapIstri': namaLengkapIstriC.text,
+          'tempatLahirSuami': tempatLahirSuamiC.text,
+          'tempatLahirIstri': tempatLahirIstriC.text,
+          'email': emailC.text,
+          'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
+          'kewarganegaranIstri': kewarganegaraanIstriC.text,
+          'fotoSelfiePelapor': fotoSelfie,
+          'fotoSuratNikah': fotoSuratNikah,
+          "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
+          'kategori': 'Akta Nikah',
+          'uid': uid,
+          'keterangan': keteranganC.text,
+          'keteranganKonfirmasi': '',
+          'proses': 'PROSES VERIFIKASI',
+          'creationTime': DateTime.now().toIso8601String(),
+          'updatedTime': DateTime.now().toIso8601String(),
+        }).then(
+          (value) {
+            EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+            Get.offAllNamed(Routes.MAIN_PAGE);
+          },
+        ).catchError(
+          (error) {
+            print("Failed to add user: $error");
+          },
+        );
+      } else {
+        EasyLoading.showError('Data tidak boleh kosong');
+        print('data tidak boleh kosong');
+      }
     }
   }
 
@@ -140,11 +151,7 @@ class AktaNikahController extends GetxController {
     );
   }
 
-  void resetImageSelfie() {
-    pickedImageSelfie = null;
-    update();
-  }
-
+  ///FOTO SELFIE
   void selectImageSelfie() async {
     try {
       final dataImage = await imagePickerSelfie.pickImage(
@@ -162,6 +169,36 @@ class AktaNikahController extends GetxController {
       pickedImageSelfie = null;
       update();
     }
+  }
+
+  void resetImageSelfie() {
+    pickedImageSelfie = null;
+    update();
+  }
+
+  ///FOTO SURAT NIKAH
+  void selectImageSuratNikah() async {
+    try {
+      final dataImage = await imagePickerSuratNikah.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSuratNikah = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageSuratNikah = null;
+      update();
+    }
+  }
+
+  void resetImageSuratNikah() {
+    pickedImageSuratNikah = null;
+    update();
   }
 
   ///UNTUK FORM
@@ -204,19 +241,19 @@ class AktaNikahController extends GetxController {
     });
   }
 
-  Future<Map<String, dynamic>?> getProfile() async {
-    try {
-      String uid = auth.currentUser!.uid;
-      DocumentSnapshot<Map<String, dynamic>> docUser =
-          await firestore.collection("pemohon").doc(uid).get();
+  // Future<Map<String, dynamic>?> getProfile() async {
+  //   try {
+  //     String uid = auth.currentUser!.uid;
+  //     DocumentSnapshot<Map<String, dynamic>> docUser =
+  //         await firestore.collection("pemohon").doc(uid).get();
 
-      return docUser.data();
-    } catch (e) {
-      print(e);
-      Get.snackbar("TERJADI KESALAHAN", "Tidak dapat get data user.");
-      return null;
-    }
-  }
+  //     return docUser.data();
+  //   } catch (e) {
+  //     print(e);
+  //     Get.snackbar("TERJADI KESALAHAN", "Tidak dapat get data user.");
+  //     return null;
+  //   }
+  // }
 
   ///JENIS KALENDER
   // void date() async {

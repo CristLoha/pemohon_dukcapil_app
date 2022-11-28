@@ -424,7 +424,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
           children: [
             /// SELFIE PELAPOR
             Text(
-              'Upload Selfie Pelapor',
+              'Unggah Selfie Pelapor',
               style: blackTextStyle.copyWith(),
             ),
             SizedBox(height: 12.h),
@@ -566,6 +566,8 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 ),
               ),
             ),
+
+            /// Upload surat
           ],
         ),
         isActive: controller.currentStep.value >= 1,
