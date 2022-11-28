@@ -70,8 +70,8 @@ class AktaNikahController extends GetxController {
   final ImagePicker imagePickerPasFotoSuamiIstri = ImagePicker();
   XFile? pickedImagepasFotoSuamiIstri;
 
-  final ImagePicker imagePickerPengumumanJawaban = ImagePicker();
-  XFile? pickedImagePengumumanJawaban;
+  final ImagePicker imagePickerAktaKelahiranSuami = ImagePicker();
+  XFile? pickedImageAktaKelahiranSuami;
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -90,7 +90,7 @@ class AktaNikahController extends GetxController {
         pickedImageSuketBNikah != null &&
         pickedImageKTPsuamiIstri != null &&
         pickedImagepasFotoSuamiIstri != null &&
-        pickedImagePengumumanJawaban != null) {
+        pickedImageAktaKelahiranSuami != null) {
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
@@ -165,20 +165,20 @@ class AktaNikahController extends GetxController {
           .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
           .getDownloadURL();
 
-      /// PengumumanJawawban
+      /// AktaKelahiranSuami
 
-      String extpenguPumumanJawaban =
-          pickedImagePengumumanJawaban!.name.split(".").last;
+      String extAktaKelahiranSuami =
+          pickedImageAktaKelahiranSuami!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
-          .child('pengumumanJawaban$randomNumber.$extpenguPumumanJawaban')
+          .child('AktaKelahiranSuami$randomNumber.$extAktaKelahiranSuami')
           .putFile(
-            File(pickedImagePengumumanJawaban!.path),
+            File(pickedImageAktaKelahiranSuami!.path),
           );
 
-      String pengumumanJawaban = await storage
+      String aktaKelahiranSuami = await storage
           .ref('Akta Nikah')
-          .child('pengumumanJawaban$randomNumber.$extpenguPumumanJawaban')
+          .child('aktaKelahiranSuami$randomNumber.$extAktaKelahiranSuami')
           .getDownloadURL();
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
@@ -199,7 +199,7 @@ class AktaNikahController extends GetxController {
         'fotoSuketBelumNikah': fotoSuketBelumNikah,
         'fotoktpSuamiIstri': ktpSuamiIstri,
         'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
-        'fotopengumumanJawaban': pengumumanJawaban,
+        'fotoAktaKelahiranSuami': aktaKelahiranSuami,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -361,28 +361,28 @@ class AktaNikahController extends GetxController {
     update();
   }
 
-  ///KTP SUAMI ISTRI
-  void selectImagepengumumanJawaban() async {
+  ///AKTA KELAHIRAN SUAMI
+  void selectImageAktaKelahiranSuami() async {
     try {
-      final dataImage = await imagePickerPengumumanJawaban.pickImage(
+      final dataImage = await imagePickerAktaKelahiranSuami.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImagePengumumanJawaban = dataImage;
+        pickedImageAktaKelahiranSuami = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImagePengumumanJawaban = null;
+      pickedImageAktaKelahiranSuami = null;
       update();
     }
   }
 
-  void resetImagePengumumanJawaban() {
-    pickedImagePengumumanJawaban = null;
+  void resetImageAktaKelahiranSuami() {
+    pickedImageAktaKelahiranSuami = null;
     update();
   }
 

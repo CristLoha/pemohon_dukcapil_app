@@ -1158,9 +1158,9 @@ class AktaNikahView extends GetView<AktaNikahController> {
               ),
             ),
 
-            /// PENGUMUMAN JAWABAN
+            /// AKTA KELAHIRAN SUAMI
             Text(
-              'Unggah Pengumuman Jawaban',
+              'Unggah Akta Kelahiran Suami',
               style: blackTextStyle.copyWith(),
             ),
             SizedBox(height: 12.h),
@@ -1177,19 +1177,19 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 child: Column(
                   children: [
                     GetBuilder<AktaNikahController>(
-                      builder: (c) => c.pickedImagePengumumanJawaban != null
+                      builder: (c) => c.pickedImageAktaKelahiranSuami != null
                           ? Row(
                               children: [
                                 Expanded(
                                   child: Text(
-                                    c.pickedImagePengumumanJawaban!.name,
+                                    c.pickedImageAktaKelahiranSuami!.name,
                                     style: blackTextStyle.copyWith(),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 TextButton(
                                   onPressed: () =>
-                                      c.resetImagePengumumanJawaban(),
+                                      c.resetImageAktaKelahiranSuami(),
                                   child: Icon(
                                     Icons.delete,
                                     color: kRedColor,
@@ -1215,7 +1215,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                           ),
                           child: GetBuilder<AktaNikahController>(
                             builder: (c) {
-                              return c.pickedImagePengumumanJawaban != null
+                              return c.pickedImageAktaKelahiranSuami != null
                                   ? ElevatedButton(
                                       onPressed: () {
                                         Get.dialog(
@@ -1223,7 +1223,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                                             child: PhotoView(
                                               imageProvider: FileImage(
                                                 File(c
-                                                    .pickedImagePengumumanJawaban!
+                                                    .pickedImageAktaKelahiranSuami!
                                                     .path),
                                               ),
                                             ),
@@ -1279,7 +1279,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                           height: 40.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              controller.selectImagepengumumanJawaban();
+                              controller.selectImageAktaKelahiranSuami();
                             },
                             child: Text(
                               'Pilih File',
