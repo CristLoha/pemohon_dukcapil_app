@@ -17,7 +17,6 @@ import '../../../shared/theme.dart';
 class AktaNikahController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePicker = ImagePicker();
   TextEditingController nikSuamiC = TextEditingController();
   TextEditingController nikIstriC = TextEditingController();
   TextEditingController nikSaksi1 = TextEditingController();
@@ -67,7 +66,8 @@ class AktaNikahController extends GetxController {
     }
   ];
 
-  XFile? pickedImage;
+  final ImagePicker imagePickerSelfie = ImagePicker();
+  XFile? pickedImageSelfie;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -78,15 +78,15 @@ class AktaNikahController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImage != null) {
-      String ext = pickedImage!.name.split(".").last;
-      await storage.ref('perekamanKTP').child('KK$randomNumber.$ext').putFile(
-            File(pickedImage!.path),
+    if (pickedImageSelfie != null) {
+      String ext = pickedImageSelfie!.name.split(".").last;
+      await storage.ref('Akta Nikah').child('selfie$randomNumber.$ext').putFile(
+            File(pickedImageSelfie!.path),
           );
 
-      String fotoKK = await storage
-          .ref('perekamanKTP')
-          .child('KK$randomNumber.$ext')
+      String fotoSelfie = await storage
+          .ref('Akta Nikah')
+          .child('selfie$randomNumber.$ext')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -103,7 +103,7 @@ class AktaNikahController extends GetxController {
         'email': emailC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
         'kewarganegaranIstri': kewarganegaraanIstriC.text,
-        'fotoKK': fotoKK,
+        'fotoSelfiePelapor': fotoSelfie,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -140,38 +140,27 @@ class AktaNikahController extends GetxController {
     );
   }
 
-  void resetImage() {
-    pickedImage = null;
+  void resetImageSelfie() {
+    pickedImageSelfie = null;
     update();
   }
 
-  void selectImage() async {
+  void selectImageSelfie() async {
     try {
-      final dataImage = await imagePicker.pickImage(
+      final dataImage = await imagePickerSelfie.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImage = dataImage;
+        pickedImageSelfie = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImage = null;
+      pickedImageSelfie = null;
       update();
-    }
-  }
-
-  void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
     }
   }
 

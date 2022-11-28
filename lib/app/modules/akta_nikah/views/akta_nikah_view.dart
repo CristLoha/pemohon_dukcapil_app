@@ -3,7 +3,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttericon/modern_pictograms_icons.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_date_input.dart';
 import 'package:photo_view/photo_view.dart';
@@ -441,18 +440,18 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 child: Column(
                   children: [
                     GetBuilder<AktaNikahController>(
-                      builder: (c) => c.pickedImage != null
+                      builder: (c) => c.pickedImageSelfie != null
                           ? Row(
                               children: [
                                 Expanded(
                                   child: Text(
-                                    c.pickedImage!.name,
+                                    c.pickedImageSelfie!.name,
                                     style: blackTextStyle.copyWith(),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () => c.resetImage(),
+                                  onPressed: () => c.resetImageSelfie(),
                                   child: Icon(
                                     Icons.delete,
                                     color: kRedColor,
@@ -478,14 +477,14 @@ class AktaNikahView extends GetView<AktaNikahController> {
                           ),
                           child: GetBuilder<AktaNikahController>(
                             builder: (c) {
-                              return c.pickedImage != null
+                              return c.pickedImageSelfie != null
                                   ? ElevatedButton(
                                       onPressed: () {
                                         Get.dialog(
                                           Container(
                                             child: PhotoView(
                                               imageProvider: FileImage(
-                                                File(c.pickedImage!.path),
+                                                File(c.pickedImageSelfie!.path),
                                               ),
                                             ),
                                           ),
@@ -540,7 +539,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                           height: 40.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              controller.selectImage();
+                              controller.selectImageSelfie();
                             },
                             child: Text(
                               'Pilih File',
