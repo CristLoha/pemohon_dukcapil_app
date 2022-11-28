@@ -714,6 +714,8 @@ class AktaNikahView extends GetView<AktaNikahController> {
               ),
             ),
 
+            SizedBox(height: 20),
+
             /// Upload suket belum nikah
             Text(
               'Surat Ket Belum Menikah',
