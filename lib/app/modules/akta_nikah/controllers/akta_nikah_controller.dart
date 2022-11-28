@@ -63,6 +63,13 @@ class AktaNikahController extends GetxController {
 
   final ImagePicker imagePickerSuketBNikah = ImagePicker();
   XFile? pickedImageSuketBNikah;
+
+  final ImagePicker imagePickerKTPsuamiIstri = ImagePicker();
+  XFile? pickedImageKTPsuamiIstri;
+
+  final ImagePicker imagePickerPasFotoSuamiIstri = ImagePicker();
+  XFile? pickedImagepasFotoSuamiIstri;
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -75,7 +82,11 @@ class AktaNikahController extends GetxController {
     int randomNumber = random.nextInt(100000) + 1;
 
     ///FOTO SELFIE
-    if (pickedImageSelfie != null && pickedImageSuratNikah != null) {
+    if (pickedImageSelfie != null &&
+        pickedImageSuratNikah != null &&
+        pickedImageSuketBNikah != null &&
+        pickedImageKTPsuamiIstri != null &&
+        pickedImagepasFotoSuamiIstri != null) {
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
@@ -119,6 +130,36 @@ class AktaNikahController extends GetxController {
           .child('suketBelumNikah$randomNumber.$extSuketBelumNikah')
           .getDownloadURL();
 
+      /// KTP SUAMI ISTRI
+
+      String extktpSuamiIstri = pickedImageKTPsuamiIstri!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('ktpSuamiIstri$randomNumber.$extktpSuamiIstri')
+          .putFile(
+            File(pickedImageKTPsuamiIstri!.path),
+          );
+
+      String ktpSuamiIstri = await storage
+          .ref('Akta Nikah')
+          .child('ktpSuamiIstri$randomNumber.$extktpSuamiIstri')
+          .getDownloadURL();
+
+      /// KTP SUAMI ISTRI
+
+      String extpasFotoSuamiIstri =
+          pickedImagepasFotoSuamiIstri!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
+          .putFile(
+            File(pickedImagepasFotoSuamiIstri!.path),
+          );
+
+      String pasFotoSuamiIstri = await storage
+          .ref('Akta Nikah')
+          .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
+          .getDownloadURL();
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
@@ -136,6 +177,8 @@ class AktaNikahController extends GetxController {
         'fotoSelfiePelapor': fotoSelfie,
         'fotoSuratNikah': fotoSuratNikah,
         'fotoSuketBelumNikah': fotoSuketBelumNikah,
+        'fotoktpSuamiIstri': ktpSuamiIstri,
+        'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -244,6 +287,56 @@ class AktaNikahController extends GetxController {
 
   void resetImageSuketBnikah() {
     pickedImageSuketBNikah = null;
+    update();
+  }
+
+  ///KTP SUAMI ISTRI
+  void selectImagektpSuamiIstri() async {
+    try {
+      final dataImage = await imagePickerKTPsuamiIstri.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKTPsuamiIstri = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTPsuamiIstri = null;
+      update();
+    }
+  }
+
+  void resetImagektpSuamiIstri() {
+    pickedImageKTPsuamiIstri = null;
+    update();
+  }
+
+  ///KTP SUAMI ISTRI
+  void selectImagepasFotoSuamiIstri() async {
+    try {
+      final dataImage = await imagePickerPasFotoSuamiIstri.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImagepasFotoSuamiIstri = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImagepasFotoSuamiIstri = null;
+      update();
+    }
+  }
+
+  void resetImagektppasFotoSuamiIstri() {
+    pickedImagepasFotoSuamiIstri = null;
     update();
   }
 
