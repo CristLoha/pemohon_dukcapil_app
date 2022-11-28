@@ -70,6 +70,9 @@ class AktaNikahController extends GetxController {
   final ImagePicker imagePickerPasFotoSuamiIstri = ImagePicker();
   XFile? pickedImagepasFotoSuamiIstri;
 
+  final ImagePicker imagePickerPengumumanJawaban = ImagePicker();
+  XFile? pickedImagePengumumanJawaban;
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -86,7 +89,8 @@ class AktaNikahController extends GetxController {
         pickedImageSuratNikah != null &&
         pickedImageSuketBNikah != null &&
         pickedImageKTPsuamiIstri != null &&
-        pickedImagepasFotoSuamiIstri != null) {
+        pickedImagepasFotoSuamiIstri != null &&
+        pickedImagePengumumanJawaban != null) {
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
@@ -160,6 +164,22 @@ class AktaNikahController extends GetxController {
           .ref('Akta Nikah')
           .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
           .getDownloadURL();
+
+      /// PengumumanJawawban
+
+      String extpenguPumumanJawaban =
+          pickedImagePengumumanJawaban!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('pengumumanJawaban$randomNumber.$extpenguPumumanJawaban')
+          .putFile(
+            File(pickedImagePengumumanJawaban!.path),
+          );
+
+      String pengumumanJawaban = await storage
+          .ref('Akta Nikah')
+          .child('pengumumanJawaban$randomNumber.$extpenguPumumanJawaban')
+          .getDownloadURL();
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
@@ -179,6 +199,7 @@ class AktaNikahController extends GetxController {
         'fotoSuketBelumNikah': fotoSuketBelumNikah,
         'fotoktpSuamiIstri': ktpSuamiIstri,
         'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
+        'fotopengumumanJawaban': pengumumanJawaban,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -337,6 +358,31 @@ class AktaNikahController extends GetxController {
 
   void resetImagektppasFotoSuamiIstri() {
     pickedImagepasFotoSuamiIstri = null;
+    update();
+  }
+
+  ///KTP SUAMI ISTRI
+  void selectImagepengumumanJawaban() async {
+    try {
+      final dataImage = await imagePickerPengumumanJawaban.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImagePengumumanJawaban = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImagePengumumanJawaban = null;
+      update();
+    }
+  }
+
+  void resetImagePengumumanJawaban() {
+    pickedImagePengumumanJawaban = null;
     update();
   }
 
