@@ -1158,6 +1158,8 @@ class AktaNikahView extends GetView<AktaNikahController> {
               ),
             ),
 
+            SizedBox(height: 20),
+
             /// AKTA KELAHIRAN SUAMI
             Text(
               'Unggah Akta Kelahiran Suami',
