@@ -60,6 +60,9 @@ class AktaNikahController extends GetxController {
 
   final ImagePicker imagePickerSuratNikah = ImagePicker();
   XFile? pickedImageSuratNikah;
+
+  final ImagePicker imagePickerSuketBNikah = ImagePicker();
+  XFile? pickedImageSuketBNikah;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -73,69 +76,87 @@ class AktaNikahController extends GetxController {
 
     ///FOTO SELFIE
     if (pickedImageSelfie != null && pickedImageSuratNikah != null) {
-      String ext = pickedImageSelfie!.name.split(".").last;
-      await storage.ref('Akta Nikah').child('selfie$randomNumber.$ext').putFile(
+      String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('selfie$randomNumber.$extFotoSelfie')
+          .putFile(
             File(pickedImageSelfie!.path),
           );
 
       String fotoSelfie = await storage
           .ref('Akta Nikah')
-          .child('selfie$randomNumber.$ext')
+          .child('selfie$randomNumber.$extFotoSelfie')
           .getDownloadURL();
 
       /// SURAT NKAH
-      if (pickedImageSuratNikah != null) {
-        String ext = pickedImageSuratNikah!.name.split(".").last;
-        await storage
-            .ref('Akta Nikah')
-            .child('suratNikah$randomNumber.$ext')
-            .putFile(
-              File(pickedImageSuratNikah!.path),
-            );
 
-        String fotoSuratNikah = await storage
-            .ref('Akta Nikah')
-            .child('suratNikah$randomNumber.$ext')
-            .getDownloadURL();
+      String extSuratNikah = pickedImageSuratNikah!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('suratNikah$randomNumber.$extSuratNikah')
+          .putFile(
+            File(pickedImageSuratNikah!.path),
+          );
 
-        CollectionReference rekamanKtp = firestore.collection('layanan');
+      String fotoSuratNikah = await storage
+          .ref('Akta Nikah')
+          .child('suratNikah$randomNumber.$extSuratNikah')
+          .getDownloadURL();
 
-        await rekamanKtp.add({
-          'nikSuami': nikSuamiC.text,
-          'nikIstri': nikIstriC.text,
-          'namaLengkapSuami': namaLengkapSuamiC.text,
-          'tanggalLahirSuami': tanggalLahirSuamiC.text,
-          'tanggalLahirIstri': tanggalLahirIstriC.text,
-          'namaLengkapIstri': namaLengkapIstriC.text,
-          'tempatLahirSuami': tempatLahirSuamiC.text,
-          'tempatLahirIstri': tempatLahirIstriC.text,
-          'email': emailC.text,
-          'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
-          'kewarganegaranIstri': kewarganegaraanIstriC.text,
-          'fotoSelfiePelapor': fotoSelfie,
-          'fotoSuratNikah': fotoSuratNikah,
-          "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'Akta Nikah',
-          'uid': uid,
-          'keterangan': keteranganC.text,
-          'keteranganKonfirmasi': '',
-          'proses': 'PROSES VERIFIKASI',
-          'creationTime': DateTime.now().toIso8601String(),
-          'updatedTime': DateTime.now().toIso8601String(),
-        }).then(
-          (value) {
-            EasyLoading.showSuccess('Data Berhasil Ditambahakan');
-            Get.offAllNamed(Routes.MAIN_PAGE);
-          },
-        ).catchError(
-          (error) {
-            print("Failed to add user: $error");
-          },
-        );
-      } else {
-        EasyLoading.showError('Data tidak boleh kosong');
-        print('data tidak boleh kosong');
-      }
+      /// SUKET BELUM NIKAH
+
+      String extSuketBelumNikah = pickedImageSuketBNikah!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('suketBelumNikah$randomNumber.$extSuketBelumNikah')
+          .putFile(
+            File(pickedImageSuketBNikah!.path),
+          );
+
+      String fotoSuketBelumNikah = await storage
+          .ref('Akta Nikah')
+          .child('suketBelumNikah$randomNumber.$extSuketBelumNikah')
+          .getDownloadURL();
+
+      CollectionReference rekamanKtp = firestore.collection('layanan');
+
+      await rekamanKtp.add({
+        'nikSuami': nikSuamiC.text,
+        'nikIstri': nikIstriC.text,
+        'namaLengkapSuami': namaLengkapSuamiC.text,
+        'tanggalLahirSuami': tanggalLahirSuamiC.text,
+        'tanggalLahirIstri': tanggalLahirIstriC.text,
+        'namaLengkapIstri': namaLengkapIstriC.text,
+        'tempatLahirSuami': tempatLahirSuamiC.text,
+        'tempatLahirIstri': tempatLahirIstriC.text,
+        'email': emailC.text,
+        'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
+        'kewarganegaranIstri': kewarganegaraanIstriC.text,
+        'fotoSelfiePelapor': fotoSelfie,
+        'fotoSuratNikah': fotoSuratNikah,
+        'fotoSuketBelumNikah': fotoSuketBelumNikah,
+        "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
+        'kategori': 'Akta Nikah',
+        'uid': uid,
+        'keterangan': keteranganC.text,
+        'keteranganKonfirmasi': '',
+        'proses': 'PROSES VERIFIKASI',
+        'creationTime': DateTime.now().toIso8601String(),
+        'updatedTime': DateTime.now().toIso8601String(),
+      }).then(
+        (value) {
+          EasyLoading.showSuccess('Data Berhasil Ditambahakan');
+          Get.offAllNamed(Routes.MAIN_PAGE);
+        },
+      ).catchError(
+        (error) {
+          print("Failed to add user: $error");
+        },
+      );
+    } else {
+      EasyLoading.showError('Data tidak boleh kosong');
+      print('data tidak boleh kosong');
     }
   }
 
@@ -201,18 +222,29 @@ class AktaNikahController extends GetxController {
     update();
   }
 
-  ///UNTUK FORM
-  void dateLocal() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime(2006, 12, 31),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+  ///FOTO SUKET BELUM NIKAH
+  void selectImageSuketBNikah() async {
+    try {
+      final dataImage = await imagePickerSuketBNikah.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSuketBNikah = dataImage;
       }
-    });
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageSuketBNikah = null;
+      update();
+    }
+  }
+
+  void resetImageSuketBnikah() {
+    pickedImageSuketBNikah = null;
+    update();
   }
 
   void tglLahirSuami() async {
