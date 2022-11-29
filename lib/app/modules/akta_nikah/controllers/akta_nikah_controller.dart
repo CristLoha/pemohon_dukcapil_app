@@ -76,6 +76,12 @@ class AktaNikahController extends GetxController {
   final ImagePicker imagePickerAktaKelahiranIstri = ImagePicker();
   XFile? pickedImageAktaKelahiranIstri;
 
+  final ImagePicker imagePickerKTPsaksi1 = ImagePicker();
+  XFile? pickedImageKTPsaksi1;
+
+  final ImagePicker imagePickerKTPsaksi2 = ImagePicker();
+  XFile? pickedImageKTPsaksi2;
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -93,7 +99,9 @@ class AktaNikahController extends GetxController {
         pickedImageKTPsuamiIstri != null &&
         pickedImagepasFotoSuamiIstri != null &&
         pickedImageAktaKelahiranSuami != null &&
-        pickedImageAktaKelahiranIstri != null) {
+        pickedImageAktaKelahiranIstri != null &&
+        pickedImageKTPsaksi1 != null &&
+        pickedImageKTPsaksi2 != null) {
       ///FOTO SELFIE
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
