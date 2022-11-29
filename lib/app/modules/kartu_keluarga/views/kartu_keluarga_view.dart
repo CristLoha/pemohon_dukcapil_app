@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:horizontal_data_table/horizontal_data_table.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
@@ -120,23 +119,13 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
       Step(
         title: Text(
           'Pemohon',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[0],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  'Permohonan Kartu Keluarga Baru',
-                  style: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-
               /// NIK
               CustomTitleWidget(title: 'NIK'),
               SizedBox(height: 12.h),
@@ -215,6 +204,27 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
 
               SizedBox(height: 20.h),
 
+              /// Provinsi
+              CustomTitleWidget(title: 'Provinsi'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.desaC,
+                onTap: () {},
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama provinsi yang benar";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
+
               /// Kecamatan
               CustomTitleWidget(title: 'Kecamatan'),
               SizedBox(height: 12.h),
@@ -258,6 +268,30 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               ),
               SizedBox(height: 20.h),
 
+              /// RT
+              CustomTitleWidget(title: 'RT'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nik,
+              ),
+              SizedBox(height: 20.h),
+
+              /// RT
+              CustomTitleWidget(title: 'RW'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nik,
+              ),
+              SizedBox(height: 20.h),
+
               /// Kode Pos
               CustomTitleWidget(title: 'Kode Pos'),
               SizedBox(height: 12.h),
@@ -276,7 +310,6 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   return null;
                 },
               ),
-              SizedBox(height: 20.h),
               SizedBox(height: 20.h),
 
               /// Jumlah Anggota Keluarga
@@ -301,18 +334,6 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               SizedBox(height: 20.h),
 
               /// Keterangan
-              CustomTitleWidget(title: 'Daftar Anggota'),
-              SizedBox(height: 12.h),
-              CustomFormKeteranganField(
-                hintText:
-                    'Cth: Nama\n\n1. Christ Henry Loha \n2. Steve Imanuel Loha \ndst..\nNIK:\n1. ',
-                readOnly: false,
-                textInputAction: TextInputAction.newline,
-                textEditingController: controller.daftarAnggotaC,
-              ),
-              SizedBox(height: 20.h),
-
-              /// Keterangan
               CustomTitleWidget(title: 'Keterangan'),
               SizedBox(height: 12.h),
               CustomFormKeteranganField(
@@ -328,26 +349,13 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Daftar',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+        title: Text('Daftar Anggota Keluarga',
+            style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[1],
-          child: HorizontalDataTable(
-            leftHandSideColumnWidth: 220,
-            rightHandSideColumnWidth: 100,
-            leftSideChildren: [
-              Text('1'),
-              Text('1'),
-              Text('1'),
-            ],
-            rightSideChildren: [
-              Text('1'),
-              Text('1'),
-              Text('1'),
-            ],
-            headerWidgets: [Text('1'), Text('2'), Text('3')],
-          ),
-        ),
+            key: controller.formKeys[1],
+            child: Column(
+              children: [],
+            )),
 
         ///
         isActive: controller.currentStep.value >= 1,
@@ -356,8 +364,8 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
       ),
       Step(
         title: Text(
-          'Persyaratan',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          'Unggah Persyaratan',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           child: SingleChildScrollView(
