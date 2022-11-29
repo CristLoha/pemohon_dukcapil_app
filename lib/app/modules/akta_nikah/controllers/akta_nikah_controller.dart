@@ -73,6 +73,9 @@ class AktaNikahController extends GetxController {
   final ImagePicker imagePickerAktaKelahiranSuami = ImagePicker();
   XFile? pickedImageAktaKelahiranSuami;
 
+  final ImagePicker imagePickerAktaKelahiranIstri = ImagePicker();
+  XFile? pickedImageAktaKelahiranIstri;
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -84,13 +87,14 @@ class AktaNikahController extends GetxController {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
 
-    ///FOTO SELFIE
     if (pickedImageSelfie != null &&
         pickedImageSuratNikah != null &&
         pickedImageSuketBNikah != null &&
         pickedImageKTPsuamiIstri != null &&
         pickedImagepasFotoSuamiIstri != null &&
-        pickedImageAktaKelahiranSuami != null) {
+        pickedImageAktaKelahiranSuami != null &&
+        pickedImageAktaKelahiranIstri != null) {
+      ///FOTO SELFIE
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
@@ -180,6 +184,22 @@ class AktaNikahController extends GetxController {
           .ref('Akta Nikah')
           .child('aktaKelahiranSuami$randomNumber.$extAktaKelahiranSuami')
           .getDownloadURL();
+
+      /// AktaKelahiranIstri
+
+      String extAktaKelahiranIstri =
+          pickedImageAktaKelahiranIstri!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('AktaKelahiranIstri$randomNumber.$extAktaKelahiranIstri')
+          .putFile(
+            File(pickedImageAktaKelahiranIstri!.path),
+          );
+
+      String aktaKelahiranIstri = await storage
+          .ref('Akta Nikah')
+          .child('AktaKelahiranIstri$randomNumber.$extAktaKelahiranIstri')
+          .getDownloadURL();
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
@@ -200,6 +220,7 @@ class AktaNikahController extends GetxController {
         'fotoktpSuamiIstri': ktpSuamiIstri,
         'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
         'fotoAktaKelahiranSuami': aktaKelahiranSuami,
+        'fotoAktaKelahiranIstri': aktaKelahiranIstri,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -383,6 +404,31 @@ class AktaNikahController extends GetxController {
 
   void resetImageAktaKelahiranSuami() {
     pickedImageAktaKelahiranSuami = null;
+    update();
+  }
+
+  ///AKTA KELAHIRAN SUAMI
+  void selectImageAktaKelahiranIstri() async {
+    try {
+      final dataImage = await imagePickerAktaKelahiranIstri.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageAktaKelahiranIstri = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageAktaKelahiranIstri = null;
+      update();
+    }
+  }
+
+  void resetImageAktaKelahiranIstri() {
+    pickedImageAktaKelahiranIstri = null;
     update();
   }
 
