@@ -88,20 +88,12 @@ class AktaNikahController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addrekamanKTP() async {
+  void addAktaNikah() async {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
 
-    if (pickedImageSelfie != null &&
-        pickedImageSuratNikah != null &&
-        pickedImageSuketBNikah != null &&
-        pickedImageKTPsuamiIstri != null &&
-        pickedImagepasFotoSuamiIstri != null &&
-        pickedImageAktaKelahiranSuami != null &&
-        pickedImageAktaKelahiranIstri != null &&
-        pickedImageKTPsaksi1 != null &&
-        pickedImageKTPsaksi2 != null) {
+    if (pickedImageSelfie != null && pickedImageSuratNikah != null) {
       ///FOTO SELFIE
       String extFotoSelfie = pickedImageSelfie!.name.split(".").last;
       await storage
@@ -161,20 +153,20 @@ class AktaNikahController extends GetxController {
           .child('ktpSuamiIstri$randomNumber.$extktpSuamiIstri')
           .getDownloadURL();
 
-      /// KTP SUAMI ISTRI
+      /// PAS FOTO SUAMI ISTRI
 
       String extpasFotoSuamiIstri =
           pickedImagepasFotoSuamiIstri!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
-          .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
+          .child('pasFotoSuamistri$randomNumber.$extpasFotoSuamiIstri')
           .putFile(
             File(pickedImagepasFotoSuamiIstri!.path),
           );
 
       String pasFotoSuamiIstri = await storage
           .ref('Akta Nikah')
-          .child('pasFotoSuamiistri$randomNumber.$extpasFotoSuamiIstri')
+          .child('pasFotoSuamistri$randomNumber.$extpasFotoSuamiIstri')
           .getDownloadURL();
 
       /// AktaKelahiranSuami
@@ -190,7 +182,7 @@ class AktaNikahController extends GetxController {
 
       String aktaKelahiranSuami = await storage
           .ref('Akta Nikah')
-          .child('aktaKelahiranSuami$randomNumber.$extAktaKelahiranSuami')
+          .child('AktaKelahiranSuami$randomNumber.$extAktaKelahiranSuami')
           .getDownloadURL();
 
       /// AktaKelahiranIstri
@@ -219,29 +211,29 @@ class AktaNikahController extends GetxController {
             File(pickedImageKTPsaksi1!.path),
           );
 
-      String aktaKTPsaksi1 = await storage
+      String ktpSaksi1 = await storage
           .ref('Akta Nikah')
           .child('KTPsaksi1$randomNumber.$extKTPsaksi1')
           .getDownloadURL();
 
       /// KTP SAKSI 2
 
-      String extKTPsaksi2 = pickedImageKTPsaksi2!.name.split(".").last;
+      String extKTPSaksi2 = pickedImageKTPsaksi2!.name.split(".").last;
       await storage
           .ref('Akta Nikah')
-          .child('KTPsaksi2$randomNumber.$extKTPsaksi2')
+          .child('KTPsaksi2$randomNumber.$extKTPSaksi2')
           .putFile(
-            File(pickedImageKTPsaksi1!.path),
+            File(pickedImageKTPsaksi2!.path),
           );
 
-      String aktaKTPsaksi2 = await storage
+      String ktpSaksi2 = await storage
           .ref('Akta Nikah')
-          .child('KTPsaksi2$randomNumber.$extKTPsaksi2')
+          .child('KTPsaksi2$randomNumber.$extKTPSaksi2')
           .getDownloadURL();
 
-      CollectionReference rekamanKtp = firestore.collection('layanan');
+      CollectionReference aktaNikah = firestore.collection('layanan');
 
-      await rekamanKtp.add({
+      await aktaNikah.add({
         'nikSuami': nikSuamiC.text,
         'nikIstri': nikIstriC.text,
         'namaLengkapSuami': namaLengkapSuamiC.text,
@@ -257,11 +249,11 @@ class AktaNikahController extends GetxController {
         'fotoSuratNikah': fotoSuratNikah,
         'fotoSuketBelumNikah': fotoSuketBelumNikah,
         'fotoktpSuamiIstri': ktpSuamiIstri,
-        'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
+        'pasFotoSuamiIstri': pasFotoSuamiIstri,
         'fotoAktaKelahiranSuami': aktaKelahiranSuami,
         'fotoAktaKelahiranIstri': aktaKelahiranIstri,
-        'fotoKTPsaksi1': extKTPsaksi1,
-        'fotoKTPsaksi2': extKTPsaksi2,
+        'fotoKTPsaksi1': ktpSaksi1,
+        'fotoKTPsaksi2': ktpSaksi2,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -398,7 +390,7 @@ class AktaNikahController extends GetxController {
     update();
   }
 
-  ///KTP SUAMI ISTRI
+  ///pas foto
   void selectImagepasFotoSuamiIstri() async {
     try {
       final dataImage = await imagePickerPasFotoSuamiIstri.pickImage(

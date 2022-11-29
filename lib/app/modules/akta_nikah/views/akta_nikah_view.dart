@@ -32,7 +32,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 }
                 if (controller.currentStep.value == formStep().length - 1) {
                   EasyLoading.show(status: 'memuat...');
-                  controller.addrekamanKTP();
+                  controller.addAktaNikah();
                 } else {
                   controller.currentStep.value++;
                 }
@@ -1605,6 +1605,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 ),
               ),
             ),
+            SizedBox(height: 20),
 
             /// KTP SAKSI 2
             Text(
