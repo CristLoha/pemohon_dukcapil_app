@@ -208,6 +208,37 @@ class AktaNikahController extends GetxController {
           .ref('Akta Nikah')
           .child('AktaKelahiranIstri$randomNumber.$extAktaKelahiranIstri')
           .getDownloadURL();
+
+      /// KTP SAKSI 1
+
+      String extKTPsaksi1 = pickedImageKTPsaksi1!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('KTPsaksi1$randomNumber.$extKTPsaksi1')
+          .putFile(
+            File(pickedImageKTPsaksi1!.path),
+          );
+
+      String aktaKTPsaksi1 = await storage
+          .ref('Akta Nikah')
+          .child('KTPsaksi1$randomNumber.$extKTPsaksi1')
+          .getDownloadURL();
+
+      /// KTP SAKSI 2
+
+      String extKTPsaksi2 = pickedImageKTPsaksi2!.name.split(".").last;
+      await storage
+          .ref('Akta Nikah')
+          .child('KTPsaksi2$randomNumber.$extKTPsaksi2')
+          .putFile(
+            File(pickedImageKTPsaksi1!.path),
+          );
+
+      String aktaKTPsaksi2 = await storage
+          .ref('Akta Nikah')
+          .child('KTPsaksi2$randomNumber.$extKTPsaksi2')
+          .getDownloadURL();
+
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
@@ -229,6 +260,8 @@ class AktaNikahController extends GetxController {
         'fotopasFotoSuamiIstri': pasFotoSuamiIstri,
         'fotoAktaKelahiranSuami': aktaKelahiranSuami,
         'fotoAktaKelahiranIstri': aktaKelahiranIstri,
+        'fotoKTPsaksi1': extKTPsaksi1,
+        'fotoKTPsaksi2': extKTPsaksi2,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Akta Nikah',
         'uid': uid,
@@ -437,6 +470,56 @@ class AktaNikahController extends GetxController {
 
   void resetImageAktaKelahiranIstri() {
     pickedImageAktaKelahiranIstri = null;
+    update();
+  }
+
+  //KTP SAKSI 1
+  void selectImageKTPSaksi1() async {
+    try {
+      final dataImage = await imagePickerKTPsaksi1.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKTPsaksi1 = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTPsaksi1 = null;
+      update();
+    }
+  }
+
+  void resetImageKTPsaksi1() {
+    pickedImageKTPsaksi1 = null;
+    update();
+  }
+
+  //KTP SAKSI 2
+  void selectImageKTPSaksi2() async {
+    try {
+      final dataImage = await imagePickerKTPsaksi2.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKTPsaksi2 = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTPsaksi2 = null;
+      update();
+    }
+  }
+
+  void resetImageKTPsaksi2() {
+    pickedImageKTPsaksi2 = null;
     update();
   }
 

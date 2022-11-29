@@ -1457,6 +1457,300 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 ),
               ),
             ),
+
+            SizedBox(height: 20),
+
+            /// KTP SAKSI 1
+            Text(
+              'Unggah KTP Saksi 1',
+              style: blackTextStyle.copyWith(),
+            ),
+            SizedBox(height: 12.h),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                width: 315.w,
+                height: 140.h,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kGreyColor,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    GetBuilder<AktaNikahController>(
+                      builder: (c) => c.pickedImageKTPsaksi1 != null
+                          ? Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    c.pickedImageKTPsaksi1!.name,
+                                    style: blackTextStyle.copyWith(),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () => c.resetImageKTPsaksi1(),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: kRedColor,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Text(
+                              '*Maks 5 Mb',
+                              style: redTextStyle.copyWith(),
+                            ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: GetBuilder<AktaNikahController>(
+                            builder: (c) {
+                              return c.pickedImageKTPsaksi1 != null
+                                  ? ElevatedButton(
+                                      onPressed: () {
+                                        Get.dialog(
+                                          Container(
+                                            child: PhotoView(
+                                              imageProvider: FileImage(
+                                                File(c.pickedImageKTPsaksi1!
+                                                    .path),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {
+                                        EasyLoading.showError(
+                                          'Masukan file terlebihi dahulu',
+                                        );
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ));
+                            },
+                          ),
+                        ),
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.selectImageKTPSaksi1();
+                            },
+                            child: Text(
+                              'Pilih File',
+                              style: blackTextStyle.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: medium,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                side: BorderSide(
+                                  color: kGreyColor,
+                                ),
+                              ),
+                              backgroundColor: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            /// KTP SAKSI 2
+            Text(
+              'Unggah KTP Saksi 2',
+              style: blackTextStyle.copyWith(),
+            ),
+            SizedBox(height: 12.h),
+            Center(
+              child: Container(
+                padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                width: 315.w,
+                height: 140.h,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: kGreyColor,
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    GetBuilder<AktaNikahController>(
+                      builder: (c) => c.pickedImageKTPsaksi2 != null
+                          ? Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    c.pickedImageKTPsaksi2!.name,
+                                    style: blackTextStyle.copyWith(),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () => c.resetImageKTPsaksi2(),
+                                  child: Icon(
+                                    Icons.delete,
+                                    color: kRedColor,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Text(
+                              '*Maks 5 Mb',
+                              style: redTextStyle.copyWith(),
+                            ),
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: GetBuilder<AktaNikahController>(
+                            builder: (c) {
+                              return c.pickedImageKTPsaksi2 != null
+                                  ? ElevatedButton(
+                                      onPressed: () {
+                                        Get.dialog(
+                                          Container(
+                                            child: PhotoView(
+                                              imageProvider: FileImage(
+                                                File(c.pickedImageKTPsaksi2!
+                                                    .path),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ),
+                                    )
+                                  : ElevatedButton(
+                                      onPressed: () {
+                                        EasyLoading.showError(
+                                          'Masukan file terlebihi dahulu',
+                                        );
+                                      },
+                                      child: Text(
+                                        'Lihat',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 16.sp,
+                                          fontWeight: medium,
+                                        ),
+                                      ),
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          side: BorderSide(
+                                            color: kGreyColor,
+                                          ),
+                                        ),
+                                        backgroundColor: kWhiteColor,
+                                      ));
+                            },
+                          ),
+                        ),
+                        Container(
+                          width: 120.w,
+                          height: 40.h,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              controller.selectImageKTPSaksi2();
+                            },
+                            child: Text(
+                              'Pilih File',
+                              style: blackTextStyle.copyWith(
+                                fontSize: 16.sp,
+                                fontWeight: medium,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(7),
+                                side: BorderSide(
+                                  color: kGreyColor,
+                                ),
+                              ),
+                              backgroundColor: kWhiteColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
         isActive: controller.currentStep.value >= 1,
