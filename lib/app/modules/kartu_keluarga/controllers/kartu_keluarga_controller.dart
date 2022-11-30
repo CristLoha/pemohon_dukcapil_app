@@ -123,6 +123,7 @@ class KartuKeluargaController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference kartuKeluarga = firestore.collection('layanan');
         await kartuKeluarga.add({
+          ///PEMOHON
           'nikAnak': nik.text,
           'namaLengkap': namaLengkapC.text,
           'kecamatan': kecamatanC.text,
@@ -137,8 +138,6 @@ class KartuKeluargaController extends GetxController {
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
-          'kkLama': fotoKK,
-          'AktaPerkawinan': fotoAktaPerkawinan,
           'namaLengkapPemohon': namaLengkapPemohonC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
@@ -166,6 +165,10 @@ class KartuKeluargaController extends GetxController {
           'namaAnggota4': namaAnggota4.text,
           'namaAnggota5': namaAnggota5.text,
           'namaAnggota6': namaAnggota6.text,
+
+          /// Persyaratan
+          'kkLama': fotoKK,
+          'AktaPerkawinan': fotoAktaPerkawinan,
         });
 
         EasyLoading.showSuccess('Data Berhasil Ditambahakan');
