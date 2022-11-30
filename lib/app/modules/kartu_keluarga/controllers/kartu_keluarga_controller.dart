@@ -32,7 +32,6 @@ class KartuKeluargaController extends GetxController {
   TextEditingController rtC = TextEditingController();
   TextEditingController rwC = TextEditingController();
   TextEditingController kodePosC = TextEditingController();
-
   TextEditingController jenisKelaminC = TextEditingController();
   TextEditingController tglLahirC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
@@ -40,12 +39,26 @@ class KartuKeluargaController extends GetxController {
   TextEditingController jmlAnggotaFamylyC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
   TextEditingController daftarAnggotaC = TextEditingController();
-
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController kecamatanPemohonC = TextEditingController();
   TextEditingController desaPemohonC = TextEditingController();
+
+  ///ANGGOTA KELUARGA
+  TextEditingController nikAnggota1 = TextEditingController();
+  TextEditingController nikAnggota2 = TextEditingController();
+  TextEditingController nikAnggota3 = TextEditingController();
+  TextEditingController nikAnggota4 = TextEditingController();
+  TextEditingController nikAnggota5 = TextEditingController();
+  TextEditingController nikAnggota6 = TextEditingController();
+
+  TextEditingController namaAnggota1 = TextEditingController();
+  TextEditingController namaAnggota2 = TextEditingController();
+  TextEditingController namaAnggota3 = TextEditingController();
+  TextEditingController namaAnggota4 = TextEditingController();
+  TextEditingController namaAnggota5 = TextEditingController();
+  TextEditingController namaAnggota6 = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
@@ -138,6 +151,21 @@ class KartuKeluargaController extends GetxController {
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),
           'updatedTime': DateTime.now().toIso8601String(),
+
+          ///NIK Anggota
+          'nikAnggota1': nikAnggota1.text,
+          'nikAnggota2': nikAnggota2.text,
+          'nikAnggota3': nikAnggota3.text,
+          'nikAnggota4': nikAnggota4.text,
+          'nikAnggota5': nikAnggota5.text,
+          'nikAnggota6': nikAnggota6.text,
+          //Nama Anggota
+          'namaAnggota1': namaAnggota1.text,
+          'namaAnggota2': namaAnggota2.text,
+          'namaAnggota3': namaAnggota3.text,
+          'namaAnggota4': namaAnggota4.text,
+          'namaAnggota5': namaAnggota5.text,
+          'namaAnggota6': namaAnggota6.text,
         });
 
         EasyLoading.showSuccess('Data Berhasil Ditambahakan');

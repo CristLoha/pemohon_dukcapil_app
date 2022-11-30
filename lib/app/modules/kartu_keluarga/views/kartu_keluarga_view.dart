@@ -375,7 +375,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota1,
                   validator: (value) {
                     if (value!.isEmpty ||
                         !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
@@ -398,7 +398,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota1),
                 SizedBox(height: 20.h),
 
                 /// NIK
@@ -409,7 +409,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota2,
                 ),
 
                 SizedBox(height: 20.h),
@@ -422,7 +422,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota2),
                 SizedBox(height: 20.h),
 
                 /// NIK
@@ -433,7 +433,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota3,
                 ),
 
                 SizedBox(height: 20.h),
@@ -446,7 +446,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota3),
                 SizedBox(height: 20.h),
 
                 /// NIK
@@ -457,7 +457,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota4,
                 ),
 
                 SizedBox(height: 20.h),
@@ -470,7 +470,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota4),
                 SizedBox(height: 20.h),
 
                 /// NIK
@@ -481,7 +481,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota5,
                 ),
 
                 SizedBox(height: 20.h),
@@ -494,7 +494,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota5),
                 SizedBox(height: 20.h),
 
                 /// NIK
@@ -505,7 +505,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  textEditingController: controller.nik,
+                  textEditingController: controller.nikAnggota5,
                 ),
 
                 SizedBox(height: 20.h),
@@ -518,7 +518,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
-                    textEditingController: controller.namaLengkapC),
+                    textEditingController: controller.namaAnggota6),
                 SizedBox(height: 20.h),
               ],
             )),
