@@ -22,6 +22,9 @@ class KartuKeluargaController extends GetxController {
   final ImagePicker imagePickerAktaPerkawinan = ImagePicker();
   XFile? pickedImageAktaPerkawinan;
 
+  final ImagePicker imagePickerSuketDomisili = ImagePicker();
+  XFile? pickedImageSuketDomisili;
+
   ///Kartu Keluarga
   TextEditingController nik = TextEditingController();
   TextEditingController noAktaKelahiranC = TextEditingController();
@@ -103,7 +106,7 @@ class KartuKeluargaController extends GetxController {
           .child('KKlama$randomNumber.$extKK')
           .getDownloadURL();
 
-      /// AKTA Perkawinan
+      /// AKTA Perkawinan/BukuNIkah
       String extAktaPerkawinan =
           pickedImageAktaPerkawinan!.name.split(".").last;
 
@@ -117,6 +120,21 @@ class KartuKeluargaController extends GetxController {
       String fotoAktaPerkawinan = await storage
           .ref('Kartu Keluarga')
           .child('aktaPerkawinan$randomNumber.$extAktaPerkawinan')
+          .getDownloadURL();
+
+      ///SUKET DOMISILI
+      String extSuketDomisili = pickedImageSuketDomisili!.name.split(".").last;
+
+      await storage
+          .ref('Kartu Keluarga')
+          .child('suketDomisili$randomNumber.$extSuketDomisili')
+          .putFile(
+            File(pickedImageSuketDomisili!.path),
+          );
+
+      String fotoSuketDomisili = await storage
+          .ref('Kartu Keluarga')
+          .child('suketDomisili$randomNumber.$extSuketDomisili')
           .getDownloadURL();
 
       try {
@@ -168,7 +186,8 @@ class KartuKeluargaController extends GetxController {
 
           /// Persyaratan
           'kkLama': fotoKK,
-          'AktaPerkawinan': fotoAktaPerkawinan,
+          'AktaPerkawinan/BukuNikah': fotoAktaPerkawinan,
+          'suketDomisili': fotoSuketDomisili,
         });
 
         EasyLoading.showSuccess('Data Berhasil Ditambahakan');
@@ -249,6 +268,32 @@ class KartuKeluargaController extends GetxController {
 
   void resetImageAktaPerkawinan() {
     pickedImageAktaPerkawinan = null;
+    update();
+  }
+
+  ///SUKET DOMISILI
+
+  void selectImageSuketDomisili() async {
+    try {
+      final dataImage = await imagePickerSuketDomisili.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSuketDomisili = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageSuketDomisili = null;
+      update();
+    }
+  }
+
+  void resetImageSuketDomisli() {
+    pickedImageSuketDomisili = null;
     update();
   }
 
