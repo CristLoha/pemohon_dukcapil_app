@@ -19,10 +19,10 @@ class KartuKeluargaController extends GetxController {
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
 
-  final ImagePicker imagePickerAktaKelahiran = ImagePicker();
-  XFile? pickedImageAktaKelahiran;
+  final ImagePicker imagePickerAktaPerkawinan = ImagePicker();
+  XFile? pickedImageAktaPerkawinan;
 
-  ///KIA
+  ///Kartu Keluarga
   TextEditingController nik = TextEditingController();
   TextEditingController noAktaKelahiranC = TextEditingController();
   TextEditingController namaLengkapC = TextEditingController();
@@ -66,38 +66,42 @@ class KartuKeluargaController extends GetxController {
   void addKIA() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null && pickedImageAktaKelahiran != null) {
-      /// KK
+    if (pickedImageKK != null && pickedImageAktaPerkawinan != null) {
+      /// KK Lama
       String extKK = pickedImageKK!.name.split(".").last;
 
-      await storage.ref('KIA').child('KK$randomNumber.$extKK').putFile(
+      await storage
+          .ref('Kartu Keluarga')
+          .child('KKlama$randomNumber.$extKK')
+          .putFile(
             File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
-          .ref('KIA')
-          .child('KK$randomNumber.$extKK')
+          .ref('Kartu Keluarga')
+          .child('KKlama$randomNumber.$extKK')
           .getDownloadURL();
 
-      /// AKTAkelahiran
-      String extAktaKelahiran = pickedImageAktaKelahiran!.name.split(".").last;
+      /// AKTA Perkawinan
+      String extAktaPerkawinan =
+          pickedImageAktaPerkawinan!.name.split(".").last;
 
       await storage
-          .ref('KIA')
-          .child('aktaKelahiran$randomNumber.$extAktaKelahiran')
+          .ref('Kartu Keluarga')
+          .child('aktaPerkawinan$randomNumber.$extAktaPerkawinan')
           .putFile(
-            File(pickedImageAktaKelahiran!.path),
+            File(pickedImageAktaPerkawinan!.path),
           );
 
-      String fotoAktaKelahiran = await storage
-          .ref('KIA')
-          .child('aktaKelahiran$randomNumber.$extKK')
+      String fotoAktaPerkawinan = await storage
+          .ref('Kartu Keluarga')
+          .child('aktaPerkawinan$randomNumber.$extAktaPerkawinan')
           .getDownloadURL();
 
       try {
         String uid = auth.currentUser!.uid;
-        CollectionReference rekamanKtp = firestore.collection('layanan');
-        await rekamanKtp.add({
+        CollectionReference kartuKeluarga = firestore.collection('layanan');
+        await kartuKeluarga.add({
           'nikAnak': nik.text,
           'namaLengkap': namaLengkapC.text,
           'kecamatan': kecamatanC.text,
@@ -105,8 +109,8 @@ class KartuKeluargaController extends GetxController {
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
-          'kk': fotoKK,
-          'akta_kelahiran': fotoAktaKelahiran,
+          'kkLama': fotoKK,
+          'AktaPerkawinan': fotoAktaPerkawinan,
           'namaLengkapPemohon': namaLengkapPemohonC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
@@ -178,27 +182,27 @@ class KartuKeluargaController extends GetxController {
 
   ///AKTA KELAHIRAN
 
-  void selectImageAktaKelahiran() async {
+  void selectImageAktaPerkawinan() async {
     try {
-      final dataImage = await imagePickerAktaKelahiran.pickImage(
+      final dataImage = await imagePickerAktaPerkawinan.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageAktaKelahiran = dataImage;
+        pickedImageAktaPerkawinan = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImageAktaKelahiran = null;
+      pickedImageAktaPerkawinan = null;
       update();
     }
   }
 
   void resetImageAktaKelahiran() {
-    pickedImageAktaKelahiran = null;
+    pickedImageAktaPerkawinan = null;
     update();
   }
 

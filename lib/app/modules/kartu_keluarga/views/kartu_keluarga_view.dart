@@ -354,7 +354,162 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
         content: Form(
             key: controller.formKeys[1],
             child: Column(
-              children: [],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 1 (Satu)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                  validator: (value) {
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                            .hasMatch(value)) {
+                      return "Masukan Nomor NIK yang benar";
+                    } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                      return 'NIK harus 16 karakter';
+                    }
+                    return null;
+                  },
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 1 (Satu)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 2 (Dua)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 2 (Dua)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 3 (Tiga)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 3 (Tiga)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 4 (Empat)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 4 (Empat)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 5 (Lima)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 5 (Lima)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+
+                /// NIK
+                CustomTitleWidget(title: 'NIK Anggota 6 (Enam)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.nik,
+                ),
+
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 6 (Enam)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaLengkapC),
+                SizedBox(height: 20.h),
+              ],
             )),
 
         ///
@@ -375,7 +530,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               children: [
                 /// KK
                 Text(
-                  'Unggah KK',
+                  'Unggah KK lama',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
