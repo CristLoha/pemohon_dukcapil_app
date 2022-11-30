@@ -26,10 +26,18 @@ class KartuKeluargaController extends GetxController {
   TextEditingController nik = TextEditingController();
   TextEditingController noAktaKelahiranC = TextEditingController();
   TextEditingController namaLengkapC = TextEditingController();
+  TextEditingController noKkSemula = TextEditingController();
+  TextEditingController provinsiC = TextEditingController();
+  TextEditingController kabupatenKotaC = TextEditingController();
+  TextEditingController rtC = TextEditingController();
+  TextEditingController rwC = TextEditingController();
+  TextEditingController kodePosC = TextEditingController();
+
   TextEditingController jenisKelaminC = TextEditingController();
   TextEditingController tglLahirC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
+  TextEditingController jmlAnggotaFamylyC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
   TextEditingController daftarAnggotaC = TextEditingController();
 
@@ -63,7 +71,7 @@ class KartuKeluargaController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addKIA() async {
+  void addKK() async {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKK != null && pickedImageAktaPerkawinan != null) {
@@ -105,7 +113,14 @@ class KartuKeluargaController extends GetxController {
           'nikAnak': nik.text,
           'namaLengkap': namaLengkapC.text,
           'kecamatan': kecamatanC.text,
+          'rt': rtC.text,
+          'rw': rwC.text,
+          'kodePos': kodePosC.text,
+          'jmlAnggotaKeluarga': jmlAnggotaFamylyC.text,
           'kecamatanPemohon': kecamatanPemohonC.text,
+          'noKKSemula': noKkSemula.text,
+          'provinsi': provinsiC.text,
+          'kabupaten/kota': kabupatenKotaC.text,
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
@@ -180,7 +195,7 @@ class KartuKeluargaController extends GetxController {
     update();
   }
 
-  ///AKTA KELAHIRAN
+  ///AKTA Perkawinan
 
   void selectImageAktaPerkawinan() async {
     try {
@@ -201,7 +216,7 @@ class KartuKeluargaController extends GetxController {
     }
   }
 
-  void resetImageAktaKelahiran() {
+  void resetImageAktaPerkawinan() {
     pickedImageAktaPerkawinan = null;
     update();
   }

@@ -32,7 +32,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   }
                   if (controller.currentStep.value == formStep().length - 1) {
                     EasyLoading.show(status: 'memuat...');
-                    controller.addKIA();
+                    controller.addKK();
                   } else {
                     controller.currentStep.value++;
                   }
@@ -153,11 +153,19 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
-                  textCapitalization: TextCapitalization.words,
-                  readOnly: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.namaLengkapC),
+                textCapitalization: TextCapitalization.words,
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.namaLengkapC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Masukan nama lengkap";
+                  } else {
+                    return null;
+                  }
+                },
+              ),
               SizedBox(height: 20.h),
 
               /// No. Kk Semula
@@ -168,14 +176,14 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
+                textEditingController: controller.noKkSemula,
                 validator: (value) {
                   if (value!.isEmpty ||
                       !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
                           .hasMatch(value)) {
                     return "Masukan nomor kk yang benar";
                   } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
+                    return 'Nomor kk harus 16 karakter';
                   }
                   return null;
                 },
@@ -189,12 +197,11 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.desaC,
+                textEditingController: controller.kabupatenKotaC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama  kabupaten/kota yang benar";
+                  if (value!.isEmpty) {
+                    return "Masukan nama kabupaten/kota";
                   } else {
                     return null;
                   }
@@ -211,12 +218,11 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
-                textEditingController: controller.desaC,
+                textEditingController: controller.provinsiC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama provinsi yang benar";
+                  if (value!.isEmpty) {
+                    return "Masukan nama provinsi";
                   } else {
                     return null;
                   }
@@ -235,9 +241,8 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textEditingController: controller.kecamatanC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama kecamatan yang benar";
+                  if (value!.isEmpty) {
+                    return "Masukan nama kecamatan";
                   } else {
                     return null;
                   }
@@ -257,9 +262,8 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textEditingController: controller.desaC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama desa yang benar";
+                  if (value!.isEmpty) {
+                    return "Masukan nama desa";
                   } else {
                     return null;
                   }
@@ -269,26 +273,38 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               SizedBox(height: 20.h),
 
               /// RT
-              CustomTitleWidget(title: 'RT'),
+              CustomTitleWidget(title: 'Nomor RT'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
+                textEditingController: controller.rtC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Masukan nomor RT ";
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20.h),
 
-              /// RT
-              CustomTitleWidget(title: 'RW'),
+              /// RW
+              CustomTitleWidget(title: 'Nomor RW'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
+                textEditingController: controller.rwC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Masukan nomor RW ";
+                  }
+                  return null;
+                },
               ),
               SizedBox(height: 20.h),
 
@@ -296,20 +312,17 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
               CustomTitleWidget(title: 'Kode Pos'),
               SizedBox(height: 12.h),
               CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan kode pos yang benar";
-                  }
-                  return null;
-                },
-              ),
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.kodePosC,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Masukan kode pos";
+                    }
+                    return null;
+                  }),
               SizedBox(height: 20.h),
 
               /// Jumlah Anggota Keluarga
@@ -320,12 +333,10 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
+                textEditingController: controller.jmlAnggotaFamylyC,
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan kode pos yang benar";
+                  if (value!.isEmpty) {
+                    return "Masukan jumlah anggota keluarga";
                   }
                   return null;
                 },
@@ -680,7 +691,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
 
                 ///AKTA KELAHIRAN
                 Text(
-                  'Unggah Akta Kelahiran',
+                  'Unggah Buku Nikah/Akta Perkawinan',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -697,19 +708,19 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     child: Column(
                       children: [
                         GetBuilder<KartuKeluargaController>(
-                          builder: (c) => c.pickedImageAktaKelahiran != null
+                          builder: (c) => c.pickedImageAktaPerkawinan != null
                               ? Row(
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        c.pickedImageAktaKelahiran!.name,
+                                        c.pickedImageAktaPerkawinan!.name,
                                         style: blackTextStyle.copyWith(),
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
                                     TextButton(
                                       onPressed: () =>
-                                          c.resetImageAktaKelahiran(),
+                                          c.resetImageAktaPerkawinan(),
                                       child: Icon(
                                         Icons.delete,
                                         color: kRedColor,
@@ -736,7 +747,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                                 ),
                                 child: GetBuilder<KartuKeluargaController>(
                                   builder: (c) {
-                                    return c.pickedImageAktaKelahiran != null
+                                    return c.pickedImageAktaPerkawinan != null
                                         ? ElevatedButton(
                                             onPressed: () {
                                               Get.dialog(
@@ -744,7 +755,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                                                   child: PhotoView(
                                                     imageProvider: FileImage(
                                                       File(c
-                                                          .pickedImageAktaKelahiran!
+                                                          .pickedImageAktaPerkawinan!
                                                           .path),
                                                     ),
                                                   ),
@@ -801,7 +812,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                               height: 40.h,
                               child: ElevatedButton(
                                 onPressed: () {
-                                  controller.selectImageAktaKelahiran();
+                                  controller.selectImageAktaPerkawinan();
                                 },
                                 child: Text(
                                   'Pilih File',
