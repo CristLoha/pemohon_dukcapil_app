@@ -45,7 +45,10 @@ class HomeView extends GetView<HomeController> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 7),
+                              padding: EdgeInsets.only(
+                                top: 7.h,
+                                left: 5.w,
+                              ),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id-card.png',
                                 title: 'Perekaman \ne-KTP',
@@ -113,7 +116,7 @@ class HomeView extends GetView<HomeController> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 40.w, right: 47.w),
+                              padding: EdgeInsets.only(left: 57.w, right: 55.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/marriage-certificate.png',
                                 title: 'Akte\nNikah',
