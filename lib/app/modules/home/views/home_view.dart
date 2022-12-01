@@ -91,7 +91,7 @@ class HomeView extends GetView<HomeController> {
                               bottom: 6.h,
                               widthIcon: 34.w,
                               onTap: () {
-                                Get.toNamed(Routes.AKTA_NIKAH);
+                                Get.toNamed(Routes.AKTA_KELAHIRAN);
                               },
                             ),
                             CustomMenusCard(
