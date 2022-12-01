@@ -66,8 +66,8 @@ class HomeView extends GetView<HomeController> {
                               },
                             ),
                             CustomMenusCard(
-                              icon: 'assets/icon/address.png',
-                              title: 'Perpindahan\nKeluar',
+                              icon: 'assets/icon/divorce.png',
+                              title: 'Registrasi \nAkte Perceraian',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
@@ -81,7 +81,7 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             CustomMenusCard(
                               icon: 'assets/icon/card-birth.png',
-                              title: 'Registrasi \nAkta Kelahiran',
+                              title: 'Registrasi \nAkte Kelahiran',
                               height: 11.sp,
                               bottom: 6.h,
                               widthIcon: 34.w,
@@ -99,7 +99,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/death-certificate.png',
-                              title: 'Registrasi\nAkta Kematian',
+                              title: 'Registrasi\nAkte Kematian',
                               height: 11.sp,
                               bottom: 13.h,
                               widthIcon: 32.w,
@@ -116,7 +116,7 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(left: 40.w, right: 47.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/marriage-certificate.png',
-                                title: 'Akta\nNikah',
+                                title: 'Akte\nNikah',
                                 height: 11.sp,
                                 bottom: 12.h,
                                 widthIcon: 36.w,

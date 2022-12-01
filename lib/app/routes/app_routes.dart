@@ -20,6 +20,7 @@ abstract class Routes {
   static const REGIST_KIA = _Paths.REGIST_KIA;
   static const KARTU_KELUARGA = _Paths.KARTU_KELUARGA;
   static const AKTA_NIKAH = _Paths.AKTA_NIKAH;
+  static const AKTA_PERCERAIAN = _Paths.AKTA_PERCERAIAN;
 }
 
 abstract class _Paths {
@@ -39,4 +40,5 @@ abstract class _Paths {
   static const REGIST_KIA = '/regist-kia';
   static const KARTU_KELUARGA = '/kartu-keluarga';
   static const AKTA_NIKAH = '/akta-nikah';
+  static const AKTA_PERCERAIAN = '/akta-perceraian';
 }
