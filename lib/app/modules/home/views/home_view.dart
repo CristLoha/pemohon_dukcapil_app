@@ -70,11 +70,13 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/divorce.png',
-                              title: 'Registrasi \nAkte Perceraian',
+                              title: 'Registrasi \nAkta Perceraian',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.AKTA_PERCERAIAN);
+                              },
                             ),
                           ],
                         ),
@@ -84,11 +86,13 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             CustomMenusCard(
                               icon: 'assets/icon/card-birth.png',
-                              title: 'Registrasi \nAkte Kelahiran',
+                              title: 'Registrasi \nAkta Kelahiran',
                               height: 11.sp,
                               bottom: 6.h,
                               widthIcon: 34.w,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.AKTA_NIKAH);
+                              },
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
@@ -102,7 +106,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/death-certificate.png',
-                              title: 'Registrasi\nAkte Kematian',
+                              title: 'Registrasi\nAkta Kematian',
                               height: 11.sp,
                               bottom: 13.h,
                               widthIcon: 32.w,
@@ -119,7 +123,7 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(left: 57.w, right: 55.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/marriage-certificate.png',
-                                title: 'Akte\nNikah',
+                                title: 'Akta\nNikah',
                                 height: 11.sp,
                                 bottom: 12.h,
                                 widthIcon: 36.w,

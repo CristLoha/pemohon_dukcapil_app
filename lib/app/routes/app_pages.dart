@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import 'package:pemohon_dukcapil_app/app/modules/akta_kelahiran/bindings/akta_kelahiran_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/akta_kelahiran/views/akta_kelahiran_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/bindings/akta_nikah_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/views/akta_nikah_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_perceraian/bindings/akta_perceraian_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.AKTA_PERCERAIAN,
       page: () => AktaPerceraianView(),
       binding: AktaPerceraianBinding(),
+    ),
+    GetPage(
+      name: _Paths.AKTA_KELAHIRAN,
+      page: () => AktaKelahiranView(),
+      binding: AktaKelahiranBinding(),
     ),
   ];
 }
