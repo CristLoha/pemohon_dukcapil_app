@@ -689,7 +689,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
 
                 SizedBox(height: 20.h),
 
-                ///AKTA KELAHIRAN
+                ///BUKU NIKAH/AKTA PERKAWINAN
                 Text(
                   'Unggah Buku Nikah/Akta Perkawinan',
                   style: blackTextStyle.copyWith(),
@@ -840,6 +840,156 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                 ),
 
                 SizedBox(height: 20.h),
+
+                ///SUKET DOMISILI
+                Text(
+                  'Surat Keterangan Domisili',
+                  style: blackTextStyle.copyWith(),
+                ),
+                SizedBox(height: 12.h),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                    width: 315.w,
+                    height: 140.h,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: kGreyColor,
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        GetBuilder<KartuKeluargaController>(
+                          builder: (c) => c.pickedImageSuketDomisili != null
+                              ? Row(
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        c.pickedImageSuketDomisili!.name,
+                                        style: blackTextStyle.copyWith(),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          c.resetImageSuketDomisli(),
+                                      child: Icon(
+                                        Icons.delete,
+                                        color: kRedColor,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Text(
+                                  '*Maks 5 Mb',
+                                  style: redTextStyle.copyWith(),
+                                ),
+                        ),
+                        SizedBox(height: 20.h),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              child: Container(
+                                width: 120.w,
+                                height: 40.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                ),
+                                child: GetBuilder<KartuKeluargaController>(
+                                  builder: (c) {
+                                    return c.pickedImageSuketDomisili != null
+                                        ? ElevatedButton(
+                                            onPressed: () {
+                                              Get.dialog(
+                                                Container(
+                                                  child: PhotoView(
+                                                    imageProvider: FileImage(
+                                                      File(c
+                                                          .pickedImageSuketDomisili!
+                                                          .path),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ),
+                                          )
+                                        : ElevatedButton(
+                                            onPressed: () {
+                                              EasyLoading.showError(
+                                                'Masukan file terlebihi dahulu',
+                                              );
+                                            },
+                                            child: Text(
+                                              'Lihat',
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: medium,
+                                              ),
+                                            ),
+                                            style: ElevatedButton.styleFrom(
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(7),
+                                                side: BorderSide(
+                                                  color: kGreyColor,
+                                                ),
+                                              ),
+                                              backgroundColor: kWhiteColor,
+                                            ));
+                                  },
+                                ),
+                              ),
+                            ),
+                            Container(
+                              width: 120.w,
+                              height: 40.h,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  controller.selectImageSuketDomisili();
+                                },
+                                child: Text(
+                                  'Pilih File',
+                                  style: blackTextStyle.copyWith(
+                                    fontSize: 16.sp,
+                                    fontWeight: medium,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(7),
+                                    side: BorderSide(
+                                      color: kGreyColor,
+                                    ),
+                                  ),
+                                  backgroundColor: kWhiteColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

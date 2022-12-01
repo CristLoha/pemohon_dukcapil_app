@@ -272,7 +272,6 @@ class KartuKeluargaController extends GetxController {
   }
 
   ///SUKET DOMISILI
-
   void selectImageSuketDomisili() async {
     try {
       final dataImage = await imagePickerSuketDomisili.pickImage(
