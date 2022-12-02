@@ -890,10 +890,10 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
             controller.currentStep > 3 ? StepState.complete : StepState.indexed,
       ),
 
-      ///SAKSI 2
+      ///SAKSI 1
       Step(
         title: Text(
-          'Saksi 2 (Dua)',
+          'Saksi Satu (Satu)',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
