@@ -48,14 +48,26 @@ class AktaKelahiranController extends GetxController {
   TextEditingController nikAyahC = TextEditingController();
   TextEditingController namaLengkapAyahC = TextEditingController();
   TextEditingController tanggalLahirAyahC = TextEditingController();
-  TextEditingController umurAyahC = TextEditingController();
   TextEditingController pekerjaanAyah = TextEditingController();
   TextEditingController desaAyah = TextEditingController();
   TextEditingController kecamatanAyahC = TextEditingController();
   TextEditingController kabupatenAyahC = TextEditingController();
+  TextEditingController noKKC = TextEditingController();
   TextEditingController provinsiAyahC = TextEditingController();
   TextEditingController kewarganegaraanAyah = TextEditingController();
   TextEditingController kebangsaanAyahC = TextEditingController();
+
+  /// PEMOHON
+  TextEditingController nikPemohonC = TextEditingController();
+  TextEditingController namaLengkapPemohonC = TextEditingController();
+  TextEditingController tglLahirPemohonC = TextEditingController();
+  TextEditingController jenisKelaminPemohonC = TextEditingController();
+  TextEditingController pekerjaanPemohonC = TextEditingController();
+  TextEditingController desaPemohonC = TextEditingController();
+  TextEditingController kecamatanPemohonC = TextEditingController();
+  TextEditingController kabupatenPemohonC = TextEditingController();
+  TextEditingController provinsiPemohonC = TextEditingController();
+  TextEditingController kewarganegaraanPemohonC = TextEditingController();
 
   TextEditingController nikC = TextEditingController();
 
@@ -214,6 +226,7 @@ class AktaKelahiranController extends GetxController {
         "tanggalLahirAyah": tanggalLahirAyahC.text,
         "pekerjaanAyah": pekerjaanAyah.text,
         "desaAyah": desaIbuC.text,
+        "noKK": noKKC.text,
         "kecamatanAyah": kecamatanAyahC.text,
         "kabupatenAyah": kabupatenAyahC.text,
         "provinsiAyah": provinsiAyahC.text,
@@ -333,7 +346,21 @@ class AktaKelahiranController extends GetxController {
     });
   }
 
-  ///TANGGAL LAHIR PERKAWINAN
+  ///tgl lahir pemohon
+  void tglLahirPemohon() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tglLahirPemohonC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///TANGGAL PERKAWINAN
   void tglPencatatanPerkawinan() async {
     await DatePicker.showDatePicker(
       Get.context!,
