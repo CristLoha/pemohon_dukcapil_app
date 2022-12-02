@@ -968,7 +968,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textEditingController: controller.pekerjaanAyah,
+                textEditingController: controller.pekerjaanPemohonC,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -986,7 +986,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textEditingController: controller.desaAyah,
+                textEditingController: controller.nikPemohonC,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1005,7 +1005,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textEditingController: controller.kecamatanAyahC,
+                textEditingController: controller.kecamatanPemohonC,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1023,7 +1023,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textEditingController: controller.kabupatenAyahC,
+                textEditingController: controller.kabupatenPemohonC,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1041,7 +1041,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
-                textEditingController: controller.provinsiAyahC,
+                textEditingController: controller.provinsiPemohonC,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1075,27 +1075,9 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 showClearButton: true,
                 onChanged: (value) {
                   print(value!["jenisK"]);
-                  controller.kewarganegaraanAyah =
+                  controller.kewarganegaraanPemohonC =
                       TextEditingController(text: value["jenisK"]);
                 },
-              ),
-              SizedBox(height: 20.h),
-
-              ///Kebangsaann
-              CustomTitleWidget(title: 'Kebangsaan'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textEditingController: controller.kebangsaanAyahC,
-                keyboardType: TextInputType.name,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Input tidak boleh kosong";
-                  } else {
-                    return null;
-                  }
-                },
-                textCapitalization: TextCapitalization.words,
               ),
               SizedBox(height: 20.h),
             ],
