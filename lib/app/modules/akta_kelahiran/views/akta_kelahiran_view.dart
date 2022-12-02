@@ -126,17 +126,6 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// NIK
-              CustomTitleWidget(title: 'NIK'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: true,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.nikC,
-                textCapitalization: TextCapitalization.none,
-              ),
-              SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
