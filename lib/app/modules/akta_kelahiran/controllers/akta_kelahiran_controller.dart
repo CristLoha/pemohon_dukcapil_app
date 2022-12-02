@@ -35,7 +35,7 @@ class AktaKelahiranController extends GetxController {
   TextEditingController nikIbuC = TextEditingController();
   TextEditingController namaLengkapIbuC = TextEditingController();
   TextEditingController tanggalLahirIbuC = TextEditingController();
-  TextEditingController umurIbuC = TextEditingController();
+  TextEditingController tglPencatatanPerkawinanC = TextEditingController();
   TextEditingController pekerjaanIbu = TextEditingController();
   TextEditingController desaIbuC = TextEditingController();
   TextEditingController kecamatanIbuC = TextEditingController();
@@ -43,7 +43,19 @@ class AktaKelahiranController extends GetxController {
   TextEditingController provinsiIbuC = TextEditingController();
   TextEditingController kewarganegaraanIbuC = TextEditingController();
   TextEditingController kebangsaanC = TextEditingController();
-  TextEditingController tglPerkawinanC = TextEditingController();
+
+  ///AYAH
+  TextEditingController nikAyahC = TextEditingController();
+  TextEditingController namaLengkapAyahC = TextEditingController();
+  TextEditingController tanggalLahirAyahC = TextEditingController();
+  TextEditingController umurAyahC = TextEditingController();
+  TextEditingController pekerjaanAyah = TextEditingController();
+  TextEditingController desaAyah = TextEditingController();
+  TextEditingController kecamatanAyahC = TextEditingController();
+  TextEditingController kabupatenAyahC = TextEditingController();
+  TextEditingController provinsiAyahC = TextEditingController();
+  TextEditingController kewarganegaraanAyah = TextEditingController();
+  TextEditingController kebangsaanAyahC = TextEditingController();
 
   TextEditingController nikC = TextEditingController();
 
@@ -51,6 +63,7 @@ class AktaKelahiranController extends GetxController {
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -186,7 +199,6 @@ class AktaKelahiranController extends GetxController {
         "nikIbu": nikIbuC.text,
         "namaLengkapIbu": namaLengkapIbuC.text,
         "tanggalLahirIbu": tanggalLahirIbuC.text,
-        "umurIbu": umurIbuC.text,
         "pekerjaanIbu": pekerjaanIbu.text,
         "desaIbu": desaIbuC.text,
         "kecamatanIbu": kecamatanIbuC.text,
@@ -194,7 +206,7 @@ class AktaKelahiranController extends GetxController {
         "provinsiIbu": provinsiIbuC.text,
         "kewarganegaraanIbu": kewarganegaraanIbuC.text,
         "kebangsaanIbu": kebangsaanC.text,
-        "tglPerkawinan": tglPerkawinanC.text,
+        "tglPerkawinan": tglPencatatanPerkawinanC.text,
 
         ///PROSES
         'kategori': 'Akta Kelahiran',
@@ -281,6 +293,35 @@ class AktaKelahiranController extends GetxController {
     });
   }
 
+  ///tgl lahir ibu
+  void tglLahirIbu() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirIbuC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir ayah
+  void tglLahirAah() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirAyahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///TANGGAL LAHIR PERKAWINAN
   void tglPencatatanPerkawinan() async {
     await DatePicker.showDatePicker(
       Get.context!,
@@ -289,7 +330,8 @@ class AktaKelahiranController extends GetxController {
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        tglPerkawinanC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tglPencatatanPerkawinanC.text =
+            DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }
