@@ -12,6 +12,7 @@ import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
+import '../../../utils/digital_clock_widget.dart';
 import '../controllers/akta_kelahiran_controller.dart';
 
 class AktaKelahiranView extends GetView<AktaKelahiranController> {
@@ -127,6 +128,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              /// NAMA LENGKAP
               CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
@@ -186,8 +188,46 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 showClearButton: true,
                 onChanged: (value) {
                   print(value!["tmptDilahirkan"]);
-                  controller.jenisKelaminC =
+                  controller.tempatKelahiranC =
                       TextEditingController(text: value["tmptDilahirkan"]);
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// Tempat Kelahiran
+              CustomTitleWidget(title: 'Tempat Kelahiran'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textEditingController: controller.nameC,
+                keyboardType: TextInputType.number,
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
+
+              ///JENIS KELAHIRAN
+              CustomTitleWidget(title: 'Jenis Kelahiran'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.jenisKelahiran,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["jnsKelahiran"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["jnsKelahiran"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["jnsKelahiran"]);
+                  controller.jenisKelahiranC =
+                      TextEditingController(text: value["jnsKelahiran"]);
                 },
               ),
               SizedBox(height: 20.h),
@@ -223,6 +263,15 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 ),
               ),
 
+              SizedBox(height: 20.h),
+
+              /// PUKUL
+              CustomTitleWidget(title: 'Pukul'),
+              SizedBox(height: 12.h),
+              DigitalClockWidget(
+                textCapitalization: TextCapitalization.none,
+                textEditingController: controller.nameC,
+              ),
               SizedBox(height: 20.h),
 
               /// Kecamatan
