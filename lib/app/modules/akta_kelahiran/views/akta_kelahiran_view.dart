@@ -118,7 +118,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
       /// BAYI/ANAK
       Step(
         title: Text(
-          'Pemohon',
+          'Bayi/Anak',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
@@ -234,6 +234,129 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
         state:
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
+
+      /// IBU
+
+      Step(
+        title: Text(
+          'Bayi/Anak',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
+        content: Form(
+          key: controller.formKeys[0],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// NIK
+              CustomTitleWidget(title: 'NIK'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: true,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikC,
+                textCapitalization: TextCapitalization.none,
+              ),
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Nama Lengkap'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: true,
+                textEditingController: controller.nameC,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+              ),
+
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Tanggal lahir'),
+              SizedBox(height: 12.h),
+              TextFormField(
+                textInputAction: TextInputAction.next,
+                controller: controller.dateC,
+                readOnly: true,
+                onTap: () {
+                  controller.dateLocal();
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Silahkan masukkan tanggal lahir';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  hintStyle: greyTextStyle,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(4),
+                    borderSide: BorderSide(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 20.h),
+
+              /// Kecamatan
+              CustomTitleWidget(title: 'Kecamatan'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.kecamatanC,
+                onTap: () {},
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama kecamatan yang benar";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 12.h),
+
+              /// DESA
+              CustomTitleWidget(title: 'Desa'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.name,
+                textEditingController: controller.desaC,
+                validator: (value) {
+                  if (value!.isEmpty ||
+                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
+                    return "Masukan nama desa yang benar";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
+
+              ///Keterangan
+              CustomTitleWidget(title: 'Keterangan'),
+              SizedBox(height: 12.h),
+              CustomFormKeteranganField(
+                readOnly: false,
+                textInputAction: TextInputAction.done,
+                textEditingController: controller.keteranganC,
+              ),
+            ],
+          ),
+        ),
+        isActive: controller.currentStep.value >= 1,
+        state:
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+      ),
+
+      /// AYAH/KEPALA KELUARGA
       Step(
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
@@ -385,7 +508,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
             ),
           ],
         ),
-        isActive: controller.currentStep.value >= 1,
+        isActive: controller.currentStep.value >= 2,
       ),
     ];
   }
