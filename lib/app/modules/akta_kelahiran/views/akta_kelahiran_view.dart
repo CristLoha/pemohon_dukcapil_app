@@ -249,6 +249,34 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 },
                 textCapitalization: TextCapitalization.none,
               ),
+              SizedBox(height: 20.h),
+
+              ///PENOLONG KELAHIRAN
+              CustomTitleWidget(title: 'Penolong Kelahiran'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.penolongKelahiran,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["pKelahiran"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["pKelahiran"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["pKelahiran"]);
+                  controller.jenisKelahiranC =
+                      TextEditingController(text: value["pKelahiran"]);
+                },
+              ),
+              SizedBox(height: 20.h),
 
               ///TANGGAL LAHIR
               SizedBox(height: 20.h),

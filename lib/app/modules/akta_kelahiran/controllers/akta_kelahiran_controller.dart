@@ -72,6 +72,25 @@ class AktaKelahiranController extends GetxController {
     },
   ];
 
+  List<Map<String, dynamic>> penolongKelahiran = [
+    {
+      "pKelahiran": "Dokter",
+      "id": 1,
+    },
+    {
+      "pKelahiran": "Bidan/Perawat",
+      "id": 2,
+    },
+    {
+      "pKelahiran": "Dukun",
+      "id": 3,
+    },
+    {
+      "pKelahiran": "Lainnya",
+      "id": 4,
+    },
+  ];
+
   List<Map<String, dynamic>> tempatDilahirkan = [
     {
       "tmptDilahirkan": "RS/RB",
