@@ -130,11 +130,12 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.nameC,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.number,
                 textCapitalization: TextCapitalization.words,
               ),
+              SizedBox(height: 20.h),
 
               /// Jenis Kelamin
               CustomTitleWidget(title: 'Jenis Kelamin'),
@@ -163,6 +164,35 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               ),
               SizedBox(height: 20.h),
 
+              /// TEMPAT DILAHIRKAN
+
+              CustomTitleWidget(title: 'Tempat Dilahirkan'),
+              SizedBox(height: 12.h),
+              DropdownSearch<Map<String, dynamic>>(
+                dialogMaxWidth: 8,
+                mode: Mode.MENU,
+                items: controller.tempatDilahirkan,
+                dropdownButtonSplashRadius: 10,
+                dropdownBuilder: (context, selectedItem) => Text(
+                  selectedItem?["tmptDilahirkan"].toString() ?? "PILIH",
+                  style: blackTextStyle,
+                ),
+                popupItemBuilder: (context, item, isSelected) => ListTile(
+                  title: Text(
+                    item["tmptDilahirkan"].toString(),
+                    style: blackTextStyle,
+                  ),
+                ),
+                showClearButton: true,
+                onChanged: (value) {
+                  print(value!["tmptDilahirkan"]);
+                  controller.jenisKelaminC =
+                      TextEditingController(text: value["tmptDilahirkan"]);
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              ///TANGGAL LAHIR
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir'),
               SizedBox(height: 12.h),

@@ -19,6 +19,7 @@ class AktaKelahiranController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController jenisKelaminC = TextEditingController();
+  TextEditingController tempatKelahiranC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController dateC = TextEditingController();
@@ -45,6 +46,29 @@ class AktaKelahiranController extends GetxController {
       "jenisKelamin": "PEREMPUAN",
       "id": 2,
     }
+  ];
+
+  List<Map<String, dynamic>> tempatDilahirkan = [
+    {
+      "tmptDilahirkan": "RS/RB",
+      "id": 1,
+    },
+    {
+      "tmptDilahirkan": "Puskesmas",
+      "id": 2,
+    },
+    {
+      "tmptDilahirkan": "Polindes",
+      "id": 3,
+    },
+    {
+      "tmptDilahirkan": "Rumah",
+      "id": 4,
+    },
+    {
+      "tmptDilahirkan": "Lainnya",
+      "id": 5,
+    },
   ];
 
   XFile? pickedImage;
