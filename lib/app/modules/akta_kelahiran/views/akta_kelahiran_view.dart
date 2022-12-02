@@ -232,6 +232,24 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               ),
               SizedBox(height: 20.h),
 
+              /// KELAHIRAN KE
+              CustomTitleWidget(title: 'Kelahiran Ke-'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.phone,
+                textEditingController: controller.nikC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Masukan data kelahiran";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.none,
+              ),
+
               ///TANGGAL LAHIR
               SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Tanggal lahir'),
