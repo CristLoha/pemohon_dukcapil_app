@@ -208,6 +208,18 @@ class AktaKelahiranController extends GetxController {
         "kebangsaanIbu": kebangsaanC.text,
         "tglPerkawinan": tglPencatatanPerkawinanC.text,
 
+        ///AYAH
+        "nikAyah": nikAyahC.text,
+        "namaLengkapAyah": namaLengkapAyahC.text,
+        "tanggalLahirAyah": tanggalLahirAyahC.text,
+        "pekerjaanAyah": pekerjaanAyah.text,
+        "desaAyah": desaIbuC.text,
+        "kecamatanAyah": kecamatanAyahC.text,
+        "kabupatenAyah": kabupatenAyahC.text,
+        "provinsiAyah": provinsiAyahC.text,
+        "kewarganegaraanAyah": kewarganegaraanAyah.text,
+        "kebangsaanAyah": kebangsaanAyahC.text,
+
         ///PROSES
         'kategori': 'Akta Kelahiran',
         'uid': uid,
