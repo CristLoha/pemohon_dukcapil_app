@@ -893,7 +893,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
       ///SAKSI 1
       Step(
         title: Text(
-          'Saksi Satu (Satu)',
+          'Saksi 1 (Satu)',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
