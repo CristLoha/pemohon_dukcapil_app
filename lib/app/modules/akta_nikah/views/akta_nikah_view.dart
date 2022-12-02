@@ -26,7 +26,8 @@ class AktaNikahView extends GetView<AktaNikahController> {
               type: StepperType.vertical,
               steps: formStep(),
               onStepContinue: () {
-                if (!controller.formKeys[controller.index].currentState!
+                if (!controller
+                    .formKeys[controller.currentStep.value].currentState!
                     .validate()) {
                   return;
                 }

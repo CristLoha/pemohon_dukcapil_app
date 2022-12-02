@@ -18,19 +18,39 @@ class AktaKelahiranController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
+
+  /// BAYI/ANAK
+  TextEditingController nameAnakC = TextEditingController();
   TextEditingController jenisKelaminC = TextEditingController();
-  TextEditingController jenisKelahiranC = TextEditingController();
+  TextEditingController tempatDilahirkanC = TextEditingController();
   TextEditingController tempatKelahiranC = TextEditingController();
+  TextEditingController kelahiranKeC = TextEditingController();
+  TextEditingController tglLahirAnakC = TextEditingController();
+  TextEditingController pukulC = TextEditingController();
+  TextEditingController beratBayiC = TextEditingController();
+  TextEditingController panjangBayiC = TextEditingController();
+  TextEditingController jenisKelahiranC = TextEditingController();
+
+  ///IBU
+  TextEditingController nikIbuC = TextEditingController();
+  TextEditingController namaLengkapIbuC = TextEditingController();
+  TextEditingController tanggalLahirIbuC = TextEditingController();
+  TextEditingController umurIbuC = TextEditingController();
+  TextEditingController pekerjaanIbu = TextEditingController();
+  TextEditingController desaIbuC = TextEditingController();
+  TextEditingController kecamatanIbuC = TextEditingController();
+  TextEditingController kabupatenIbuC = TextEditingController();
+  TextEditingController provinsiIbuC = TextEditingController();
+  TextEditingController kewarganegaraanIbuC = TextEditingController();
+  TextEditingController kebangsaanC = TextEditingController();
+  TextEditingController tglPerkawinanC = TextEditingController();
+
   TextEditingController nikC = TextEditingController();
-  TextEditingController nameC = TextEditingController();
-  TextEditingController dateC = TextEditingController();
-  TextEditingController kecamatanC = TextEditingController();
-  TextEditingController desaC = TextEditingController();
+
   TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
-    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -45,6 +65,17 @@ class AktaKelahiranController extends GetxController {
     },
     {
       "jenisKelamin": "PEREMPUAN",
+      "id": 2,
+    }
+  ];
+
+  List<Map<String, dynamic>> dataJenisKewarganegaraan = [
+    {
+      "jenisK": "WNI",
+      "id": 1,
+    },
+    {
+      "jenisK": "WNA",
       "id": 2,
     }
   ];
@@ -139,15 +170,34 @@ class AktaKelahiranController extends GetxController {
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
-        'nik': nikC.text,
-        'nama': nameC.text,
-        'fotoKK': fotoKK,
-        'tgl_lahir': dateC.text,
-        "keyName": nameC.text.substring(0, 1).toUpperCase(),
+        ///BAYI/ANAK
+        "namaAnak": nameAnakC.text,
+        "keyName": nameAnakC.text.substring(0, 1).toUpperCase(),
+        "tempatDilahirkan": tempatDilahirkanC.text,
+        "tempatKelahiran": tempatKelahiranC.text,
+        "kelahiranKe": kelahiranKeC.text,
+        "tglLahirAnak": tglLahirAnakC.text,
+        "pukul": pukulC.text,
+        "jenisKelahiran": jenisKelahiranC.text,
+        "beratBayi": beratBayiC.text,
+        "panjangBayi": panjangBayiC.text,
+
+        ///IBU
+        "nikIbu": nikIbuC.text,
+        "namaLengkapIbu": namaLengkapIbuC.text,
+        "tanggalLahirIbu": tanggalLahirIbuC.text,
+        "umurIbu": umurIbuC.text,
+        "pekerjaanIbu": pekerjaanIbu.text,
+        "desaIbu": desaIbuC.text,
+        "kecamatanIbu": kecamatanIbuC.text,
+        "kabupatenIbu": kabupatenIbuC.text,
+        "provinsiIbu": provinsiIbuC.text,
+        "kewarganegaraanIbu": kewarganegaraanIbuC.text,
+        "kebangsaanIbu": kebangsaanC.text,
+        "tglPerkawinan": tglPerkawinanC.text,
+
+        ///PROSES
         'kategori': 'Akta Kelahiran',
-        'kecamatan': kecamatanC.text,
-        'email': userPemohon!.email,
-        'desa': desaC.text,
         'uid': uid,
         'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
@@ -217,16 +267,29 @@ class AktaKelahiranController extends GetxController {
     }
   }
 
-  ///UNTUK FORM
-  void dateLocal() async {
+  ///tgl lahir anak
+  void tglLahirAnak() async {
     await DatePicker.showDatePicker(
       Get.context!,
       locale: LocaleType.id,
-      minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime(2006, 12, 31),
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tglLahirAnakC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  void tglPencatatanPerkawinan() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tglPerkawinanC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }

@@ -27,7 +27,8 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
               type: StepperType.horizontal,
               steps: formStep(),
               onStepContinue: () {
-                if (!controller.formKeys[controller.index].currentState!
+                if (!controller
+                    .formKeys[controller.currentStep.value].currentState!
                     .validate()) {
                   return;
                 }
