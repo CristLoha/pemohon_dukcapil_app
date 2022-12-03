@@ -392,6 +392,34 @@ class AktaKelahiranController extends GetxController {
     });
   }
 
+  ///tgl lahir saksi1
+  void tglLahirSaksi1() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tglLahirSaksi1C.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir saksi2
+  void tglLahirSaksi2() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tglLahirSaksi2C.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
   ///TANGGAL PERKAWINAN
   void tglPencatatanPerkawinan() async {
     await DatePicker.showDatePicker(
