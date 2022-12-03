@@ -69,7 +69,27 @@ class AktaKelahiranController extends GetxController {
   TextEditingController provinsiPemohonC = TextEditingController();
   TextEditingController kewarganegaraanPemohonC = TextEditingController();
 
-  TextEditingController nikC = TextEditingController();
+  /// SAKSI1
+  TextEditingController nikSaksi1C = TextEditingController();
+  TextEditingController namaLengkapSaksi1C = TextEditingController();
+  TextEditingController tglLahirSaksi1C = TextEditingController();
+  TextEditingController jenisKelaminSaksi1C = TextEditingController();
+  TextEditingController pekerjaanSaksi1C = TextEditingController();
+  TextEditingController desaSaksi1C = TextEditingController();
+  TextEditingController kecamatanSaksi1C = TextEditingController();
+  TextEditingController kabupatenSaksi1C = TextEditingController();
+  TextEditingController provinsiSaksi1C = TextEditingController();
+
+  /// SAKSI2
+  TextEditingController nikSaksi2C = TextEditingController();
+  TextEditingController namaLengkapSaksi2C = TextEditingController();
+  TextEditingController tglLahirSaksi2C = TextEditingController();
+  TextEditingController jenisKelaminSaksi2C = TextEditingController();
+  TextEditingController pekerjaanSaksi2C = TextEditingController();
+  TextEditingController desaSaksi2C = TextEditingController();
+  TextEditingController kecamatanSaks2C = TextEditingController();
+  TextEditingController kabupatenSaksi2C = TextEditingController();
+  TextEditingController provinsiSaksi2C = TextEditingController();
 
   TextEditingController keteranganC = TextEditingController();
 

@@ -1057,6 +1057,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               /// Kewarganegaraan
               CustomTitleWidget(title: 'Kewarganegaraan'),
               SizedBox(height: 12.h),
+
               DropdownSearch<Map<String, dynamic>>(
                 dialogMaxWidth: 8,
                 mode: Mode.MENU,
@@ -1104,9 +1105,16 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: true,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikC,
+                textEditingController: controller.nikSaksi1C,
                 textCapitalization: TextCapitalization.none,
               ),
             ],
@@ -1135,7 +1143,14 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 readOnly: true,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
-                textEditingController: controller.nikC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                textEditingController: controller.nikSaksi2C,
                 textCapitalization: TextCapitalization.none,
               ),
             ],
