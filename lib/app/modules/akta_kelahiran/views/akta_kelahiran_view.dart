@@ -1450,6 +1450,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            ///KK
             Text(
               'Unggah KK',
               style: blackTextStyle.copyWith(),
@@ -1468,18 +1469,18 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 child: Column(
                   children: [
                     GetBuilder<AktaKelahiranController>(
-                      builder: (c) => c.pickedImage != null
+                      builder: (c) => c.pickedImageKK != null
                           ? Row(
                               children: [
                                 Expanded(
                                   child: Text(
-                                    c.pickedImage!.name,
+                                    c.pickedImageKK!.name,
                                     style: blackTextStyle.copyWith(),
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
                                 TextButton(
-                                  onPressed: () => c.resetImage(),
+                                  onPressed: () => c.resetImageKK(),
                                   child: Icon(
                                     Icons.delete,
                                     color: kRedColor,
@@ -1505,14 +1506,14 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                           ),
                           child: GetBuilder<AktaKelahiranController>(
                             builder: (c) {
-                              return c.pickedImage != null
+                              return c.pickedImageKK != null
                                   ? ElevatedButton(
                                       onPressed: () {
                                         Get.dialog(
                                           Container(
                                             child: PhotoView(
                                               imageProvider: FileImage(
-                                                File(c.pickedImage!.path),
+                                                File(c.pickedImageKK!.path),
                                               ),
                                             ),
                                           ),
@@ -1567,7 +1568,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                           height: 40.h,
                           child: ElevatedButton(
                             onPressed: () {
-                              controller.selectImage();
+                              controller.selectImageKK();
                             },
                             child: Text(
                               'Pilih File',

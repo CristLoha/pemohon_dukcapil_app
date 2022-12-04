@@ -189,6 +189,8 @@ class AktaKelahiranController extends GetxController {
     },
   ];
 
+  XFile? pickedImageSuket;
+  final ImagePicker imageSuket = ImagePicker();
   XFile? pickedImageKK;
   final ImagePicker imagePickerKK = ImagePicker();
 
@@ -202,7 +204,10 @@ class AktaKelahiranController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null) {
+    if (pickedImageKK != null && pickedImageSuket != null) {
+      ///SUKET
+
+      ///KK
       String extKK = pickedImageKK!.name.split(".").last;
       await storage
           .ref(
@@ -295,6 +300,9 @@ class AktaKelahiranController extends GetxController {
         "kabupatenSaksi2": kabupatenSaksi2C.text,
         "provinsiSaksi2": provinsiSaksi2C.text,
 
+        ///PERSYARATAN
+        "fotoKK": fotoKK,
+
         ///PROSES
         'kategori': 'Akta Kelahiran',
         'uid': uid,
@@ -331,12 +339,12 @@ class AktaKelahiranController extends GetxController {
     );
   }
 
-  void resetImage() {
+  void resetImageKK() {
     pickedImageKK = null;
     update();
   }
 
-  void selectImage() async {
+  void selectImageKK() async {
     try {
       final dataImage = await imagePickerKK.pickImage(
         source: ImageSource.gallery,
