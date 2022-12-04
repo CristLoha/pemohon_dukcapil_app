@@ -207,6 +207,23 @@ class AktaKelahiranController extends GetxController {
     if (pickedImageKK != null && pickedImageSuket != null) {
       ///SUKET
 
+      String extSuket = pickedImageSuket!.name.split(".").last;
+      await storage
+          .ref(
+            'AktaKelahiran',
+          )
+          .child('KK$randomNumber.$extSuket')
+          .putFile(
+            File(
+              pickedImageSuket!.path,
+            ),
+          );
+
+      String fotoSuket = await storage
+          .ref('AktaKelahiran')
+          .child('$randomNumber.$extSuket')
+          .getDownloadURL();
+
       ///KK
       String extKK = pickedImageKK!.name.split(".").last;
       await storage
@@ -301,6 +318,7 @@ class AktaKelahiranController extends GetxController {
         "provinsiSaksi2": provinsiSaksi2C.text,
 
         ///PERSYARATAN
+        "fotoSuket": fotoSuket,
         "fotoKK": fotoKK,
 
         ///PROSES
