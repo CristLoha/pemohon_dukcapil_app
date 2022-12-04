@@ -159,6 +159,50 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                       ),
 
                       SizedBox(height: 20.h),
+
+                      /// EMAIL
+                      CustomTitleWidget(title: 'Email'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        textEditingController: controller.emailC,
+                        validator: (value) {
+                          if (!GetUtils.isEmail(value!)) {
+                            return 'Email tidak valid';
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.none,
+                      ),
+
+                      SizedBox(height: 20.h),
+
+                      /// Nomor Telepon
+                      CustomTitleWidget(title: 'Nomor Telepon'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.phone,
+                        textEditingController: controller.noTelpC,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                  .hasMatch(value)) {
+                            return "Masukan nomor telepon yang benar";
+                          } else if (!GetUtils.isLengthGreaterOrEqual(
+                              value, 11)) {
+                            return 'Minimal 12 karakter';
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.none,
+                      ),
+
                       CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
                       TextFormField(

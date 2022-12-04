@@ -17,6 +17,8 @@ class RekamananKtpController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController nikC = TextEditingController();
+  TextEditingController emailC = TextEditingController();
+  TextEditingController noTelpC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
@@ -61,7 +63,8 @@ class RekamananKtpController extends GetxController {
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Perekaman e-KTP',
         'kecamatan': kecamatanC.text,
-        'email': userPemohon!.email,
+        'email': emailC.text,
+        'noTelpon': noTelpC.text,
         'desa': desaC.text,
         'uid': uid,
         'keterangan': keteranganC.text,
