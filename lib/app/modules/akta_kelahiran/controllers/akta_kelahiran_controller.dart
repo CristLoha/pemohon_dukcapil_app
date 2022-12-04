@@ -92,7 +92,6 @@ class AktaKelahiranController extends GetxController {
 
   TextEditingController keteranganC = TextEditingController();
 
-  int index = 0;
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -193,6 +192,8 @@ class AktaKelahiranController extends GetxController {
   final ImagePicker imagePickerSuket = ImagePicker();
   XFile? pickedImageKK;
   final ImagePicker imagePickerKK = ImagePicker();
+  XFile? pickedImageAktaNikah;
+  final ImagePicker imagePickerAktaNikah = ImagePicker();
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -200,19 +201,20 @@ class AktaKelahiranController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addrekamanKTP() async {
+  void addreAktaKelahiran() async {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null && pickedImageSuket != null) {
+    if (pickedImageKK != null &&
+        pickedImageSuket != null &&
+        pickedImageAktaNikah != null) {
       ///SUKET
-
       String extSuket = pickedImageSuket!.name.split(".").last;
       await storage
           .ref(
             'AktaKelahiran',
           )
-          .child('KK$randomNumber.$extSuket')
+          .child('Suket$randomNumber.$extSuket')
           .putFile(
             File(
               pickedImageSuket!.path,
@@ -221,15 +223,13 @@ class AktaKelahiranController extends GetxController {
 
       String fotoSuket = await storage
           .ref('AktaKelahiran')
-          .child('$randomNumber.$extSuket')
+          .child('Suket$randomNumber.$extSuket')
           .getDownloadURL();
 
       ///KK
       String extKK = pickedImageKK!.name.split(".").last;
       await storage
-          .ref(
-            'AktaKelahiran',
-          )
+          .ref('AktaKelahiran')
           .child('KK$randomNumber.$extKK')
           .putFile(
             File(
@@ -240,6 +240,23 @@ class AktaKelahiranController extends GetxController {
       String fotoKK = await storage
           .ref('AktaKelahiran')
           .child('KK$randomNumber.$extKK')
+          .getDownloadURL();
+
+      ///AKTA NIKAH
+
+      String extAktaNikah = pickedImageAktaNikah!.name.split(".").last;
+      await storage
+          .ref('AktaKelahiran')
+          .child('AktaNikah$randomNumber.$extKK')
+          .putFile(
+            File(
+              pickedImageAktaNikah!.path,
+            ),
+          );
+
+      String fotoAktaNikah = await storage
+          .ref('AktaKelahiran')
+          .child('AktaNikah$randomNumber.$extAktaNikah')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -320,11 +337,11 @@ class AktaKelahiranController extends GetxController {
         ///PERSYARATAN
         "fotoSuket": fotoSuket,
         "fotoKK": fotoKK,
+        "aktaNikah": fotoAktaNikah,
 
         ///PROSES
         'kategori': 'Akta Kelahiran',
         'uid': uid,
-        'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
         'creationTime': DateTime.now().toIso8601String(),
@@ -340,8 +357,9 @@ class AktaKelahiranController extends GetxController {
         },
       );
     } else {
-      EasyLoading.showError('Data tidak boleh kosong');
-      print('data tidak boleh kosong');
+      EasyLoading.showError(
+        'Masukan file terlebihi dahulu',
+      );
     }
   }
 
@@ -407,6 +425,32 @@ class AktaKelahiranController extends GetxController {
     update();
   }
 
+  ///AKTA NIKAH
+  ///SUKET
+  void selectImageAktaNikah() async {
+    try {
+      final dataImage = await imagePickerAktaNikah.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageAktaNikah = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageAktaNikah = null;
+      update();
+    }
+  }
+
+  void resetImageAktaNikah() {
+    pickedImageAktaNikah = null;
+    update();
+  }
+
   ///tgl lahir anak
   void tglLahirAnak() async {
     await DatePicker.showDatePicker(
@@ -436,7 +480,7 @@ class AktaKelahiranController extends GetxController {
   }
 
   ///tgl lahir ayah
-  void tglLahirAah() async {
+  void tglLahirAyah() async {
     await DatePicker.showDatePicker(
       Get.context!,
       locale: LocaleType.id,
