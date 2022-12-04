@@ -1469,7 +1469,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 child: Column(
                   children: [
                     GetBuilder<AktaKelahiranController>(
-                      builder: (c) => c.pickedImageKK != null
+                      builder: (c) => c.pickedImageSuket != null
                           ? Row(
                               children: [
                                 Expanded(

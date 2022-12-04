@@ -190,7 +190,7 @@ class AktaKelahiranController extends GetxController {
   ];
 
   XFile? pickedImageSuket;
-  final ImagePicker imageSuket = ImagePicker();
+  final ImagePicker imagePickerSuket = ImagePicker();
   XFile? pickedImageKK;
   final ImagePicker imagePickerKK = ImagePicker();
 
@@ -357,11 +357,32 @@ class AktaKelahiranController extends GetxController {
     );
   }
 
-  void resetImageKK() {
-    pickedImageKK = null;
+  ///SUKET
+  void selectImageSuket() async {
+    try {
+      final dataImage = await imagePickerSuket.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSuket = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageSuket = null;
+      update();
+    }
+  }
+
+  void resetImageSuket() {
+    pickedImageSuket = null;
     update();
   }
 
+  ///KK
   void selectImageKK() async {
     try {
       final dataImage = await imagePickerKK.pickImage(
@@ -379,6 +400,11 @@ class AktaKelahiranController extends GetxController {
       pickedImageKK = null;
       update();
     }
+  }
+
+  void resetImageKK() {
+    pickedImageKK = null;
+    update();
   }
 
   ///tgl lahir anak
