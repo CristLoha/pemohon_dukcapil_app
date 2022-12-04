@@ -251,153 +251,156 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
       Step(
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Unggah KK',
-              style: blackTextStyle.copyWith(),
-            ),
-            SizedBox(height: 12.h),
-            Center(
-              child: Container(
-                padding: EdgeInsets.only(left: 15, top: 20, right: 10),
-                width: 315.w,
-                height: 140.h,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: kGreyColor,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    GetBuilder<RekamananKtpController>(
-                      builder: (c) => c.pickedImage != null
-                          ? Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    c.pickedImage!.name,
-                                    style: blackTextStyle.copyWith(),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                TextButton(
-                                  onPressed: () => c.resetImage(),
-                                  child: Icon(
-                                    Icons.delete,
-                                    color: kRedColor,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Text(
-                              '*Maks 5 Mb',
-                              style: redTextStyle.copyWith(),
-                            ),
+        content: Form(
+          key: controller.formKeys[2],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Unggah KK',
+                style: blackTextStyle.copyWith(),
+              ),
+              SizedBox(height: 12.h),
+              Center(
+                child: Container(
+                  padding: EdgeInsets.only(left: 15, top: 20, right: 10),
+                  width: 315.w,
+                  height: 140.h,
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: kGreyColor,
                     ),
-                    SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          width: 120.w,
-                          height: 40.h,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                          ),
-                          child: GetBuilder<RekamananKtpController>(
-                            builder: (c) {
-                              return c.pickedImage != null
-                                  ? ElevatedButton(
-                                      onPressed: () {
-                                        Get.dialog(
-                                          Container(
-                                            child: PhotoView(
-                                              imageProvider: FileImage(
-                                                File(c.pickedImage!.path),
+                  ),
+                  child: Column(
+                    children: [
+                      GetBuilder<RekamananKtpController>(
+                        builder: (c) => c.pickedImage != null
+                            ? Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      c.pickedImage!.name,
+                                      style: blackTextStyle.copyWith(),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => c.resetImage(),
+                                    child: Icon(
+                                      Icons.delete,
+                                      color: kRedColor,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Text(
+                                '*Maks 5 Mb',
+                                style: redTextStyle.copyWith(),
+                              ),
+                      ),
+                      SizedBox(height: 20),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: 120.w,
+                            height: 40.h,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(7),
+                            ),
+                            child: GetBuilder<RekamananKtpController>(
+                              builder: (c) {
+                                return c.pickedImage != null
+                                    ? ElevatedButton(
+                                        onPressed: () {
+                                          Get.dialog(
+                                            Container(
+                                              child: PhotoView(
+                                                imageProvider: FileImage(
+                                                  File(c.pickedImage!.path),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        'Lihat',
-                                        style: blackTextStyle.copyWith(
-                                          fontSize: 16.sp,
-                                          fontWeight: medium,
-                                        ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          side: BorderSide(
-                                            color: kGreyColor,
+                                          );
+                                        },
+                                        child: Text(
+                                          'Lihat',
+                                          style: blackTextStyle.copyWith(
+                                            fontSize: 16.sp,
+                                            fontWeight: medium,
                                           ),
                                         ),
-                                        backgroundColor: kWhiteColor,
-                                      ),
-                                    )
-                                  : ElevatedButton(
-                                      onPressed: () {
-                                        EasyLoading.showError(
-                                          'Masukan file terlebihi dahulu',
-                                        );
-                                      },
-                                      child: Text(
-                                        'Lihat',
-                                        style: blackTextStyle.copyWith(
-                                          fontSize: 16.sp,
-                                          fontWeight: medium,
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            side: BorderSide(
+                                              color: kGreyColor,
+                                            ),
+                                          ),
+                                          backgroundColor: kWhiteColor,
                                         ),
-                                      ),
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          side: BorderSide(
-                                            color: kGreyColor,
+                                      )
+                                    : ElevatedButton(
+                                        onPressed: () {
+                                          EasyLoading.showError(
+                                            'Masukan file terlebihi dahulu',
+                                          );
+                                        },
+                                        child: Text(
+                                          'Lihat',
+                                          style: blackTextStyle.copyWith(
+                                            fontSize: 16.sp,
+                                            fontWeight: medium,
                                           ),
                                         ),
-                                        backgroundColor: kWhiteColor,
-                                      ));
-                            },
-                          ),
-                        ),
-                        Container(
-                          width: 120.w,
-                          height: 40.h,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              controller.selectImage();
-                            },
-                            child: Text(
-                              'Pilih File',
-                              style: blackTextStyle.copyWith(
-                                fontSize: 16.sp,
-                                fontWeight: medium,
-                              ),
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(7),
+                                            side: BorderSide(
+                                              color: kGreyColor,
+                                            ),
+                                          ),
+                                          backgroundColor: kWhiteColor,
+                                        ));
+                              },
                             ),
-                            style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                side: BorderSide(
-                                  color: kGreyColor,
+                          ),
+                          Container(
+                            width: 120.w,
+                            height: 40.h,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                controller.selectImage();
+                              },
+                              child: Text(
+                                'Pilih File',
+                                style: blackTextStyle.copyWith(
+                                  fontSize: 16.sp,
+                                  fontWeight: medium,
                                 ),
                               ),
-                              backgroundColor: kWhiteColor,
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(7),
+                                  side: BorderSide(
+                                    color: kGreyColor,
+                                  ),
+                                ),
+                                backgroundColor: kWhiteColor,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         isActive: controller.currentStep.value >= 1,
       ),

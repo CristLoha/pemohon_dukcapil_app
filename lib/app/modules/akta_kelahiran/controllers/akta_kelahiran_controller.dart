@@ -99,6 +99,7 @@ class AktaKelahiranController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKelamin = [

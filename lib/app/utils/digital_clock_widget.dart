@@ -36,7 +36,7 @@ class DigitalClockWidget extends StatelessWidget {
       autocorrect: false,
       controller: textEditingController,
       decoration: InputDecoration(
-        hintText: '07:00',
+        hintText: '00:00',
         prefixIcon: icon,
         hintStyle: greyTextStyle,
         border: OutlineInputBorder(

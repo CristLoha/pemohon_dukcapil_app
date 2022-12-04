@@ -1300,7 +1300,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[1],
+          key: controller.formKeys[6],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
