@@ -243,8 +243,12 @@ class AktaNikahController extends GetxController {
         'tempatLahirSuami': tempatLahirSuamiC.text,
         'tempatLahirIstri': tempatLahirIstriC.text,
         'email': emailC.text,
+        'noTelpon': noTelpC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
         'kewarganegaranIstri': kewarganegaraanIstriC.text,
+        "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
+
+        ///PERSYARATAN
         'fotoSelfiePelapor': fotoSelfie,
         'fotoSuratNikah': fotoSuratNikah,
         'fotoSuketBelumNikah': fotoSuketBelumNikah,
@@ -254,7 +258,8 @@ class AktaNikahController extends GetxController {
         'fotoAktaKelahiranIstri': aktaKelahiranIstri,
         'fotoKTPsaksi1': ktpSaksi1,
         'fotoKTPsaksi2': ktpSaksi2,
-        "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
+
+        ///PROSES
         'kategori': 'Akta Nikah',
         'uid': uid,
         'keterangan': keteranganC.text,
@@ -541,19 +546,19 @@ class AktaNikahController extends GetxController {
     });
   }
 
-  // Future<Map<String, dynamic>?> getProfile() async {
-  //   try {
-  //     String uid = auth.currentUser!.uid;
-  //     DocumentSnapshot<Map<String, dynamic>> docUser =
-  //         await firestore.collection("pemohon").doc(uid).get();
+  Future<Map<String, dynamic>?> getProfile() async {
+    try {
+      String uid = auth.currentUser!.uid;
+      DocumentSnapshot<Map<String, dynamic>> docUser =
+          await firestore.collection("pemohon").doc(uid).get();
 
-  //     return docUser.data();
-  //   } catch (e) {
-  //     print(e);
-  //     Get.snackbar("TERJADI KESALAHAN", "Tidak dapat get data user.");
-  //     return null;
-  //   }
-  // }
+      return docUser.data();
+    } catch (e) {
+      print(e);
+      Get.snackbar("TERJADI KESALAHAN", "Tidak dapat get data user.");
+      return null;
+    }
+  }
 
   ///JENIS KALENDER
   // void date() async {

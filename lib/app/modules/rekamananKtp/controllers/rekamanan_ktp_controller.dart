@@ -56,9 +56,9 @@ class RekamananKtpController extends GetxController {
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
+        /// PEMOHON
         'nik': nikC.text,
         'nama': nameC.text,
-        'fotoKK': fotoKK,
         'tgl_lahir': dateC.text,
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Perekaman e-KTP',
@@ -66,6 +66,11 @@ class RekamananKtpController extends GetxController {
         'email': emailC.text,
         'noTelpon': noTelpC.text,
         'desa': desaC.text,
+
+        ///PERSYARATAN
+        'fotoKK': fotoKK,
+
+        ///PROSES
         'uid': uid,
         'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
@@ -83,8 +88,9 @@ class RekamananKtpController extends GetxController {
         },
       );
     } else {
-      EasyLoading.showError('Data tidak boleh kosong');
-      print('data tidak boleh kosong');
+      EasyLoading.showError(
+        'Masukan file persyaratan terlebihi dahulu',
+      );
     }
   }
 

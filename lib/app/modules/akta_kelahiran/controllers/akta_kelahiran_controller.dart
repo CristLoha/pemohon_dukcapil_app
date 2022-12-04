@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +58,8 @@ class AktaKelahiranController extends GetxController {
   /// PEMOHON
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
+  TextEditingController emailPemohonC = TextEditingController();
+  TextEditingController noTelpPemohonC = TextEditingController();
   TextEditingController tglLahirPemohonC = TextEditingController();
   TextEditingController jenisKelaminPemohonC = TextEditingController();
   TextEditingController pekerjaanPemohonC = TextEditingController();
@@ -359,7 +360,7 @@ class AktaKelahiranController extends GetxController {
       );
     } else {
       EasyLoading.showError(
-        'Masukan file terlebihi dahulu',
+        'Masukan file persyaratan terlebihi dahulu',
       );
     }
   }

@@ -7,6 +7,7 @@ import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_form_input.dart';
 import 'package:pemohon_dukcapil_app/app/utils/custom_input_keterangan.dart';
 import 'package:photo_view/photo_view.dart';
+import '../../../utils/custom_date_input.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/rekamanan_ktp_controller.dart';
 
@@ -131,6 +132,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                 );
               } else {
                 controller.nameC.text = snapshot.data!["nama"];
+                controller.emailC.text = snapshot.data!["email"];
+                controller.noTelpC.text = snapshot.data!["nomor_telp"];
                 controller.nikC.text = snapshot.data!["nik"];
 
                 return Form(
@@ -142,7 +145,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                       CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
-                        readOnly: true,
+                        readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
@@ -152,6 +155,13 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
                         readOnly: true,
                         textEditingController: controller.nameC,
                         keyboardType: TextInputType.name,
@@ -202,36 +212,13 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         },
                         textCapitalization: TextCapitalization.none,
                       ),
+                      SizedBox(height: 20.h),
 
                       CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        controller: controller.dateC,
-                        readOnly: true,
-                        onTap: () {
-                          controller.dateLocal();
-                        },
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Silahkan masukkan tanggal lahir';
-                          }
-                          return null;
-                        },
-                        decoration: InputDecoration(
-                          hintStyle: greyTextStyle,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(4),
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                        ),
-                      ),
-
+                      CustomDateInput(
+                          onTap: () => controller.dateLocal(),
+                          controller: controller.dateC),
                       SizedBox(height: 20.h),
 
                       /// Kecamatan
@@ -244,9 +231,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         textEditingController: controller.kecamatanC,
                         onTap: () {},
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -264,9 +250,8 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         keyboardType: TextInputType.name,
                         textEditingController: controller.desaC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama desa yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -296,7 +281,7 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[2],
+          key: controller.formKeys[1],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
