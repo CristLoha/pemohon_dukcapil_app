@@ -17,7 +17,6 @@ import '../../../shared/theme.dart';
 class AktaKelahiranController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePicker = ImagePicker();
 
   /// BAYI/ANAK
   TextEditingController nameAnakC = TextEditingController();
@@ -87,7 +86,7 @@ class AktaKelahiranController extends GetxController {
   TextEditingController jenisKelaminSaksi2C = TextEditingController();
   TextEditingController pekerjaanSaksi2C = TextEditingController();
   TextEditingController desaSaksi2C = TextEditingController();
-  TextEditingController kecamatanSaks2C = TextEditingController();
+  TextEditingController kecamatanSaksi2C = TextEditingController();
   TextEditingController kabupatenSaksi2C = TextEditingController();
   TextEditingController provinsiSaksi2C = TextEditingController();
 
@@ -190,7 +189,9 @@ class AktaKelahiranController extends GetxController {
     },
   ];
 
-  XFile? pickedImage;
+  XFile? pickedImageKK;
+  final ImagePicker imagePickerKK = ImagePicker();
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -201,15 +202,22 @@ class AktaKelahiranController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImage != null) {
-      String ext = pickedImage!.name.split(".").last;
-      await storage.ref('perekamanKTP').child('KK$randomNumber.$ext').putFile(
-            File(pickedImage!.path),
+    if (pickedImageKK != null) {
+      String extKK = pickedImageKK!.name.split(".").last;
+      await storage
+          .ref(
+            'AktaKelahiran',
+          )
+          .child('KK$randomNumber.$extKK')
+          .putFile(
+            File(
+              pickedImageKK!.path,
+            ),
           );
 
       String fotoKK = await storage
-          .ref('perekamanKTP')
-          .child('KK$randomNumber.$ext')
+          .ref('AktaKelahiran')
+          .child('KK$randomNumber.$extKK')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -265,6 +273,28 @@ class AktaKelahiranController extends GetxController {
         "provinsiPemohon": provinsiPemohonC.text,
         "kewarganegaraanPemohon": provinsiPemohonC.text,
 
+        ///SAKSI 1
+        "nikSaksi1": nikSaksi1C.text,
+        "namaLengkapSaksi1": namaLengkapSaksi1C.text,
+        "tanggalLahirSaksi": tglLahirSaksi1C.text,
+        "jenisKelaminSaksi1": jenisKelaminSaksi1C.text,
+        "pekerjaanSaksi1": pekerjaanSaksi1C.text,
+        "desaSaksi1": desaSaksi1C.text,
+        "kecamatanSaksi1": desaSaksi1C.text,
+        "kabupatenSaksi1": kabupatenSaksi1C.text,
+        "provinsiSaksi1": provinsiSaksi1C.text,
+
+        ///SAKSI 2
+        "nikSaksi2": nikSaksi2C.text,
+        "namaLengkapSaksi2": namaLengkapSaksi2C.text,
+        "tanggalLahirSaksi2": tglLahirSaksi2C.text,
+        "jenisKelaminSaksi2": jenisKelaminSaksi2C.text,
+        "pekerjaanSaksi2": pekerjaanSaksi2C.text,
+        "desaSaksi2": desaSaksi2C.text,
+        "kecamatanSaksi2": desaSaksi2C.text,
+        "kabupatenSaksi2": kabupatenSaksi2C.text,
+        "provinsiSaksi2": provinsiSaksi2C.text,
+
         ///PROSES
         'kategori': 'Akta Kelahiran',
         'uid': uid,
@@ -302,37 +332,26 @@ class AktaKelahiranController extends GetxController {
   }
 
   void resetImage() {
-    pickedImage = null;
+    pickedImageKK = null;
     update();
   }
 
   void selectImage() async {
     try {
-      final dataImage = await imagePicker.pickImage(
+      final dataImage = await imagePickerKK.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImage = dataImage;
+        pickedImageKK = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImage = null;
+      pickedImageKK = null;
       update();
-    }
-  }
-
-  void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
     }
   }
 
