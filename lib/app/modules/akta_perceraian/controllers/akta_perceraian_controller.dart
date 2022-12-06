@@ -42,6 +42,9 @@ class AktaPerceraianController extends GetxController {
   XFile? pickedImageAktaPernikahan;
   final ImagePicker imagePickerAktaPernikahan = ImagePicker();
 
+  XFile? pickedImageSuketPanitera;
+  final ImagePicker imagePickerSuketPanitera = ImagePicker();
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -82,7 +85,6 @@ class AktaPerceraianController extends GetxController {
           .getDownloadURL();
 
       ///AKTA PERNIKAHAN
-      ///KK
       String extAktaPernikahan =
           pickedImageAktaPernikahan!.name.split(".").last;
       await storage
@@ -95,6 +97,20 @@ class AktaPerceraianController extends GetxController {
       String fotoAktaPernikahan = await storage
           .ref('Akta Perceraian')
           .child('AktaPernikahan$randomNumber.$extKK')
+          .getDownloadURL();
+
+      //// SUKET Panitera Pengadilan Negeri
+      String extSUKETpanitera = pickedImageSuketPanitera!.name.split(".").last;
+      await storage
+          .ref('Akta Perceraian')
+          .child('SuketPanitera$randomNumber.$extSUKETpanitera')
+          .putFile(
+            File(pickedImageSuketPanitera!.path),
+          );
+
+      String fotoSuketPanitera = await storage
+          .ref('Akta Perceraian')
+          .child('SuketPanitera$randomNumber.$extSUKETpanitera')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -113,6 +129,8 @@ class AktaPerceraianController extends GetxController {
         ///PERSYARATAN
         'fotoKTPsuamiIstri': fotoKTPsuamiIstri,
         'fotoKK': fotoKK,
+        'aktaPernikahan': fotoAktaPernikahan,
+        'suketPanitera': fotoSuketPanitera,
 
         ///PROSES
         'uid': uid,
@@ -223,6 +241,31 @@ class AktaPerceraianController extends GetxController {
 
   void resetImageAktaPerkawinan() {
     pickedImageAktaPernikahan = null;
+    update();
+  }
+
+  ///SUKET PANITERA
+  void selectImageSuketPanitera() async {
+    try {
+      final dataImage = await imagePickerSuketPanitera.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageSuketPanitera = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageSuketPanitera = null;
+      update();
+    }
+  }
+
+  void resetImageSuketPanitera() {
+    pickedImageSuketPanitera = null;
     update();
   }
 
