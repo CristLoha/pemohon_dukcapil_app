@@ -103,15 +103,20 @@ class SuratKeteranganPindahController extends GetxController {
 
       await rekamanKtp.add({
         /// PEMOHON
+        'nama': nameC.text,
         'nik': nikC.text,
         'noKK': noKKC.text,
-        'nama': nameC.text,
-        'tgl_lahir': dateC.text,
-        "keyName": nameC.text.substring(0, 1).toUpperCase(),
-        'kecamatan': kecamatanC.text,
+        'keyName': nameC.text.substring(0, 1).toUpperCase(),
+        'provinsiTujuan': provinsiTujuan.text,
+        'kabupatenTujuan': kabupatenKotaTujuan.text,
+        'kecamatanTujuan': kecamatanTujuan.text,
+        'desaTujuan': desaC.text,
+        'alamatTujuan': alamatTujuan.text,
+        'rt': rtC.text,
+        'rw': rtC.text,
+        'statusNoKK': statusNoKK.text,
         'email': emailC.text,
         'noTelpon': noTelpC.text,
-        'desa': desaC.text,
 
         ///PERSYARATAN
         'fotoKK': fotoKK,
@@ -204,20 +209,6 @@ class SuratKeteranganPindahController extends GetxController {
     update();
   }
 
-  ///UNTUK FORM
-  void dateLocal() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime(2006, 12, 31),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
-  }
-
   Future<Map<String, dynamic>?> getProfile() async {
     try {
       String uid = auth.currentUser!.uid;
@@ -231,31 +222,4 @@ class SuratKeteranganPindahController extends GetxController {
       return null;
     }
   }
-
-  ///JENIS KALENDER
-  // void date() async {
-  //   await showDatePicker(
-  //     context: Get.context!,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime.now(),
-  //   ).then((selectedDate) {
-  //     if (selectedDate != null) {
-  //       dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-  //     }
-  //   });
-  // }
-
-  ///UNTUK MENAMPILKAN DI TEXT BIASA
-  // void chooseDate() async {
-  //   DateTime? picketDate = await showDatePicker(
-  //     context: Get.context!,
-  //     initialDate: selectedDate.value,
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime(2023),
-  //   );
-  //   if (picketDate != null && picketDate != selectedDate.value) {
-  //     selectedDate.value = picketDate;
-  //   }
-  // }
 }
