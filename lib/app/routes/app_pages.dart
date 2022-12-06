@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
+import 'package:pemohon_dukcapil_app/app/modules/Surat_Keterangan_Pindah/bindings/surat_keterangan_pindah_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/Surat_Keterangan_Pindah/views/surat_keterangan_pindah_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_kelahiran/bindings/akta_kelahiran_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_kelahiran/views/akta_kelahiran_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/bindings/akta_nikah_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/views/akta_nikah_view.dart';
-import 'package:pemohon_dukcapil_app/app/modules/akta_perceraian/bindings/akta_perceraian_binding.dart';
-import 'package:pemohon_dukcapil_app/app/modules/akta_perceraian/views/akta_perceraian_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/bindings/detail_riwayat_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/views/detail_riwayat_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
@@ -119,14 +119,14 @@ class AppPages {
       binding: AktaNikahBinding(),
     ),
     GetPage(
-      name: _Paths.AKTA_PERCERAIAN,
-      page: () => AktaPerceraianView(),
-      binding: AktaPerceraianBinding(),
-    ),
-    GetPage(
       name: _Paths.AKTA_KELAHIRAN,
       page: () => AktaKelahiranView(),
       binding: AktaKelahiranBinding(),
+    ),
+    GetPage(
+      name: _Paths.SURAT_KETERANGAN_PINDAH,
+      page: () => SuratKeteranganPindahView(),
+      binding: SuratKeteranganPindahBinding(),
     ),
   ];
 }

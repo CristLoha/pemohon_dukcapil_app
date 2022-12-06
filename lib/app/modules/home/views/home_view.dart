@@ -74,7 +74,9 @@ class HomeView extends GetView<HomeController> {
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
-                              onTap: () {},
+                              onTap: () {
+                                Get.toNamed(Routes.SURAT_KETERANGAN_PINDAH);
+                              },
                             ),
                           ],
                         ),
