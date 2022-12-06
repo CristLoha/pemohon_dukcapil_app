@@ -157,6 +157,7 @@ class SuratKeteranganPindahView
                       ),
                       SizedBox(height: 20.h),
 
+                      /// KK
                       CustomTitleWidget(title: 'KK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -169,7 +170,7 @@ class SuratKeteranganPindahView
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
+                            return 'No. KK harus 16 karakter';
                           }
                           return null;
                         },
@@ -264,7 +265,25 @@ class SuratKeteranganPindahView
                         },
                         textCapitalization: TextCapitalization.words,
                       ),
+
+                      /// PROVINSI TUJUAN
+                      CustomTitleWidget(title: 'Provinsi Tujuan'),
                       SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.provinsiTujuan,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
 
                       /// DESA
                       CustomTitleWidget(title: 'Desa'),
