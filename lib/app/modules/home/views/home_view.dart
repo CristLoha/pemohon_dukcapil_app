@@ -69,14 +69,12 @@ class HomeView extends GetView<HomeController> {
                               },
                             ),
                             CustomMenusCard(
-                              icon: 'assets/icon/divorce.png',
-                              title: 'Registrasi \nAkta Perceraian',
+                              icon: 'assets/icon/house.png',
+                              title: 'Surat Keterangan\nPindah',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
-                              onTap: () {
-                                Get.toNamed(Routes.AKTA_PERCERAIAN);
-                              },
+                              onTap: () {},
                             ),
                           ],
                         ),
