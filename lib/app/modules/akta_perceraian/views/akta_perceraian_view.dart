@@ -731,7 +731,6 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
               SizedBox(height: 20),
 
               ///SUKET PANITERA PENGADILAN NEGERI
-
               Text(
                 ' SUKET Panitera Pengadilan Negeri',
                 style: blackTextStyle.copyWith(),
