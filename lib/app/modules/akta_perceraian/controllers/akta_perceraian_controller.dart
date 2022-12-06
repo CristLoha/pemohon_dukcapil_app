@@ -33,8 +33,12 @@ class AktaPerceraianController extends GetxController {
     GlobalKey<FormState>(),
   ];
 
+  XFile? pickedImageKK;
+  final ImagePicker imagePickerKK = ImagePicker();
+
   XFile? pickedImageKtpSuamiIstri;
   final ImagePicker imagePickerKtpSuamiIstri = ImagePicker();
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -60,6 +64,20 @@ class AktaPerceraianController extends GetxController {
           .child('KTPsuamiIstri$randomNumber.$extktpSuamiIstri')
           .getDownloadURL();
 
+      ///KK
+      String extKK = pickedImageKK!.name.split(".").last;
+      await storage
+          .ref('aktaPerceraian')
+          .child('Kk$randomNumber.$extKK')
+          .putFile(
+            File(pickedImageKK!.path),
+          );
+
+      String fotoKK = await storage
+          .ref('aktaPerceraian')
+          .child('KK$randomNumber.$extKK')
+          .getDownloadURL();
+
       CollectionReference rekamanKtp = firestore.collection('layanan');
 
       await rekamanKtp.add({
@@ -75,7 +93,8 @@ class AktaPerceraianController extends GetxController {
         'desa': desaC.text,
 
         ///PERSYARATAN
-        'fotoKK': fotoKTPsuamiIstri,
+        'fotoKTPsuamiIstri': fotoKTPsuamiIstri,
+        'fotoKK': fotoKK,
 
         ///PROSES
         'uid': uid,
@@ -114,7 +133,6 @@ class AktaPerceraianController extends GetxController {
   }
 
   /// KTP SUAMI ISTRI
-
   void selectImageKtpSuamiIstri() async {
     try {
       final dataImage = await imagePickerKtpSuamiIstri.pickImage(
@@ -136,6 +154,31 @@ class AktaPerceraianController extends GetxController {
 
   void resetImageKtpSuamiIstri() {
     pickedImageKtpSuamiIstri = null;
+    update();
+  }
+
+  /// KK
+  void selectImageKK() async {
+    try {
+      final dataImage = await imagePickerKK.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKK = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKK = null;
+      update();
+    }
+  }
+
+  void resetImageKK() {
+    pickedImageKK = null;
     update();
   }
 
