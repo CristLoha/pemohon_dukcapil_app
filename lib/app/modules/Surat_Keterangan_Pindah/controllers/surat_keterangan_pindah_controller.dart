@@ -19,7 +19,10 @@ class SuratKeteranganPindahController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   XFile? pickedImageKK;
   final ImagePicker imagePickerKK = ImagePicker();
+  XFile? pickedImageKTP;
+  final ImagePicker imagePickerKTP = ImagePicker();
 
+  ///PEMOHON
   TextEditingController nameC = TextEditingController();
   TextEditingController nikC = TextEditingController();
   TextEditingController provinsiTujuan = TextEditingController();
@@ -53,19 +56,30 @@ class SuratKeteranganPindahController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImageKK != null) {
+    if (pickedImageKK != null && pickedImageKTP != null) {
       ///KK
-      String extSuketPindah = pickedImageKK!.name.split(".").last;
-      await storage
-          .ref('SUKET Pindah')
-          .child('KK$randomNumber.$extSuketPindah')
-          .putFile(
+      String extKK = pickedImageKK!.name.split(".").last;
+      await storage.ref('SUKET Pindah').child('KK$randomNumber.$extKK').putFile(
             File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
           .ref('SUKET Pindah')
-          .child('KK$randomNumber.$extSuketPindah')
+          .child('KK$randomNumber.$extKK')
+          .getDownloadURL();
+
+      ///SUKET PINDAH
+      String extKTP = pickedImageKTP!.name.split(".").last;
+      await storage
+          .ref('SUKET Pindah')
+          .child('KTP$randomNumber.$extKTP')
+          .putFile(
+            File(pickedImageKTP!.path),
+          );
+
+      String fotoKTP = await storage
+          .ref('SUKET Pindah')
+          .child('KTP$randomNumber.$extKTP')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -83,6 +97,7 @@ class SuratKeteranganPindahController extends GetxController {
 
         ///PERSYARATAN
         'fotoKK': fotoKK,
+        'fotoKTP': fotoKTP,
 
         ///PROSES
         'uid': uid,
@@ -121,6 +136,7 @@ class SuratKeteranganPindahController extends GetxController {
     );
   }
 
+  ///KK
   void selectImageKK() async {
     try {
       final dataImage = await imagePickerKK.pickImage(
