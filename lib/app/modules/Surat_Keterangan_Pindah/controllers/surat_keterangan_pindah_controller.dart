@@ -101,7 +101,7 @@ class SuratKeteranganPindahController extends GetxController {
 
         ///PROSES
         'uid': uid,
-        'kategori': 'Perekaman e-KTP',
+        'kategori': 'SUKET Pindah',
         'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
@@ -158,6 +158,31 @@ class SuratKeteranganPindahController extends GetxController {
 
   void resetImageKK() {
     pickedImageKK = null;
+    update();
+  }
+
+  ///KTP
+  void selectImageKTP() async {
+    try {
+      final dataImage = await imagePickerKTP.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageKTP = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageKTP = null;
+      update();
+    }
+  }
+
+  void resetImageKTP() {
+    pickedImageKTP = null;
     update();
   }
 
