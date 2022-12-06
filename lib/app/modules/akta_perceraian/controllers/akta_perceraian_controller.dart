@@ -39,6 +39,9 @@ class AktaPerceraianController extends GetxController {
   XFile? pickedImageKtpSuamiIstri;
   final ImagePicker imagePickerKtpSuamiIstri = ImagePicker();
 
+  XFile? pickedImageAktaPernikahan;
+  final ImagePicker imagePickerAktaPernikahan = ImagePicker();
+
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -51,31 +54,47 @@ class AktaPerceraianController extends GetxController {
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKtpSuamiIstri != null) {
       ///KTP SUAMI ISTRI
-      String extktpSuamiIstri = pickedImageKtpSuamiIstri!.name.split(".").last;
+      String extKTPsuamiIstri = pickedImageKtpSuamiIstri!.name.split(".").last;
       await storage
-          .ref('aktaPerceraian')
-          .child('KTPsuamiIstri$randomNumber.$extktpSuamiIstri')
+          .ref('Akta Perceraian')
+          .child('KTPsuamiIstri$randomNumber.$extKTPsuamiIstri')
           .putFile(
             File(pickedImageKtpSuamiIstri!.path),
           );
 
       String fotoKTPsuamiIstri = await storage
-          .ref('aktaPerceraian')
-          .child('KTPsuamiIstri$randomNumber.$extktpSuamiIstri')
+          .ref('Akta Perceraian')
+          .child('KTPsuamiIstri$randomNumber.$extKTPsuamiIstri')
           .getDownloadURL();
 
       ///KK
       String extKK = pickedImageKK!.name.split(".").last;
       await storage
-          .ref('aktaPerceraian')
-          .child('Kk$randomNumber.$extKK')
+          .ref('Akta Perceraian')
+          .child('KK$randomNumber.$extKTPsuamiIstri')
           .putFile(
-            File(pickedImageKK!.path),
+            File(pickedImageKtpSuamiIstri!.path),
           );
 
       String fotoKK = await storage
-          .ref('aktaPerceraian')
+          .ref('Akta Perceraian')
           .child('KK$randomNumber.$extKK')
+          .getDownloadURL();
+
+      ///AKTA PERNIKAHAN
+      ///KK
+      String extAktaPernikahan =
+          pickedImageAktaPernikahan!.name.split(".").last;
+      await storage
+          .ref('Akta Perceraian')
+          .child('AktaPernikahan$randomNumber.$extAktaPernikahan')
+          .putFile(
+            File(pickedImageAktaPernikahan!.path),
+          );
+
+      String fotoAktaPernikahan = await storage
+          .ref('Akta Perceraian')
+          .child('AktaPernikahan$randomNumber.$extKK')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -86,7 +105,6 @@ class AktaPerceraianController extends GetxController {
         'nama': nameC.text,
         'tgl_lahir': dateC.text,
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
-        'kategori': 'Perekaman e-KTP',
         'kecamatan': kecamatanC.text,
         'email': emailC.text,
         'noTelpon': noTelpC.text,
@@ -101,6 +119,7 @@ class AktaPerceraianController extends GetxController {
         'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
+        'kategori': 'Akta Perceraian',
         'creationTime': DateTime.now().toIso8601String(),
         'updatedTime': DateTime.now().toIso8601String(),
       }).then(
@@ -153,7 +172,7 @@ class AktaPerceraianController extends GetxController {
   }
 
   void resetImageKtpSuamiIstri() {
-    pickedImageKtpSuamiIstri = null;
+    pickedImageKK = null;
     update();
   }
 
@@ -179,6 +198,31 @@ class AktaPerceraianController extends GetxController {
 
   void resetImageKK() {
     pickedImageKK = null;
+    update();
+  }
+
+  ///AKTA PERNIKAHAN
+  void selectImageAktaPerkawinan() async {
+    try {
+      final dataImage = await imagePickerAktaPernikahan.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageAktaPernikahan = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageAktaPernikahan = null;
+      update();
+    }
+  }
+
+  void resetImageAktaPerkawinan() {
+    pickedImageAktaPernikahan = null;
     update();
   }
 
