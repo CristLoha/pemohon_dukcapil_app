@@ -17,7 +17,7 @@ import '../../../routes/app_pages.dart';
 class AktaPerceraianController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePicker = ImagePicker();
+
   TextEditingController nikC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
@@ -33,26 +33,31 @@ class AktaPerceraianController extends GetxController {
     GlobalKey<FormState>(),
   ];
 
-  XFile? pickedImage;
+  XFile? pickedImageKtpSuamiIstri;
+  final ImagePicker imagePickerKtpSuamiIstri = ImagePicker();
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   User? userPemohon = FirebaseAuth.instance.currentUser;
 
-  void addrekamanKTP() async {
+  void addAktaPerceraian() async {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImage != null) {
-      String ext = pickedImage!.name.split(".").last;
-      await storage.ref('perekamanKTP').child('KK$randomNumber.$ext').putFile(
-            File(pickedImage!.path),
+    if (pickedImageKtpSuamiIstri != null) {
+      ///KTP SUAMI ISTRI
+      String extktpSuamiIstri = pickedImageKtpSuamiIstri!.name.split(".").last;
+      await storage
+          .ref('aktaPerceraian')
+          .child('KTPsuamiIstri$randomNumber.$extktpSuamiIstri')
+          .putFile(
+            File(pickedImageKtpSuamiIstri!.path),
           );
 
-      String fotoKK = await storage
-          .ref('perekamanKTP')
-          .child('KK$randomNumber.$ext')
+      String fotoKTPsuamiIstri = await storage
+          .ref('aktaPerceraian')
+          .child('KTPsuamiIstri$randomNumber.$extktpSuamiIstri')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -70,7 +75,7 @@ class AktaPerceraianController extends GetxController {
         'desa': desaC.text,
 
         ///PERSYARATAN
-        'fotoKK': fotoKK,
+        'fotoKK': fotoKTPsuamiIstri,
 
         ///PROSES
         'uid': uid,
@@ -108,39 +113,30 @@ class AktaPerceraianController extends GetxController {
     );
   }
 
-  void resetImage() {
-    pickedImage = null;
-    update();
-  }
+  /// KTP SUAMI ISTRI
 
-  void selectImage() async {
+  void selectImageKtpSuamiIstri() async {
     try {
-      final dataImage = await imagePicker.pickImage(
+      final dataImage = await imagePickerKtpSuamiIstri.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImage = dataImage;
+        pickedImageKtpSuamiIstri = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImage = null;
+      pickedImageKtpSuamiIstri = null;
       update();
     }
   }
 
-  void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
-    }
+  void resetImageKtpSuamiIstri() {
+    pickedImageKtpSuamiIstri = null;
+    update();
   }
 
   ///UNTUK FORM

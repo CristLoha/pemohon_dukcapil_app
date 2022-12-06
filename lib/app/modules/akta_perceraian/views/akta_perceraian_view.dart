@@ -1,12 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../../shared/theme.dart';
 import '../../../utils/custom_date_input.dart';
 import '../../../utils/custom_form_input.dart';
@@ -35,7 +32,7 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
                 }
                 if (controller.currentStep.value == formStep().length - 1) {
                   EasyLoading.show(status: 'memuat...');
-                  controller.addrekamanKTP();
+                  controller.addAktaPerceraian();
                 } else {
                   controller.currentStep.value++;
                 }
@@ -288,8 +285,9 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              ///KTP SUAMI & ISTRI
               Text(
-                'Unggah KK',
+                'Unggah KTP Suami & Istri',
                 style: blackTextStyle.copyWith(),
               ),
               SizedBox(height: 12.h),
@@ -306,18 +304,19 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
                   child: Column(
                     children: [
                       GetBuilder<AktaPerceraianController>(
-                        builder: (c) => c.pickedImage != null
+                        builder: (c) => c.pickedImageKtpSuamiIstri != null
                             ? Row(
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      c.pickedImage!.name,
+                                      c.pickedImageKtpSuamiIstri!.name,
                                       style: blackTextStyle.copyWith(),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () => c.resetImage(),
+                                    onPressed: () =>
+                                        c.resetImageKtpSuamiIstri(),
                                     child: Icon(
                                       Icons.delete,
                                       color: kRedColor,
@@ -343,14 +342,16 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
                             ),
                             child: GetBuilder<AktaPerceraianController>(
                               builder: (c) {
-                                return c.pickedImage != null
+                                return c.pickedImageKtpSuamiIstri != null
                                     ? ElevatedButton(
                                         onPressed: () {
                                           Get.dialog(
                                             Container(
                                               child: PhotoView(
                                                 imageProvider: FileImage(
-                                                  File(c.pickedImage!.path),
+                                                  File(c
+                                                      .pickedImageKtpSuamiIstri!
+                                                      .path),
                                                 ),
                                               ),
                                             ),
@@ -405,7 +406,7 @@ class AktaPerceraianView extends GetView<AktaPerceraianController> {
                             height: 40.h,
                             child: ElevatedButton(
                               onPressed: () {
-                                controller.selectImage();
+                                controller.selectImageKtpSuamiIstri();
                               },
                               child: Text(
                                 'Pilih File',
