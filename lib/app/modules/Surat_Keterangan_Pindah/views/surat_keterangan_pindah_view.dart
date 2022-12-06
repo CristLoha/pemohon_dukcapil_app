@@ -156,6 +156,27 @@ class SuratKeteranganPindahView
                         textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
+
+                      CustomTitleWidget(title: 'KK'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textCapitalization: TextCapitalization.none,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.noKKC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                            return 'NIK harus 16 karakter';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
+                      /// NAMA
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -433,6 +454,7 @@ class SuratKeteranganPindahView
                   ),
                 ),
               ),
+              SizedBox(height: 20),
 
               ///KTP
               Text(
@@ -490,14 +512,14 @@ class SuratKeteranganPindahView
                             ),
                             child: GetBuilder<SuratKeteranganPindahController>(
                               builder: (c) {
-                                return c.pickedImageKK != null
+                                return c.pickedImageKTP != null
                                     ? ElevatedButton(
                                         onPressed: () {
                                           Get.dialog(
                                             Container(
                                               child: PhotoView(
                                                 imageProvider: FileImage(
-                                                  File(c.pickedImageKK!.path),
+                                                  File(c.pickedImageKTP!.path),
                                                 ),
                                               ),
                                             ),
@@ -552,7 +574,7 @@ class SuratKeteranganPindahView
                             height: 40.h,
                             child: ElevatedButton(
                               onPressed: () {
-                                controller.selectImageKK();
+                                controller.selectImageKTP();
                               },
                               child: Text(
                                 'Pilih File',

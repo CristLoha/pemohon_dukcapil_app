@@ -25,6 +25,7 @@ class SuratKeteranganPindahController extends GetxController {
   ///PEMOHON
   TextEditingController nameC = TextEditingController();
   TextEditingController nikC = TextEditingController();
+  TextEditingController noKKC = TextEditingController();
   TextEditingController provinsiTujuan = TextEditingController();
   TextEditingController kabupatenKotaTujuan = TextEditingController();
   TextEditingController kecamatanTujuan = TextEditingController();
@@ -87,6 +88,7 @@ class SuratKeteranganPindahController extends GetxController {
       await rekamanKtp.add({
         /// PEMOHON
         'nik': nikC.text,
+        'noKK': noKKC.text,
         'nama': nameC.text,
         'tgl_lahir': dateC.text,
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
