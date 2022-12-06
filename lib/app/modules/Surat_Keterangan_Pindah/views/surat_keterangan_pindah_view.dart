@@ -426,10 +426,91 @@ class SuratKeteranganPindahView
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
+        title: Text('Daftar Anggota Keluarga',
+            style: blackTextStyle.copyWith(fontWeight: semiBold)),
+        content: Form(
+            key: controller.formKeys[1],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 1 (Satu)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota1),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 2 (Dua)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota2),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 3 (Tiga)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota3),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 4 (Empat)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota4),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 5 (Lima)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota5),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 6 (Enam)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota6),
+                SizedBox(height: 20.h),
+              ],
+            )),
+
+        ///
+        isActive: controller.currentStep.value >= 1,
+        state:
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[1],
+          key: controller.formKeys[2],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -726,7 +807,7 @@ class SuratKeteranganPindahView
             ],
           ),
         ),
-        isActive: controller.currentStep.value >= 1,
+        isActive: controller.currentStep.value >= 2,
       ),
     ];
   }

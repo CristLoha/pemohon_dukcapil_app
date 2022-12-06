@@ -36,14 +36,17 @@ class SuratKeteranganPindahController extends GetxController {
   TextEditingController statusNoKK = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
-
-  TextEditingController dateC = TextEditingController();
-  TextEditingController kecamatanC = TextEditingController();
-
   TextEditingController keteranganC = TextEditingController();
 
+  TextEditingController namaAnggota1 = TextEditingController();
+  TextEditingController namaAnggota2 = TextEditingController();
+  TextEditingController namaAnggota3 = TextEditingController();
+  TextEditingController namaAnggota4 = TextEditingController();
+  TextEditingController namaAnggota5 = TextEditingController();
+  TextEditingController namaAnggota6 = TextEditingController();
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
   ];
@@ -117,6 +120,14 @@ class SuratKeteranganPindahController extends GetxController {
         'statusNoKK': statusNoKK.text,
         'email': emailC.text,
         'noTelpon': noTelpC.text,
+
+        ///Angota Keluarga   ///Nama Anggota
+        'namaAnggota1': namaAnggota1.text,
+        'namaAnggota2': namaAnggota2.text,
+        'namaAnggota3': namaAnggota3.text,
+        'namaAnggota4': namaAnggota4.text,
+        'namaAnggota5': namaAnggota5.text,
+        'namaAnggota6': namaAnggota6.text,
 
         ///PERSYARATAN
         'fotoKK': fotoKK,

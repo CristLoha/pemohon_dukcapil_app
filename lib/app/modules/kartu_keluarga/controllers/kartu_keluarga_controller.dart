@@ -176,7 +176,8 @@ class KartuKeluargaController extends GetxController {
           'nikAnggota4': nikAnggota4.text,
           'nikAnggota5': nikAnggota5.text,
           'nikAnggota6': nikAnggota6.text,
-          //Nama Anggota
+
+          ///Nama Anggota
           'namaAnggota1': namaAnggota1.text,
           'namaAnggota2': namaAnggota2.text,
           'namaAnggota3': namaAnggota3.text,
