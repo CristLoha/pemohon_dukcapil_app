@@ -307,18 +307,18 @@ class SuratKeteranganPindahView
                   child: Column(
                     children: [
                       GetBuilder<SuratKeteranganPindahController>(
-                        builder: (c) => c.pickedImage != null
+                        builder: (c) => c.pickedImageKK != null
                             ? Row(
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      c.pickedImage!.name,
+                                      c.pickedImageKK!.name,
                                       style: blackTextStyle.copyWith(),
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ),
                                   TextButton(
-                                    onPressed: () => c.resetImage(),
+                                    onPressed: () => c.resetImageKK(),
                                     child: Icon(
                                       Icons.delete,
                                       color: kRedColor,
@@ -344,14 +344,14 @@ class SuratKeteranganPindahView
                             ),
                             child: GetBuilder<SuratKeteranganPindahController>(
                               builder: (c) {
-                                return c.pickedImage != null
+                                return c.pickedImageKK != null
                                     ? ElevatedButton(
                                         onPressed: () {
                                           Get.dialog(
                                             Container(
                                               child: PhotoView(
                                                 imageProvider: FileImage(
-                                                  File(c.pickedImage!.path),
+                                                  File(c.pickedImageKK!.path),
                                                 ),
                                               ),
                                             ),
@@ -406,7 +406,7 @@ class SuratKeteranganPindahView
                             height: 40.h,
                             child: ElevatedButton(
                               onPressed: () {
-                                controller.selectImage();
+                                controller.selectImageKK();
                               },
                               child: Text(
                                 'Pilih File',

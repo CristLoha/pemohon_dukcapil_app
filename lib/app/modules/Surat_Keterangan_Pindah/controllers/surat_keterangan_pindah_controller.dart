@@ -17,14 +17,24 @@ import '../../../shared/theme.dart';
 class SuratKeteranganPindahController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePicker = ImagePicker();
+  XFile? pickedImageKK;
+  final ImagePicker imagePickerKK = ImagePicker();
+
+  TextEditingController nameC = TextEditingController();
   TextEditingController nikC = TextEditingController();
+  TextEditingController provinsiTujuan = TextEditingController();
+  TextEditingController kabupatenKotaTujuan = TextEditingController();
+  TextEditingController kecamatanTujuan = TextEditingController();
+  TextEditingController desaC = TextEditingController();
+  TextEditingController alamatTujuan = TextEditingController();
+  TextEditingController rt = TextEditingController();
+  TextEditingController rw = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
-  TextEditingController nameC = TextEditingController();
+
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
-  TextEditingController desaC = TextEditingController();
+
   TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
@@ -33,7 +43,6 @@ class SuratKeteranganPindahController extends GetxController {
     GlobalKey<FormState>(),
   ];
 
-  XFile? pickedImage;
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;
@@ -44,15 +53,19 @@ class SuratKeteranganPindahController extends GetxController {
     String uid = auth.currentUser!.uid;
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
-    if (pickedImage != null) {
-      String ext = pickedImage!.name.split(".").last;
-      await storage.ref('perekamanKTP').child('KK$randomNumber.$ext').putFile(
-            File(pickedImage!.path),
+    if (pickedImageKK != null) {
+      ///KK
+      String extSuketPindah = pickedImageKK!.name.split(".").last;
+      await storage
+          .ref('SUKET Pindah')
+          .child('KK$randomNumber.$extSuketPindah')
+          .putFile(
+            File(pickedImageKK!.path),
           );
 
       String fotoKK = await storage
-          .ref('perekamanKTP')
-          .child('KK$randomNumber.$ext')
+          .ref('SUKET Pindah')
+          .child('KK$randomNumber.$extSuketPindah')
           .getDownloadURL();
 
       CollectionReference rekamanKtp = firestore.collection('layanan');
@@ -108,39 +121,28 @@ class SuratKeteranganPindahController extends GetxController {
     );
   }
 
-  void resetImage() {
-    pickedImage = null;
-    update();
-  }
-
-  void selectImage() async {
+  void selectImageKK() async {
     try {
-      final dataImage = await imagePicker.pickImage(
+      final dataImage = await imagePickerKK.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImage = dataImage;
+        pickedImageKK = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImage = null;
+      pickedImageKK = null;
       update();
     }
   }
 
-  void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
-    }
+  void resetImageKK() {
+    pickedImageKK = null;
+    update();
   }
 
   ///UNTUK FORM
