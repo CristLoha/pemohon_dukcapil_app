@@ -31,8 +31,9 @@ class SuratKeteranganPindahController extends GetxController {
   TextEditingController kecamatanTujuan = TextEditingController();
   TextEditingController desaC = TextEditingController();
   TextEditingController alamatTujuan = TextEditingController();
-  TextEditingController rt = TextEditingController();
-  TextEditingController rw = TextEditingController();
+  TextEditingController rtC = TextEditingController();
+  TextEditingController rwC = TextEditingController();
+  TextEditingController statusNoKK = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
 
@@ -45,6 +46,21 @@ class SuratKeteranganPindahController extends GetxController {
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+  ];
+
+  List<Map<String, dynamic>> statusNoKKbagiyangPindah = [
+    {
+      "statusKK": "KK Baru",
+      "id": 1,
+    },
+    {
+      "statusKK": "Numpang KK",
+      "id": 2,
+    },
+    {
+      "statusKK": "Nomor KK Tetap",
+      "id": 2,
+    }
   ];
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;

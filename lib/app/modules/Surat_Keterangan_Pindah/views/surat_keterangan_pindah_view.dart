@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -240,32 +241,6 @@ class SuratKeteranganPindahView
                       ),
                       SizedBox(height: 20.h),
 
-                      CustomTitleWidget(title: 'Tanggal lahir'),
-                      SizedBox(height: 12.h),
-                      CustomDateInput(
-                          onTap: () => controller.dateLocal(),
-                          controller: controller.dateC),
-                      SizedBox(height: 20.h),
-
-                      /// Kecamatan
-                      CustomTitleWidget(title: 'Kecamatan'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        textEditingController: controller.kecamatanC,
-                        onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Input tidak boleh kosong";
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-
                       /// PROVINSI TUJUAN
                       CustomTitleWidget(title: 'Provinsi Tujuan'),
                       SizedBox(height: 12.h),
@@ -283,9 +258,31 @@ class SuratKeteranganPindahView
                         },
                         textCapitalization: TextCapitalization.words,
                       ),
+
+                      SizedBox(height: 20),
+
+                      /// KABUPATEN/KOTA TUJUAN
+                      CustomTitleWidget(title: 'Kabupate/Kota Tujuan'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kabupatenKotaTujuan,
+                        onTap: () {},
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+
                       SizedBox(height: 20.h),
 
-                      /// DESA
+                      /// KECAMATAN TUJUAN
                       CustomTitleWidget(title: 'Desa'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -304,8 +301,115 @@ class SuratKeteranganPindahView
                       ),
                       SizedBox(height: 20.h),
 
+                      /// DESA/KELURAHAN TUJUAN
+                      CustomTitleWidget(title: 'Desa/Kelurahan Tujuan'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.desaC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
+
+                      ///ALAMAT TUJUAN
+
+                      CustomTitleWidget(title: 'Alamat Tujuan'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.alamatTujuan,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
+
+                      ///RT
+
+                      CustomTitleWidget(title: 'RT'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.rtC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
+
+                      ///RW
+                      CustomTitleWidget(title: 'RW'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.rwC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
+
+                      ///STATUS NO. KK BAGI YANG PINDAH
+                      /// Kewarganegaraan Suami
+                      CustomTitleWidget(title: 'Kewarganegaraan Suami'),
+                      SizedBox(height: 12.h),
+                      DropdownSearch<Map<String, dynamic>>(
+                        dialogMaxWidth: 8,
+                        mode: Mode.MENU,
+                        items: controller.statusNoKKbagiyangPindah,
+                        dropdownButtonSplashRadius: 10,
+                        dropdownBuilder: (context, selectedItem) => Text(
+                          selectedItem?["statusKK"].toString() ?? "PILIH",
+                          style: blackTextStyle,
+                        ),
+                        popupItemBuilder: (context, item, isSelected) =>
+                            ListTile(
+                          title: Text(
+                            item["statusKK"].toString(),
+                            style: blackTextStyle,
+                          ),
+                        ),
+                        showClearButton: true,
+                        onChanged: (value) {
+                          print(value!["jenisK"]);
+                          controller.statusNoKK =
+                              TextEditingController(text: value["jenisK"]);
+                        },
+                      ),
+                      SizedBox(height: 20.h),
+
                       ///Keterangan
-                      CustomTitleWidget(title: 'Keterangan'),
+                      CustomTitleWidget(title: 'Alasan Pindah'),
                       SizedBox(height: 12.h),
                       CustomFormKeteranganField(
                         readOnly: false,
