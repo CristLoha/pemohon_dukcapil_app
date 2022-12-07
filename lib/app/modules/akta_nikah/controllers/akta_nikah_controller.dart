@@ -21,9 +21,8 @@ class AktaNikahController extends GetxController {
   TextEditingController nikIstriC = TextEditingController();
   TextEditingController nikSaksi1 = TextEditingController();
   TextEditingController namaLengkapSaksi1 = TextEditingController();
-  TextEditingController emailC = TextEditingController();
+
   TextEditingController nikSaksi2 = TextEditingController();
-  TextEditingController noTelpC = TextEditingController();
   TextEditingController namaLengkapSaksi2 = TextEditingController();
   TextEditingController namaLengkapSuamiC = TextEditingController();
   TextEditingController namaLengkapIstriC = TextEditingController();
@@ -34,12 +33,19 @@ class AktaNikahController extends GetxController {
   TextEditingController kewarganegaraanSuamiC = TextEditingController();
   TextEditingController kewarganegaraanIstriC = TextEditingController();
   TextEditingController dateC = TextEditingController();
-  TextEditingController kecamatanC = TextEditingController();
-  TextEditingController desaC = TextEditingController();
+
+  /// PEMOHON
+  TextEditingController namaPemohonC = TextEditingController();
+  TextEditingController nikPemohon = TextEditingController();
+  TextEditingController kecamatanPemohonC = TextEditingController();
+  TextEditingController desaPemohonC = TextEditingController();
+  TextEditingController emailPemohonC = TextEditingController();
+  TextEditingController noTelponPemohonC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
   ];
@@ -242,11 +248,17 @@ class AktaNikahController extends GetxController {
         'namaLengkapIstri': namaLengkapIstriC.text,
         'tempatLahirSuami': tempatLahirSuamiC.text,
         'tempatLahirIstri': tempatLahirIstriC.text,
-        'email': emailC.text,
-        'noTelpon': noTelpC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
         'kewarganegaranIstri': kewarganegaraanIstriC.text,
         "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
+
+        /// PEMOHON
+        'nikPemohon': emailPemohonC.text,
+        'namaPemohon': emailPemohonC.text,
+        'desaPemohon': emailPemohonC.text,
+        'kecamatan': emailPemohonC.text,
+        'emailPemohon': emailPemohonC.text,
+        'noTelponPemohon': noTelponPemohonC.text,
 
         ///PERSYARATAN
         'fotoSelfiePelapor': fotoSelfie,
