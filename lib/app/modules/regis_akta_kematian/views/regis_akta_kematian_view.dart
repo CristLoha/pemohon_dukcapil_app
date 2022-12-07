@@ -24,7 +24,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
         (() => Container(
               child: Stepper(
                 elevation: 1,
-                type: StepperType.horizontal,
+                type: StepperType.vertical,
                 steps: formStep(),
                 onStepContinue: () {
                   if (!controller
