@@ -250,15 +250,15 @@ class AktaNikahController extends GetxController {
         'tempatLahirIstri': tempatLahirIstriC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
         'kewarganegaranIstri': kewarganegaraanIstriC.text,
-        "keyName": namaLengkapSuamiC.text.substring(0, 1).toUpperCase(),
 
         /// PEMOHON
-        'nikPemohon': emailPemohonC.text,
-        'namaPemohon': emailPemohonC.text,
-        'desaPemohon': emailPemohonC.text,
-        'kecamatan': emailPemohonC.text,
+        'nikPemohon': nikPemohon.text,
+        'namaPemohon': namaPemohonC.text,
+        'desaPemohon': desaPemohonC.text,
+        'kecamatan': kecamatanPemohonC.text,
         'emailPemohon': emailPemohonC.text,
         'noTelponPemohon': noTelponPemohonC.text,
+        'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
 
         ///PERSYARATAN
         'fotoSelfiePelapor': fotoSelfie,
