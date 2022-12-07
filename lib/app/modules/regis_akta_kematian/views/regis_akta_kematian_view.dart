@@ -147,12 +147,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 keyboardType: TextInputType.number,
                 textEditingController: controller.nikJenazahC,
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan Nomor NIK Jenazah yang benar";
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
+                    return 'No. KK harus 16 karakter';
                   }
                   return null;
                 },
@@ -167,6 +165,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               CustomFormField(
                 readOnly: false,
                 textInputAction: TextInputAction.next,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
                 keyboardType: TextInputType.name,
                 textEditingController: controller.nameJenazahC,
                 textCapitalization: TextCapitalization.words,
@@ -209,13 +214,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 onTap: () {
                   controller.dateLocal();
                 },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Masukan tanggal lahir';
-                  } else {
-                    return null;
-                  }
-                },
+                // validator: (value) {
+                //   if (value!.isEmpty) {
+                //     return 'Masukan tanggal lahir';
+                //   } else {
+                //     return null;
+                //   }
+                // },
                 decoration: InputDecoration(
                   hintStyle: greyTextStyle,
                   border: OutlineInputBorder(
@@ -239,6 +244,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 readOnly: false,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
                 textEditingController: controller.nameTempatLahirC,
                 textCapitalization: TextCapitalization.words,
               ),
@@ -281,9 +293,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 textEditingController: controller.tempatKematianC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama kematian yang benar";
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   } else {
                     return null;
                   }
@@ -297,6 +308,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
                 textEditingController: controller.anakKe,
@@ -312,13 +330,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 readOnly: true,
                 onTap: () {
                   controller.dateKematian();
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Masukan tanggal kematian';
-                  } else {
-                    return null;
-                  }
                 },
                 decoration: InputDecoration(
                   hintStyle: greyTextStyle,
@@ -419,13 +430,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikAyahC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor NIK yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
+                            return 'No. KK harus 16 karakter';
                           }
+                          return null;
                         },
                         textCapitalization: TextCapitalization.none,
                       ),
@@ -436,6 +446,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         textEditingController: controller.namaAyahC,
@@ -453,12 +470,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikIbuC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor NIK yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
+                            return 'No. KK harus 16 karakter';
                           }
                           return null;
                         },
@@ -471,16 +486,22 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         textEditingController: controller.namaIbuC,
-                        onTap: () {},
                         textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),
 
-                      /// NIK Pelapor
-                      CustomTitleWidget(title: 'NIK Pelapor'),
+                      /// NIK
+                      CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -488,12 +509,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor KK yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
+                            return 'No. KK harus 16 karakter';
                           }
                           return null;
                         },
@@ -501,8 +520,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      /// Nama Lengkap Pelapor
-                      CustomTitleWidget(title: 'Nama Lengkap Pelapor'),
+                      /// Nama Lengkap Pemohon
+                      CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
@@ -534,10 +553,8 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         textEditingController: controller.noTeleponC,
                         onTap: () {},
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan nomor telepon yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthGreaterOrEqual(
                               value, 11)) {
                             return 'Minimal 12 karakter';
@@ -561,6 +578,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
+          key: controller.formKeys[2],
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -1020,7 +1038,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 ///KTP PELAPOR
                 Text(
-                  'Unggah KTP pelapor',
+                  'Unggah KTP Pemohon',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -1171,7 +1189,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 /// KK pelapor
                 Text(
-                  'Unggah KK pelapor',
+                  'Unggah KK Pemohon',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),

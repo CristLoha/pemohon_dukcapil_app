@@ -187,8 +187,6 @@ class RegisAktaKematianController extends GetxController {
           'fotoKK': fotoKK,
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
-          'fotoKTPPelapor': ktpPelaPor,
-          'fotoKKPelapor': fotoKKpelapor,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
@@ -207,6 +205,12 @@ class RegisAktaKematianController extends GetxController {
           'keterangan': keteranganC.text,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
+
+          ///PEMOHON
+          'fotoKTPPelapor': ktpPelaPor,
+          'fotoKKPelapor': fotoKKpelapor,
+
+          ///PROSES
           'kategori': 'Akta Kematian',
           'email': userPemohon!.email,
           'uid': uid,
