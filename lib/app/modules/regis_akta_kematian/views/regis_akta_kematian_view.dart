@@ -120,7 +120,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
     return [
       Step(
         title: Text(
-          'Akta\nKematian',
+          'Akta Kematian',
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
@@ -411,16 +411,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          'Formulir Pendaftaran Antrian Perubahan e-KTP',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-
                       /// NIK AYAH
                       CustomTitleWidget(title: 'NIK Ayah'),
                       SizedBox(height: 12.h),
