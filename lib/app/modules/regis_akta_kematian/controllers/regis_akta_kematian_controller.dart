@@ -182,8 +182,8 @@ class RegisAktaKematianController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
-          'nik': nikC.text,
-          'nama': nameC.text,
+          'nikPemohon': nikC.text,
+          'namaPemohon': nameC.text,
           'fotoKK': fotoKK,
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,

@@ -1187,7 +1187,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 SizedBox(height: 20.h),
 
-                /// KK pelapor
+                /// KK Pemohon
                 Text(
                   'Unggah KK Pemohon',
                   style: blackTextStyle.copyWith(),
