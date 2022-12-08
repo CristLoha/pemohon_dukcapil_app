@@ -240,6 +240,7 @@ class AktaNikahController extends GetxController {
       CollectionReference aktaNikah = firestore.collection('layanan');
 
       await aktaNikah.add({
+        ///ISTRI & SUAMI
         'nikSuami': nikSuamiC.text,
         'nikIstri': nikIstriC.text,
         'namaLengkapSuami': namaLengkapSuamiC.text,
@@ -249,7 +250,7 @@ class AktaNikahController extends GetxController {
         'tempatLahirSuami': tempatLahirSuamiC.text,
         'tempatLahirIstri': tempatLahirIstriC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
-        'kewarganegaranIstri': kewarganegaraanIstriC.text,
+        'kewarganegaraanIstri': kewarganegaraanIstriC.text,
 
         /// PEMOHON
         'nikPemohon': nikPemohon.text,
@@ -259,6 +260,12 @@ class AktaNikahController extends GetxController {
         'email': emailPemohonC.text,
         'noTelponPemohon': noTelponPemohonC.text,
         'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
+
+        ///SAKSI
+        'nikSaksi1': nikSaksi1.text,
+        'nikSaksi2': nikSaksi2.text,
+        'namaLengkapSaksi1': namaLengkapSaksi1.text,
+        'namaLengkapSaksi2': namaLengkapSaksi2.text,
 
         ///PERSYARATAN
         'fotoSelfiePelapor': fotoSelfie,
