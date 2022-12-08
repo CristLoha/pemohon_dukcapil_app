@@ -31,29 +31,82 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKKPelapor = ImagePicker();
   XFile? pickedImageKKPelapor;
 
-  /// YANG MENINGGAL
+  /// JENAZAH
   TextEditingController nikJenazahC = TextEditingController();
-  TextEditingController nameJenazahC = TextEditingController();
+  TextEditingController namaLengkapJenazahC = TextEditingController();
+  TextEditingController jenisKelaminJenazahC = TextEditingController();
+  TextEditingController tglLahirJenazajC = TextEditingController();
+  TextEditingController tempatLahirC = TextEditingController();
+  TextEditingController agamaJenazah = TextEditingController();
   TextEditingController anakKe = TextEditingController();
-  TextEditingController jenisKelaminC = TextEditingController();
-  TextEditingController nameTempatLahirC = TextEditingController();
-  TextEditingController tempatKematianC = TextEditingController();
+  TextEditingController pekerjaanJenazahC = TextEditingController();
+  TextEditingController alamatJenazahC = TextEditingController();
+  TextEditingController desaJenazahC = TextEditingController();
+  TextEditingController kecamatanJenazahC = TextEditingController();
+  TextEditingController kabupatenJenazahC = TextEditingController();
+  TextEditingController provinsiJenazahC = TextEditingController();
+  TextEditingController kodePosC = TextEditingController();
   TextEditingController tanggalKematianC = TextEditingController();
-  TextEditingController kewarganegaraanC = TextEditingController();
+  TextEditingController pukulC = TextEditingController();
+  TextEditingController sebabKematianC = TextEditingController();
+  TextEditingController tempatKematianC = TextEditingController();
   TextEditingController menerangkanC = TextEditingController();
-  TextEditingController keteranganC = TextEditingController();
+
+  ///AYAH
+  TextEditingController noKepalaKeluargaC = TextEditingController();
+  TextEditingController nikAyahC = TextEditingController();
+  TextEditingController namaLengkapAyahC = TextEditingController();
+  TextEditingController tanggalLahirAyahC = TextEditingController();
+  TextEditingController pekerjaanAyahC = TextEditingController();
+  TextEditingController alamatAyah = TextEditingController();
+  TextEditingController desaAyah = TextEditingController();
+  TextEditingController kecamatanAyahC = TextEditingController();
+  TextEditingController kabupatenAyahC = TextEditingController();
+  TextEditingController provinsiAyahC = TextEditingController();
+
+  ///IBU
+  TextEditingController nikIbuC = TextEditingController();
+  TextEditingController namaLengkapIbuC = TextEditingController();
+  TextEditingController tanggalLahirIbuC = TextEditingController();
+  TextEditingController pekerjaanIbuC = TextEditingController();
+  TextEditingController alamatIbu = TextEditingController();
+  TextEditingController desaIbu = TextEditingController();
+  TextEditingController kecamatanIbuC = TextEditingController();
+  TextEditingController kabupatenIbuC = TextEditingController();
+  TextEditingController provinsiIbuC = TextEditingController();
 
   /// PEMOHON
-  TextEditingController nikAyahC = TextEditingController();
-  TextEditingController namaAyahC = TextEditingController();
-  TextEditingController nikIbuC = TextEditingController();
-  TextEditingController namaIbuC = TextEditingController();
-  TextEditingController noTeleponC = TextEditingController();
-  TextEditingController dateC = TextEditingController();
-  TextEditingController nikC = TextEditingController();
-  TextEditingController noKKC = TextEditingController();
-  TextEditingController nameC = TextEditingController();
+  TextEditingController nikPemohonC = TextEditingController();
+  TextEditingController namaLengkapPemohonC = TextEditingController();
+  TextEditingController tanggalLahirPemohonC = TextEditingController();
+  TextEditingController pekerjaanPemohonC = TextEditingController();
+  TextEditingController alamatPemohon = TextEditingController();
+  TextEditingController desaPemohon = TextEditingController();
+  TextEditingController kecamatanPemohonC = TextEditingController();
+  TextEditingController kabupatenPemohonC = TextEditingController();
+  TextEditingController provinsiPemohonC = TextEditingController();
 
+  /// SAKSI1
+  TextEditingController nikSaksi1C = TextEditingController();
+  TextEditingController namaLengkapSaksi1C = TextEditingController();
+  TextEditingController tanggalLahirSaksi1C = TextEditingController();
+  TextEditingController pekerjaanSaksi1C = TextEditingController();
+  TextEditingController alamatSaksi1C = TextEditingController();
+  TextEditingController desaPemohonSaksi1 = TextEditingController();
+  TextEditingController kecamatanSaksi1C = TextEditingController();
+  TextEditingController kabupatenSaksi1C = TextEditingController();
+  TextEditingController provinsiSaksi1C = TextEditingController();
+
+  /// SAKSI2
+  TextEditingController nikSaksi2C = TextEditingController();
+  TextEditingController namaLengkapSaksi2C = TextEditingController();
+  TextEditingController tanggalLahirSaksi2C = TextEditingController();
+  TextEditingController pekerjaanSaksi2C = TextEditingController();
+  TextEditingController alamatSaksi2C = TextEditingController();
+  TextEditingController desaPemohonSaksi2 = TextEditingController();
+  TextEditingController kecamatanSaksi2C = TextEditingController();
+  TextEditingController kabupatenSaksi2C = TextEditingController();
+  TextEditingController provinsiSaksi2C = TextEditingController();
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
@@ -182,30 +235,26 @@ class RegisAktaKematianController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
+          ///JENAZAH
           'nikJenazah': nikJenazahC.text,
-          'anakKe': anakKe.text,
-          'namaLengkapJenazah': nameJenazahC.text,
-          'noTelepon': noTeleponC.text,
-          'keteranganKonfirmasi': '',
-          'menerangkan': menerangkanC.text,
-          'kewarganegaraan': kewarganegaraanC.text,
-          'jenisKelamin': jenisKelaminC.text,
-          'tglKematian': tanggalKematianC.text,
-          'NIKayah': nikAyahC.text,
-          'namaAyah': namaAyahC.text,
-          'NIKIbu': nikIbuC.text,
-          'NamaIbu': namaIbuC.text,
-          'tempatLahir': nameTempatLahirC.text,
-          'tempatKematian': tempatKematianC.text,
+          'namaLengkapJenazah': namaLengkapJenazahC.text,
+          'jenisKelaminJenazah': jenisKelaminJenazahC.text,
+          'tgl_lahirJenasah': tglLahirJenazajC.text,
+          'tempatLahirJenazah': tglLahirJenazajC.text,
+          'agamaJenazah': agamaJenazah.text,
+          'pekerjaanJenazah': pekerjaanJenazahC.text,
+          'alamatJenazah': alamatJenazahC.text,
+          'desaJenazah': desaJenazahC.text,
+          'kecamatanJenazah': kecamatanJenazahC.text,
+          'kabupatenJenazah': kecamatanJenazahC.text,
+          'provinsiJenazah': provinsiJenazahC.text,
 
-          'tgl_lahir': dateC.text,
-
-          ///PEMOHON
-          'nikPemohon': nikC.text,
-          'namaPemohon': nameC.text,
-          'email': userPemohon!.email,
-          'keterangan': keteranganC.text,
-          "keyName": nameC.text.substring(0, 1).toUpperCase(),
+          // ///PEMOHON
+          // 'nikPemohon': nikC.text,
+          // 'namaPemohon': nameC.text,
+          // 'email': userPemohon!.email,
+          // 'keterangan': keteranganC.text,
+          // "keyName": nameC.text.substring(0, 1).toUpperCase(),
 
           ///PERSYARATAN
           'fotoKK': fotoKK,

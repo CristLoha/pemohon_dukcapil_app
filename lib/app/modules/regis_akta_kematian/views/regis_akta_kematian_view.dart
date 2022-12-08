@@ -120,7 +120,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
     return [
       Step(
         title: Text(
-          'Akta Kematian',
+          'Jenazah',
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
@@ -129,7 +129,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// NIK JENAZAH
-              CustomTitleWidget(title: 'NIK Jenazah'),
+              CustomTitleWidget(title: 'NIK'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -150,7 +150,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               SizedBox(height: 20.h),
 
               /// Nama Lengkap Jenazah
-              CustomTitleWidget(title: 'Nama Lengkap Jenazah'),
+              CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,

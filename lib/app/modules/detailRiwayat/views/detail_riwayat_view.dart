@@ -232,17 +232,45 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         ),
                                       ),
                                       SizedBox(height: 10),
+
+                                      ///NIK JENAZAH
                                       CustomOutputForm(
                                         title: 'NIK JENAZAH',
                                         subtitle: "${data['nikJenazah']}",
                                       ),
                                       SizedBox(height: 10),
+
+                                      ///NAMA LENGKAP JENAZAH
                                       CustomOutputForm(
                                         title: 'NAMA LENGKAP JENAZAH',
                                         subtitle:
                                             "${data['namaLengkapJenazah']}",
                                       ),
                                       SizedBox(height: 10),
+
+                                      /// JENIS KELAMIN JENAZAH
+                                      CustomOutputForm(
+                                        title: 'JENIS KELAMIN JENAZAH',
+                                        subtitle: "${data['jenisKelamin']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      /// TANGGAL LAHIR JENAZAH
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR JENAZAH',
+                                        subtitle: "${data['tgl_lahir']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      /// TEMPAT LAHIR
+                                      CustomOutputForm(
+                                        title: 'TEMPAT LAHIR JENAZAH',
+                                        subtitle: "${data['tempatLahir']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///NIK AYAH
+
                                       CustomOutputForm(
                                         title: 'NIK AYAH',
                                         subtitle: "${data['NIKayah']}",
