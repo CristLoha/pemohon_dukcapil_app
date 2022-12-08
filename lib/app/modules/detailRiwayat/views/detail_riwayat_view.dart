@@ -108,16 +108,34 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['proses']}",
                                       ),
                                       SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TANGGAL KONFIRMASI',
-                                        subtitle: DateFormat(
-                                          "d MMMM yyyy",
-                                          "id_ID",
-                                        ).format(
-                                          DateTime.parse(
-                                            "${data['updatedTime']}",
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomOutputForm(
+                                            title: 'TANGGAL KONFIRMASI',
+                                            subtitle: DateFormat(
+                                              "d MMMM yyyy",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                "${data['updatedTime']}",
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Text(
+                                            DateFormat(
+                                              "hh:mm aaa",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                  "${data['updatedTime']}"),
+                                            ),
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(height: 10.h),
                                       if ("${data['keterangan']}".isEmpty)
@@ -435,16 +453,34 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['proses']}",
                                       ),
                                       SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TANGGAL KONFIRMASI',
-                                        subtitle: DateFormat(
-                                          "d MMMM yyyy",
-                                          "id_ID",
-                                        ).format(
-                                          DateTime.parse(
-                                            "${data['updatedTime']}",
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomOutputForm(
+                                            title: 'TANGGAL KONFIRMASI',
+                                            subtitle: DateFormat(
+                                              "d MMMM yyyy",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                "${data['updatedTime']}",
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Text(
+                                            DateFormat(
+                                              "hh:mm aaa",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                  "${data['updatedTime']}"),
+                                            ),
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       if ("${data['keterangan']}".isEmpty)
                                         Container(),
@@ -492,7 +528,6 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                     ),
 
                     ///AKTA PERKAWINAN
-
                     if ("${data['kategori']}" == 'Akta Nikah')
                       Positioned(
                         top: 13,
@@ -605,12 +640,24 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'NIK SAKSI 1',
-                                        subtitle: "${data['nikSuami']}",
+                                        subtitle: "${data['nikSaksi1']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP SUAMI',
-                                        subtitle: "${data['namaLengkapSuami']}",
+                                        title: 'NAMA LENGKAP SAKSI 1',
+                                        subtitle:
+                                            "${data['namaLengkapSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK SAKSI 2',
+                                        subtitle: "${data['nikSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP SAKSI 2',
+                                        subtitle:
+                                            "${data['namaLengkapSaksi2']}",
                                       ),
                                       SizedBox(height: 10.h),
 
@@ -620,25 +667,36 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['proses']}",
                                       ),
                                       SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TANGGAL KONFIRMASI',
-                                        subtitle: DateFormat(
-                                          "d MMMM yyyy",
-                                          "id_ID",
-                                        ).format(
-                                          DateTime.parse(
-                                            "${data['updatedTime']}",
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomOutputForm(
+                                            title: 'TANGGAL KONFIRMASI',
+                                            subtitle: DateFormat(
+                                              "d MMMM yyyy",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                "${data['updatedTime']}",
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Text(
+                                            DateFormat(
+                                              "hh:mm aaa",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                  "${data['updatedTime']}"),
+                                            ),
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      SizedBox(height: 10.h),
-                                      if ("${data['keterangan']}".isEmpty)
-                                        Container(),
-                                      if ("${data['keterangan']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'KETERANGAN',
-                                          subtitle: "${data['keterangan']}",
-                                        ),
+
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isEmpty)
                                         Container(),

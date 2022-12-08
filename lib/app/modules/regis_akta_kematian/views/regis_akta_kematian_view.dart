@@ -128,16 +128,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  'Formulir Akta Kematian',
-                  style: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-
               /// NIK JENAZAH
               CustomTitleWidget(title: 'NIK Jenazah'),
               SizedBox(height: 12.h),
@@ -214,13 +204,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                 onTap: () {
                   controller.dateLocal();
                 },
-                // validator: (value) {
-                //   if (value!.isEmpty) {
-                //     return 'Masukan tanggal lahir';
-                //   } else {
-                //     return null;
-                //   }
-                // },
                 decoration: InputDecoration(
                   hintStyle: greyTextStyle,
                   border: OutlineInputBorder(
@@ -406,6 +389,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
               } else {
                 controller.nameC.text = snapshot.data!["nama"];
                 controller.nikC.text = snapshot.data!["nik"];
+                controller.noTeleponC.text = snapshot.data!["nomor_telp"];
                 return Form(
                   key: controller.formKeys[1],
                   child: Column(
@@ -537,11 +521,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       SizedBox(height: 12.h),
                       CustomFormField(
                         textCapitalization: TextCapitalization.none,
-                        readOnly: false,
+                        readOnly: true,
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.noTeleponC,
-                        onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";

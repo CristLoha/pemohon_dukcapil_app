@@ -281,11 +281,12 @@ class AktaNikahController extends GetxController {
         ///PROSES
         'kategori': 'Akta Nikah',
         'uid': uid,
-        'keterangan': keteranganC.text,
+
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
         'creationTime': DateTime.now().toIso8601String(),
         'updatedTime': DateTime.now().toIso8601String(),
+        // 'keterangan': keteranganC.text,
       }).then(
         (value) {
           EasyLoading.showSuccess('Data Berhasil Ditambahakan');

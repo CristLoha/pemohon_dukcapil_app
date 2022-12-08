@@ -182,11 +182,6 @@ class RegisAktaKematianController extends GetxController {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
-          'nikPemohon': nikC.text,
-          'namaPemohon': nameC.text,
-          'fotoKK': fotoKK,
-          'fotoAktaKelahiran': fotoAktaKelahiran,
-          'fotoKTPJenazah': ktpJenazah,
           'nikJenazah': nikJenazahC.text,
           'anakKe': anakKe.text,
           'namaLengkapJenazah': nameJenazahC.text,
@@ -209,10 +204,18 @@ class RegisAktaKematianController extends GetxController {
           ///PEMOHON
           'fotoKTPPelapor': ktpPelaPor,
           'fotoKKPelapor': fotoKKpelapor,
+          'nikPemohon': nikC.text,
+          'namaPemohon': nameC.text,
+          'email': userPemohon!.email,
+
+          ///PERSYARATAN
+          'fotoKK': fotoKK,
+          'fotoAktaKelahiran': fotoAktaKelahiran,
+          'fotoKTPJenazah': ktpJenazah,
 
           ///PROSES
           'kategori': 'Akta Kematian',
-          'email': userPemohon!.email,
+
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),
