@@ -498,7 +498,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         top: 13,
                         child: Container(
                           width: 320.w,
-                          height: 440.h,
+                          height: 530.h,
                           decoration: BoxDecoration(
                             color: kWhiteColor,
                             borderRadius: BorderRadius.circular(4),
@@ -516,7 +516,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                             ),
                             child: Container(
                               width: Get.width * 0.5,
-                              height: 440.h,
+                              height: 530.h,
                               decoration: BoxDecoration(
                                 color: kWhiteColor,
                                 borderRadius: BorderRadius.circular(4),
@@ -540,32 +540,81 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                               fontWeight: semiBold),
                                         ),
                                       ),
+
+                                      ///SUAMI
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NIK',
-                                        subtitle: "${data['nik']}",
+                                        title: 'NIK SUAMI',
+                                        subtitle: "${data['nikSuami']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP',
-                                        subtitle: "${data['nama']}",
+                                        title: 'NAMA LENGKAP SUAMI',
+                                        subtitle: "${data['namaLengkapSuami']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR',
-                                        subtitle: "${data['tgl_lahir']}",
+                                        title: 'TANGGAL LAHIR SUAMI',
+                                        subtitle:
+                                            "${data['tanggalLahirSuami']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KECAMATAN',
-                                        subtitle: "${data['kecamatan']}",
+                                        title: 'TEMPAT LAHIR SUAMI',
+                                        subtitle: "${data['tempatLahirSuami']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'DESA',
-                                        subtitle: "${data['desa']}",
+                                        title: 'KEWARGANEGARAAN SUAMI',
+                                        subtitle:
+                                            "${data['kewarganegaraanSuami']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///ISTRI
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK ISTRI',
+                                        subtitle: "${data['nikIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP ISTRI',
+                                        subtitle: "${data['namaLengkapIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR ISTRI',
+                                        subtitle:
+                                            "${data['tanggalLahirIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'TEMPAT LAHIR ISTRI',
+                                        subtitle: "${data['tempatLahirIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KEWARGANEGARAAN ISTRI',
+                                        subtitle:
+                                            "${data['kewarganegaraanIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///SAKSI 1 & 2
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK SAKSI 1',
+                                        subtitle: "${data['nikSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP SUAMI',
+                                        subtitle: "${data['namaLengkapSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PROSES
                                       CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
