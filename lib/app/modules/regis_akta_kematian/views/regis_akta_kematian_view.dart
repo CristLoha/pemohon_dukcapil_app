@@ -482,14 +482,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.nikC,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Input tidak boleh kosong";
-                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'No. KK harus 16 karakter';
-                          }
-                          return null;
-                        },
                         textCapitalization: TextCapitalization.none,
                       ),
                       SizedBox(height: 20.h),
@@ -498,19 +490,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       CustomTitleWidget(title: 'Nama Lengkap'),
                       SizedBox(height: 12.h),
                       CustomFormField(
-                        readOnly: false,
+                        readOnly: true,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         textEditingController: controller.nameC,
-                        onTap: () {},
-                        validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
-                          } else {
-                            return null;
-                          }
-                        },
                         textCapitalization: TextCapitalization.words,
                       ),
 
@@ -525,16 +508,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.number,
                         textEditingController: controller.noTeleponC,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Input tidak boleh kosong";
-                          } else if (!GetUtils.isLengthGreaterOrEqual(
-                              value, 11)) {
-                            return 'Minimal 12 karakter';
-                          } else {
-                            return null;
-                          }
-                        },
                       ),
                     ],
                   ),

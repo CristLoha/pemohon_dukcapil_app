@@ -197,21 +197,22 @@ class RegisAktaKematianController extends GetxController {
           'NamaIbu': namaIbuC.text,
           'tempatLahir': nameTempatLahirC.text,
           'tempatKematian': tempatKematianC.text,
-          'keterangan': keteranganC.text,
+
           'tgl_lahir': dateC.text,
-          "keyName": nameC.text.substring(0, 1).toUpperCase(),
 
           ///PEMOHON
-          'fotoKTPPelapor': ktpPelaPor,
-          'fotoKKPelapor': fotoKKpelapor,
           'nikPemohon': nikC.text,
           'namaPemohon': nameC.text,
           'email': userPemohon!.email,
+          'keterangan': keteranganC.text,
+          "keyName": nameC.text.substring(0, 1).toUpperCase(),
 
           ///PERSYARATAN
           'fotoKK': fotoKK,
           'fotoAktaKelahiran': fotoAktaKelahiran,
           'fotoKTPJenazah': ktpJenazah,
+          'fotoKTPPelapor': ktpPelaPor,
+          'fotoKKPelapor': fotoKKpelapor,
 
           ///PROSES
           'kategori': 'Akta Kematian',
