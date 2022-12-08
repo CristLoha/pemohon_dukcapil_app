@@ -256,7 +256,7 @@ class AktaNikahController extends GetxController {
         'namaPemohon': namaPemohonC.text,
         'desaPemohon': desaPemohonC.text,
         'kecamatan': kecamatanPemohonC.text,
-        'emailPemohon': emailPemohonC.text,
+        'email': emailPemohonC.text,
         'noTelponPemohon': noTelponPemohonC.text,
         'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
 

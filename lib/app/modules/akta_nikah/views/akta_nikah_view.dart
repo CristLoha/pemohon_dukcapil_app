@@ -371,7 +371,6 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.namaLengkapSaksi2),
-              SizedBox(height: 20.h),
             ],
           ),
         ),
