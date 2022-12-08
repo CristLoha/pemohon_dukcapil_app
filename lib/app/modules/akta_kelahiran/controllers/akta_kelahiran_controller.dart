@@ -266,7 +266,7 @@ class AktaKelahiranController extends GetxController {
       await rekamanKtp.add({
         ///BAYI/ANAK
         "namaAnak": nameAnakC.text,
-        "keyName": nameAnakC.text.substring(0, 1).toUpperCase(),
+
         "tempatDilahirkan": tempatDilahirkanC.text,
         "tempatKelahiran": tempatKelahiranC.text,
         "kelahiranKe": kelahiranKeC.text,
@@ -309,19 +309,21 @@ class AktaKelahiranController extends GetxController {
         "jenisKelaminPemohon": jenisKelaminPemohonC.text,
         "pekerjaanPemohon": pekerjaanPemohonC.text,
         "desaPemohon": desaPemohonC.text,
-        "kecamatanPemohon": desaPemohonC.text,
+        "kecamatanPemohon": kecamatanPemohonC.text,
         "kabupatenPemohon": kabupatenPemohonC.text,
         "provinsiPemohon": provinsiPemohonC.text,
         "kewarganegaraanPemohon": provinsiPemohonC.text,
+        'email': userPemohon!.email,
+        "keyName": namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
 
         ///SAKSI 1
         "nikSaksi1": nikSaksi1C.text,
         "namaLengkapSaksi1": namaLengkapSaksi1C.text,
-        "tanggalLahirSaksi": tglLahirSaksi1C.text,
+        "tanggalLahirSaksi1": tglLahirSaksi1C.text,
         "jenisKelaminSaksi1": jenisKelaminSaksi1C.text,
         "pekerjaanSaksi1": pekerjaanSaksi1C.text,
         "desaSaksi1": desaSaksi1C.text,
-        "kecamatanSaksi1": desaSaksi1C.text,
+        "kecamatanSaksi1": kecamatanSaksi1C.text,
         "kabupatenSaksi1": kabupatenSaksi1C.text,
         "provinsiSaksi1": provinsiSaksi1C.text,
 
@@ -332,7 +334,7 @@ class AktaKelahiranController extends GetxController {
         "jenisKelaminSaksi2": jenisKelaminSaksi2C.text,
         "pekerjaanSaksi2": pekerjaanSaksi2C.text,
         "desaSaksi2": desaSaksi2C.text,
-        "kecamatanSaksi2": desaSaksi2C.text,
+        "kecamatanSaksi2": kecamatanSaksi1C.text,
         "kabupatenSaksi2": kabupatenSaksi2C.text,
         "provinsiSaksi2": provinsiSaksi2C.text,
 

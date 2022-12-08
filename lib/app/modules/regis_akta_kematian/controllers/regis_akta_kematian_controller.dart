@@ -92,7 +92,7 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController tanggalLahirSaksi1C = TextEditingController();
   TextEditingController pekerjaanSaksi1C = TextEditingController();
   TextEditingController alamatSaksi1C = TextEditingController();
-  TextEditingController desaPemohonSaksi1 = TextEditingController();
+  TextEditingController desaSaksi1 = TextEditingController();
   TextEditingController kecamatanSaksi1C = TextEditingController();
   TextEditingController kabupatenSaksi1C = TextEditingController();
   TextEditingController provinsiSaksi1C = TextEditingController();
@@ -103,7 +103,7 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController tanggalLahirSaksi2C = TextEditingController();
   TextEditingController pekerjaanSaksi2C = TextEditingController();
   TextEditingController alamatSaksi2C = TextEditingController();
-  TextEditingController desaPemohonSaksi2 = TextEditingController();
+  TextEditingController desaSaksi2 = TextEditingController();
   TextEditingController kecamatanSaksi2C = TextEditingController();
   TextEditingController kabupatenSaksi2C = TextEditingController();
   TextEditingController provinsiSaksi2C = TextEditingController();
@@ -248,13 +248,67 @@ class RegisAktaKematianController extends GetxController {
           'kecamatanJenazah': kecamatanJenazahC.text,
           'kabupatenJenazah': kecamatanJenazahC.text,
           'provinsiJenazah': provinsiJenazahC.text,
+          'anakKe': anakKe.text,
+          'tglKematian': tanggalKematianC.text,
+          'pukul': pukulC.text,
+          'sebabKematian': sebabKematianC.text,
+          'tempatKematian': tempatKematianC.text,
+          'yangMenerangkan': menerangkanC.text,
 
-          // ///PEMOHON
-          // 'nikPemohon': nikC.text,
-          // 'namaPemohon': nameC.text,
-          // 'email': userPemohon!.email,
-          // 'keterangan': keteranganC.text,
-          // "keyName": nameC.text.substring(0, 1).toUpperCase(),
+          ///AYAH
+          'nikAyah': nikAyahC.text,
+          'namaAyah': namaLengkapAyahC.text,
+          'tglLahirAyah': tanggalLahirAyahC,
+          'pekerjaanAyah': pekerjaanAyahC.text,
+          'alamatAyah': alamatAyah.text,
+          'desaAyah': desaAyah.text,
+          'kecamatanAyah': kecamatanAyahC.text,
+          'kabupatenAyah': kabupatenAyahC.text,
+          'provinsiAyah': provinsiAyahC.text,
+
+          ///IBU
+          'nikIbu': nikIbuC.text,
+          'namaIbu': namaLengkapIbuC.text,
+          'tglLahirIbu': tanggalLahirIbuC,
+          'pekerjaanIbu': pekerjaanIbuC.text,
+          'alamatIbu': alamatIbu.text,
+          'desaIbu': desaIbu.text,
+          'kecamatanIbu': kecamatanIbuC.text,
+          'kabupatenKota': kabupatenIbuC.text,
+          'provinsiIbu': provinsiIbuC.text,
+
+          ///SAKSI 1
+          "nikSaksi1": nikSaksi1C.text,
+          "namaLengkapSaksi1": namaLengkapSaksi1C.text,
+          "tanggalLahirSaksi1": tanggalLahirSaksi1C.text,
+          "pekerjaanSaksi1": pekerjaanSaksi1C.text,
+          "desaSaksi1": desaSaksi1.text,
+          "kecamatanSaksi1": kecamatanSaksi1C,
+          "kabupatenSaksi1": kabupatenSaksi1C.text,
+          "provinsiSaksi1": provinsiSaksi1C.text,
+
+          ///SAKSI 2
+          "nikSaksi2": nikSaksi2C.text,
+          "namaLengkapSaksi2": namaLengkapSaksi2C.text,
+          "tanggalLahirSaksi2": tanggalLahirSaksi2C.text,
+          "pekerjaanSaksi2": pekerjaanSaksi2C.text,
+          "desaSaksi2": desaSaksi2.text,
+          "kecamatanSaksi2": kecamatanSaksi2C,
+          "kabupatenSaksi2": kabupatenSaksi2C.text,
+          "provinsiSaksi2": provinsiSaksi2C.text,
+
+          ///PEMOHON
+          "nikPemohon": nikPemohonC.text,
+          "namaLengkapPemohon": namaLengkapPemohonC.text,
+          "tanggalLahirPemohon": tanggalLahirPemohonC.text,
+          "pekerjaanPemohon": pekerjaanPemohonC.text,
+          "desaPemohon": desaPemohon.text,
+          "kecamatanPemohon": kecamatanPemohonC.text,
+          "kabupatenPemohon": kabupatenPemohonC.text,
+          "provinsiPemohon": provinsiPemohonC.text,
+          "kewarganegaraanPemohon": provinsiPemohonC.text,
+          "email": userPemohon!.email,
+          "keyName": namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
 
           ///PERSYARATAN
           'fotoKK': fotoKK,
@@ -265,7 +319,6 @@ class RegisAktaKematianController extends GetxController {
 
           ///PROSES
           'kategori': 'Akta Kematian',
-
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),
@@ -426,8 +479,8 @@ class RegisAktaKematianController extends GetxController {
     update();
   }
 
-  ///UNTUK FORM TANGGAL
-  void dateLocal() async {
+  //TANGGAL LAHIR JENAZAH
+  void tglLahirJenazah() async {
     await DatePicker.showDatePicker(
       Get.context!,
       locale: LocaleType.id,
@@ -435,7 +488,7 @@ class RegisAktaKematianController extends GetxController {
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tglLahirJenazajC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }
