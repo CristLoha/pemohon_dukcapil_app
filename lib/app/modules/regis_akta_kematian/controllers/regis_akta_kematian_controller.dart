@@ -35,7 +35,7 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController nikJenazahC = TextEditingController();
   TextEditingController namaLengkapJenazahC = TextEditingController();
   TextEditingController jenisKelaminJenazahC = TextEditingController();
-  TextEditingController tglLahirJenazajC = TextEditingController();
+  TextEditingController tglLahirJenazahC = TextEditingController();
   TextEditingController tempatLahirC = TextEditingController();
   TextEditingController agamaJenazah = TextEditingController();
   TextEditingController anakKe = TextEditingController();
@@ -77,6 +77,7 @@ class RegisAktaKematianController extends GetxController {
 
   /// PEMOHON
   TextEditingController nikPemohonC = TextEditingController();
+  TextEditingController noTelepon = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
   TextEditingController tanggalLahirPemohonC = TextEditingController();
   TextEditingController pekerjaanPemohonC = TextEditingController();
@@ -112,6 +113,9 @@ class RegisAktaKematianController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKelamin = [
@@ -125,26 +129,77 @@ class RegisAktaKematianController extends GetxController {
     }
   ];
 
-  List<Map<String, dynamic>> dataJenisKewarganegaraan = [
+  List<Map<String, dynamic>> agama = [
     {
-      "jenisK": "WNI",
+      "jenisAgama": "Islam",
       "id": 1,
     },
     {
-      "jenisK": "WNA",
+      "jenisAgama": "Kristen",
       "id": 2,
-    }
+    },
+    {
+      "jenisAgama": "Katolik",
+      "id": 3,
+    },
+    {
+      "jenisAgama": "Hindu",
+      "id": 4,
+    },
+    {
+      "jenisAgama": "Budha",
+      "id": 5,
+    },
+    {
+      "jenisAgama": "Lainnya",
+      "id": 6,
+    },
   ];
 
   List<Map<String, dynamic>> dataJenisYgMenerangkan = [
     {
-      "menerangkan": "DOKTER",
+      "menerangkan": "Dokter",
       "id": 1,
     },
     {
-      "menerangkan": "POLISI",
+      "menerangkan": "Tenaga Kesehatan",
       "id": 2,
+    },
+    {
+      "menerangkan": "Kepolisian",
+      "id": 3,
+    },
+    {
+      "menerangkan": "Lainnya",
+      "id": 4,
     }
+  ];
+
+  List<Map<String, dynamic>> sebabKematian = [
+    {
+      "sKematian": "Sakit Biasa/tua",
+      "id": 1,
+    },
+    {
+      "sKematian": "Wabah Penyakit",
+      "id": 2,
+    },
+    {
+      "sKematian": "Kecelakaan",
+      "id": 3,
+    },
+    {
+      "sKematian": "Kriminalitas",
+      "id": 4,
+    },
+    {
+      "sKematian": "Bunuh Diri",
+      "id": 5,
+    },
+    {
+      "sKematian": "Lainnya",
+      "id": 5,
+    },
   ];
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
@@ -239,8 +294,8 @@ class RegisAktaKematianController extends GetxController {
           'nikJenazah': nikJenazahC.text,
           'namaLengkapJenazah': namaLengkapJenazahC.text,
           'jenisKelaminJenazah': jenisKelaminJenazahC.text,
-          'tgl_lahirJenasah': tglLahirJenazajC.text,
-          'tempatLahirJenazah': tglLahirJenazajC.text,
+          'tgl_lahirJenasah': tglLahirJenazahC.text,
+          'tempatLahirJenazah': tempatLahirC.text,
           'agamaJenazah': agamaJenazah.text,
           'pekerjaanJenazah': pekerjaanJenazahC.text,
           'alamatJenazah': alamatJenazahC.text,
@@ -299,6 +354,7 @@ class RegisAktaKematianController extends GetxController {
 
           ///PEMOHON
           "nikPemohon": nikPemohonC.text,
+          "noTelpon": noTelepon.text,
           "namaLengkapPemohon": namaLengkapPemohonC.text,
           "tanggalLahirPemohon": tanggalLahirPemohonC.text,
           "pekerjaanPemohon": pekerjaanPemohonC.text,
@@ -488,11 +544,85 @@ class RegisAktaKematianController extends GetxController {
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
-        tglLahirJenazajC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+        tglLahirJenazahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }
 
+  ///TGL KELAHIRAN AYAH
+  void tglLahirAyah() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirAyahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir ibu
+  void tglLahirIbu() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirIbuC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir pemohon
+  void tglLahirPemohon() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirPemohonC.text =
+            DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir saksi1
+  void tglLahirSaksi1() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirSaksi1C.text =
+            DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///tgl lahir saksi2
+  void tglLahirSaksi2() async {
+    await DatePicker.showDatePicker(
+      Get.context!,
+      locale: LocaleType.id,
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
+    ).then((selectedDate) {
+      if (selectedDate != null) {
+        tanggalLahirSaksi2C.text =
+            DateFormat('yyyy-MM-dd').format(selectedDate);
+      }
+    });
+  }
+
+  ///TGL KEMATIAN
   void dateKematian() async {
     await DatePicker.showDatePicker(
       Get.context!,
