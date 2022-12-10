@@ -116,6 +116,7 @@ class RegisAktaKematianController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKelamin = [
@@ -295,6 +296,7 @@ class RegisAktaKematianController extends GetxController {
           'namaLengkapJenazah': namaLengkapJenazahC.text,
           'jenisKelaminJenazah': jenisKelaminJenazahC.text,
           'tgl_lahirJenasah': tglLahirJenazahC.text,
+
           'tempatLahirJenazah': tempatLahirC.text,
           'agamaJenazah': agamaJenazah.text,
           'pekerjaanJenazah': pekerjaanJenazahC.text,
@@ -313,10 +315,11 @@ class RegisAktaKematianController extends GetxController {
           ///AYAH
           'nikAyah': nikAyahC.text,
           'namaAyah': namaLengkapAyahC.text,
-          'tglLahirAyah': tanggalLahirAyahC,
+          'tglLahirAyah': tanggalLahirAyahC.text,
           'pekerjaanAyah': pekerjaanAyahC.text,
           'alamatAyah': alamatAyah.text,
           'desaAyah': desaAyah.text,
+          'noKK': noKepalaKeluargaC.text,
           'kecamatanAyah': kecamatanAyahC.text,
           'kabupatenAyah': kabupatenAyahC.text,
           'provinsiAyah': provinsiAyahC.text,
@@ -324,7 +327,7 @@ class RegisAktaKematianController extends GetxController {
           ///IBU
           'nikIbu': nikIbuC.text,
           'namaIbu': namaLengkapIbuC.text,
-          'tglLahirIbu': tanggalLahirIbuC,
+          'tglLahirIbu': tanggalLahirIbuC.text,
           'pekerjaanIbu': pekerjaanIbuC.text,
           'alamatIbu': alamatIbu.text,
           'desaIbu': desaIbu.text,
@@ -337,8 +340,9 @@ class RegisAktaKematianController extends GetxController {
           "namaLengkapSaksi1": namaLengkapSaksi1C.text,
           "tanggalLahirSaksi1": tanggalLahirSaksi1C.text,
           "pekerjaanSaksi1": pekerjaanSaksi1C.text,
+          "alamatSaksi1": alamatSaksi1C.text,
           "desaSaksi1": desaSaksi1.text,
-          "kecamatanSaksi1": kecamatanSaksi1C,
+          "kecamatanSaksi1": kecamatanSaksi1C.text,
           "kabupatenSaksi1": kabupatenSaksi1C.text,
           "provinsiSaksi1": provinsiSaksi1C.text,
 
@@ -347,8 +351,10 @@ class RegisAktaKematianController extends GetxController {
           "namaLengkapSaksi2": namaLengkapSaksi2C.text,
           "tanggalLahirSaksi2": tanggalLahirSaksi2C.text,
           "pekerjaanSaksi2": pekerjaanSaksi2C.text,
+          "alamatSaksi2": alamatSaksi2C.text,
+
           "desaSaksi2": desaSaksi2.text,
-          "kecamatanSaksi2": kecamatanSaksi2C,
+          "kecamatanSaksi2": kecamatanSaksi2C.text,
           "kabupatenSaksi2": kabupatenSaksi2C.text,
           "provinsiSaksi2": provinsiSaksi2C.text,
 
@@ -358,6 +364,7 @@ class RegisAktaKematianController extends GetxController {
           "namaLengkapPemohon": namaLengkapPemohonC.text,
           "tanggalLahirPemohon": tanggalLahirPemohonC.text,
           "pekerjaanPemohon": pekerjaanPemohonC.text,
+          "alamatPemohon": alamatPemohon.text,
           "desaPemohon": desaPemohon.text,
           "kecamatanPemohon": kecamatanPemohonC.text,
           "kabupatenPemohon": kabupatenPemohonC.text,
@@ -377,6 +384,7 @@ class RegisAktaKematianController extends GetxController {
           'kategori': 'Akta Kematian',
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
+          'keteranganKonfirmasi': '',
           'creationTime': DateTime.now().toIso8601String(),
           'updatedTime': DateTime.now().toIso8601String(),
         });
