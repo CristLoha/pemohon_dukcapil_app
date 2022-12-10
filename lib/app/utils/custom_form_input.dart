@@ -38,7 +38,7 @@ class CustomFormField extends GetView<RegisterController> {
       onTap: onTap,
       readOnly: readOnly!,
       keyboardType: keyboardType,
-      autocorrect: false,
+      autocorrect: true,
       controller: textEditingController,
       decoration: InputDecoration(
         prefixIcon: icon,
