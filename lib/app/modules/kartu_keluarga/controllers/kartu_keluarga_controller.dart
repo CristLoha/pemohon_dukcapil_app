@@ -67,6 +67,7 @@ class KartuKeluargaController extends GetxController {
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKelamin = [
@@ -141,27 +142,29 @@ class KartuKeluargaController extends GetxController {
         CollectionReference kartuKeluarga = firestore.collection('layanan');
         await kartuKeluarga.add({
           ///PEMOHON
-          'nikAnak': nikPemohonC.text,
+
+          'nik': nikPemohonC.text,
           'namaLengkap': namaLengkapPemohonC.text,
+
+          'noKKSemula': noKkSemula.text,
+          'kabupaten/kota': kabupatenKotaC.text,
+          'provinsi': provinsiC.text,
           'kecamatan': kecamatanC.text,
           'rt': rtC.text,
           'rw': rwC.text,
           'kodePos': kodePosC.text,
           'jmlAnggotaKeluarga': jmlAnggotaFamylyC.text,
           'kecamatanPemohon': kecamatanPemohonC.text,
-          'noKKSemula': noKkSemula.text,
-          'provinsi': provinsiC.text,
-          'kabupaten/kota': kabupatenKotaC.text,
+
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
-          'nikPemohon': nikPemohonC.text,
-          'namaLengkapPemohon': namaLengkapPemohonC.text,
+
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
           'keterangan': keteranganC.text,
           'desa': desaC.text,
           'keyName': namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'KARTU KELUARGA',
+          'kategori': 'Kartu Keluarga',
           'email': userPemohon!.email,
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
