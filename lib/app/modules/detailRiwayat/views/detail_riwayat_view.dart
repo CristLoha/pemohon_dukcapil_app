@@ -596,14 +596,14 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///PEKERJAAN SAKSI 1
                                       CustomOutputForm(
-                                        title: 'PEKERJAANR1 (SATU)',
-                                        subtitle: "${data['pekerjaanPemohon']}",
+                                        title: 'PEKERJAAN SAKSI 1 (SATU)',
+                                        subtitle: "${data['pekerjaanSaksi1']}",
                                       ),
                                       SizedBox(height: 10),
 
                                       ///ALAMAT SAKSI 1
                                       CustomOutputForm(
-                                        title: 'ALAMAT 1 (SATU)',
+                                        title: 'ALAMA SAKSI 1 (SATU)',
                                         subtitle: "${data['alamatSaksi1']}",
                                       ),
                                       SizedBox(height: 10),
@@ -633,6 +633,72 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       CustomOutputForm(
                                         title: 'PROVINSI SAKSI 1 (SATU)',
                                         subtitle: "${data['provinsiPemohon']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///------------------------SAKSI 2--------
+                                      ///NIK SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'NIK SAKSI 2 (DUA)',
+                                        subtitle: "${data['nikSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///NAMA LENGKAP SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAPNIK SAKSI 2 (DUA)',
+                                        subtitle:
+                                            "${data['namaLengkapSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///TANGGAL LAHIR SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR SAKSI 2 (DUA)',
+                                        subtitle:
+                                            "${data['tanggalLahirSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///PEKERJAAN SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'PEKERJAAN SAKSI 2 (DUA)',
+                                        subtitle: "${data['pekerjaanSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///ALAMAT SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'ALAMAT SAKSI 2 (DUA)',
+                                        subtitle: "${data['alamatSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///DESA SAKSI 2
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN SAKSI 2 (DUA)',
+                                        subtitle: "${data['desaSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///KECAMATAN SAKSI 1
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN SAKSI SAKSI 2 (DUA)',
+                                        subtitle: "${data['kecamatanSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///KABUPATEN/KOTA SAKSI 1
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA SAKSI 2 (SATU)',
+                                        subtitle: "${data['kabupatenSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///PROVINSI PEMOHON
+                                      CustomOutputForm(
+                                        title: 'PROVINSI SAKSI 2 (DUA)',
+                                        subtitle: "${data['provinsiSaksi2']}",
                                       ),
                                       SizedBox(height: 10),
 
