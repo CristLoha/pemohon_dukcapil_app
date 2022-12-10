@@ -151,7 +151,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textCapitalization: TextCapitalization.none,
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
-                      textEditingController: controller.nik,
+                      textEditingController: controller.nikPemohonC,
                     ),
 
                     SizedBox(height: 20.h),
@@ -164,7 +164,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       readOnly: true,
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
-                      textEditingController: controller.namaLengkapC,
+                      textEditingController: controller.namaLengkapPemohonC,
                     ),
                     SizedBox(height: 20.h),
 
@@ -178,12 +178,10 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       keyboardType: TextInputType.number,
                       textEditingController: controller.noKkSemula,
                       validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                .hasMatch(value)) {
-                          return "Masukan nomor kk yang benar";
+                        if (value!.isEmpty) {
+                          return "Input tidak boleh kosong";
                         } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                          return 'Nomor kk harus 16 karakter';
+                          return 'NIK harus 16 karakter';
                         }
                         return null;
                       },
@@ -222,7 +220,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       onTap: () {},
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan nama provinsi";
+                          return "Input tidak boleh kosong";
                         } else {
                           return null;
                         }
@@ -239,10 +237,9 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       textEditingController: controller.kecamatanC,
-                      onTap: () {},
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan nama kecamatan";
+                          return "Input tidak boleh kosong";
                         } else {
                           return null;
                         }
@@ -260,10 +257,9 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       textEditingController: controller.desaC,
-                      onTap: () {},
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan nama desa";
+                          return "Input tidak boleh kosong";
                         } else {
                           return null;
                         }
@@ -283,9 +279,10 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textEditingController: controller.rtC,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan nomor RT ";
+                          return "Input tidak boleh kosong";
+                        } else {
+                          return null;
                         }
-                        return null;
                       },
                     ),
                     SizedBox(height: 20.h),
@@ -312,17 +309,19 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     CustomTitleWidget(title: 'Kode Pos'),
                     SizedBox(height: 12.h),
                     CustomFormField(
-                        readOnly: false,
-                        textCapitalization: TextCapitalization.none,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.kodePosC,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Masukan kode pos";
-                          }
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.kodePosC,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Input tidak boleh kosong";
+                        } else {
                           return null;
-                        }),
+                        }
+                      },
+                    ),
                     SizedBox(height: 20.h),
 
                     /// Jumlah Anggota Keluarga
@@ -336,9 +335,10 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textEditingController: controller.jmlAnggotaFamylyC,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan jumlah anggota keluarga";
+                          return "Input tidak boleh kosong";
+                        } else {
+                          return null;
                         }
-                        return null;
                       },
                     ),
 
@@ -390,10 +390,8 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   keyboardType: TextInputType.number,
                   textEditingController: controller.nikAnggota1,
                   validator: (value) {
-                    if (value!.isEmpty ||
-                        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                            .hasMatch(value)) {
-                      return "Masukan Nomor NIK yang benar";
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
                     } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                       return 'NIK harus 16 karakter';
                     }
@@ -410,6 +408,13 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     textCapitalization: TextCapitalization.words,
                     readOnly: false,
                     textInputAction: TextInputAction.next,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Input tidak boleh kosong";
+                      } else {
+                        return null;
+                      }
+                    },
                     keyboardType: TextInputType.name,
                     textEditingController: controller.namaAnggota1),
                 SizedBox(height: 20.h),
@@ -421,6 +426,14 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                   readOnly: false,
                   textCapitalization: TextCapitalization.none,
                   textInputAction: TextInputAction.next,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                      return 'NIK harus 16 karakter';
+                    }
+                    return null;
+                  },
                   keyboardType: TextInputType.number,
                   textEditingController: controller.nikAnggota2,
                 ),
@@ -435,6 +448,13 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     readOnly: false,
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Input tidak boleh kosong";
+                      } else {
+                        return null;
+                      }
+                    },
                     textEditingController: controller.namaAnggota2),
                 SizedBox(height: 20.h),
 
