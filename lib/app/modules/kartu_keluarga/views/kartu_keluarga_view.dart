@@ -567,6 +567,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
+          key: controller.formKeys[2],
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(

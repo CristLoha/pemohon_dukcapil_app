@@ -67,7 +67,6 @@ class KartuKeluargaController extends GetxController {
   List<GlobalKey<FormState>> formKeys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
-    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKelamin = [
@@ -162,7 +161,7 @@ class KartuKeluargaController extends GetxController {
           'keterangan': keteranganC.text,
           'desa': desaC.text,
           'keyName': namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'KIA',
+          'kategori': 'KARTU KELUARGA',
           'email': userPemohon!.email,
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',

@@ -36,7 +36,7 @@ class CustomFormKeteranganField extends GetView<RegisterController> {
       onTap: onTap,
       readOnly: readOnly!,
       keyboardType: TextInputType.multiline,
-      autocorrect: false,
+      autocorrect: true,
       controller: textEditingController,
       decoration: InputDecoration(
         prefixIcon: icon,
