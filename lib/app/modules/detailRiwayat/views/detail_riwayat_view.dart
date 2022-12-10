@@ -646,7 +646,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///NAMA LENGKAP SAKSI 2
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAPNIK SAKSI 2 (DUA)',
+                                        title: 'NAMA LENGKAP SAKSI 2 (DUA)',
                                         subtitle:
                                             "${data['namaLengkapSaksi2']}",
                                       ),
@@ -690,7 +690,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///KABUPATEN/KOTA SAKSI 1
                                       CustomOutputForm(
-                                        title: 'KABUPATEN/KOTA SAKSI 2 (SATU)',
+                                        title: 'KABUPATEN/KOTA SAKSI 2 (DUA)',
                                         subtitle: "${data['kabupatenSaksi2']}",
                                       ),
                                       SizedBox(height: 10),
@@ -709,16 +709,35 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['proses']}",
                                       ),
 
-                                      CustomOutputForm(
-                                        title: 'TANGGAL KONFIRMASI',
-                                        subtitle: DateFormat(
-                                          "d MMMM yyyy",
-                                          "id_ID",
-                                        ).format(
-                                          DateTime.parse(
-                                            "${data['updatedTime']}",
+                                      ///TANGGAL KONFIRMASI
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomOutputForm(
+                                            title: 'TANGGAL KONFIRMASI',
+                                            subtitle: DateFormat(
+                                              "d MMMM yyyy",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                "${data['updatedTime']}",
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          Text(
+                                            DateFormat(
+                                              "hh:mm aaa",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                  "${data['updatedTime']}"),
+                                            ),
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(height: 10),
                                       if ("${data['keteranganKonfirmasi']}"
@@ -1023,23 +1042,23 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///SAKSI 1 & 2
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NIK SAKSI 1',
+                                        title: 'NIK SAKSI 1 (SATU)',
                                         subtitle: "${data['nikSaksi1']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP SAKSI 1',
+                                        title: 'NAMA LENGKAP SAKSI 1 (SATU)',
                                         subtitle:
                                             "${data['namaLengkapSaksi1']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NIK SAKSI 2',
+                                        title: 'NIK SAKSI 2 (DUA)',
                                         subtitle: "${data['nikSaksi2']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP SAKSI 2',
+                                        title: 'NAMA LENGKAP SAKSI 2 (DUA)',
                                         subtitle:
                                             "${data['namaLengkapSaksi2']}",
                                       ),
@@ -1051,6 +1070,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['proses']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///TANGGAL KONFIRMASI
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -1118,6 +1139,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         ),
                       ),
                     ),
+
+                    ///KARTU KELUARGA
                   ],
                 ),
               );

@@ -122,240 +122,252 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
           'Pemohon',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
-        content: Form(
-          key: controller.formKeys[0],
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// NIK
-              CustomTitleWidget(title: 'NIK'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.nik,
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan Nomor NIK yang benar";
-                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
-                  }
-                  return null;
-                },
-              ),
+        content: FutureBuilder<Map<String, dynamic>?>(
+            future: controller.getProfile(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                EasyLoading.show(status: 'memuat...');
+                EasyLoading.dismiss();
+              }
+              if (snapshot.data == null) {
+                return Center(
+                  child: Text("Tidak ada data user."),
+                );
+              } else {
+                controller.namaLengkapPemohonC.text = snapshot.data!["nama"];
+                controller.nikPemohonC.text = snapshot.data!["nik"];
+                controller.noTeleponC.text = snapshot.data!["nomor_telp"];
+              }
+              return Form(
+                key: controller.formKeys[0],
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /// NIK
+                    CustomTitleWidget(title: 'NIK'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.nik,
+                    ),
 
-              SizedBox(height: 20.h),
+                    SizedBox(height: 20.h),
 
-              /// Nama Lengkap
-              CustomTitleWidget(title: 'Nama Lengkap'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                textCapitalization: TextCapitalization.words,
-                readOnly: false,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.namaLengkapC,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nama lengkap";
-                  } else {
-                    return null;
-                  }
-                },
-              ),
-              SizedBox(height: 20.h),
+                    /// Nama Lengkap
+                    CustomTitleWidget(title: 'Nama Lengkap'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      textCapitalization: TextCapitalization.words,
+                      readOnly: true,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.namaLengkapC,
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// No. Kk Semula
-              CustomTitleWidget(title: 'No. KK Semula'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.noKkSemula,
-                validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan nomor kk yang benar";
-                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'Nomor kk harus 16 karakter';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
+                    /// No. Kk Semula
+                    CustomTitleWidget(title: 'No. KK Semula'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.noKkSemula,
+                      validator: (value) {
+                        if (value!.isEmpty ||
+                            !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
+                                .hasMatch(value)) {
+                          return "Masukan nomor kk yang benar";
+                        } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                          return 'Nomor kk harus 16 karakter';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// Kabupaten/Kota
-              CustomTitleWidget(title: 'Kabupaten/Kota'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.kabupatenKotaC,
-                onTap: () {},
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nama kabupaten/kota";
-                  } else {
-                    return null;
-                  }
-                },
-                textCapitalization: TextCapitalization.words,
-              ),
+                    /// Kabupaten/Kota
+                    CustomTitleWidget(title: 'Kabupaten/Kota'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.kabupatenKotaC,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama kabupaten/kota";
+                        } else {
+                          return null;
+                        }
+                      },
+                      textCapitalization: TextCapitalization.words,
+                    ),
 
-              SizedBox(height: 20.h),
+                    SizedBox(height: 20.h),
 
-              /// Provinsi
-              CustomTitleWidget(title: 'Provinsi'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.provinsiC,
-                onTap: () {},
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nama provinsi";
-                  } else {
-                    return null;
-                  }
-                },
-                textCapitalization: TextCapitalization.words,
-              ),
-              SizedBox(height: 20.h),
+                    /// Provinsi
+                    CustomTitleWidget(title: 'Provinsi'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.provinsiC,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama provinsi";
+                        } else {
+                          return null;
+                        }
+                      },
+                      textCapitalization: TextCapitalization.words,
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// Kecamatan
-              CustomTitleWidget(title: 'Kecamatan'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.kecamatanC,
-                onTap: () {},
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nama kecamatan";
-                  } else {
-                    return null;
-                  }
-                },
-                textCapitalization: TextCapitalization.words,
-              ),
+                    /// Kecamatan
+                    CustomTitleWidget(title: 'Kecamatan'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.kecamatanC,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama kecamatan";
+                        } else {
+                          return null;
+                        }
+                      },
+                      textCapitalization: TextCapitalization.words,
+                    ),
 
-              SizedBox(height: 20.h),
+                    SizedBox(height: 20.h),
 
-              /// Desa
-              CustomTitleWidget(title: 'Desa'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.name,
-                textEditingController: controller.desaC,
-                onTap: () {},
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nama desa";
-                  } else {
-                    return null;
-                  }
-                },
-                textCapitalization: TextCapitalization.words,
-              ),
-              SizedBox(height: 20.h),
+                    /// Desa
+                    CustomTitleWidget(title: 'Desa'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      textEditingController: controller.desaC,
+                      onTap: () {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nama desa";
+                        } else {
+                          return null;
+                        }
+                      },
+                      textCapitalization: TextCapitalization.words,
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// RT
-              CustomTitleWidget(title: 'Nomor RT'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.rtC,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nomor RT ";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
+                    /// RT
+                    CustomTitleWidget(title: 'Nomor RT'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.rtC,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nomor RT ";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// RW
-              CustomTitleWidget(title: 'Nomor RW'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.rwC,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan nomor RW ";
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
+                    /// RW
+                    CustomTitleWidget(title: 'Nomor RW'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.rwC,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan nomor RW ";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.h),
 
-              /// Kode Pos
-              CustomTitleWidget(title: 'Kode Pos'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                  readOnly: false,
-                  textCapitalization: TextCapitalization.none,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  textEditingController: controller.kodePosC,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Masukan kode pos";
-                    }
-                    return null;
-                  }),
-              SizedBox(height: 20.h),
+                    /// Kode Pos
+                    CustomTitleWidget(title: 'Kode Pos'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                        readOnly: false,
+                        textCapitalization: TextCapitalization.none,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.number,
+                        textEditingController: controller.kodePosC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Masukan kode pos";
+                          }
+                          return null;
+                        }),
+                    SizedBox(height: 20.h),
 
-              /// Jumlah Anggota Keluarga
-              CustomTitleWidget(title: 'Jml Anggota Keluarga'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.jmlAnggotaFamylyC,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Masukan jumlah anggota keluarga";
-                  }
-                  return null;
-                },
-              ),
+                    /// Jumlah Anggota Keluarga
+                    CustomTitleWidget(title: 'Jml Anggota Keluarga'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      readOnly: false,
+                      textCapitalization: TextCapitalization.none,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.jmlAnggotaFamylyC,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Masukan jumlah anggota keluarga";
+                        }
+                        return null;
+                      },
+                    ),
 
-              SizedBox(height: 20.h),
+                    SizedBox(height: 20.h),
 
-              /// Keterangan
-              CustomTitleWidget(title: 'Keterangan'),
-              SizedBox(height: 12.h),
-              CustomFormKeteranganField(
-                readOnly: false,
-                textInputAction: TextInputAction.done,
-                textEditingController: controller.keteranganC,
-              ),
-            ],
-          ),
-        ),
+                    /// No. Telepon
+                    CustomTitleWidget(title: 'No. Telepon'),
+                    SizedBox(height: 12.h),
+                    CustomFormField(
+                      textCapitalization: TextCapitalization.none,
+                      readOnly: true,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.number,
+                      textEditingController: controller.noTeleponC,
+                    ),
+                    SizedBox(height: 20.h),
+
+                    /// Keterangan
+                    CustomTitleWidget(title: 'Keterangan'),
+                    SizedBox(height: 12.h),
+                    CustomFormKeteranganField(
+                      readOnly: false,
+                      textInputAction: TextInputAction.done,
+                      textEditingController: controller.keteranganC,
+                    ),
+                  ],
+                ),
+              );
+            }),
         isActive: controller.currentStep.value >= 0,
         state:
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,

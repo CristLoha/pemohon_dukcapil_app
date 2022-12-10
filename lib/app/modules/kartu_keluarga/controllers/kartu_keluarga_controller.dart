@@ -41,6 +41,7 @@ class KartuKeluargaController extends GetxController {
   TextEditingController desaC = TextEditingController();
   TextEditingController jmlAnggotaFamylyC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
+  TextEditingController noTeleponC = TextEditingController();
   TextEditingController daftarAnggotaC = TextEditingController();
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
