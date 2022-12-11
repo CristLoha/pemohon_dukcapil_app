@@ -39,14 +39,12 @@ class KartuKeluargaController extends GetxController {
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
   TextEditingController jmlAnggotaFamylyC = TextEditingController();
-  TextEditingController keteranganC = TextEditingController();
+  TextEditingController alasanPermohonanC = TextEditingController();
   TextEditingController noTeleponC = TextEditingController();
   TextEditingController daftarAnggotaC = TextEditingController();
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
   TextEditingController emailC = TextEditingController();
-  TextEditingController kecamatanPemohonC = TextEditingController();
-  TextEditingController desaPemohonC = TextEditingController();
 
   ///ANGGOTA KELUARGA
   TextEditingController nikAnggota1 = TextEditingController();
@@ -70,15 +68,15 @@ class KartuKeluargaController extends GetxController {
     GlobalKey<FormState>(),
   ];
 
-  List<Map<String, dynamic>> dataJenisKelamin = [
+  List<Map<String, dynamic>> alasanPermohonan = [
     {
-      "jenisKelamin": "LAKI-LAKI",
+      "alasanP": "Karena membentuk rumah tangga baru",
       "id": 1,
     },
     {
-      "jenisKelamin": "PEREMPUAN",
+      "alasanP": "Karena kartu keluarga Hilang/Rusak",
       "id": 2,
-    }
+    },
   ];
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
@@ -142,10 +140,8 @@ class KartuKeluargaController extends GetxController {
         CollectionReference kartuKeluarga = firestore.collection('layanan');
         await kartuKeluarga.add({
           ///PEMOHON
-
           'nik': nikPemohonC.text,
           'namaLengkap': namaLengkapPemohonC.text,
-
           'noKKSemula': noKkSemula.text,
           'kabupaten/kota': kabupatenKotaC.text,
           'provinsi': provinsiC.text,
@@ -154,15 +150,8 @@ class KartuKeluargaController extends GetxController {
           'rw': rwC.text,
           'kodePos': kodePosC.text,
           'jmlAnggotaKeluarga': jmlAnggotaFamylyC.text,
-          'kecamatanPemohon': kecamatanPemohonC.text,
-
-          'desaPemohon': desaPemohonC.text,
-          'noAktaKelahiran': noAktaKelahiranC.text,
-
-          'jenisKelamin': jenisKelaminC.text,
-          'tgl_lahir': tglLahirC.text,
-          'keterangan': keteranganC.text,
           'desa': desaC.text,
+          'alasanPermohonan': alasanPermohonanC.text,
           'keyName': namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
           'kategori': 'Kartu Keluarga',
           'email': userPemohon!.email,

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -356,13 +357,30 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     ),
                     SizedBox(height: 20.h),
 
-                    /// Keterangan
-                    CustomTitleWidget(title: 'Keterangan'),
+                    /// Alasan Permohonnan
+                    CustomTitleWidget(title: 'Alasan Permohonan'),
                     SizedBox(height: 12.h),
-                    CustomFormKeteranganField(
-                      readOnly: false,
-                      textInputAction: TextInputAction.done,
-                      textEditingController: controller.keteranganC,
+                    DropdownSearch<Map<String, dynamic>>(
+                      dialogMaxWidth: 8,
+                      mode: Mode.MENU,
+                      items: controller.alasanPermohonan,
+                      dropdownButtonSplashRadius: 10,
+                      dropdownBuilder: (context, selectedItem) => Text(
+                        selectedItem?["alasanP"].toString() ?? "PILIH",
+                        style: blackTextStyle,
+                      ),
+                      popupItemBuilder: (context, item, isSelected) => ListTile(
+                        title: Text(
+                          item["alasanP"].toString(),
+                          style: blackTextStyle,
+                        ),
+                      ),
+                      showClearButton: true,
+                      onChanged: (value) {
+                        print(value!["alasanP"]);
+                        controller.alasanPermohonanC =
+                            TextEditingController(text: value["alasanP"]);
+                      },
                     ),
                   ],
                 ),
