@@ -1236,12 +1236,173 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['desa']}",
                                       ),
 
-                                      ///RT
+                                      ///RT/RW
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'RT/RW',
                                         subtitle: "${data['rt']}/${data['rw']}",
                                       ),
+
+                                      ///KODE POS
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KODE POS',
+                                        subtitle: "${data['kodePos']}",
+                                      ),
+
+                                      ///JUMLAH ANGGOTA KELUARGA
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'JUMLAH ANGGOTA KELUARGA',
+                                        subtitle:
+                                            "${data['jmlAnggotaKeluarga']}",
+                                      ),
+
+                                      ///NOMOR TELEPON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON',
+                                        subtitle: "${data['noTelp']}",
+                                      ),
+
+                                      ///ALASAN PERMOHONAN
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'ALASAN PERMOHONAN',
+                                        subtitle: "${data['alasanPermohonan']}",
+                                      ),
+
+                                      ///NIK ANGGOTA 1
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK ANGGOTA 1',
+                                        subtitle: "${data['nikAnggota1']}",
+                                      ),
+
+                                      ///NIK ANGGOTA 1
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA ANGGOTA 1',
+                                        subtitle: "${data['namaAnggota1']}",
+                                      ),
+
+                                      ///NIK ANGGOTA 2
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK ANGGOTA 2',
+                                        subtitle: "${data['nikAnggota2']}",
+                                      ),
+
+                                      ///NIK ANGGOTA 2
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA ANGGOTA 2',
+                                        subtitle: "${data['namaAnggota2']}",
+                                      ),
+
+                                      ///NIK ANGGOTA 3
+                                      SizedBox(height: 10.h),
+                                      if ("${data['nikAnggota3']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 3',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['nikAnggota3']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 3',
+                                          subtitle: "${data['nikAnggota3']}",
+                                        ),
+
+                                      ///NAMA ANGGOTA 3
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota3']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 3',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['namaAnggota3']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 3',
+                                          subtitle: "${data['namaAnggota3']}",
+                                        ),
+
+                                      ///NIK ANGGOTA 4
+                                      SizedBox(height: 10.h),
+                                      if ("${data['nikAnggota4']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 4',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['nikAnggota4']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 4',
+                                          subtitle: "${data['nikAnggota4']}",
+                                        ),
+
+                                      ///NAMA ANGGOTA 4
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota4']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 4',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['namaAnggota4']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 4',
+                                          subtitle: "${data['namaAnggota4']}",
+                                        ),
+
+                                      ///NIK ANGGOTA 5
+                                      SizedBox(height: 10.h),
+                                      if ("${data['nikAnggota5']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 5',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['nikAnggota5']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 5',
+                                          subtitle: "${data['nikAnggota5']}",
+                                        ),
+
+                                      ///NAMA ANGGOTA 5
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota5']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 5',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['namaAnggota5']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 5',
+                                          subtitle: "${data['namaAnggota5']}",
+                                        ),
+
+                                      ///NIK ANGGOTA 6
+                                      SizedBox(height: 10.h),
+                                      if ("${data['nikAnggota6']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 6',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['nikAnggota6']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NIK ANGGOTA 6',
+                                          subtitle: "${data['nikAnggota6']}",
+                                        ),
+
+                                      ///NAMA ANGGOTA 6
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota6']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 6',
+                                          subtitle: "-",
+                                        ),
+                                      if ("${data['namaAnggota6']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGGOTA 6',
+                                          subtitle: "${data['namaAnggota6']}",
+                                        ),
 
                                       SizedBox(height: 10.h),
 

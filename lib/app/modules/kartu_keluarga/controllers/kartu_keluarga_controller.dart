@@ -151,6 +151,7 @@ class KartuKeluargaController extends GetxController {
           'kodePos': kodePosC.text,
           'jmlAnggotaKeluarga': jmlAnggotaFamylyC.text,
           'desa': desaC.text,
+          'noTelp': noTeleponC.text,
           'alasanPermohonan': alasanPermohonanC.text,
           'keyName': namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
           'keteranganKonfirmasi': '',
