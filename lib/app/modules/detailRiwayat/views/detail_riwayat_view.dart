@@ -1200,10 +1200,47 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         title: 'NAMA LENGKAP',
                                         subtitle: "${data['namaLengkap']}",
                                       ),
+
+                                      ///NOMOR KK SEMULA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'NOMOR KK SEMULA',
                                         subtitle: "${data['noKKSemula']}",
+                                      ),
+
+                                      ///KABUPATEN/KOTA
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA',
+                                        subtitle: "${data['kabupaten/kota']}",
+                                      ),
+
+                                      ///PROVINSI
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'PROVINSI',
+                                        subtitle: "${data['provinsi']}",
+                                      ),
+
+                                      ///KECAMATAN
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN',
+                                        subtitle: "${data['kecamatan']}",
+                                      ),
+
+                                      ///DESA
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA',
+                                        subtitle: "${data['desa']}",
+                                      ),
+
+                                      ///RT
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'RT/RW',
+                                        subtitle: "${data['rt']}/${data['rw']}",
                                       ),
 
                                       SizedBox(height: 10.h),

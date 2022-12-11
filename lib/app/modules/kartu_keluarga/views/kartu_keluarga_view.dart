@@ -270,7 +270,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     SizedBox(height: 20.h),
 
                     /// RT
-                    CustomTitleWidget(title: 'Nomor RT'),
+                    CustomTitleWidget(title: 'RT'),
                     SizedBox(height: 12.h),
                     CustomFormField(
                       readOnly: false,
@@ -289,7 +289,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                     SizedBox(height: 20.h),
 
                     /// RW
-                    CustomTitleWidget(title: 'Nomor RW'),
+                    CustomTitleWidget(title: 'RW'),
                     SizedBox(height: 12.h),
                     CustomFormField(
                       readOnly: false,
