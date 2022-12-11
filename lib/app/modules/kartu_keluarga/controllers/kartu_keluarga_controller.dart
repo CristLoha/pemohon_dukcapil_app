@@ -153,6 +153,7 @@ class KartuKeluargaController extends GetxController {
           'desa': desaC.text,
           'alasanPermohonan': alasanPermohonanC.text,
           'keyName': namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
+          'keteranganKonfirmasi': '',
           'kategori': 'Kartu Keluarga',
           'email': userPemohon!.email,
           'uid': uid,

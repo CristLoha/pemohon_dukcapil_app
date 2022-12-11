@@ -299,9 +299,10 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
                       textEditingController: controller.rwC,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Masukan nomor RW ";
+                          return "Input tidak boleh kosong";
+                        } else {
+                          return null;
                         }
-                        return null;
                       },
                     ),
                     SizedBox(height: 20.h),

@@ -1193,85 +1193,19 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'NIK',
-                                        subtitle: "${data['nikSuami']}",
+                                        subtitle: "${data['nik']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP SUAMI',
-                                        subtitle: "${data['namaLengkapSuami']}",
+                                        title: 'NAMA LENGKAP',
+                                        subtitle: "${data['namaLengkap']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR SUAMI',
-                                        subtitle:
-                                            "${data['tanggalLahirSuami']}",
+                                        title: 'NOMOR KK SEMULA',
+                                        subtitle: "${data['noKKSemula']}",
                                       ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TEMPAT LAHIR SUAMI',
-                                        subtitle: "${data['tempatLahirSuami']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KEWARGANEGARAAN SUAMI',
-                                        subtitle:
-                                            "${data['kewarganegaraanSuami']}",
-                                      ),
-                                      SizedBox(height: 10.h),
 
-                                      ///ISTRI
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK ISTRI',
-                                        subtitle: "${data['nikIstri']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA LENGKAP ISTRI',
-                                        subtitle: "${data['namaLengkapIstri']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TANGGAL LAHIR ISTRI',
-                                        subtitle:
-                                            "${data['tanggalLahirIstri']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'TEMPAT LAHIR ISTRI',
-                                        subtitle: "${data['tempatLahirIstri']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KEWARGANEGARAAN ISTRI',
-                                        subtitle:
-                                            "${data['kewarganegaraanIstri']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-
-                                      ///SAKSI 1 & 2
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK SAKSI 1 (SATU)',
-                                        subtitle: "${data['nikSaksi1']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA LENGKAP SAKSI 1 (SATU)',
-                                        subtitle:
-                                            "${data['namaLengkapSaksi1']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK SAKSI 2 (DUA)',
-                                        subtitle: "${data['nikSaksi2']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA LENGKAP SAKSI 2 (DUA)',
-                                        subtitle:
-                                            "${data['namaLengkapSaksi2']}",
-                                      ),
                                       SizedBox(height: 10.h),
 
                                       ///PROSES
