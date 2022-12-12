@@ -99,7 +99,6 @@ class RegistKiaController extends GetxController {
           .getDownloadURL();
 
       ///foto anak
-
       String extFotoAnak = pickedImageFotoAnak!.name.split(".").last;
 
       await storage
