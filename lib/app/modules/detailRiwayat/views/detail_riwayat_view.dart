@@ -302,6 +302,25 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['kecamatanPemohon']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///DESA
+                                      CustomOutputForm(
+                                        title: 'DESA PEMOHON',
+                                        subtitle: "${data['desaPemohon']}",
+                                      ),
+
+                                      ///NOMOR TELEPON
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON PEMOHON',
+                                        subtitle: "${data['noTelp']}",
+                                      ),
+
+                                      ///NOMOR TELEPON
+                                      CustomOutputForm(
+                                        title: 'EMAIL PEMOHON',
+                                        subtitle: "${data['email']}",
+                                      ),
+                                      SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
