@@ -789,7 +789,6 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 },
                 textCapitalization: TextCapitalization.words,
               ),
-              SizedBox(height: 20.h),
             ],
           ),
         ),
@@ -854,28 +853,8 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                       readOnly: false,
                       textEditingController: controller.namaLengkapPemohonC,
                       keyboardType: TextInputType.name,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Input tidak boleh kosong";
-                        } else {
-                          return null;
-                        }
-                      },
                       textCapitalization: TextCapitalization.words,
                     ),
-                    SizedBox(height: 20.h),
-
-                    /// EMAIL
-                    CustomTitleWidget(title: 'Email'),
-                    SizedBox(height: 12.h),
-                    CustomFormField(
-                      readOnly: true,
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.emailAddress,
-                      textEditingController: controller.emailPemohonC,
-                      textCapitalization: TextCapitalization.none,
-                    ),
-
                     SizedBox(height: 20.h),
 
                     /// Nomor Telepon
@@ -906,6 +885,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                       readOnly: false,
                       textEditingController: controller.pekerjaanPemohonC,
                       keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Input tidak boleh kosong";
@@ -932,6 +912,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                         }
                       },
                       textCapitalization: TextCapitalization.words,
+                      textInputAction: TextInputAction.next,
                     ),
 
                     SizedBox(height: 20.h),
@@ -941,6 +922,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                     SizedBox(height: 12.h),
                     CustomFormField(
                       readOnly: false,
+                      textInputAction: TextInputAction.next,
                       textEditingController: controller.kecamatanPemohonC,
                       keyboardType: TextInputType.name,
                       validator: (value) {
@@ -968,6 +950,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                           return null;
                         }
                       },
+                      textInputAction: TextInputAction.next,
                       textCapitalization: TextCapitalization.words,
                     ),
                     SizedBox(height: 20.h),
@@ -977,6 +960,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                     SizedBox(height: 12.h),
                     CustomFormField(
                       readOnly: false,
+                      textInputAction: TextInputAction.next,
                       textEditingController: controller.provinsiPemohonC,
                       keyboardType: TextInputType.name,
                       validator: (value) {
@@ -1016,7 +1000,6 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                             TextEditingController(text: value["jenisK"]);
                       },
                     ),
-                    SizedBox(height: 20.h),
                   ],
                 );
               }),
@@ -1072,6 +1055,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                   }
                 },
                 textCapitalization: TextCapitalization.words,
+                textInputAction: TextInputAction.next,
               ),
               SizedBox(height: 20.h),
 
@@ -1090,6 +1074,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               CustomFormField(
                 readOnly: false,
                 textEditingController: controller.pekerjaanSaksi1C,
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1107,6 +1092,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
+                textInputAction: TextInputAction.next,
                 textEditingController: controller.desaSaksi1C,
                 keyboardType: TextInputType.name,
                 validator: (value) {
@@ -1126,6 +1112,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               CustomFormField(
                 readOnly: false,
                 textEditingController: controller.kecamatanSaksi1C,
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1145,6 +1132,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 readOnly: false,
                 textEditingController: controller.kabupatenSaksi1C,
                 keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Input tidak boleh kosong";
@@ -1162,6 +1150,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               CustomFormField(
                 readOnly: false,
                 textEditingController: controller.provinsiSaksi1C,
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1217,6 +1206,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               CustomFormField(
                 readOnly: false,
                 textEditingController: controller.namaLengkapSaksi2C,
+                textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -1319,6 +1309,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
+                textInputAction: TextInputAction.next,
                 textEditingController: controller.provinsiSaksi2C,
                 keyboardType: TextInputType.name,
                 validator: (value) {
@@ -1330,7 +1321,6 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 },
                 textCapitalization: TextCapitalization.words,
               ),
-              SizedBox(height: 20.h),
             ],
           ),
         ),
