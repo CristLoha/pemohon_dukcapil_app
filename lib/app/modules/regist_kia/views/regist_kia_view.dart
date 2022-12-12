@@ -567,7 +567,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
 
                 ///AKTA KELAHIRAN
                 Text(
-                  'Unggah Akta Kelahiran',
+                  'Unggah Akta Kelahiran Anak',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
