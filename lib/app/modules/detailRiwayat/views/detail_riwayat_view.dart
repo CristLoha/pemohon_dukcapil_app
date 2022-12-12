@@ -183,6 +183,182 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                       ),
                     ),
 
+                    ///KIA
+                    if ("${data['kategori']}" == 'KIA')
+                      Positioned(
+                        top: 13,
+                        child: Container(
+                          width: 320.w,
+                          height: 555.h,
+                          decoration: BoxDecoration(
+                            color: kWhiteColor,
+                            borderRadius: BorderRadius.circular(4),
+                            border: Border.all(
+                              width: 1,
+                              color: kGreyColor,
+                            ),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                              left: 20,
+                              right: 20,
+                              bottom: 20,
+                            ),
+                            child: Container(
+                              width: Get.width * 0.5,
+                              height: 555.h,
+                              decoration: BoxDecoration(
+                                color: kWhiteColor,
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  width: 1,
+                                  color: kGreyColor,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "${data['proses']}",
+                                          style: blackTextStyle.copyWith(
+                                              fontWeight: semiBold),
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      /// NIK
+                                      CustomOutputForm(
+                                        title: 'NIK ANAK',
+                                        subtitle: "${data['nikAnak']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      /// NOMOR AKTA KELAHIRAN
+                                      CustomOutputForm(
+                                        title: 'NOMOR AKTA KELAHIRAN ANAK',
+                                        subtitle: "${data['noAktaKelahiran']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      /// NAMA LENGKAP
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP ANAK',
+                                        subtitle: "${data['namaLengkap']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      /// JENIS KELAMIN
+                                      CustomOutputForm(
+                                        title: 'JENIS KELAMIN ANAK',
+                                        subtitle: "${data['jenisKelamin']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///TANGGAL LAHIR
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR ANAK',
+                                        subtitle: "${data['tgl_lahir']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KECAMATAN
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN ANAK',
+                                        subtitle: "${data['kecamatan']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA ANAK',
+                                        subtitle: "${data['desa']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'STATUS',
+                                        subtitle: "${data['proses']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          CustomOutputForm(
+                                            title: 'TANGGAL KONFIRMASI',
+                                            subtitle: DateFormat(
+                                              "d MMMM yyyy",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                "${data['updatedTime']}",
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            DateFormat(
+                                              "hh:mm aaa",
+                                              "id_ID",
+                                            ).format(
+                                              DateTime.parse(
+                                                  "${data['updatedTime']}"),
+                                            ),
+                                            style: greyTextStyle.copyWith(
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      if ("${data['keterangan']}".isEmpty)
+                                        Container(),
+                                      if ("${data['keterangan']}".isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN',
+                                          subtitle: "${data['keterangan']}",
+                                        ),
+                                      if ("${data['keteranganKonfirmasi']}"
+                                          .isEmpty)
+                                        Container(),
+                                      if ("${data['keteranganKonfirmasi']}"
+                                          .isNotEmpty)
+                                        CustomOutputForm(
+                                          title: 'KETERANGAN KONFIRMASI',
+                                          subtitle:
+                                              "${data['keteranganKonfirmasi']}",
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    Positioned(
+                      left: 15,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(4),
+                          border: Border.all(
+                            color: kGreyColor,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: Text(
+                            "${data['kategori']}",
+                            style: whiteTextStyle,
+                          ),
+                        ),
+                      ),
+                    ),
+
                     /// Akta Kematian
                     if ("${data['kategori']}" == 'Akta Kematian')
                       Positioned(

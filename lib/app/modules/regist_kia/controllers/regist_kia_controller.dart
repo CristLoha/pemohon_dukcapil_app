@@ -117,6 +117,7 @@ class RegistKiaController extends GetxController {
           'kategori': 'KIA',
           'email': userPemohon!.email,
           'noTelp': nomorTelpC.text,
+          'keteranganKonfirmasi': '',
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),
