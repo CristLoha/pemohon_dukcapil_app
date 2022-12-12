@@ -121,7 +121,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
       Step(
         title: Text(
           'Anak',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[0],
@@ -294,8 +294,10 @@ class RegistKiaView extends GetView<RegistKiaController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Pemohon',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {

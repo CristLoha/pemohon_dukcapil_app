@@ -119,8 +119,10 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
   List<Step> formStep() {
     return [
       Step(
-        title: Text('Pemohon',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
@@ -264,10 +266,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
       Step(
         title: Text(
           'Persyaratan',
-          style: blackTextStyle.copyWith(
-            fontSize: 12,
-            fontWeight: semiBold,
-          ),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[1],
