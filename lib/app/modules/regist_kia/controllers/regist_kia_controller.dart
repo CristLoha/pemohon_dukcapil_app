@@ -99,14 +99,14 @@ class RegistKiaController extends GetxController {
           .getDownloadURL();
 
       ///foto anak
-      /// AKTAkelahiran
+
       String extFotoAnak = pickedImageFotoAnak!.name.split(".").last;
 
       await storage
           .ref('KIA')
           .child('fotoAnak$randomNumber.$extFotoAnak')
           .putFile(
-            File(pickedImageAktaKelahiran!.path),
+            File(pickedImageFotoAnak!.path),
           );
 
       String fotoAnak = await storage
@@ -126,7 +126,7 @@ class RegistKiaController extends GetxController {
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
           'kk': fotoKK,
-          'fotoAnak': fotoKK,
+          'fotoAnak': fotoAnak,
           'akta_kelahiran': fotoAktaKelahiran,
           'namaLengkapPemohon': namaLengkapPemohonC.text,
           'jenisKelamin': jenisKelaminC.text,
