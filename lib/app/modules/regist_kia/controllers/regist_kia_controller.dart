@@ -36,7 +36,7 @@ class RegistKiaController extends GetxController {
 
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
-  TextEditingController emailC = TextEditingController();
+  TextEditingController nomorTelpC = TextEditingController();
   TextEditingController kecamatanPemohonC = TextEditingController();
   TextEditingController desaPemohonC = TextEditingController();
 
@@ -116,6 +116,7 @@ class RegistKiaController extends GetxController {
           'keyName': namaLengkapC.text.substring(0, 1).toUpperCase(),
           'kategori': 'KIA',
           'email': userPemohon!.email,
+          'noTelp': nomorTelpC.text,
           'uid': uid,
           'proses': 'PROSES VERIFIKASI',
           'creationTime': DateTime.now().toIso8601String(),

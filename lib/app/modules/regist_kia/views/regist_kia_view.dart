@@ -312,6 +312,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
               } else {
                 controller.namaLengkapPemohonC.text = snapshot.data!["nama"];
                 controller.nikPemohonC.text = snapshot.data!["nik"];
+                controller.nomorTelpC.text = snapshot.data!["nomor_telp"];
                 return Form(
                   key: controller.formKeys[1],
                   child: Column(
@@ -352,9 +353,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                         textEditingController: controller.kecamatanPemohonC,
                         onTap: () {},
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -374,9 +374,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                         textEditingController: controller.desaPemohonC,
                         onTap: () {},
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama desa yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -385,14 +384,14 @@ class RegistKiaView extends GetView<RegistKiaController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      /// Email
-                      CustomTitleWidget(title: 'Email'),
+                      /// Nomor Telepon
+                      CustomTitleWidget(title: 'Nomor Telepon'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.emailC,
+                        textEditingController: controller.nomorTelpC,
                         textCapitalization: TextCapitalization.words,
                       ),
                     ],
@@ -407,9 +406,10 @@ class RegistKiaView extends GetView<RegistKiaController> {
       Step(
         title: Text(
           'Persyaratan',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
+          key: controller.formKeys[2],
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -417,7 +417,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
               children: [
                 /// KK
                 Text(
-                  'Unggah KK',
+                  'Unggah KK Orang Tua',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
