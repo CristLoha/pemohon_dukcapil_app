@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 import 'package:photo_view/photo_view.dart';
+import '../../../utils/custom_date_input.dart';
 import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
@@ -209,31 +210,9 @@ class RegistKiaView extends GetView<RegistKiaController> {
               /// TANGGAL LAHIR
               CustomTitleWidget(title: 'Tanggal lahir'),
               SizedBox(height: 12.h),
-              TextFormField(
+              CustomDateInput(
+                onTap: () => controller.dateLocal(),
                 controller: controller.tglLahirC,
-                readOnly: true,
-                onTap: () {
-                  controller.dateLocal();
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Masukan tanggal lahir';
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: InputDecoration(
-                  hintStyle: greyTextStyle,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(4),
-                    borderSide: BorderSide(
-                      color: kPrimaryColor,
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: 20.h),
 
@@ -351,7 +330,6 @@ class RegistKiaView extends GetView<RegistKiaController> {
                         textInputAction: TextInputAction.next,
                         keyboardType: TextInputType.name,
                         textEditingController: controller.kecamatanPemohonC,
-                        onTap: () {},
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";

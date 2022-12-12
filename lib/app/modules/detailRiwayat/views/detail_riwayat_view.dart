@@ -250,7 +250,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       /// NAMA LENGKAP
                                       CustomOutputForm(
                                         title: 'NAMA LENGKAP ANAK',
-                                        subtitle: "${data['namaLengkap']}",
+                                        subtitle: "${data['namaLengkapAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
 
@@ -271,12 +271,35 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///KECAMATAN
                                       CustomOutputForm(
                                         title: 'KECAMATAN ANAK',
-                                        subtitle: "${data['kecamatan']}",
+                                        subtitle: "${data['kecamatanAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///DESA ANAK
                                       CustomOutputForm(
                                         title: 'DESA ANAK',
-                                        subtitle: "${data['desa']}",
+                                        subtitle: "${data['desaAnak']}",
+                                      ),
+
+                                      ///------------------PEMOHON
+                                      ///NIK PEMOHON
+                                      CustomOutputForm(
+                                        title: 'NIK PEMOHON',
+                                        subtitle: "${data['nikPemohon']}",
+                                      ),
+
+                                      ///NAMA LENGKAP PEMOHON
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP PEMOHON',
+                                        subtitle:
+                                            "${data['namaLengkapPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KECAMATAN
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN PEMOHON',
+                                        subtitle: "${data['kecamatanPemohon']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(

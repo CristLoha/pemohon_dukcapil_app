@@ -24,6 +24,9 @@ class RegistKiaController extends GetxController {
   final ImagePicker imagePickerAktaKelahiran = ImagePicker();
   XFile? pickedImageAktaKelahiran;
 
+  final ImagePicker imagePickerFotoAnak = ImagePicker();
+  XFile? pickedImageFotoAnak;
+
   ///KIA
   TextEditingController nikAnakC = TextEditingController();
   TextEditingController noAktaKelahiranC = TextEditingController();
@@ -95,24 +98,41 @@ class RegistKiaController extends GetxController {
           .child('aktaKelahiran$randomNumber.$extKK')
           .getDownloadURL();
 
+      ///foto anak
+      /// AKTAkelahiran
+      String extFotoAnak = pickedImageFotoAnak!.name.split(".").last;
+
+      await storage
+          .ref('KIA')
+          .child('fotoAnak$randomNumber.$extFotoAnak')
+          .putFile(
+            File(pickedImageAktaKelahiran!.path),
+          );
+
+      String fotoAnak = await storage
+          .ref('KIA')
+          .child('fotoAnak$randomNumber.$extFotoAnak')
+          .getDownloadURL();
+
       try {
         String uid = auth.currentUser!.uid;
         CollectionReference rekamanKtp = firestore.collection('layanan');
         await rekamanKtp.add({
           'nikAnak': nikAnakC.text,
-          'namaLengkap': namaLengkapC.text,
-          'kecamatan': kecamatanC.text,
+          'namaLengkapAnak': namaLengkapC.text,
+          'kecamatanAnak': kecamatanC.text,
           'kecamatanPemohon': kecamatanPemohonC.text,
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
           'kk': fotoKK,
+          'fotoAnak': fotoKK,
           'akta_kelahiran': fotoAktaKelahiran,
           'namaLengkapPemohon': namaLengkapPemohonC.text,
           'jenisKelamin': jenisKelaminC.text,
           'tgl_lahir': tglLahirC.text,
           'keterangan': keteranganC.text,
-          'desa': desaC.text,
+          'desaAnak': desaC.text,
           'keyName': namaLengkapC.text.substring(0, 1).toUpperCase(),
           'kategori': 'KIA',
           'email': userPemohon!.email,
@@ -202,6 +222,32 @@ class RegistKiaController extends GetxController {
 
   void resetImageAktaKelahiran() {
     pickedImageAktaKelahiran = null;
+    update();
+  }
+
+  ///FOTO ANAK
+
+  void selectImageFotoAnak() async {
+    try {
+      final dataImage = await imagePickerFotoAnak.pickImage(
+        source: ImageSource.gallery,
+      );
+
+      if (dataImage != null) {
+        print(dataImage.name);
+        print(dataImage.path);
+        pickedImageFotoAnak = dataImage;
+      }
+      update();
+    } catch (err) {
+      print(err);
+      pickedImageFotoAnak = null;
+      update();
+    }
+  }
+
+  void resetImageFotoAnak() {
+    pickedImageFotoAnak = null;
     update();
   }
 
