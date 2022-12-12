@@ -28,6 +28,7 @@ class AktaKelahiranController extends GetxController {
   TextEditingController beratBayiC = TextEditingController();
   TextEditingController panjangBayiC = TextEditingController();
   TextEditingController jenisKelahiranC = TextEditingController();
+  TextEditingController penolongKelahiranC = TextEditingController();
 
   ///IBU
   TextEditingController nikIbuC = TextEditingController();
@@ -266,7 +267,8 @@ class AktaKelahiranController extends GetxController {
       await rekamanKtp.add({
         ///BAYI/ANAK
         "namaAnak": nameAnakC.text,
-
+        "jenisKelaminAnak": jenisKelaminC.text,
+        "penolongKelahiran": penolongKelahiranC.text,
         "tempatDilahirkan": tempatDilahirkanC.text,
         "tempatKelahiran": tempatKelahiranC.text,
         "kelahiranKe": kelahiranKeC.text,

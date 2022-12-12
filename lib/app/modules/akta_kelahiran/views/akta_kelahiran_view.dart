@@ -258,7 +258,7 @@ class AktaKelahiranView extends GetView<AktaKelahiranController> {
                 showClearButton: true,
                 onChanged: (value) {
                   print(value!["pKelahiran"]);
-                  controller.jenisKelahiranC =
+                  controller.penolongKelahiranC =
                       TextEditingController(text: value["pKelahiran"]);
                 },
               ),

@@ -1761,36 +1761,81 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         ),
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///NAMA BAYI/ANAK
                                       CustomOutputForm(
-                                        title: 'NIK',
-                                        subtitle: "${data['nik']}",
+                                        title: 'NAMA LENGKAP BAYI/ANAK',
+                                        subtitle: "${data['namaAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///JENIS KELAMIN ANAK
                                       CustomOutputForm(
-                                        title: 'NAMA LENGKAP',
-                                        subtitle: "${data['nama']}",
+                                        title: 'JENIS KELAMIN ANAK',
+                                        subtitle: "${data['jenisKelaminAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///TEMPAT DILAHIRKAN
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR',
-                                        subtitle: "${data['tgl_lahir']}",
+                                        title: 'TEMPAT DILAHIRKAN',
+                                        subtitle: "${data['tempatDilahirkan']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///TEMPAT DILAHIRKAN
                                       CustomOutputForm(
-                                        title: 'KECAMATAN',
-                                        subtitle: "${data['kecamatan']}",
+                                        title: 'KELAHIRAN KE-',
+                                        subtitle: "${data['kelahiranKe']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///PENOLONG KELAHIRAN
                                       CustomOutputForm(
-                                        title: 'DESA',
-                                        subtitle: "${data['desa']}",
+                                        title: 'PENOLONG KELAHRIAN',
+                                        subtitle:
+                                            "${data['penolongKelahiran']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///TANGGAL LAHIR ANAK
                                       CustomOutputForm(
-                                        title: 'STATUS',
-                                        subtitle: "${data['proses']}",
+                                        title: 'ANAK LAHIR ANAK',
+                                        subtitle: "${data['tglLahirAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
+
+                                      ///PUKUL
+                                      CustomOutputForm(
+                                        title: 'PUKUL',
+                                        subtitle: "${data['pukul']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///JENIS KELAHIRAN
+                                      CustomOutputForm(
+                                        title: 'JENIS KELAHIRAN',
+                                        subtitle: "${data['jenisKelahiran']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///BERAT BAYI(KG)
+                                      CustomOutputForm(
+                                        title: 'BERAT BAYI/ANAK',
+                                        subtitle: "${data['beratBayi']} KG",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PANJANG BAYI(CM)
+                                      CustomOutputForm(
+                                        title: 'PANJANG BAYI/ANAK',
+                                        subtitle: "${data['panjangBayi']} CM",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///---------------ANAK
+
+                                      ///TANGGAL KONFIRMASI
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -1820,14 +1865,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 10.h),
-                                      if ("${data['keterangan']}".isEmpty)
-                                        Container(),
-                                      if ("${data['keterangan']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'KETERANGAN',
-                                          subtitle: "${data['keterangan']}",
-                                        ),
+
+                                      ///KETERANGAN KONFIRMASI
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isEmpty)
                                         Container(),
