@@ -60,7 +60,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/exchange.png',
-                              title: 'Perubahan \ne-KTP',
+                              title: 'e-KTP\n(Rusak/Hilang)',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,

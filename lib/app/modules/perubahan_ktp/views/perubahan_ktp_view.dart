@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../shared/theme.dart';
+import '../../../utils/custom_date_input.dart';
 import '../../../utils/custom_form_input.dart';
 import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
@@ -18,13 +19,13 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Daftar perubahan e-KTP'),
+        title: Text('e-KTP (Hilang/Rusak)'),
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
         (() => Stepper(
               elevation: 1,
-              type: StepperType.horizontal,
+              type: StepperType.vertical,
               steps: formStep(),
               onStepContinue: () {
                 if (!controller
@@ -134,21 +135,12 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
               } else {
                 controller.nameC.text = snapshot.data!["nama"];
                 controller.nikC.text = snapshot.data!["nik"];
+                controller.noTeleponC.text = snapshot.data!["nomor_telp"];
                 return Form(
                   key: controller.formKeys[0],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          'Formulir Pendaftaran Antrian Perubahan e-KTP',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-
                       /// NO KK
                       CustomTitleWidget(title: 'NO KK'),
                       SizedBox(height: 12.h),
@@ -158,12 +150,10 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         keyboardType: TextInputType.number,
                         textEditingController: controller.noKKC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan Nomor KK yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'NIK harus 16 karakter';
+                            return 'No KK harus 16 karakter';
                           }
                           return null;
                         },
@@ -196,31 +186,9 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                       SizedBox(height: 12.h),
                       CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
-                      TextFormField(
+                      CustomDateInput(
+                        onTap: () => controller.dateLocal(),
                         controller: controller.dateC,
-                        readOnly: true,
-                        onTap: () {
-                          controller.dateLocal();
-                        },
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Masukan tanggal lahir';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          hintStyle: greyTextStyle,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            borderSide: BorderSide(
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                        ),
                       ),
 
                       SizedBox(height: 12.h),
@@ -235,9 +203,8 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         textEditingController: controller.kecamatanC,
                         onTap: () {},
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama kecamatan yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -255,13 +222,24 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
                         keyboardType: TextInputType.name,
                         textEditingController: controller.desaC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                            return "Masukan nama desa yang benar";
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
                         },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+                      SizedBox(height: 20.h),
+
+                      /// Nomor telepon
+                      CustomTitleWidget(title: 'Nomor Telepon'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: true,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.noTeleponC,
                         textCapitalization: TextCapitalization.words,
                       ),
                       SizedBox(height: 20.h),

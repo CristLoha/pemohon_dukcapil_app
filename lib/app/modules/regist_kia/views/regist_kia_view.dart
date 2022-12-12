@@ -24,7 +24,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
         (() => Container(
               child: Stepper(
                 elevation: 1,
-                type: StepperType.horizontal,
+                type: StepperType.vertical,
                 steps: formStep(),
                 onStepContinue: () {
                   if (!controller
@@ -120,7 +120,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
     return [
       Step(
         title: Text(
-          'KIA',
+          'Anak',
           style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
         ),
         content: Form(
@@ -128,18 +128,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Text(
-                  'Formulir KIA',
-                  style: blackTextStyle.copyWith(
-                    fontWeight: semiBold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20.h),
-
               /// NIK ANAK
-              CustomTitleWidget(title: 'NIK Anak'),
+              CustomTitleWidget(title: 'NIK'),
               SizedBox(height: 12.h),
               CustomFormField(
                 readOnly: false,
@@ -148,10 +138,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 keyboardType: TextInputType.number,
                 textEditingController: controller.nikAnakC,
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan Nomor NIK yang benar";
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   } else if (!GetUtils.isLengthEqualTo(value, 16)) {
                     return 'NIK harus 16 karakter';
                   }
@@ -168,15 +156,11 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 readOnly: false,
                 textCapitalization: TextCapitalization.none,
                 textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 textEditingController: controller.noAktaKelahiranC,
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                          .hasMatch(value)) {
-                    return "Masukan Nomor Akta Kelahiran yang benar";
-                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   }
                   return null;
                 },
@@ -184,8 +168,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
 
               SizedBox(height: 20.h),
 
-              /// Nama Lengkap Anak
-              CustomTitleWidget(title: 'Nama Lengkap Anak'),
+              /// Nama Lengkap
+              CustomTitleWidget(title: 'Nama Lengkap'),
               SizedBox(height: 12.h),
               CustomFormField(
                   textCapitalization: TextCapitalization.words,
@@ -263,9 +247,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 textEditingController: controller.kecamatanC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama kecamatan yang benar";
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   } else {
                     return null;
                   }
@@ -285,9 +268,8 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 textEditingController: controller.desaC,
                 onTap: () {},
                 validator: (value) {
-                  if (value!.isEmpty ||
-                      !RegExp(r'^[a-z A-Z]+$').hasMatch(value)) {
-                    return "Masukan nama desa yang benar";
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
                   } else {
                     return null;
                   }
@@ -333,16 +315,6 @@ class RegistKiaView extends GetView<RegistKiaController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Center(
-                        child: Text(
-                          'Formulir Untuk Pemohon',
-                          style: blackTextStyle.copyWith(
-                            fontWeight: semiBold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-
                       /// NIK Pemohon
                       CustomTitleWidget(title: 'NIK'),
                       SizedBox(height: 12.h),

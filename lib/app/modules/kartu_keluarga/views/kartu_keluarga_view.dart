@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../shared/theme.dart';
 import '../../../utils/custom_form_input.dart';
-import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/kartu_keluarga_controller.dart';
 

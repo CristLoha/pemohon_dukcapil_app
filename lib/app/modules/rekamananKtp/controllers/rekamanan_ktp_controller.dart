@@ -63,7 +63,7 @@ class RekamananKtpController extends GetxController {
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Perekaman e-KTP',
         'kecamatan': kecamatanC.text,
-        'email': emailC.text,
+        'email': userPemohon!.email,
         'noTelpon': noTelpC.text,
         'desa': desaC.text,
 
@@ -147,7 +147,7 @@ class RekamananKtpController extends GetxController {
       Get.context!,
       locale: LocaleType.id,
       minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime(2006, 12, 31),
+      maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
         dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);

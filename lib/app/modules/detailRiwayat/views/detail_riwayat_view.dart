@@ -35,7 +35,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         top: 13,
                         child: Container(
                           width: 320.w,
-                          height: 440.h,
+                          height: 555.h,
                           decoration: BoxDecoration(
                             color: kWhiteColor,
                             borderRadius: BorderRadius.circular(4),
@@ -53,7 +53,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                             ),
                             child: Container(
                               width: Get.width * 0.5,
-                              height: 440.h,
+                              height: 555.h,
                               decoration: BoxDecoration(
                                 color: kWhiteColor,
                                 borderRadius: BorderRadius.circular(4),
@@ -827,6 +827,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'NOMOR KK',
+                                        subtitle: "${data['noKK']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'NIK',
                                         subtitle: "${data['nik']}",
                                       ),
@@ -849,6 +854,13 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       CustomOutputForm(
                                         title: 'DESA',
                                         subtitle: "${data['desa']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///email
+                                      CustomOutputForm(
+                                        title: 'EMAIL',
+                                        subtitle: "${data['email']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(

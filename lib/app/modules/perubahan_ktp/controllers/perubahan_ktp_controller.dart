@@ -26,6 +26,7 @@ class PerubahanKtpController extends GetxController {
   XFile? pickedImageSURKER;
   TextEditingController nikC = TextEditingController();
   TextEditingController noKKC = TextEditingController();
+  TextEditingController noTeleponC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController dateC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
@@ -86,6 +87,7 @@ class PerubahanKtpController extends GetxController {
           'nama': nameC.text,
           'noKK': noKKC.text,
           'fotoKK': fotoKK,
+          'noTelp': noTeleponC.text,
           'keterangan': keteranganC.text,
           'keteranganKonfirmasi': '',
           'fotoKTP': fotoKTP,
@@ -207,8 +209,8 @@ class PerubahanKtpController extends GetxController {
     await DatePicker.showDatePicker(
       Get.context!,
       locale: LocaleType.id,
-      minTime: DateTime(2000, 1, 1),
-      maxTime: DateTime(2006, 12, 31),
+      minTime: DateTime(1960, 1, 1),
+      maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {
         dateC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
