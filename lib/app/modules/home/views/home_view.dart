@@ -70,7 +70,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/house.png',
-                              title: 'Surat Keterangan\nPindah',
+                              title: 'Permohonan\nPindah Datang',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,

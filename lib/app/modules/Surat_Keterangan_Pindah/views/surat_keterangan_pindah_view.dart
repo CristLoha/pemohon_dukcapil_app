@@ -119,6 +119,115 @@ class SuratKeteranganPindahView
   List<Step> formStep() {
     return [
       Step(
+        title: Text('Daerah Asal',
+            style: blackTextStyle.copyWith(fontWeight: semiBold)),
+        content: Form(
+            key: controller.formKeys[0],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Nomor KK
+                CustomTitleWidget(title: 'Nomor KK'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                      return 'NO. KK harus 16 karakter';
+                    }
+                    return null;
+                  },
+                  textEditingController: controller.noKKC,
+                  textCapitalization: TextCapitalization.none,
+                ),
+                SizedBox(height: 20.h),
+
+                /// Nama Kepala Keluarga
+                CustomTitleWidget(title: 'Nama Kepala Keluarga'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  readOnly: false,
+                  textCapitalization: TextCapitalization.none,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                  textEditingController: controller.namaKepalaKeluargaC,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
+                ),
+                SizedBox(height: 20.h),
+
+                /// NAMA
+                CustomTitleWidget(title: 'Nama Lengkap'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
+                  readOnly: true,
+                  textEditingController: controller.nameC,
+                  keyboardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                ),
+                SizedBox(height: 20.h),
+              ],
+            )),
+
+        ///
+        isActive: controller.currentStep.value >= 0,
+        state:
+            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
+        title: Text('Alamat Tujuan',
+            style: blackTextStyle.copyWith(fontWeight: semiBold)),
+        content: Form(
+            key: controller.formKeys[1],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 1 (Satu)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota1),
+                SizedBox(height: 20.h),
+
+                /// Nama Lengkap
+                CustomTitleWidget(title: 'Nama Lengkap Anggota 2 (Dua)'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                    textCapitalization: TextCapitalization.words,
+                    readOnly: false,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    textEditingController: controller.namaAnggota2),
+                SizedBox(height: 20.h),
+              ],
+            )),
+
+        ///
+        isActive: controller.currentStep.value >= 1,
+        state:
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
         title: Text(
           'Pemohon',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
@@ -136,12 +245,12 @@ class SuratKeteranganPindahView
                   child: Text("Tidak ada data user."),
                 );
               } else {
-                controller.nameC.text = snapshot.data!["nama"];
+                controller.namaPemohonC.text = snapshot.data!["nama"];
                 controller.noTelpC.text = snapshot.data!["nomor_telp"];
-                controller.nikC.text = snapshot.data!["nik"];
+                controller.nikPemohonC.text = snapshot.data!["nik"];
 
                 return Form(
-                  key: controller.formKeys[0],
+                  key: controller.formKeys[2],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -375,9 +484,9 @@ class SuratKeteranganPindahView
                         ),
                         showClearButton: true,
                         onChanged: (value) {
-                          print(value!["jenisK"]);
+                          print(value!["statusKK"]);
                           controller.statusNoKK =
-                              TextEditingController(text: value["jenisK"]);
+                              TextEditingController(text: value["statusKK"]);
                         },
                       ),
                       SizedBox(height: 20.h),
@@ -395,15 +504,15 @@ class SuratKeteranganPindahView
                 );
               }
             }),
-        isActive: controller.currentStep.value >= 0,
+        isActive: controller.currentStep.value >= 2,
         state:
-            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 2 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text('Daftar Anggota Keluarga',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-            key: controller.formKeys[1],
+            key: controller.formKeys[3],
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -475,15 +584,15 @@ class SuratKeteranganPindahView
             )),
 
         ///
-        isActive: controller.currentStep.value >= 1,
+        isActive: controller.currentStep.value >= 3,
         state:
-            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 3 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[2],
+          key: controller.formKeys[4],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -780,7 +889,7 @@ class SuratKeteranganPindahView
             ],
           ),
         ),
-        isActive: controller.currentStep.value >= 2,
+        isActive: controller.currentStep.value >= 4,
       ),
     ];
   }

@@ -4,12 +4,10 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart' as s;
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
 import '../../../routes/app_pages.dart';
 import '../../../shared/theme.dart';
@@ -23,20 +21,37 @@ class SuratKeteranganPindahController extends GetxController {
   final ImagePicker imagePickerKTP = ImagePicker();
 
   ///PEMOHON
-  TextEditingController nameC = TextEditingController();
-  TextEditingController nikC = TextEditingController();
-  TextEditingController noKKC = TextEditingController();
-  TextEditingController provinsiTujuan = TextEditingController();
-  TextEditingController kabupatenKotaTujuan = TextEditingController();
-  TextEditingController kecamatanTujuan = TextEditingController();
-  TextEditingController desaC = TextEditingController();
-  TextEditingController alamatTujuan = TextEditingController();
-  TextEditingController rtC = TextEditingController();
-  TextEditingController rwC = TextEditingController();
-  TextEditingController statusNoKK = TextEditingController();
-  TextEditingController emailC = TextEditingController();
+  TextEditingController namaPemohonC = TextEditingController();
+  TextEditingController nikPemohonC = TextEditingController();
+  TextEditingController desaPemohonC = TextEditingController();
+  TextEditingController kecamatanPemohonC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
-  TextEditingController keteranganC = TextEditingController();
+
+  ///DAERAH ASAL
+  TextEditingController noKKC = TextEditingController();
+  TextEditingController namaKepalaKeluargaC = TextEditingController();
+  TextEditingController alamatAsalC = TextEditingController();
+  TextEditingController desaAsalC = TextEditingController();
+  TextEditingController kabupatenAsalC = TextEditingController();
+  TextEditingController kecamatanAsalC = TextEditingController();
+  TextEditingController provinsiAsalC = TextEditingController();
+  TextEditingController kodePosAsalC = TextEditingController();
+  TextEditingController rtAsalC = TextEditingController();
+  TextEditingController rwAsalC = TextEditingController();
+
+  /// ALAMAT TUJUAN
+  TextEditingController provinsiTujuanC = TextEditingController();
+  TextEditingController kabupatenKotaTujuanC = TextEditingController();
+  TextEditingController alasanPindahC = TextEditingController();
+  TextEditingController alamatTujuanC = TextEditingController();
+  TextEditingController desaTujuanC = TextEditingController();
+  TextEditingController kecamatanTujuanC = TextEditingController();
+  TextEditingController rtTujuanC = TextEditingController();
+  TextEditingController rwTUjuanC = TextEditingController();
+  TextEditingController kodePosTujuanC = TextEditingController();
+  TextEditingController jenisKepindahanC = TextEditingController();
+  TextEditingController statusPindahC = TextEditingController();
+  TextEditingController statusTidakPindahC = TextEditingController();
 
   TextEditingController namaAnggota1 = TextEditingController();
   TextEditingController namaAnggota2 = TextEditingController();
@@ -49,9 +64,11 @@ class SuratKeteranganPindahController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
-  List<Map<String, dynamic>> statusNoKKbagiyangPindah = [
+  List<Map<String, dynamic>> statusKKbagiyangPindah = [
     {
       "statusKK": "KK Baru",
       "id": 1,
@@ -64,6 +81,40 @@ class SuratKeteranganPindahController extends GetxController {
       "statusKK": "Nomor KK Tetap",
       "id": 2,
     }
+  ];
+
+  List<Map<String, dynamic>> statusKkbagiYangPindah = [
+    {
+      "statusKK": "KK Baru",
+      "id": 1,
+    },
+    {
+      "statusKK": "Numpang KK",
+      "id": 2,
+    },
+    {
+      "statusKK": "Nomor KK Tetap",
+      "id": 2,
+    }
+  ];
+
+  List<Map<String, dynamic>> jenisKepindahan = [
+    {
+      "jenisPindah": "Kep. Keluarga",
+      "id": 1,
+    },
+    {
+      "jenisPindah": "Kep. Keluarga dan\nseluruh Angg. Keluarga",
+      "id": 2,
+    },
+    {
+      "jenisPindah": "Kep. Keluarga dan Sbg. Angg. Keluarga",
+      "id": 3,
+    },
+    {
+      "jenisPindah": "Angg. Keluarga",
+      "id": 4,
+    },
   ];
 
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
@@ -106,20 +157,39 @@ class SuratKeteranganPindahController extends GetxController {
 
       await rekamanKtp.add({
         /// PEMOHON
-        'nama': nameC.text,
-        'nik': nikC.text,
-        'noKK': noKKC.text,
-        'keyName': nameC.text.substring(0, 1).toUpperCase(),
-        'provinsiTujuan': provinsiTujuan.text,
-        'kabupatenTujuan': kabupatenKotaTujuan.text,
-        'kecamatanTujuan': kecamatanTujuan.text,
-        'desaTujuan': desaC.text,
-        'alamatTujuan': alamatTujuan.text,
-        'rt': rtC.text,
-        'rw': rtC.text,
-        'statusNoKK': statusNoKK.text,
+        'namaLengkapPemohon': namaPemohonC.text,
+        'nikPemohon': nikPemohonC.text,
         'email': userPemohon!.email,
-        'noTelpon': noTelpC.text,
+        'desaPemohon': desaPemohonC.text,
+        'kecamatanPemohon': kecamatanPemohonC.text,
+        'nomorTelepon': noTelpC.text,
+        'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
+
+        ///ALAMAT TUJUAN
+        'alasanPindah': noKKC.text,
+        'alamatTujuan': alamatTujuanC.text,
+        'rtTujuan': rtTujuanC.text,
+        'rwTujuan': rwTUjuanC.text,
+        'desaTujuan': rwTUjuanC.text,
+        'provinsiTujuan': provinsiTujuanC.text,
+        'kabupatenTujuan': kabupatenKotaTujuanC.text,
+        'kecamatanTujuan': kecamatanTujuanC.text,
+        'kodePosTujuan': kecamatanTujuanC.text,
+        'jenisKepindahan': jenisKepindahanC.text,
+        'statusKKTidakPindah': statusTidakPindahC.text,
+        'statusKKPindah': statusPindahC.text,
+
+        ///ASAL
+        'noKK': noKKC.text,
+        'namaKepalaKeluarga': namaKepalaKeluargaC.text,
+        'alamatAsal': alamatAsalC.text,
+        'rtAsal': rtAsalC.text,
+        'rwAsal': rwAsalC.text,
+        'desaAsal': rwAsalC.text,
+        'provinsiAsal': provinsiAsalC.text,
+        'kabupatenAsal': kabupatenAsalC.text,
+        'kecamatanAsal': kecamatanAsalC.text,
+        'kodePosAsal': kodePosAsalC.text,
 
         ///Angota Keluarga   ///Nama Anggota
         'namaAnggota1': namaAnggota1.text,
@@ -136,7 +206,6 @@ class SuratKeteranganPindahController extends GetxController {
         ///PROSES
         'uid': uid,
         'kategori': 'Permohonan Pindah Datang',
-        'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
         'creationTime': DateTime.now().toIso8601String(),
