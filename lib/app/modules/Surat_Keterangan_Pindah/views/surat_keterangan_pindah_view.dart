@@ -176,7 +176,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.alamatAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -194,7 +194,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.rtAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -212,7 +212,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.rwAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -230,7 +230,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.desaAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -248,7 +248,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.kecamatanAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
@@ -284,7 +284,7 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.kodePosAsalC,
                 keyboardType: TextInputType.number,
                 textCapitalization: TextCapitalization.words,
@@ -353,7 +353,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.rtTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -371,7 +371,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.rwTUjuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -389,7 +389,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.desaTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -407,7 +407,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.kecamatanTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -425,7 +425,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.kabupatenKotaTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -443,7 +443,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.kodePosTujuanC,
                   keyboardType: TextInputType.number,
                   textCapitalization: TextCapitalization.words,
@@ -499,6 +499,33 @@ class SuratKeteranganPindahView
                   onChanged: (value) {
                     print(value!["statusKK"]);
                     controller.statusPindahC =
+                        TextEditingController(text: value["statusKK"]);
+                  },
+                ),
+
+                ///STATUS KK BAGI YANG PINDAH
+                SizedBox(height: 20.h),
+                CustomTitleWidget(title: 'Status KK bagi yang tidak pindah'),
+                SizedBox(height: 12.h),
+                DropdownSearch<Map<String, dynamic>>(
+                  dialogMaxWidth: 8,
+                  mode: Mode.MENU,
+                  items: controller.statusKKbagiyangTidakPindah,
+                  dropdownButtonSplashRadius: 10,
+                  dropdownBuilder: (context, selectedItem) => Text(
+                    selectedItem?["statusKK"].toString() ?? "PILIH",
+                    style: blackTextStyle,
+                  ),
+                  popupItemBuilder: (context, item, isSelected) => ListTile(
+                    title: Text(
+                      item["statusKK"].toString(),
+                      style: blackTextStyle,
+                    ),
+                  ),
+                  showClearButton: true,
+                  onChanged: (value) {
+                    print(value!["statusKK"]);
+                    controller.statusTidakPindahC =
                         TextEditingController(text: value["statusKK"]);
                   },
                 ),
