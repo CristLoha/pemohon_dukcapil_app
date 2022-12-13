@@ -22,7 +22,7 @@ class SuratKeteranganPindahView
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Surat Keterangan Pindah'),
+        title: Text('Permohonan Pindah Datang'),
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
@@ -169,9 +169,10 @@ class SuratKeteranganPindahView
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";
-                          } else {
-                            return null;
+                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                            return 'NO. KK harus 16 karakter';
                           }
+                          return null;
                         },
                       ),
                       SizedBox(height: 20.h),
@@ -353,8 +354,8 @@ class SuratKeteranganPindahView
                       SizedBox(height: 20.h),
 
                       ///STATUS NO. KK BAGI YANG PINDAH
-                      /// Kewarganegaraan Suami
-                      CustomTitleWidget(title: 'Kewarganegaraan Suami'),
+
+                      CustomTitleWidget(title: 'Sttus NO. KK bagi yang pindah'),
                       SizedBox(height: 12.h),
                       DropdownSearch<Map<String, dynamic>>(
                         dialogMaxWidth: 8,

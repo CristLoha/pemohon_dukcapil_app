@@ -135,7 +135,7 @@ class SuratKeteranganPindahController extends GetxController {
 
         ///PROSES
         'uid': uid,
-        'kategori': 'SUKET Pindah',
+        'kategori': 'Permohonan Pindah Datang',
         'keterangan': keteranganC.text,
         'keteranganKonfirmasi': '',
         'proses': 'PROSES VERIFIKASI',
