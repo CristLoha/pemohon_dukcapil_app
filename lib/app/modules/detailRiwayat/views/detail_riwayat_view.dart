@@ -1991,6 +1991,205 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
+                                      ///---------------PEMOHON
+                                      ///NIK
+                                      CustomOutputForm(
+                                        title: 'NIK PEMOHON',
+                                        subtitle: "${data['nikAyah']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///NAMA LENGKAP AYAH
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP PEMOHON',
+                                        subtitle:
+                                            "${data['namaLengkapPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///TANGGAL LAHIR
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR PEMOHON',
+                                        subtitle:
+                                            "${data['tanggalLahirPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PEKERJAAN
+                                      CustomOutputForm(
+                                        title: 'PEKERJAAN PEMOHON',
+                                        subtitle: "${data['pekerjaanPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///DESA/KELURAHAN
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN PEMOHON',
+                                        subtitle: "${data['desaAyah']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KECAMATAN
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN PEMOHON',
+                                        subtitle: "${data['kecamatanPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KABUPATEN/KOTA
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA PEMOHON',
+                                        subtitle: "${data['kabupatenPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PROVINSI AYAH
+                                      CustomOutputForm(
+                                        title: 'PROVINSI PEMOHON',
+                                        subtitle: "${data['provinsiPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KEWARGANEGARAAN PEMOHON
+                                      CustomOutputForm(
+                                        title: 'KEWARGANEGARAAN PEMOHON',
+                                        subtitle:
+                                            "${data['kewarganegaraanPemohon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///EMAIL PEMOHON
+                                      CustomOutputForm(
+                                        title: 'EMAIL PEMOHON',
+                                        subtitle: "${data['email']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///NOMOR TELEPON PEMOHON
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON PEMOHON',
+                                        subtitle: "${data['noTelp']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///---------------SAKSI 1
+                                      ///NIK
+                                      CustomOutputForm(
+                                        title: 'NIK SAKSI 1',
+                                        subtitle: "${data['nikSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///NAMA LENGKAP AYAH
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP SAKSI 1',
+                                        subtitle:
+                                            "${data['namaLengkapSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///TANGGAL LAHIR
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR SAKSI 1',
+                                        subtitle:
+                                            "${data['tanggalLahirSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PEKERJAAN
+                                      CustomOutputForm(
+                                        title: 'PEKERJAAN SAKSI 1',
+                                        subtitle: "${data['pekerjaanSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///DESA/KELURAHAN
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN SAKSI 1',
+                                        subtitle: "${data['desaSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KECAMATAN
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN SAKSI 1',
+                                        subtitle: "${data['kecamatanSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KABUPATEN/KOTA
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA SAKSI 1',
+                                        subtitle: "${data['kabupatenSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PROVINSI AYAH
+                                      CustomOutputForm(
+                                        title: 'PROVINSI SAKSI 1',
+                                        subtitle: "${data['provinsiSaksi1']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///---------------SAKSI 2
+                                      ///NIK
+                                      CustomOutputForm(
+                                        title: 'NIK SAKSI 2',
+                                        subtitle: "${data['nikSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///NAMA LENGKAP
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP SAKSI 2',
+                                        subtitle:
+                                            "${data['namaLengkapSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///TANGGAL LAHIR
+                                      CustomOutputForm(
+                                        title: 'TANGGAL LAHIR SAKSI 2',
+                                        subtitle:
+                                            "${data['tanggalLahirSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PEKERJAAN
+                                      CustomOutputForm(
+                                        title: 'PEKERJAAN SAKSI 2',
+                                        subtitle: "${data['pekerjaanSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///DESA/KELURAHAN
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN SAKSI 2',
+                                        subtitle: "${data['desaSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KECAMATAN
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN SAKSI 2',
+                                        subtitle: "${data['kecamatanSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///KABUPATEN/KOTA
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA SAKSI 2',
+                                        subtitle: "${data['kabupatenSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///PROVINSI AYAH
+                                      CustomOutputForm(
+                                        title: 'PROVINSI SAKSI 2',
+                                        subtitle: "${data['provinsiSaksi2']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
                                       ///TANGGAL KONFIRMASI
                                       Column(
                                         crossAxisAlignment:

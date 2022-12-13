@@ -137,7 +137,6 @@ class SuratKeteranganPindahView
                 );
               } else {
                 controller.nameC.text = snapshot.data!["nama"];
-                controller.emailC.text = snapshot.data!["email"];
                 controller.noTelpC.text = snapshot.data!["nomor_telp"];
                 controller.nikC.text = snapshot.data!["nik"];
 
@@ -170,10 +169,9 @@ class SuratKeteranganPindahView
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";
-                          } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                            return 'No. KK harus 16 karakter';
+                          } else {
+                            return null;
                           }
-                          return null;
                         },
                       ),
                       SizedBox(height: 20.h),
@@ -197,26 +195,6 @@ class SuratKeteranganPindahView
 
                       SizedBox(height: 20.h),
 
-                      /// EMAIL
-                      CustomTitleWidget(title: 'Email'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        textEditingController: controller.emailC,
-                        validator: (value) {
-                          if (!GetUtils.isEmail(value!)) {
-                            return 'Email tidak valid';
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.none,
-                      ),
-
-                      SizedBox(height: 20.h),
-
                       /// Nomor Telepon
                       CustomTitleWidget(title: 'Nomor Telepon'),
                       SizedBox(height: 12.h),
@@ -226,13 +204,8 @@ class SuratKeteranganPindahView
                         keyboardType: TextInputType.phone,
                         textEditingController: controller.noTelpC,
                         validator: (value) {
-                          if (value!.isEmpty ||
-                              !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]+$')
-                                  .hasMatch(value)) {
-                            return "Masukan nomor telepon yang benar";
-                          } else if (!GetUtils.isLengthGreaterOrEqual(
-                              value, 11)) {
-                            return 'Minimal 12 karakter';
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
                           } else {
                             return null;
                           }
@@ -283,13 +256,13 @@ class SuratKeteranganPindahView
                       SizedBox(height: 20.h),
 
                       /// KECAMATAN TUJUAN
-                      CustomTitleWidget(title: 'Desa'),
+                      CustomTitleWidget(title: 'Kecamatan Tujuan'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
                         textInputAction: TextInputAction.done,
                         keyboardType: TextInputType.name,
-                        textEditingController: controller.desaC,
+                        textEditingController: controller.kecamatanTujuan,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return "Input tidak boleh kosong";
@@ -497,7 +470,6 @@ class SuratKeteranganPindahView
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
                     textEditingController: controller.namaAnggota6),
-                SizedBox(height: 20.h),
               ],
             )),
 

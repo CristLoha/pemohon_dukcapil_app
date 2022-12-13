@@ -118,7 +118,7 @@ class SuratKeteranganPindahController extends GetxController {
         'rt': rtC.text,
         'rw': rtC.text,
         'statusNoKK': statusNoKK.text,
-        'email': emailC.text,
+        'email': userPemohon!.email,
         'noTelpon': noTelpC.text,
 
         ///Angota Keluarga   ///Nama Anggota

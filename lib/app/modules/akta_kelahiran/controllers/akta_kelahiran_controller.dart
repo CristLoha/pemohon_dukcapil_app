@@ -315,6 +315,7 @@ class AktaKelahiranController extends GetxController {
         "kabupatenPemohon": kabupatenPemohonC.text,
         "provinsiPemohon": provinsiPemohonC.text,
         "kewarganegaraanPemohon": provinsiPemohonC.text,
+        "noTelp": noTelpPemohonC.text,
         "email": userPemohon!.email,
         "keyName": namaLengkapPemohonC.text.substring(0, 1).toUpperCase(),
 
