@@ -122,68 +122,105 @@ class SuratKeteranganPindahView
         title: Text('Daerah Asal',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-            key: controller.formKeys[0],
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// Nomor KK
-                CustomTitleWidget(title: 'Nomor KK'),
-                SizedBox(height: 12.h),
-                CustomFormField(
-                  readOnly: false,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Input tidak boleh kosong";
-                    } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                      return 'NO. KK harus 16 karakter';
-                    }
+          key: controller.formKeys[0],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// Nomor KK
+              CustomTitleWidget(title: 'Nomor KK'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NO. KK harus 16 karakter';
+                  }
+                  return null;
+                },
+                textEditingController: controller.noKKC,
+                textCapitalization: TextCapitalization.none,
+              ),
+              SizedBox(height: 20.h),
+
+              /// Nama Kepala Keluarga
+              CustomTitleWidget(title: 'Nama Kepala Keluarga'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.namaKepalaKeluargaC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
                     return null;
-                  },
-                  textEditingController: controller.noKKC,
-                  textCapitalization: TextCapitalization.none,
-                ),
-                SizedBox(height: 20.h),
+                  }
+                },
+              ),
+              SizedBox(height: 20.h),
 
-                /// Nama Kepala Keluarga
-                CustomTitleWidget(title: 'Nama Kepala Keluarga'),
-                SizedBox(height: 12.h),
-                CustomFormField(
-                  readOnly: false,
-                  textCapitalization: TextCapitalization.none,
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.number,
-                  textEditingController: controller.namaKepalaKeluargaC,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Input tidak boleh kosong";
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(height: 20.h),
+              /// Alamat
+              CustomTitleWidget(title: 'Alamat'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                readOnly: true,
+                textEditingController: controller.alamatAsalC,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
 
-                /// NAMA
-                CustomTitleWidget(title: 'Nama Lengkap'),
-                SizedBox(height: 12.h),
-                CustomFormField(
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Input tidak boleh kosong";
-                    } else {
-                      return null;
-                    }
-                  },
-                  readOnly: true,
-                  textEditingController: controller.nameC,
-                  keyboardType: TextInputType.name,
-                  textCapitalization: TextCapitalization.words,
-                ),
-                SizedBox(height: 20.h),
-              ],
-            )),
+              /// RT
+              CustomTitleWidget(title: 'RT'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                readOnly: true,
+                textEditingController: controller.rtAsalC,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
+
+              /// RW
+              CustomTitleWidget(title: 'RW'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                readOnly: true,
+                textEditingController: controller.rwAsalC,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+              ),
+              SizedBox(height: 20.h),
+            ],
+          ),
+        ),
 
         ///
         isActive: controller.currentStep.value >= 0,
