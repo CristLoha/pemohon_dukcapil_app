@@ -220,7 +220,7 @@ class SuratKeteranganPindahView
 
               /// Desa
               SizedBox(height: 20.h),
-              CustomTitleWidget(title: 'Desa'),
+              CustomTitleWidget(title: 'Desa/Kelurahan'),
               SizedBox(height: 12.h),
               CustomFormField(
                 validator: (value) {
@@ -266,8 +266,26 @@ class SuratKeteranganPindahView
                     return null;
                   }
                 },
-                readOnly: true,
+                readOnly: false,
                 textEditingController: controller.kabupatenAsalC,
+                keyboardType: TextInputType.name,
+                textCapitalization: TextCapitalization.words,
+              ),
+
+              ///PROVINSI
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Provinsi'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                readOnly: false,
+                textEditingController: controller.provinsiAsalC,
                 keyboardType: TextInputType.name,
                 textCapitalization: TextCapitalization.words,
               ),
@@ -307,7 +325,7 @@ class SuratKeteranganPindahView
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 /// Alasan Pindah
-                SizedBox(height: 20.h),
+
                 CustomTitleWidget(title: 'Alasan Pindah'),
                 SizedBox(height: 12.h),
                 CustomFormField(
@@ -318,13 +336,14 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
-                  textEditingController: controller.kabupatenAsalC,
+                  readOnly: false,
+                  textEditingController: controller.alasanPindahC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
                 ),
 
                 /// Alamat
+                SizedBox(height: 20.h),
                 CustomTitleWidget(title: 'Alamat'),
                 SizedBox(height: 12.h),
                 CustomFormField(
@@ -335,7 +354,7 @@ class SuratKeteranganPindahView
                       return null;
                     }
                   },
-                  readOnly: true,
+                  readOnly: false,
                   textEditingController: controller.alamatTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
@@ -379,7 +398,7 @@ class SuratKeteranganPindahView
 
                 /// Desa
                 SizedBox(height: 20.h),
-                CustomTitleWidget(title: 'Desa'),
+                CustomTitleWidget(title: 'Desa/Kelurahan'),
                 SizedBox(height: 12.h),
                 CustomFormField(
                   validator: (value) {
@@ -427,6 +446,24 @@ class SuratKeteranganPindahView
                   },
                   readOnly: false,
                   textEditingController: controller.kabupatenKotaTujuanC,
+                  keyboardType: TextInputType.name,
+                  textCapitalization: TextCapitalization.words,
+                ),
+
+                /// Provinsi
+                SizedBox(height: 20.h),
+                CustomTitleWidget(title: 'Provinsi'),
+                SizedBox(height: 12.h),
+                CustomFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
+                  readOnly: false,
+                  textEditingController: controller.provinsiTujuanC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
                 ),
@@ -503,30 +540,30 @@ class SuratKeteranganPindahView
                   },
                 ),
 
-                ///STATUS KK BAGI YANG PINDAH
+                ///STATUS KK BAGI YANG TIDAK PINDAH
                 SizedBox(height: 20.h),
                 CustomTitleWidget(title: 'Status KK bagi yang tidak pindah'),
                 SizedBox(height: 12.h),
                 DropdownSearch<Map<String, dynamic>>(
                   dialogMaxWidth: 8,
                   mode: Mode.MENU,
-                  items: controller.statusKKbagiyangTidakPindah,
+                  items: controller.tidakPindah,
                   dropdownButtonSplashRadius: 10,
                   dropdownBuilder: (context, selectedItem) => Text(
-                    selectedItem?["statusKK"].toString() ?? "PILIH",
+                    selectedItem?["tidakP"].toString() ?? "PILIH",
                     style: blackTextStyle,
                   ),
                   popupItemBuilder: (context, item, isSelected) => ListTile(
                     title: Text(
-                      item["statusKK"].toString(),
+                      item["tidakP"].toString(),
                       style: blackTextStyle,
                     ),
                   ),
                   showClearButton: true,
                   onChanged: (value) {
-                    print(value!["statusKK"]);
+                    print(value!["tidakP"]);
                     controller.statusTidakPindahC =
-                        TextEditingController(text: value["statusKK"]);
+                        TextEditingController(text: value["tidakP"]);
                   },
                 ),
               ],
@@ -648,7 +685,6 @@ class SuratKeteranganPindahView
                         },
                         textCapitalization: TextCapitalization.words,
                       ),
-                      SizedBox(height: 20.h),
                     ],
                   ),
                 );

@@ -2310,42 +2310,29 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
-                                      ///NIK
+                                      ///DAERAH ASAL
+                                      ///No KK
                                       CustomOutputForm(
-                                        title: 'NIK',
-                                        subtitle: "${data['nik']}",
-                                      ),
-
-                                      ///NAMA LENGKAP
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA LENGKAP',
-                                        subtitle: "${data['nama']}",
-                                      ),
-
-                                      ///NOMOR KK
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NOMOR KK',
+                                        title: 'Nomor KK',
                                         subtitle: "${data['noKK']}",
                                       ),
 
-                                      ///TANGGAL LAHIR
+                                      ///NAMA KEPALA KELUARGA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR',
-                                        subtitle: "${data['tgl_lahir']}",
+                                        title: 'NAMA KEPALA KELUARGA',
+                                        subtitle:
+                                            "${data['namaKepalaKeluarga']}",
                                       ),
+
+                                      ///ALAMAT ASAL
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KECAMATAN',
-                                        subtitle: "${data['kecamatan']}",
+                                        title: 'NAMA KEPALA KELUARGA',
+                                        subtitle:
+                                            "${data['namaKepalaKeluarga']}",
                                       ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'DESA',
-                                        subtitle: "${data['desa']}",
-                                      ),
+
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'STATUS',

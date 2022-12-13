@@ -68,18 +68,18 @@ class SuratKeteranganPindahController extends GetxController {
     GlobalKey<FormState>(),
   ];
 
-  List<Map<String, dynamic>> statusKKbagiyangTidakPindah = [
+  List<Map<String, dynamic>> tidakPindah = [
     {
-      "statusKK": "KK Baru",
+      "tidakP": "KK Baru",
       "id": 1,
     },
     {
-      "statusKK": "Numpang KK",
+      "tidakP": "Numpang KK",
       "id": 2,
     },
     {
-      "statusKK": "Nomor KK Tetap",
-      "id": 2,
+      "tidakP": "Nomor KK Tetap",
+      "id": 3,
     }
   ];
 
