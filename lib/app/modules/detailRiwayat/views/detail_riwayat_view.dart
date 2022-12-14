@@ -2399,18 +2399,18 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['desaTujuan']}",
                                       ),
 
-                                      ///KECAMATAN ASAL
+                                      ///KECAMATAN
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KECAMATAN ASAL',
-                                        subtitle: "${data['kecamatanAsal']}",
+                                        title: 'KECAMATAN TUJUAN',
+                                        subtitle: "${data['kecamatanTujuan']}",
                                       ),
 
                                       ///KABUPATEN/KOTA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KABUPATEN KOTA ASAL',
-                                        subtitle: "${data['kabupatenAsal']}",
+                                        title: 'KABUPATEN KOTA TUJUAN',
+                                        subtitle: "${data['kabupatenTujuan']}",
                                       ),
 
                                       ///PROVINSI ASAL
@@ -2423,8 +2423,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///KODE POS
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KODE POS ASAL',
-                                        subtitle: "${data['kodePosAsal']}",
+                                        title: 'KODE POS TUJUAN',
+                                        subtitle: "${data['kodePosTujuan']}",
                                       ),
 
                                       ///----PROSES
@@ -2464,13 +2464,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         ],
                                       ),
                                       SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KETERANGAN',
-                                        subtitle: "${data['keterangan']}",
-                                      ),
-                                      if ("${data['keteranganKonfirmasi']}"
-                                          .isEmpty)
-                                        Container(),
+
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isNotEmpty)
                                         CustomOutputForm(
