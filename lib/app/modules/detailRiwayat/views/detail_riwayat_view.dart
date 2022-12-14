@@ -2464,7 +2464,6 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         ],
                                       ),
                                       SizedBox(height: 10.h),
-
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isNotEmpty)
                                         CustomOutputForm(
