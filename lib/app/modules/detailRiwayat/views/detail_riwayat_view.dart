@@ -2328,11 +2328,106 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///ALAMAT ASAL
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NAMA KEPALA KELUARGA',
-                                        subtitle:
-                                            "${data['namaKepalaKeluarga']}",
+                                        title: 'ALAMAT ASAL',
+                                        subtitle: "${data['alamatAsal']}",
                                       ),
 
+                                      ///RT ASAL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'RT/RW ASAL',
+                                        subtitle:
+                                            "${data['rtAsal']}/${data['rwAsal']}",
+                                      ),
+
+                                      ///DESA/KELURAHAN
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN ASAL',
+                                        subtitle: "${data['desaAsal']}",
+                                      ),
+
+                                      ///KECAMATAN ASAL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN ASAL',
+                                        subtitle: "${data['kecamatanAsal']}",
+                                      ),
+
+                                      ///KABUPATEN/KOTA
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA TUJUAN ',
+                                        subtitle: "${data['kabupatenAsal']}",
+                                      ),
+
+                                      ///PROVINSI ASAL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'PROVINSI ASAL',
+                                        subtitle: "${data['provinsiAsal']}",
+                                      ),
+
+                                      ///KODE POS
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KODE POS ASAL',
+                                        subtitle: "${data['kodePosAsal']}",
+                                      ),
+
+                                      ///---TUJUAN
+
+                                      ///ALAMAT
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'ALAMAT TUJUAN',
+                                        subtitle: "${data['alamatTujuan']}",
+                                      ),
+
+                                      ///RT
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'RT/RW TUJUAN',
+                                        subtitle:
+                                            "${data['rtTujuan']}/${data['rwTujuan']}",
+                                      ),
+
+                                      ///DESA/KELURAHAN
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN TUJUAN',
+                                        subtitle: "${data['desaTujuan']}",
+                                      ),
+
+                                      ///KECAMATAN ASAL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN ASAL',
+                                        subtitle: "${data['kecamatanAsal']}",
+                                      ),
+
+                                      ///KABUPATEN/KOTA
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN KOTA ASAL',
+                                        subtitle: "${data['kabupatenAsal']}",
+                                      ),
+
+                                      ///PROVINSI ASAL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'PROVINSI ASAL',
+                                        subtitle: "${data['provinsiAsal']}",
+                                      ),
+
+                                      ///KODE POS
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KODE POS ASAL',
+                                        subtitle: "${data['kodePosAsal']}",
+                                      ),
+
+                                      ///----PROSES
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'STATUS',
@@ -2369,13 +2464,10 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         ],
                                       ),
                                       SizedBox(height: 10.h),
-                                      if ("${data['keterangan']}".isEmpty)
-                                        Container(),
-                                      if ("${data['keterangan']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'KETERANGAN',
-                                          subtitle: "${data['keterangan']}",
-                                        ),
+                                      CustomOutputForm(
+                                        title: 'KETERANGAN',
+                                        subtitle: "${data['keterangan']}",
+                                      ),
                                       if ("${data['keteranganKonfirmasi']}"
                                           .isEmpty)
                                         Container(),
