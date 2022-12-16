@@ -284,9 +284,7 @@ class RegisterView extends GetView<RegisterController> {
             ),
             SizedBox(width: 2.h),
             TextButton(
-              onPressed: () => Get.toNamed(
-                Routes.LOGIN,
-              ),
+              onPressed: () => Get.offAllNamed(Routes.LOGIN),
               child: Text(
                 'LOGIN',
                 style: blueTextStyle.copyWith(

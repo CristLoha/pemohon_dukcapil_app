@@ -8,6 +8,7 @@ import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 class LoginController extends GetxController {
   final formKeys = GlobalKey<FormState>();
+
   void infoMsg(String msg1, String msg2) {
     Get.snackbar(
       msg1,
