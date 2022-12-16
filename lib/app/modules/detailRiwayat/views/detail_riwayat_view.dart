@@ -2357,7 +2357,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///KABUPATEN/KOTA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KABUPATEN/KOTA TUJUAN ',
+                                        title: 'KABUPATEN/KOTA ASAL',
                                         subtitle: "${data['kabupatenAsal']}",
                                       ),
 
@@ -2413,11 +2413,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['kabupatenTujuan']}",
                                       ),
 
-                                      ///PROVINSI ASAL
+                                      ///PROVINSI TUJUAN
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'PROVINSI ASAL',
-                                        subtitle: "${data['provinsiAsal']}",
+                                        title: 'PROVINSI TUJUAN',
+                                        subtitle: "${data['provinsiTujuan']}",
                                       ),
 
                                       ///KODE POS
@@ -2426,6 +2426,122 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         title: 'KODE POS TUJUAN',
                                         subtitle: "${data['kodePosTujuan']}",
                                       ),
+
+                                      ///JENIS KEPINDAHAN
+
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'JENIS KEPINDAHAN',
+                                        subtitle: "${data['jenisKepindahan']}",
+                                      ),
+
+                                      ///STATUS KK BAGI YANG PINDAH
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'STATUS KK BAGI YANG PINDAH',
+                                        subtitle: "${data['statusKKPindah']}",
+                                      ),
+
+                                      ///STATUS KK BAGI YANG TIDAK PINDAH
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title:
+                                            'STATUS KK BAGI YANG TIDAK PINDAH',
+                                        subtitle:
+                                            "${data['statusKKTidakPindah']}",
+                                      ),
+
+                                      ///----PEMOHON----
+                                      ///NIK
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK PEMOHON',
+                                        subtitle: "${data['nikPemohon']}",
+                                      ),
+
+                                      ///NAMA LENGKAP
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP PEMOHON',
+                                        subtitle:
+                                            "${data['namaLengkapPemohon']}",
+                                      ),
+
+                                      ///NOMOR TELEPON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON PEMOHON',
+                                        subtitle: "${data['nomorTelepon']}",
+                                      ),
+
+                                      ///EMAIL
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'EMAIL PEMOHON',
+                                        subtitle: "${data['email']}",
+                                      ),
+
+                                      ///KECAMATAN PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN PEMOHON',
+                                        subtitle: "${data['kecamatanPemohon']}",
+                                      ),
+
+                                      ///DESA/KELURAHAN PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN PEMOHON',
+                                        subtitle: "${data['desaPemohon']}",
+                                      ),
+
+                                      ///---ANGGOTA
+                                      ///NAMA ANGGOTA 1
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA ANGGOTA 1',
+                                        subtitle: "${data['namaAnggota1']}",
+                                      ),
+
+                                      ///NAMA ANGGOTA 2
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota1']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGOTA 2',
+                                          subtitle: "-",
+                                        ),
+
+                                      ///NAMA ANGGOTA 3
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota3']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGOTA 3',
+                                          subtitle: "-",
+                                        ),
+
+                                      ///NAMA ANGGOTA 4
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota4']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGOTA 4',
+                                          subtitle: "-",
+                                        ),
+
+                                      ///NAMA ANGGOTA 5
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota5']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGOTA 5',
+                                          subtitle: "-",
+                                        ),
+
+                                      ///NAMA ANGGOTA 6
+                                      SizedBox(height: 10.h),
+                                      if ("${data['namaAnggota6']}".isEmpty)
+                                        CustomOutputForm(
+                                          title: 'NAMA ANGOTA 6',
+                                          subtitle: "-",
+                                        ),
 
                                       ///----PROSES
                                       SizedBox(height: 10.h),
