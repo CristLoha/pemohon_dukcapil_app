@@ -996,7 +996,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                       ),
                     ),
                     ///// Perubahan e-Ktp
-                    if ("${data['kategori']}" == 'Perubahan e-KTP')
+                    if ("${data['kategori']}" == 'e-KTP (Hilang/Rusak)')
                       Positioned(
                         top: 13,
                         child: Container(
