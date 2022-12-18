@@ -1509,7 +1509,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle: "${data['nikAnggota1']}",
                                       ),
 
-                                      ///NIK ANGGOTA 1
+                                      ///NAMA ANGGOTA 1
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'NAMA ANGGOTA 1',
@@ -1531,107 +1531,126 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
 
                                       ///NIK ANGGOTA 3
-                                      SizedBox(height: 10.h),
                                       if ("${data['nikAnggota3']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 3',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['nikAnggota3']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 3',
-                                          subtitle: "${data['nikAnggota3']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NIK ANGGOTA 3',
+                                              subtitle:
+                                                  "${data['nikAnggota3']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 3
-                                      SizedBox(height: 10.h),
                                       if ("${data['namaAnggota3']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 3',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['namaAnggota3']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 3',
-                                          subtitle: "${data['namaAnggota3']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGGOTA 3',
+                                              subtitle:
+                                                  "${data['namaAnggota3']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NIK ANGGOTA 4
-                                      SizedBox(height: 10.h),
                                       if ("${data['nikAnggota4']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 4',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['nikAnggota4']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 4',
-                                          subtitle: "${data['nikAnggota4']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NIK ANGGOTA 4',
+                                              subtitle:
+                                                  "${data['nikAnggota4']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 4
-                                      SizedBox(height: 10.h),
-                                      if ("${data['namaAnggota4']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 4',
-                                          subtitle: "-",
-                                        ),
-                                      if ("${data['namaAnggota4']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 4',
-                                          subtitle: "${data['namaAnggota4']}",
+
+                                      if ("${data['namaAnggota3']}".isEmpty)
+                                        Container(),
+                                      if ("${data['namaAnggota3']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGGOTA 3',
+                                              subtitle:
+                                                  "${data['namaAnggota3']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NIK ANGGOTA 5
-                                      SizedBox(height: 10.h),
                                       if ("${data['nikAnggota5']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 5',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['nikAnggota5']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 5',
-                                          subtitle: "${data['nikAnggota5']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NIK ANGGOTA 5',
+                                              subtitle:
+                                                  "${data['nikAnggota5']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 5
-                                      SizedBox(height: 10.h),
+
                                       if ("${data['namaAnggota5']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 5',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['namaAnggota5']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 5',
-                                          subtitle: "${data['namaAnggota5']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGGOTA 5',
+                                              subtitle:
+                                                  "${data['namaAnggota5']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NIK ANGGOTA 6
-                                      SizedBox(height: 10.h),
                                       if ("${data['nikAnggota6']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 6',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['nikAnggota6']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NIK ANGGOTA 6',
-                                          subtitle: "${data['nikAnggota6']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NIK ANGGOTA 6',
+                                              subtitle:
+                                                  "${data['nikAnggota6']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 6
-                                      SizedBox(height: 10.h),
+
                                       if ("${data['namaAnggota6']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 6',
-                                          subtitle: "-",
-                                        ),
+                                        Container(),
                                       if ("${data['namaAnggota6']}".isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGGOTA 6',
-                                          subtitle: "${data['namaAnggota6']}",
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGGOTA 6',
+                                              subtitle:
+                                                  "${data['namaAnggota6']}",
+                                            ),
+                                          ],
                                         ),
 
                                       SizedBox(height: 10.h),
@@ -2504,43 +2523,79 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
 
                                       ///NAMA ANGGOTA 2
-                                      SizedBox(height: 10.h),
-                                      if ("${data['namaAnggota1']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGOTA 2',
-                                          subtitle: "-",
+
+                                      if ("${data['namaAnggota2']}".isEmpty)
+                                        Container(),
+                                      if ("${data['namaAnggota2']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGOTA 2',
+                                              subtitle:
+                                                  "${data['namaAnggota2']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 3
-                                      SizedBox(height: 10.h),
                                       if ("${data['namaAnggota3']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGOTA 3',
-                                          subtitle: "-",
+                                        Container(),
+                                      if ("${data['namaAnggota3']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGOTA 3',
+                                              subtitle:
+                                                  "${data['namaAnggota3']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 4
-                                      SizedBox(height: 10.h),
                                       if ("${data['namaAnggota4']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGOTA 4',
-                                          subtitle: "-",
+                                        Container(),
+                                      if ("${data['namaAnggota4']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGOTA 4',
+                                              subtitle:
+                                                  "${data['namaAnggota4']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 5
-                                      SizedBox(height: 10.h),
                                       if ("${data['namaAnggota5']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGOTA 5',
-                                          subtitle: "-",
+                                        Container(),
+                                      if ("${data['namaAnggota5']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGOTA 5',
+                                              subtitle:
+                                                  "${data['namaAnggota5']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///NAMA ANGGOTA 6
-                                      SizedBox(height: 10.h),
                                       if ("${data['namaAnggota6']}".isEmpty)
-                                        CustomOutputForm(
-                                          title: 'NAMA ANGOTA 6',
-                                          subtitle: "-",
+                                        Container(),
+                                      if ("${data['namaAnggota6']}".isNotEmpty)
+                                        Column(
+                                          children: [
+                                            SizedBox(height: 10.h),
+                                            CustomOutputForm(
+                                              title: 'NAMA ANGOTA 6',
+                                              subtitle:
+                                                  "${data['namaAnggota6']}",
+                                            ),
+                                          ],
                                         ),
 
                                       ///----PROSES
