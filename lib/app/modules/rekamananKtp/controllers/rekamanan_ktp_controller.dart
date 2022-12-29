@@ -146,7 +146,7 @@ class RekamananKtpController extends GetxController {
     await DatePicker.showDatePicker(
       Get.context!,
       locale: LocaleType.id,
-      minTime: DateTime(2000, 1, 1),
+      minTime: DateTime(1970, 1, 1),
       maxTime: DateTime.now(),
     ).then((selectedDate) {
       if (selectedDate != null) {

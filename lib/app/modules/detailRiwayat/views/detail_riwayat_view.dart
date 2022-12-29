@@ -574,7 +574,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       SizedBox(height: 10),
 
                                       ///------------------------AYAH--------
-                                      ///AYAH
+                                      ///NIK AYAH
                                       CustomOutputForm(
                                         title: 'NIK AYAH',
                                         subtitle: "${data['nikAyah']}",
@@ -632,7 +632,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///KABUPATEN/KOTA AYAH
                                       CustomOutputForm(
-                                        title: 'KECAMATAN AYAH',
+                                        title: 'KABUPATEN/KOTA AYAH',
                                         subtitle: "${data['kabupatenAyah']}",
                                       ),
                                       SizedBox(height: 10),
@@ -652,14 +652,14 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///NAMA LENGKAP AYAH
+                                      ///NAMA LENGKAP IBU
                                       CustomOutputForm(
                                         title: 'NAMA LENGKAP IBU',
                                         subtitle: "${data['namaIbu']}",
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///TANGGAL LAHIR AYAH
+                                      ///TANGGAL LAHIR IBU
                                       CustomOutputForm(
                                         title: 'TANGGAL LAHIR IBU',
                                         subtitle: "${data['tglLahirIbu']}",
@@ -763,7 +763,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///KABUPATEN/KOTA PEMOHON
                                       CustomOutputForm(
                                         title: 'KABUPATEN/KOTA PEMOHON',
-                                        subtitle: "${data['kecamatanPemohon']}",
+                                        subtitle: "${data['kabupatenPemohon']}",
                                       ),
                                       SizedBox(height: 10),
 
@@ -821,7 +821,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///ALAMAT SAKSI 1
                                       CustomOutputForm(
-                                        title: 'ALAMA SAKSI 1 (SATU)',
+                                        title: 'ALAMAT SAKSI 1 (SATU)',
                                         subtitle: "${data['alamatSaksi1']}",
                                       ),
                                       SizedBox(height: 10),
@@ -899,21 +899,21 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///KECAMATAN SAKSI 1
+                                      ///KECAMATAN SAKSI 2
                                       CustomOutputForm(
                                         title: 'KECAMATAN SAKSI SAKSI 2 (DUA)',
                                         subtitle: "${data['kecamatanSaksi2']}",
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///KABUPATEN/KOTA SAKSI 1
+                                      ///KABUPATEN/KOTA SAKSI 2
                                       CustomOutputForm(
                                         title: 'KABUPATEN/KOTA SAKSI 2 (DUA)',
                                         subtitle: "${data['kabupatenSaksi2']}",
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///PROVINSI PEMOHON
+                                      ///ROVINSI SAKSI 2 (DUA)
                                       CustomOutputForm(
                                         title: 'PROVINSI SAKSI 2 (DUA)',
                                         subtitle: "${data['provinsiSaksi2']}",
@@ -1237,7 +1237,6 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                         subtitle:
                                             "${data['kewarganegaraanSuami']}",
                                       ),
-                                      SizedBox(height: 10.h),
 
                                       ///ISTRI
                                       SizedBox(height: 10.h),
@@ -1294,7 +1293,51 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
+                                      ///--PEMOHON------
+                                      ///NIK PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NIK PEMOHON',
+                                        subtitle: "${data['nikPemohon']}",
+                                      ),
+
+                                      ///NAMA LENGKAP PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP PEMOHON',
+                                        subtitle: "${data['namaPemohon']}",
+                                      ),
+
+                                      ///EMAIL PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'EMAIL PEMOHON',
+                                        subtitle: "${data['email']}",
+                                      ),
+
+                                      ///NOMOR TELEPON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON',
+                                        subtitle: "${data['noTelponPemohon']}",
+                                      ),
+
+                                      ///KECAMATAN PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KECAMATAN PEMOHON',
+                                        subtitle: "${data['kecamatan']}",
+                                      ),
+
+                                      ///DESA/KELURAHAN PEMOHON
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'DESA/KELURAHAN PEMOHON',
+                                        subtitle: "${data['desaPemohon']}",
+                                      ),
+
                                       ///PROSES
+                                      SizedBox(height: 10.h),
                                       CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
@@ -1422,7 +1465,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///SUAMI
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NIK',
+                                        title: 'NIK PEMOHON',
                                         subtitle: "${data['nik']}",
                                       ),
                                       SizedBox(height: 10.h),
@@ -1441,28 +1484,28 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///KABUPATEN/KOTA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KABUPATEN/KOTA',
+                                        title: 'KABUPATEN/KOTA PEMOHON',
                                         subtitle: "${data['kabupaten/kota']}",
                                       ),
 
                                       ///PROVINSI
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'PROVINSI',
+                                        title: 'PROVINSI PEMOHON',
                                         subtitle: "${data['provinsi']}",
                                       ),
 
                                       ///KECAMATAN
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'KECAMATAN',
+                                        title: 'KECAMATAN PEMOHON',
                                         subtitle: "${data['kecamatan']}",
                                       ),
 
                                       ///DESA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'DESA',
+                                        title: 'DESA PEMOHON',
                                         subtitle: "${data['desa']}",
                                       ),
 
@@ -1483,7 +1526,8 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///JUMLAH ANGGOTA KELUARGA
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'JUMLAH ANGGOTA KELUARGA',
+                                        title:
+                                            'JUMLAH ANGGOTA KELUARGA PEMOHON',
                                         subtitle:
                                             "${data['jmlAnggotaKeluarga']}",
                                       ),
@@ -1491,7 +1535,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///NOMOR TELEPON
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'NOMOR TELEPON',
+                                        title: 'NOMOR TELEPON PEMOHON',
                                         subtitle: "${data['noTelp']}",
                                       ),
 
@@ -1802,7 +1846,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
-                                      ///TEMPAT DILAHIRKAN
+                                      ///KELAHIRAN KE-
                                       CustomOutputForm(
                                         title: 'KELAHIRAN KE-',
                                         subtitle: "${data['kelahiranKe']}",
@@ -1819,7 +1863,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///TANGGAL LAHIR ANAK
                                       CustomOutputForm(
-                                        title: 'ANAK LAHIR ANAK',
+                                        title: 'TANGGAL LAHIR ANAK',
                                         subtitle: "${data['tglLahirAnak']}",
                                       ),
                                       SizedBox(height: 10.h),
@@ -1869,7 +1913,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///TANGGAL LAHIR IBU
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR',
+                                        title: 'TANGGAL LAHIR IBU',
                                         subtitle: "${data['tanggalLahirIbu']}",
                                       ),
                                       SizedBox(height: 10.h),
@@ -1932,7 +1976,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       SizedBox(height: 10.h),
 
                                       ///---------------AYAH
-                                      ///NIK
+                                      ///NIK AYAH
                                       CustomOutputForm(
                                         title: 'NIK AYAH',
                                         subtitle: "${data['nikAyah']}",
@@ -1955,7 +1999,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///TANGGAL LAHIR AYAH
                                       CustomOutputForm(
-                                        title: 'TANGGAL LAHIR',
+                                        title: 'TANGGAL LAHIR AYAH',
                                         subtitle: "${data['tanggalLahirAyah']}",
                                       ),
                                       SizedBox(height: 10.h),
@@ -2014,11 +2058,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///NIK
                                       CustomOutputForm(
                                         title: 'NIK PEMOHON',
-                                        subtitle: "${data['nikAyah']}",
+                                        subtitle: "${data['nikPemohon']}",
                                       ),
                                       SizedBox(height: 10.h),
 
-                                      ///NAMA LENGKAP AYAH
+                                      ///NAMA LENGKAP  PEMOHON
                                       CustomOutputForm(
                                         title: 'NAMA LENGKAP PEMOHON',
                                         subtitle:
@@ -2044,7 +2088,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///DESA/KELURAHAN
                                       CustomOutputForm(
                                         title: 'DESA/KELURAHAN PEMOHON',
-                                        subtitle: "${data['desaAyah']}",
+                                        subtitle: "${data['desaPemohon']}",
                                       ),
                                       SizedBox(height: 10.h),
 
@@ -2062,7 +2106,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
-                                      ///PROVINSI AYAH
+                                      ///PROVINSI PEMOHON
                                       CustomOutputForm(
                                         title: 'PROVINSI PEMOHON',
                                         subtitle: "${data['provinsiPemohon']}",
@@ -2099,7 +2143,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
 
-                                      ///NAMA LENGKAP AYAH
+                                      ///NAMA LENGKAP SAKSI 1
                                       CustomOutputForm(
                                         title: 'NAMA LENGKAP SAKSI 1',
                                         subtitle:
