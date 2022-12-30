@@ -17,12 +17,15 @@ class RekamananKtpController extends GetxController {
   Rx<DateTime> selectedDate = DateTime.now().obs;
   final ImagePicker imagePicker = ImagePicker();
   TextEditingController nikC = TextEditingController();
-  TextEditingController emailC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
   TextEditingController nameC = TextEditingController();
   TextEditingController dateC = TextEditingController();
+  TextEditingController kabupatenC = TextEditingController();
+  TextEditingController provinsiC = TextEditingController();
   TextEditingController kecamatanC = TextEditingController();
   TextEditingController desaC = TextEditingController();
+  TextEditingController rtC = TextEditingController();
+  TextEditingController rwC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
 
   int index = 0;
@@ -62,6 +65,8 @@ class RekamananKtpController extends GetxController {
         'tgl_lahir': dateC.text,
         "keyName": nameC.text.substring(0, 1).toUpperCase(),
         'kategori': 'Perekaman e-KTP',
+        'provinsi': provinsiC.text,
+        'kabupaten': kabupatenC.text,
         'kecamatan': kecamatanC.text,
         'email': userPemohon!.email,
         'noTelpon': noTelpC.text,
@@ -118,7 +123,6 @@ class RekamananKtpController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
         pickedImage = dataImage;
       }

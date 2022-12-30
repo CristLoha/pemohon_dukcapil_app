@@ -187,16 +187,55 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         },
                         textCapitalization: TextCapitalization.none,
                       ),
-                      SizedBox(height: 20.h),
 
+                      ///tanggal lahir
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Tanggal lahir'),
                       SizedBox(height: 12.h),
                       CustomDateInput(
                           onTap: () => controller.dateLocal(),
                           controller: controller.dateC),
+
+                      /// Provinsi
                       SizedBox(height: 20.h),
+                      CustomTitleWidget(title: 'Provinsi'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.provinsiC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
+
+                      /// Provinsi
+                      SizedBox(height: 20.h),
+                      CustomTitleWidget(title: 'Kabupaten'),
+                      SizedBox(height: 12.h),
+                      CustomFormField(
+                        readOnly: false,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.name,
+                        textEditingController: controller.kabupatenC,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Input tidak boleh kosong";
+                          } else {
+                            return null;
+                          }
+                        },
+                        textCapitalization: TextCapitalization.words,
+                      ),
 
                       /// Kecamatan
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Kecamatan'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -214,9 +253,9 @@ class RekamananKtpView extends GetView<RekamananKtpController> {
                         },
                         textCapitalization: TextCapitalization.words,
                       ),
-                      SizedBox(height: 12.h),
 
                       /// DESA
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Desa'),
                       SizedBox(height: 12.h),
                       CustomFormField(
