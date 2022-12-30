@@ -94,6 +94,16 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'PROVINSI',
+                                        subtitle: "${data['provinsi']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN',
+                                        subtitle: "${data['kabupaten']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'KECAMATAN',
                                         subtitle: "${data['kecamatan']}",
                                       ),
@@ -995,7 +1005,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                         ),
                       ),
                     ),
-                    ///// Perubahan e-Ktp
+                    ///// Ktp Hilang
                     if ("${data['kategori']}" == 'e-KTP (Hilang/Rusak)')
                       Positioned(
                         top: 13,
