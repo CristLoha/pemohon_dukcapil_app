@@ -68,6 +68,9 @@ class AktaNikahController extends GetxController {
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
   ];
 
   List<Map<String, dynamic>> dataJenisKewarganegaraan = [
@@ -293,7 +296,7 @@ class AktaNikahController extends GetxController {
         'namaPemohon': namaPemohonC.text,
         'desaPemohon': desaPemohonC.text,
         'kecamatan': kecamatanPemohonC.text,
-        'email': emailPemohonC.text,
+        'email': userPemohon!.email,
         'noTelponPemohon': noTelponPemohonC.text,
         'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
 
