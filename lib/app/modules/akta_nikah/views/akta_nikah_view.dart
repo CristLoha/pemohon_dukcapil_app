@@ -508,6 +508,82 @@ class AktaNikahView extends GetView<AktaNikahController> {
       ),
       Step(
         title: Text(
+          'Saksi',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
+        content: Form(
+          key: controller.formKeys[4],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// NIK
+              CustomTitleWidget(title: 'NIK Saksi 1'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikSaksi1,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap
+              CustomTitleWidget(title: 'Nama Lengkap Saksi 1'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaLengkapSaksi1),
+
+              /// NIK
+              CustomTitleWidget(title: 'NIK Saksi 2'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikSaksi2,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap
+              CustomTitleWidget(title: 'Nama Lengkap Saksi 2'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaLengkapSaksi2),
+            ],
+          ),
+        ),
+        isActive: controller.currentStep.value >= 3,
+        state:
+            controller.currentStep > 3 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
+        title: Text(
           'Pemohon',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
