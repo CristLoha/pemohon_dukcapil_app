@@ -116,7 +116,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
     return [
       Step(
         title: Text(
-          'Formulir Perkawinan',
+          'Suami',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
@@ -155,6 +155,16 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   textEditingController: controller.namaLengkapSuamiC),
               SizedBox(height: 20.h),
 
+              /// Tanggal Lahir suami
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Tanggal lahir Suami'),
+              SizedBox(height: 12.h),
+              CustomDateInput(
+                onTap: () => controller.tglLahirSuami(),
+                controller: controller.tanggalLahirSuamiC,
+              ),
+              SizedBox(height: 20.h),
+
               /// Tempat Lahir Suami
               CustomTitleWidget(title: 'Tempat Lahir Suami'),
               SizedBox(height: 12.h),
@@ -173,17 +183,27 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 textCapitalization: TextCapitalization.words,
               ),
 
-              /// Tanggal Lahir suami
+              /// Anak Ke
               SizedBox(height: 20.h),
-              CustomTitleWidget(title: 'Tanggal lahir Suami'),
+              CustomTitleWidget(title: 'Anak Ke-'),
               SizedBox(height: 12.h),
-              CustomDateInput(
-                onTap: () => controller.tglLahirSuami(),
-                controller: controller.tanggalLahirSuamiC,
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.anakKeSuamiC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.none,
               ),
-              SizedBox(height: 20.h),
 
               /// Kewarganegaraan Suami
+              SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Kewarganegaraan Suami'),
               SizedBox(height: 12.h),
               DropdownSearch<Map<String, dynamic>>(
@@ -209,8 +229,24 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 },
               ),
               SizedBox(height: 20.h),
-
-              /// NIK ISTRI
+            ],
+          ),
+        ),
+        isActive: controller.currentStep.value >= 0,
+        state:
+            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
+        title: Text(
+          'Istri',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
+        content: Form(
+          key: controller.formKeys[0],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// NIK SUAMI
               CustomTitleWidget(title: 'NIK Istri'),
               SizedBox(height: 12.h),
               CustomFormField(
@@ -230,7 +266,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
               ),
               SizedBox(height: 20.h),
 
-              /// Nama Lengkap Istri
+              /// Nama Lengkap
               CustomTitleWidget(title: 'Nama Lengkap Istri'),
               SizedBox(height: 12.h),
               CustomFormField(
@@ -241,7 +277,17 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   textEditingController: controller.namaLengkapIstriC),
               SizedBox(height: 20.h),
 
-              /// Tempat Lahir Istri
+              /// Tanggal Lahir
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Tanggal lahir Istri'),
+              SizedBox(height: 12.h),
+              CustomDateInput(
+                onTap: () => controller.tglLahirIstri(),
+                controller: controller.tanggalLahirIstriC,
+              ),
+              SizedBox(height: 20.h),
+
+              /// Tempat Lahir
               CustomTitleWidget(title: 'Tempat Lahir Istri'),
               SizedBox(height: 12.h),
               CustomFormField(
@@ -249,7 +295,6 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.name,
                 textEditingController: controller.tempatLahirIstriC,
-                onTap: () {},
                 validator: (value) {
                   if (value!.isEmpty) {
                     return "Input tidak boleh kosong";
@@ -260,17 +305,27 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 textCapitalization: TextCapitalization.words,
               ),
 
-              /// TANGGAL LAHIR ISTRI
+              /// Anak Ke
               SizedBox(height: 20.h),
-              CustomTitleWidget(title: 'Tanggal lahir Istri'),
+              CustomTitleWidget(title: 'Anak Ke-'),
               SizedBox(height: 12.h),
-              CustomDateInput(
-                onTap: () => controller.tglLahirIstri(),
-                controller: controller.tanggalLahirIstriC,
+              CustomFormField(
+                readOnly: false,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.anakKeIstriC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else {
+                    return null;
+                  }
+                },
+                textCapitalization: TextCapitalization.none,
               ),
-              SizedBox(height: 20.h),
 
-              /// Kewarganegaraan Istri
+              /// Kewarganegaraan
+              SizedBox(height: 20.h),
               CustomTitleWidget(title: 'Kewarganegaraan Istri'),
               SizedBox(height: 12.h),
               DropdownSearch<Map<String, dynamic>>(
@@ -296,91 +351,18 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 },
               ),
               SizedBox(height: 20.h),
-
-              /// NIK SAKSI 1
-              CustomTitleWidget(title: 'NIK Saksi 1 (Satu)'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.nikSaksi1,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Input tidak boleh kosong";
-                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
-
-              /// Nama Lengkap Saksi 1
-              CustomTitleWidget(title: 'Nama Lengkap Saksi 1 (Satu)'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                  textCapitalization: TextCapitalization.words,
-                  readOnly: false,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Input tidak boleh kosong";
-                    } else {
-                      return null;
-                    }
-                  },
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.namaLengkapSaksi1),
-              SizedBox(height: 20.h),
-
-              /// NIK SAKSI 2
-              CustomTitleWidget(title: 'NIK Saksi 2 (Dua)'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                readOnly: false,
-                textCapitalization: TextCapitalization.none,
-                textInputAction: TextInputAction.next,
-                keyboardType: TextInputType.number,
-                textEditingController: controller.nikSaksi2,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Input tidak boleh kosong";
-                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
-                    return 'NIK harus 16 karakter';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 20.h),
-
-              /// Nama Lengkap Saksi 2
-              CustomTitleWidget(title: 'Nama Lengkap Saksi 2 (Dua)'),
-              SizedBox(height: 12.h),
-              CustomFormField(
-                  textCapitalization: TextCapitalization.words,
-                  readOnly: false,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Input tidak boleh kosong";
-                    } else {
-                      return null;
-                    }
-                  },
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.name,
-                  textEditingController: controller.namaLengkapSaksi2),
             ],
           ),
         ),
-        isActive: controller.currentStep.value >= 0,
+        isActive: controller.currentStep.value >= 1,
         state:
-            controller.currentStep > 0 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Pemohon',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
