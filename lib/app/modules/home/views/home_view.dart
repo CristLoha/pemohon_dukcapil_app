@@ -86,7 +86,7 @@ class HomeView extends GetView<HomeController> {
                           children: [
                             CustomMenusCard(
                               icon: 'assets/icon/card-birth.png',
-                              title: 'Registrasi \nAkta Kelahiran',
+                              title: 'Akta\nKelahiran',
                               height: 11.sp,
                               bottom: 6.h,
                               widthIcon: 34.w,
@@ -96,7 +96,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
-                              title: 'Registrasi\nKK Baru',
+                              title: 'Kartu Keluarga\nBaru',
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,
@@ -106,7 +106,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/death-certificate.png',
-                              title: 'Registrasi\nAkta Kematian',
+                              title: 'Akta\nKematian',
                               height: 11.sp,
                               bottom: 13.h,
                               widthIcon: 32.w,
@@ -136,7 +136,7 @@ class HomeView extends GetView<HomeController> {
                               padding: EdgeInsets.only(top: 3.h),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id_kia.png',
-                                title: 'Registrasi\nKIA',
+                                title: 'Kartu Identitas\nAnak',
                                 height: 11.sp,
                                 bottom: 15.h,
                                 widthIcon: 39.w,

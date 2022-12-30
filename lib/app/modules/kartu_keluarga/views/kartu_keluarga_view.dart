@@ -16,7 +16,7 @@ class KartuKeluargaView extends GetView<KartuKeluargaController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Registrasi KK'),
+        title: Text('Kartu Keluarga Baru'),
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
