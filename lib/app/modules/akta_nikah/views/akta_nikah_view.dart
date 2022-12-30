@@ -547,6 +547,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                   textEditingController: controller.namaLengkapSaksi1),
 
               /// NIK
+              SizedBox(height: 20.h),
               CustomTitleWidget(title: 'NIK Saksi 2'),
               SizedBox(height: 12.h),
               CustomFormField(
@@ -578,9 +579,9 @@ class AktaNikahView extends GetView<AktaNikahController> {
             ],
           ),
         ),
-        isActive: controller.currentStep.value >= 3,
+        isActive: controller.currentStep.value >= 4,
         state:
-            controller.currentStep > 3 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 4 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text(
@@ -603,7 +604,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 controller.nikPemohon.text = snapshot.data!["nik"];
                 controller.noTelponPemohonC.text = snapshot.data!["nomor_telp"];
                 return Form(
-                  key: controller.formKeys[4],
+                  key: controller.formKeys[5],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -702,15 +703,15 @@ class AktaNikahView extends GetView<AktaNikahController> {
                 );
               }
             }),
-        isActive: controller.currentStep.value >= 4,
+        isActive: controller.currentStep.value >= 5,
         state:
-            controller.currentStep > 4 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 5 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text('Persyaratan',
             style: blackTextStyle.copyWith(fontWeight: semiBold)),
         content: Form(
-          key: controller.formKeys[5],
+          key: controller.formKeys[6],
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -2050,7 +2051,7 @@ class AktaNikahView extends GetView<AktaNikahController> {
             ],
           ),
         ),
-        isActive: controller.currentStep.value >= 5,
+        isActive: controller.currentStep.value >= 6,
       ),
     ];
   }

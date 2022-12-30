@@ -52,29 +52,6 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController tempatKematianC = TextEditingController();
   TextEditingController menerangkanC = TextEditingController();
 
-  ///AYAH
-  TextEditingController noKepalaKeluargaC = TextEditingController();
-  TextEditingController nikAyahC = TextEditingController();
-  TextEditingController namaLengkapAyahC = TextEditingController();
-  TextEditingController tanggalLahirAyahC = TextEditingController();
-  TextEditingController pekerjaanAyahC = TextEditingController();
-  TextEditingController alamatAyah = TextEditingController();
-  TextEditingController desaAyah = TextEditingController();
-  TextEditingController kecamatanAyahC = TextEditingController();
-  TextEditingController kabupatenAyahC = TextEditingController();
-  TextEditingController provinsiAyahC = TextEditingController();
-
-  ///IBU
-  TextEditingController nikIbuC = TextEditingController();
-  TextEditingController namaLengkapIbuC = TextEditingController();
-  TextEditingController tanggalLahirIbuC = TextEditingController();
-  TextEditingController pekerjaanIbuC = TextEditingController();
-  TextEditingController alamatIbu = TextEditingController();
-  TextEditingController desaIbu = TextEditingController();
-  TextEditingController kecamatanIbuC = TextEditingController();
-  TextEditingController kabupatenIbuC = TextEditingController();
-  TextEditingController provinsiIbuC = TextEditingController();
-
   /// PEMOHON
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController noTelepon = TextEditingController();
@@ -110,8 +87,6 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController provinsiSaksi2C = TextEditingController();
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
-    GlobalKey<FormState>(),
-    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -311,29 +286,6 @@ class RegisAktaKematianController extends GetxController {
           'sebabKematian': sebabKematianC.text,
           'tempatKematian': tempatKematianC.text,
           'yangMenerangkan': menerangkanC.text,
-
-          ///AYAH
-          'nikAyah': nikAyahC.text,
-          'namaAyah': namaLengkapAyahC.text,
-          'tglLahirAyah': tanggalLahirAyahC.text,
-          'pekerjaanAyah': pekerjaanAyahC.text,
-          'alamatAyah': alamatAyah.text,
-          'desaAyah': desaAyah.text,
-          'noKK': noKepalaKeluargaC.text,
-          'kecamatanAyah': kecamatanAyahC.text,
-          'kabupatenAyah': kabupatenAyahC.text,
-          'provinsiAyah': provinsiAyahC.text,
-
-          ///IBU
-          'nikIbu': nikIbuC.text,
-          'namaIbu': namaLengkapIbuC.text,
-          'tglLahirIbu': tanggalLahirIbuC.text,
-          'pekerjaanIbu': pekerjaanIbuC.text,
-          'alamatIbu': alamatIbu.text,
-          'desaIbu': desaIbu.text,
-          'kecamatanIbu': kecamatanIbuC.text,
-          'kabupatenKota': kabupatenIbuC.text,
-          'provinsiIbu': provinsiIbuC.text,
 
           ///SAKSI 1
           "nikSaksi1": nikSaksi1C.text,
@@ -553,34 +505,6 @@ class RegisAktaKematianController extends GetxController {
     ).then((selectedDate) {
       if (selectedDate != null) {
         tglLahirJenazahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
-  }
-
-  ///TGL KELAHIRAN AYAH
-  void tglLahirAyah() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalLahirAyahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
-  }
-
-  ///tgl lahir ibu
-  void tglLahirIbu() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalLahirIbuC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }
