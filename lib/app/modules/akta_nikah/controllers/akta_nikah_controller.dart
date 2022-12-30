@@ -17,21 +17,41 @@ import '../../../shared/theme.dart';
 class AktaNikahController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  TextEditingController nikSuamiC = TextEditingController();
-  TextEditingController nikIstriC = TextEditingController();
-  TextEditingController nikSaksi1 = TextEditingController();
-  TextEditingController namaLengkapSaksi1 = TextEditingController();
 
-  TextEditingController nikSaksi2 = TextEditingController();
-  TextEditingController namaLengkapSaksi2 = TextEditingController();
+  ///SUAMI
+  TextEditingController nikSuamiC = TextEditingController();
   TextEditingController namaLengkapSuamiC = TextEditingController();
-  TextEditingController namaLengkapIstriC = TextEditingController();
-  TextEditingController tempatLahirSuamiC = TextEditingController();
-  TextEditingController tempatLahirIstriC = TextEditingController();
   TextEditingController tanggalLahirSuamiC = TextEditingController();
-  TextEditingController tanggalLahirIstriC = TextEditingController();
+  TextEditingController anakKeSuamiC = TextEditingController();
+  TextEditingController tempatLahirSuamiC = TextEditingController();
+  TextEditingController perkawinanKe = TextEditingController();
   TextEditingController kewarganegaraanSuamiC = TextEditingController();
+
+  ///ISTRI
+  TextEditingController nikIstriC = TextEditingController();
+  TextEditingController namaLengkapIstriC = TextEditingController();
+  TextEditingController tempatLahirIstriC = TextEditingController();
+  TextEditingController anakKeIstriC = TextEditingController();
+  TextEditingController tanggalLahirIstriC = TextEditingController();
   TextEditingController kewarganegaraanIstriC = TextEditingController();
+
+  ///Orang Tua Dari Suami
+  TextEditingController namaAyahDariSuami = TextEditingController();
+  TextEditingController nikAyahDariSuami = TextEditingController();
+  TextEditingController namaIbuDariSuami = TextEditingController();
+  TextEditingController nikIbuDariSuami = TextEditingController();
+
+  ///Orang Tua Dari Istri
+  TextEditingController namaAyahDariIstri = TextEditingController();
+  TextEditingController nikAyahDariIstri = TextEditingController();
+  TextEditingController namaIbuDariIstri = TextEditingController();
+  TextEditingController nikIbuDariIstri = TextEditingController();
+
+  ///SAKSI SATU & DUA
+  TextEditingController nikSaksi1 = TextEditingController();
+  TextEditingController nikSaksi2 = TextEditingController();
+  TextEditingController namaLengkapSaksi1 = TextEditingController();
+  TextEditingController namaLengkapSaksi2 = TextEditingController();
   TextEditingController dateC = TextEditingController();
 
   /// PEMOHON
@@ -240,17 +260,33 @@ class AktaNikahController extends GetxController {
       CollectionReference aktaNikah = firestore.collection('layanan');
 
       await aktaNikah.add({
-        ///ISTRI & SUAMI
+        ///SUAMI
         'nikSuami': nikSuamiC.text,
-        'nikIstri': nikIstriC.text,
         'namaLengkapSuami': namaLengkapSuamiC.text,
         'tanggalLahirSuami': tanggalLahirSuamiC.text,
-        'tanggalLahirIstri': tanggalLahirIstriC.text,
-        'namaLengkapIstri': namaLengkapIstriC.text,
         'tempatLahirSuami': tempatLahirSuamiC.text,
-        'tempatLahirIstri': tempatLahirIstriC.text,
+        'anakKeSuami': anakKeSuamiC.text,
         'kewarganegaraanSuami': kewarganegaraanSuamiC.text,
+
+        ///ISTRI
+        'nikIstri': nikIstriC.text,
+        'namaLengkapIstri': namaLengkapIstriC.text,
+        'tanggalLahirIstri': tanggalLahirIstriC.text,
+        'anakKeIstri': anakKeIstriC.text,
         'kewarganegaraanIstri': kewarganegaraanIstriC.text,
+        'tempatLahirIstri': tempatLahirIstriC.text,
+
+        ///ORANG TUA SUAMI
+        'namaAyahDariSuami': namaAyahDariSuami.text,
+        'nikAyahDariSuami': nikAyahDariSuami.text,
+        'nikIbuDariSuami': nikIbuDariSuami.text,
+        'namaIbuDariSuami': namaIbuDariSuami.text,
+
+        ///ORANG TUA ISTRI
+        'namaAyahDariIstri': namaAyahDariIstri.text,
+        'nikAyahDariIstri': nikAyahDariIstri.text,
+        'nikIbuDariIstri': nikIbuDariIstri.text,
+        'namaIbuDariIstri': namaIbuDariIstri.text,
 
         /// PEMOHON
         'nikPemohon': nikPemohon.text,
@@ -261,7 +297,7 @@ class AktaNikahController extends GetxController {
         'noTelponPemohon': noTelponPemohonC.text,
         'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
 
-        ///SAKSI
+        ///SAKSI 1 & 2
         'nikSaksi1': nikSaksi1.text,
         'nikSaksi2': nikSaksi2.text,
         'namaLengkapSaksi1': namaLengkapSaksi1.text,
