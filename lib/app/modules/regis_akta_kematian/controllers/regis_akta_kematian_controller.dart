@@ -22,14 +22,14 @@ class RegisAktaKematianController extends GetxController {
   final ImagePicker imagePickerKK = ImagePicker();
   XFile? pickedImageKK;
 
-  final ImagePicker imagePickerAktaKelahiran = ImagePicker();
-  XFile? pickedImageAktaKelahiran;
-
   final ImagePicker imagePickerKTPPelapor = ImagePicker();
   XFile? pickedImageKtpPelapor;
 
   final ImagePicker imagePickerKKPelapor = ImagePicker();
   XFile? pickedImageKKPelapor;
+
+  final ImagePicker imagePickerSuketKematian = ImagePicker();
+  XFile? pickedImageSuketKematian;
 
   /// JENAZAH
   TextEditingController nikJenazahC = TextEditingController();
@@ -56,9 +56,6 @@ class RegisAktaKematianController extends GetxController {
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController noTelepon = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
-  TextEditingController tanggalLahirPemohonC = TextEditingController();
-  TextEditingController pekerjaanPemohonC = TextEditingController();
-  TextEditingController alamatPemohon = TextEditingController();
   TextEditingController desaPemohon = TextEditingController();
   TextEditingController kecamatanPemohonC = TextEditingController();
   TextEditingController kabupatenPemohonC = TextEditingController();
@@ -188,8 +185,8 @@ class RegisAktaKematianController extends GetxController {
     Random random = Random();
     int randomNumber = random.nextInt(100000) + 1;
     if (pickedImageKTPJenazah != null &&
-        pickedImageAktaKelahiran != null &&
-        pickedImageKtpPelapor != null) {
+        pickedImageKtpPelapor != null &&
+        pickedImageKK != null) {
       /// KTP Jenazah
       String extKTPJenazah = pickedImageKTPJenazah!.name.split(".").last;
 
@@ -217,19 +214,19 @@ class RegisAktaKematianController extends GetxController {
           .child('KK$randomNumber.$extKK')
           .getDownloadURL();
 
-      /// AKTAkelahiran
-      String extAktaKelahiran = pickedImageAktaKelahiran!.name.split(".").last;
+      /// SUKET KEMATIAN DARI DESA
+      String extSuketKematian = pickedImageSuketKematian!.name.split(".").last;
 
       await storage
           .ref('aktaKematian')
-          .child('AktaKelahiran$randomNumber.$extAktaKelahiran')
+          .child('SuketKematian$randomNumber.$extSuketKematian')
           .putFile(
-            File(pickedImageAktaKelahiran!.path),
+            File(pickedImageSuketKematian!.path),
           );
 
-      String fotoAktaKelahiran = await storage
+      String fotoSuketKematian = await storage
           .ref('aktaKematian')
-          .child('AktaKelahiran$randomNumber.$extKK')
+          .child('SuketKematian$randomNumber.$extSuketKematian')
           .getDownloadURL();
 
       /// KTP Pelapor
@@ -314,9 +311,6 @@ class RegisAktaKematianController extends GetxController {
           "nikPemohon": nikPemohonC.text,
           "noTelpon": noTelepon.text,
           "namaLengkapPemohon": namaLengkapPemohonC.text,
-          "tanggalLahirPemohon": tanggalLahirPemohonC.text,
-          "pekerjaanPemohon": pekerjaanPemohonC.text,
-          "alamatPemohon": alamatPemohon.text,
           "desaPemohon": desaPemohon.text,
           "kecamatanPemohon": kecamatanPemohonC.text,
           "kabupatenPemohon": kabupatenPemohonC.text,
@@ -327,7 +321,7 @@ class RegisAktaKematianController extends GetxController {
 
           ///PERSYARATAN
           'fotoKK': fotoKK,
-          'fotoAktaKelahiran': fotoAktaKelahiran,
+          'fotoAktaKelahiran': fotoSuketKematian,
           'fotoKTPJenazah': ktpJenazah,
           'fotoKTPPelapor': ktpPelaPor,
           'fotoKKPelapor': fotoKKpelapor,
@@ -422,25 +416,25 @@ class RegisAktaKematianController extends GetxController {
 
   void selectImageAktaKelahiran() async {
     try {
-      final dataImage = await imagePickerAktaKelahiran.pickImage(
+      final dataImage = await imagePickerSuketKematian.pickImage(
         source: ImageSource.gallery,
       );
 
       if (dataImage != null) {
         print(dataImage.name);
         print(dataImage.path);
-        pickedImageAktaKelahiran = dataImage;
+        pickedImageSuketKematian = dataImage;
       }
       update();
     } catch (err) {
       print(err);
-      pickedImageAktaKelahiran = null;
+      pickedImageSuketKematian = null;
       update();
     }
   }
 
   void resetImageAktaKelahiran() {
-    pickedImageAktaKelahiran = null;
+    pickedImageSuketKematian = null;
     update();
   }
 
@@ -505,21 +499,6 @@ class RegisAktaKematianController extends GetxController {
     ).then((selectedDate) {
       if (selectedDate != null) {
         tglLahirJenazahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
-  }
-
-  ///tgl lahir pemohon
-  void tglLahirPemohon() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalLahirPemohonC.text =
-            DateFormat('yyyy-MM-dd').format(selectedDate);
       }
     });
   }

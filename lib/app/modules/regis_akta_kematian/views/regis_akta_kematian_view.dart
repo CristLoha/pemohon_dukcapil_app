@@ -122,7 +122,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
       Step(
         title: Text(
           'Jenazah',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[0],
@@ -532,8 +532,10 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
             controller.currentStep > 0 ? StepState.complete : StepState.indexed,
       ),
       Step(
-        title: Text('Pemohon',
-            style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold)),
+        title: Text(
+          'Pemohon',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
         content: FutureBuilder<Map<String, dynamic>?>(
             future: controller.getProfile(),
             builder: (context, snapshot) {
@@ -583,23 +585,13 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                         },
                         textCapitalization: TextCapitalization.words,
                       ),
-                      SizedBox(height: 20.h),
 
-                      ///TANGGAL LAHIR
-                      CustomTitleWidget(title: 'Tanggal lahir'),
-                      SizedBox(height: 12.h),
-                      CustomDateInput(
-                        onTap: () => controller.tglLahirPemohon(),
-                        controller: controller.tanggalLahirPemohonC,
-                      ),
-                      SizedBox(height: 20.h),
-
-                      ///PEKERJAAN
-                      CustomTitleWidget(title: 'Pekerjaan'),
+                      ///Kabupaten/kota
+                      CustomTitleWidget(title: 'Kabupaten/Kota'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
-                        textEditingController: controller.pekerjaanPemohonC,
+                        textEditingController: controller.kabupatenPemohonC,
                         keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -612,12 +604,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
                       SizedBox(height: 20.h),
 
-                      ///Alamat
-                      CustomTitleWidget(title: 'Alamat'),
+                      ///Provinsi
+                      CustomTitleWidget(title: 'Provinsi'),
                       SizedBox(height: 12.h),
                       CustomFormField(
                         readOnly: false,
-                        textEditingController: controller.alamatPemohon,
+                        textEditingController: controller.provinsiPemohonC,
                         keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -655,42 +647,6 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       CustomFormField(
                         readOnly: false,
                         textEditingController: controller.kecamatanPemohonC,
-                        keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Input tidak boleh kosong";
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                      SizedBox(height: 20.h),
-
-                      ///Kabupaten/kota
-                      CustomTitleWidget(title: 'Kabupaten/Kota'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textEditingController: controller.kabupatenPemohonC,
-                        keyboardType: TextInputType.name,
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return "Input tidak boleh kosong";
-                          } else {
-                            return null;
-                          }
-                        },
-                        textCapitalization: TextCapitalization.words,
-                      ),
-                      SizedBox(height: 20.h),
-
-                      ///Provinsi
-                      CustomTitleWidget(title: 'Provinsi'),
-                      SizedBox(height: 12.h),
-                      CustomFormField(
-                        readOnly: false,
-                        textEditingController: controller.provinsiPemohonC,
                         keyboardType: TextInputType.name,
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -1069,7 +1025,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
       Step(
         title: Text(
           'Persyaratan',
-          style: blackTextStyle.copyWith(fontSize: 12, fontWeight: semiBold),
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
           key: controller.formKeys[4],
@@ -1378,9 +1334,9 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 SizedBox(height: 20.h),
 
-                ///AKTA KELAHIRAN
+                ///Suket Kematian
                 Text(
-                  'Unggah Akta Kelahiran/Surat Pernyataan tidak memiliki Akta Kelahiran',
+                  'SUKET Kematian Dari Desa',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
@@ -1397,12 +1353,12 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                     child: Column(
                       children: [
                         GetBuilder<RegisAktaKematianController>(
-                          builder: (c) => c.pickedImageAktaKelahiran != null
+                          builder: (c) => c.pickedImageSuketKematian != null
                               ? Row(
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        c.pickedImageAktaKelahiran!.name,
+                                        c.pickedImageSuketKematian!.name,
                                         style: blackTextStyle.copyWith(),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -1436,7 +1392,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                 ),
                                 child: GetBuilder<RegisAktaKematianController>(
                                   builder: (c) {
-                                    return c.pickedImageAktaKelahiran != null
+                                    return c.pickedImageSuketKematian != null
                                         ? ElevatedButton(
                                             onPressed: () {
                                               Get.dialog(
@@ -1444,7 +1400,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                                                   child: PhotoView(
                                                     imageProvider: FileImage(
                                                       File(c
-                                                          .pickedImageAktaKelahiran!
+                                                          .pickedImageSuketKematian!
                                                           .path),
                                                     ),
                                                   ),
