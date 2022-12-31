@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pemohon_dukcapil_app/app/utils/custom_input_keterangan.dart';
 import 'package:photo_view/photo_view.dart';
 import '../../../shared/theme.dart';
 import '../../../utils/custom_date_input.dart';
