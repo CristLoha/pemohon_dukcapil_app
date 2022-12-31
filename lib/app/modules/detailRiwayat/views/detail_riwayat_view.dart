@@ -599,28 +599,6 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///TANGGAL LAHIR PEMOHON
-                                      CustomOutputForm(
-                                        title: 'TANGGAL LAHIR PEMOHON',
-                                        subtitle:
-                                            "${data['tanggalLahirPemohon']}",
-                                      ),
-                                      SizedBox(height: 10),
-
-                                      ///PEKERJAAN PEMOHON
-                                      CustomOutputForm(
-                                        title: 'PEKERJAAN PEMOHON',
-                                        subtitle: "${data['pekerjaanPemohon']}",
-                                      ),
-                                      SizedBox(height: 10),
-
-                                      ///ALAMAT PEMOHON
-                                      CustomOutputForm(
-                                        title: 'ALAMAT PEMOHON',
-                                        subtitle: "${data['alamatPemohon']}",
-                                      ),
-                                      SizedBox(height: 10),
-
                                       ///DESA PEMOHON
                                       CustomOutputForm(
                                         title: 'DESA/KELURAHAN PEMOHON',
@@ -635,17 +613,17 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10),
 
-                                      ///KABUPATEN/KOTA PEMOHON
-                                      CustomOutputForm(
-                                        title: 'KABUPATEN/KOTA PEMOHON',
-                                        subtitle: "${data['kabupatenPemohon']}",
-                                      ),
-                                      SizedBox(height: 10),
-
                                       ///PROVINSI PEMOHON
                                       CustomOutputForm(
                                         title: 'PROVINSI PEMOHON',
                                         subtitle: "${data['provinsiPemohon']}",
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      ///KABUPATEN/KOTA PEMOHON
+                                      CustomOutputForm(
+                                        title: 'KABUPATEN/KOTA PEMOHON',
+                                        subtitle: "${data['kabupatenPemohon']}",
                                       ),
                                       SizedBox(height: 10),
 

@@ -586,6 +586,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
                       ),
 
                       ///Kabupaten/kota
+                      SizedBox(height: 20.h),
                       CustomTitleWidget(title: 'Kabupaten/Kota'),
                       SizedBox(height: 12.h),
                       CustomFormField(
@@ -1185,7 +1186,7 @@ class RegisAktaKematianView extends GetView<RegisAktaKematianController> {
 
                 /// KK
                 Text(
-                  'Unggah KK',
+                  'Unggah KK Jenazah',
                   style: blackTextStyle.copyWith(),
                 ),
                 SizedBox(height: 12.h),
