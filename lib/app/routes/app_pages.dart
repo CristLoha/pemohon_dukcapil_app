@@ -32,6 +32,8 @@ import 'package:pemohon_dukcapil_app/app/modules/register/bindings/register_bind
 import 'package:pemohon_dukcapil_app/app/modules/register/views/register_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/bindings/rekamanan_ktp_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/rekamananKtp/views/rekamanan_ktp_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/reset_password/bindings/reset_password_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/reset_password/views/reset_password_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/bindings/settings_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/views/settings_view.dart';
 
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.SURAT_KETERANGAN_PINDAH,
       page: () => SuratKeteranganPindahView(),
       binding: SuratKeteranganPindahBinding(),
+    ),
+    GetPage(
+      name: _Paths.RESET_PASSWORD,
+      page: () => ResetPasswordView(),
+      binding: ResetPasswordBinding(),
     ),
   ];
 }

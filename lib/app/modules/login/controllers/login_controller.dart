@@ -45,7 +45,7 @@ class LoginController extends GetxController {
         await EasyLoading.dismiss();
         Get.defaultDialog(
           title: 'Belum terverifikasi',
-          middleText: 'Apakah kamu ingin mengirim email verifikasi kembali?',
+          middleText: 'Apakah Anda ingin mengirim ulang email verifikasi?',
           actions: [
             OutlinedButton(
               onPressed: () => Get.back(),
@@ -60,30 +60,27 @@ class LoginController extends GetxController {
                   print('Berhasil mengirim email verifikasi');
                   infoMsg(
                     'BERHASIL',
-                    'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi',
+                    'Kami telah mengirim email verifikasi. Buka email Anda untuk tahap verifikasi',
                   );
                 } catch (e) {
                   Get.back();
-                  infoMsg('TERJADI KESALAHAN',
-                      'Kamu terlalu banyak meminta kirim email verifikasi');
+                  infoMsg('KESALAHAN TERJADI',
+                      'Anda telah terlalu sering meminta pengiriman ulang email verifikasi.');
+                  ;
                 }
-                infoMsg(
-                  'TERJADI KESALAHAN',
-                  'Kamu terlalu banyak meminta kirim email verifikasi',
-                );
               },
-              child: Text('Kirim Lagi'),
+              child: Text('Kirim Ulang'),
             )
           ],
         );
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        infoMsg('TERJADI KESALAHAN', 'Pengguna tidak ditemukan');
+        infoMsg('KESALAHAN TERJADI', 'Pengguna tidak ditemukan');
         EasyLoading.dismiss();
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        infoMsg('TERJADI KESALAHAN', 'Kata sandi salah');
+        infoMsg('KESALAHAN TERJADI', 'Sandi salah');
         EasyLoading.dismiss();
         print('Wrong password provided for that user.');
       }

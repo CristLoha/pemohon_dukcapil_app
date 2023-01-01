@@ -72,7 +72,7 @@ class RegisterController extends GetxController {
 
         if (credential.user!.emailVerified == false) {
           infoMsg('BERHASIL',
-              'Kami telah mengirim email verifikasi. Buka email kamu untuk tahap verifikasi');
+              'Kami telah mengirim email verifikasi. Silakan buka email Anda untuk menyelesaikan tahap verifikasi.');
           EasyLoading.dismiss();
           Get.offAllNamed(Routes.LOGIN);
           EasyLoading.dismiss();
@@ -113,7 +113,7 @@ class RegisterController extends GetxController {
           print('The password provided is too weak.');
           EasyLoading.dismiss();
         } else if (e.code == 'email-already-in-use') {
-          infoMsg('TERJADI KESALAHAN', 'Email sudah pernah digunakan');
+          infoMsg('KESALAHAN TERJADI', 'Email telah terdaftar');
           EasyLoading.dismiss();
           print('The account already exists for that email.');
         }

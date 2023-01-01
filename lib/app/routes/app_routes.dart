@@ -22,6 +22,7 @@ abstract class Routes {
   static const AKTA_NIKAH = _Paths.AKTA_NIKAH;
   static const AKTA_KELAHIRAN = _Paths.AKTA_KELAHIRAN;
   static const SURAT_KETERANGAN_PINDAH = _Paths.SURAT_KETERANGAN_PINDAH;
+  static const RESET_PASSWORD = _Paths.RESET_PASSWORD;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const AKTA_NIKAH = '/akta-nikah';
   static const AKTA_KELAHIRAN = '/akta-kelahiran';
   static const SURAT_KETERANGAN_PINDAH = '/surat-keterangan-pindah';
+  static const RESET_PASSWORD = '/reset-password';
 }

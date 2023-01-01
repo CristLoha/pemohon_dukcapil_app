@@ -148,7 +148,7 @@ class LoginView extends GetView<LoginController> {
                     ),
                   ),
                   secondary: TextButton(
-                    onPressed: () {},
+                    onPressed: () => Get.toNamed(Routes.RESET_PASSWORD),
                     child: Text(
                       'Lupa Kata Sandi?',
                       style: blueTextStyle.copyWith(fontWeight: semiBold),
