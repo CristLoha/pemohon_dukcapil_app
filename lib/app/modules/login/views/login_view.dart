@@ -84,7 +84,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              CustomTitleWidget(title: 'Kata Sandi'),
+              CustomTitleWidget(title: 'Sandi'),
               SizedBox(height: 12.h),
               Obx(
                 () => TextFormField(
@@ -150,7 +150,7 @@ class LoginView extends GetView<LoginController> {
                   secondary: TextButton(
                     onPressed: () => Get.toNamed(Routes.RESET_PASSWORD),
                     child: Text(
-                      'Lupa Kata Sandi?',
+                      'Lupa Sandi?',
                       style: blueTextStyle.copyWith(fontWeight: semiBold),
                     ),
                   ),
@@ -200,7 +200,7 @@ class LoginView extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Belum punya akun?',
+              'Belum memiliki akun?',
               style: greyTextStyle,
             ),
             SizedBox(width: 4.w),

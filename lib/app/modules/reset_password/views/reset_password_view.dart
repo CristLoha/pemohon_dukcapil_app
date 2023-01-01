@@ -14,19 +14,19 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
-          title: Text('Ganti Kata Sandi'),
+          title: Text('Ganti Sandi'),
         ),
         body: ListView(
           padding: EdgeInsets.all(20),
           children: [
             /// Email
             SizedBox(height: 20.h),
-            CustomTitleWidget(title: 'Emaill'),
+            CustomTitleWidget(title: 'Email'),
             SizedBox(height: 12.h),
             CustomFormField(
               validator: (value) {
                 if (value!.isEmpty) {
-                  return "Input tidak boleh kosong";
+                  return "Input tidak boleh dikosongkan";
                 } else {
                   return null;
                 }
