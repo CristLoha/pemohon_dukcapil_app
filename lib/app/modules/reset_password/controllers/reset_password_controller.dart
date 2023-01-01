@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class ResetPasswordController extends GetxController {
@@ -12,8 +13,8 @@ class ResetPasswordController extends GetxController {
     try {
       await auth.sendPasswordResetEmail(email: emailC.text);
       Get.back();
-      Get.snackbar("BERHASIL",
-          "Kami telah mengirim tautan untuk menyetel ulang sandi email Anda.");
+      EasyLoading.showSuccess(
+          'Kami telah mengirim tautan untuk menyetel ulang sandi email Anda.');
     } catch (e) {
       Get.snackbar("KESALAHAN TERJADI",
           "Tidak dapat menyetel ulang sandi ke email ini.");
