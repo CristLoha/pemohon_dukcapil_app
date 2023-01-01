@@ -16,27 +16,30 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
           backgroundColor: kPrimaryColor,
           title: Text('Ganti Sandi'),
         ),
-        body: ListView(
-          padding: EdgeInsets.all(20),
-          children: [
-            /// Email
-            SizedBox(height: 20.h),
-            CustomTitleWidget(title: 'Email'),
-            SizedBox(height: 12.h),
-            CustomFormField(
-              validator: (value) {
-                if (value!.isEmpty) {
-                  return "Input tidak boleh dikosongkan";
-                } else {
-                  return null;
-                }
-              },
-              readOnly: false,
-              textEditingController: controller.emailC,
-              keyboardType: TextInputType.emailAddress,
-              textCapitalization: TextCapitalization.words,
-            ),
-          ],
+        body: Form(
+          key: controller.formKeys,
+          child: ListView(
+            padding: EdgeInsets.all(20),
+            children: [
+              /// Email
+              SizedBox(height: 20.h),
+              CustomTitleWidget(title: 'Email'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh dikosongkan";
+                  } else {
+                    return null;
+                  }
+                },
+                readOnly: false,
+                textEditingController: controller.emailC,
+                keyboardType: TextInputType.emailAddress,
+                textCapitalization: TextCapitalization.words,
+              ),
+            ],
+          ),
         ));
   }
 }

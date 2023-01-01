@@ -6,6 +6,7 @@ class ResetPasswordController extends GetxController {
   TextEditingController emailC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  final formKeys = GlobalKey<FormState>();
 
   void reset() async {
     try {
