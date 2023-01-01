@@ -11,11 +11,11 @@ class ResetPasswordController extends GetxController {
     try {
       await auth.sendPasswordResetEmail(email: emailC.text);
       Get.back();
-      Get.snackbar(
-          "BERHASIL", "Kami telah mengirim tautan untuk mengubah sandi");
-    } catch (e) {
       Get.snackbar("BERHASIL",
-          "Kami telah mengirim tautan untuk menyetel ulang sandi email Anda");
+          "Kami telah mengirim tautan untuk menyetel ulang sandi email Anda.");
+    } catch (e) {
+      Get.snackbar("KESALAHAN TERJADI",
+          "Tidak dapat menyetel ulang sandi ke email ini.");
     }
   }
 }
