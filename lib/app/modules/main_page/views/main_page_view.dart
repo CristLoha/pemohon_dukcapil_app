@@ -1,14 +1,19 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
-import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/views/home_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/main_page/controllers/main_page_controller.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/views/settings_view.dart';
-import '../controllers/main_page_controller.dart';
+import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
-class MainPageView extends GetView<MainPageController> {
+class MainPageView extends StatefulWidget {
+  @override
+  State<MainPageView> createState() => _MainPageViewState();
+}
+
+class _MainPageViewState extends State<MainPageView> {
+  final controller = Get.put(MainPageController());
   @override
   Widget build(BuildContext context) {
     // ScreenUtil.init(context, designSize: const Size(360, 690));
@@ -38,20 +43,37 @@ class MainPageView extends GetView<MainPageController> {
           controller: controller.pageController,
         ),
       ),
-      bottomNavigationBar: Obx(
-        () => FancyBottomNavigation(
-          tabs: [
-            TabData(iconData: EvaIcons.home, title: "Beranda"),
-            TabData(iconData: EvaIcons.fileTextOutline, title: "Riwayat"),
-            TabData(iconData: EvaIcons.settingsOutline, title: "Pengaturan"),
-          ],
-          onTabChangedListener: (position) {
-            controller.currentIndex.value = position;
-            controller.pageController.jumpToPage(position);
-          },
-          initialSelection: controller.currentIndex.value,
-          key: controller.bottomNavigationKey,
-        ),
+      bottomNavigationBar: BottomNavyBar(
+        iconSize: 30,
+        containerHeight: 54,
+        itemCornerRadius: 30,
+        showElevation: true,
+        items: [
+          BottomNavyBarItem(
+              activeColor: kPrimaryColor,
+              title: Text('Beranda'),
+              icon: Icon(
+                Icons.home,
+              )),
+          BottomNavyBarItem(
+              activeColor: kPrimaryColor,
+              title: Text('Riwayat'),
+              icon: Icon(
+                Icons.description_outlined,
+              )),
+          BottomNavyBarItem(
+              activeColor: kPrimaryColor,
+              title: Text('Pengaturan'),
+              icon: Icon(
+                Icons.settings,
+              )),
+        ],
+        selectedIndex: controller.currentIndex.value,
+        onItemSelected: (index) {
+          setState(() => controller.currentIndex.value = index);
+          controller.pageController.animateToPage(index,
+              duration: Duration(milliseconds: 300), curve: Curves.ease);
+        },
       ),
     );
   }
