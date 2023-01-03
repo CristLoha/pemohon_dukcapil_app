@@ -1,28 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class MainPageController extends GetxController {
-  Rx<ButtonIcons> selected = ButtonIcons.home.obs;
+  late PageController pageController;
+  var currentIndex = 0.obs;
+  GlobalKey bottomNavigationKey = GlobalKey();
 
-  homeButton() {
-    selected.value = ButtonIcons.home;
+  @override
+  void onInit() {
+    super.onInit();
+    pageController = PageController();
   }
 
-  historyButton() {
-    selected.value = ButtonIcons.history;
+  @override
+  void onClose() {
+    super.onClose();
+    pageController.dispose();
   }
-
-  chatButton() {
-    selected.value = ButtonIcons.profile;
-  }
-
-  settingsButton() {
-    selected.value = ButtonIcons.settings;
-  }
-}
-
-enum ButtonIcons {
-  home,
-  history,
-  profile,
-  settings,
 }
