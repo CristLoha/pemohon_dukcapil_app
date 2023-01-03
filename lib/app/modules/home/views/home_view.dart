@@ -51,7 +51,7 @@ class HomeView extends GetView<HomeController> {
                               ),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id-card.png',
-                                title: 'Perekaman \ne-KTP',
+                                title: 'Perekaman\nKTP',
                                 height: 11.sp,
                                 bottom: 14.h,
                                 widthIcon: 36.w,
@@ -60,7 +60,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/exchange.png',
-                              title: 'e-KTP\n(Rusak/Hilang)',
+                              title: 'Penggantian\nKTP',
                               height: 11.sp,
                               bottom: 12,
                               widthIcon: 38.w,
@@ -96,7 +96,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             CustomMenusCard(
                               icon: 'assets/icon/certificate.png',
-                              title: 'Kartu Keluarga\nBaru',
+                              title: 'Pengajuan\nKK Baru',
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,

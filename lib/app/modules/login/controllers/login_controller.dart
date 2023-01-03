@@ -3,12 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:pemohon_dukcapil_app/app/routes/app_pages.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 class LoginController extends GetxController {
   final formKeys = GlobalKey<FormState>();
-
+  final box = GetStorage();
   void infoMsg(String msg1, String msg2) {
     Get.snackbar(
       msg1,
@@ -25,7 +26,7 @@ class LoginController extends GetxController {
   TextEditingController emailC = TextEditingController();
   TextEditingController passC = TextEditingController();
   RxBool isHidden = false.obs;
-  RxBool isSelected = false.obs;
+  RxBool rememberMe = false.obs;
 
   FirebaseAuth auth = FirebaseAuth.instance;
   void login() async {
@@ -38,6 +39,15 @@ class LoginController extends GetxController {
       print(credential);
 
       if (credential.user!.emailVerified == true) {
+        if (box.read('tetapmasuk') != null) {
+          await box.remove('tetapmasuk');
+        }
+        if (rememberMe.isTrue) {
+          await box.write("tetapmasuk", {
+            "email": emailC.text,
+            "pass": passC.text,
+          });
+        }
         EasyLoading.showSuccess('Berhasil masuk');
         Get.offAllNamed(Routes.LANDING_SCREEN);
       } else {

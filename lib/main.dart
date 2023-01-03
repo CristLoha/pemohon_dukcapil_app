@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'app/routes/app_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app/utils/error_screen.dart';
@@ -16,7 +17,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   FirebaseAuth auth = FirebaseAuth.instance;
-
+  await GetStorage.init();
   await initializeDateFormatting('id_ID', null).then(
     (_) => runApp(
       StreamBuilder<User?>(

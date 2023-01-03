@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -11,6 +12,37 @@ import '../controllers/reset_password_controller.dart';
 class ResetPasswordView extends GetView<ResetPasswordController> {
   @override
   Widget build(BuildContext context) {
+    Widget resetPassword() {
+      return Container(
+        height: 50.h,
+        margin: EdgeInsets.only(top: 30.h),
+        child: Container(
+          child: ElevatedButton(
+            onPressed: () {
+              if (!controller.formKeys.currentState!.validate()) {
+                return;
+              }
+              EasyLoading.show(status: 'memuat...');
+              controller.reset();
+            },
+            child: Text(
+              'Setel Ulang Sandi',
+              style: whiteTextStyle.copyWith(
+                fontSize: 16.sp,
+                fontWeight: medium,
+              ),
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              backgroundColor: kPrimaryColor,
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,
@@ -38,6 +70,8 @@ class ResetPasswordView extends GetView<ResetPasswordController> {
                 keyboardType: TextInputType.emailAddress,
                 textCapitalization: TextCapitalization.words,
               ),
+              SizedBox(height: 20),
+              resetPassword()
             ],
           ),
         ));

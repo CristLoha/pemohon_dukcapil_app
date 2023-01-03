@@ -13,6 +13,11 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
+    if (controller.box.read("tetapmasuk") != null) {
+      controller.emailC.text = controller.box.read("tetapmasuk")["email"];
+      controller.passC.text = controller.box.read("tetapmasuk")["pass"];
+      controller.rememberMe.value = true;
+    }
     ScreenUtil.init(context, designSize: const Size(360, 690));
     Widget titleWelcome() {
       return Container(
@@ -31,7 +36,7 @@ class LoginView extends GetView<LoginController> {
                   fontSize: 24.sp, fontWeight: semiBold, letterSpacing: 1),
             ),
             Text(
-              'Isi Data Pribadi Anda ',
+              'Silakan masukkan email dan kata sandi Anda untuk masuk',
               style: greyTextStyle,
             ),
           ],
@@ -84,11 +89,11 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               SizedBox(height: 20.h),
-              CustomTitleWidget(title: 'Sandi'),
+              CustomTitleWidget(title: 'Kata Sandi'),
               SizedBox(height: 12.h),
               Obx(
                 () => TextFormField(
-                  textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.none,
                   cursorColor: kGreyColor,
                   obscureText: controller.isHidden.value,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -136,13 +141,11 @@ class LoginView extends GetView<LoginController> {
                 () => CheckboxListTile(
                   contentPadding: EdgeInsets.symmetric(horizontal: 0),
                   activeColor: kPrimaryColor,
-                  value: controller.isSelected.value,
+                  value: controller.rememberMe.value,
                   controlAffinity: ListTileControlAffinity.leading,
-                  onChanged: (value) {
-                    controller.isSelected.toggle();
-                  },
+                  onChanged: (_) => controller.rememberMe.toggle(),
                   title: Text(
-                    'Ingat Saya',
+                    'tetap masuk',
                     style: blackTextStyle.copyWith(
                       fontSize: 14.sp,
                     ),
@@ -200,7 +203,7 @@ class LoginView extends GetView<LoginController> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'Belum memiliki akun?',
+              'Belum punya akun?',
               style: greyTextStyle,
             ),
             SizedBox(width: 4.w),
@@ -209,7 +212,7 @@ class LoginView extends GetView<LoginController> {
                 Routes.REGISTER,
               ),
               child: Text(
-                'REGISTRASI',
+                'Daftar sekarang!',
                 style: blueTextStyle.copyWith(
                   fontWeight: semiBold,
                 ),
