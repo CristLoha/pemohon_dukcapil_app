@@ -6,6 +6,7 @@ import 'package:pemohon_dukcapil_app/app/modules/home/views/home_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/main_page/controllers/main_page_controller.dart';
 import 'package:pemohon_dukcapil_app/app/modules/settings/views/settings_view.dart';
 import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainPageView extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _MainPageViewState extends State<MainPageView> {
   final controller = Get.put(MainPageController());
   @override
   Widget build(BuildContext context) {
-    // ScreenUtil.init(context, designSize: const Size(360, 690));
+    ScreenUtil.init(context, designSize: const Size(360, 690));
     return Scaffold(
       body: SizedBox.expand(
         child: PageView(
@@ -44,8 +45,8 @@ class _MainPageViewState extends State<MainPageView> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        iconSize: 30,
-        containerHeight: 54,
+        iconSize: 30.h,
+        containerHeight: 54.h,
         itemCornerRadius: 30,
         showElevation: true,
         items: [

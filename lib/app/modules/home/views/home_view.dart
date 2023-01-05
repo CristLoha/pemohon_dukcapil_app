@@ -95,13 +95,13 @@ class HomeView extends GetView<HomeController> {
                               },
                             ),
                             CustomMenusCard(
-                              icon: 'assets/icon/certificate.png',
-                              title: 'Pengajuan\nKK Baru',
+                              icon: 'assets/icon/marriage-certificate.png',
+                              title: 'Akta\nNikah',
                               height: 11.sp,
                               bottom: 12.h,
                               widthIcon: 37.w,
                               onTap: () {
-                                Get.toNamed(Routes.KARTU_KELUARGA);
+                                Get.toNamed(Routes.AKTA_NIKAH);
                               },
                             ),
                             CustomMenusCard(
@@ -120,26 +120,13 @@ class HomeView extends GetView<HomeController> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 57.w, right: 55.w),
-                              child: CustomMenusCard(
-                                icon: 'assets/icon/marriage-certificate.png',
-                                title: 'Akta\nNikah',
-                                height: 11.sp,
-                                bottom: 12.h,
-                                widthIcon: 36.w,
-                                onTap: () {
-                                  Get.toNamed(Routes.AKTA_NIKAH);
-                                },
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(top: 3.h),
+                              padding: EdgeInsets.only(left: 45.w),
                               child: CustomMenusCard(
                                 icon: 'assets/icon/id_kia.png',
                                 title: 'Kartu Identitas\nAnak',
                                 height: 11.sp,
-                                bottom: 15.h,
-                                widthIcon: 39.w,
+                                bottom: 12.h,
+                                widthIcon: 36.w,
                                 onTap: () {
                                   Get.toNamed(Routes.REGIST_KIA);
                                 },

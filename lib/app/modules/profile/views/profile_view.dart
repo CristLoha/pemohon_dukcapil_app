@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
+import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 
 import '../controllers/profile_controller.dart';
 
@@ -10,16 +11,12 @@ class ProfileView extends GetView<ProfileController> {
   Widget build(BuildContext context) {
     ScreenUtil.init(context, designSize: const Size(360, 690));
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ProfileView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'ProfileView is working',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          backgroundColor: kPrimaryColor,
+          title: Text('Profile'),
         ),
-      ),
-    );
+        body: ListView(
+          children: [],
+        ));
   }
 }

@@ -76,7 +76,6 @@ class LoginController extends GetxController {
                   Get.back();
                   infoMsg('KESALAHAN TERJADI',
                       'Anda telah terlalu sering meminta pengiriman ulang email verifikasi.');
-                  ;
                 }
               },
               child: Text('Kirim Ulang'),
