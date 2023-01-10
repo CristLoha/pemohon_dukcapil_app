@@ -147,14 +147,17 @@ class PerubahanKtpController extends GetxController {
   /// FOTO KK
   void selectImageKK() async {
     try {
-      final dataImage = await imagePickerKK.pickImage(
-        source: ImageSource.gallery,
-      );
-
+      final dataImage =
+          await imagePickerKK.pickImage(source: ImageSource.gallery);
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError('maksimal 5  mb');
+        } else {
+          pickedImageKK = dataImage;
+        }
       }
       update();
     } catch (err) {
