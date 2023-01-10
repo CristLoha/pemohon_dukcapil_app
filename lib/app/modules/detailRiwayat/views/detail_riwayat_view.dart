@@ -89,6 +89,16 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'NOMOR TELEPON',
+                                        subtitle: "${data['noTelpon']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'EMAIL',
+                                        subtitle: "${data['email']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'TANGGAL LAHIR',
                                         subtitle: "${data['tgl_lahir']}",
                                       ),
@@ -849,7 +859,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                       ),
                     ),
                     ///// Ktp Hilang
-                    if ("${data['kategori']}" == 'e-KTP (Hilang/Rusak)')
+                    if ("${data['kategori']}" == 'Penggatian e-KTP')
                       Positioned(
                         top: 13,
                         child: Container(
@@ -913,6 +923,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'NOMOR TELEPON',
+                                        subtitle: "${data['noTelp']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'TANGGAL LAHIR',
                                         subtitle: "${data['tgl_lahir']}",
                                       ),
@@ -932,6 +947,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       CustomOutputForm(
                                         title: 'EMAIL',
                                         subtitle: "${data['email']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NOMOR TELEPON',
+                                        subtitle: "${data['noTelp']}",
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
@@ -1191,368 +1211,6 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
 
                                       ///PROSES
                                       SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'STATUS',
-                                        subtitle: "${data['proses']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-
-                                      ///TANGGAL KONFIRMASI
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          CustomOutputForm(
-                                            title: 'TANGGAL KONFIRMASI',
-                                            subtitle: DateFormat(
-                                              "d MMMM yyyy",
-                                              "id_ID",
-                                            ).format(
-                                              DateTime.parse(
-                                                "${data['updatedTime']}",
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            DateFormat(
-                                              "hh:mm aaa",
-                                              "id_ID",
-                                            ).format(
-                                              DateTime.parse(
-                                                  "${data['updatedTime']}"),
-                                            ),
-                                            style: greyTextStyle.copyWith(
-                                              fontSize: 12,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-
-                                      if ("${data['keteranganKonfirmasi']}"
-                                          .isEmpty)
-                                        Container(),
-                                      if ("${data['keteranganKonfirmasi']}"
-                                          .isNotEmpty)
-                                        CustomOutputForm(
-                                          title: 'KETERANGAN KONFIRMASI',
-                                          subtitle:
-                                              "${data['keteranganKonfirmasi']}",
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    Positioned(
-                      left: 15,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor,
-                          borderRadius: BorderRadius.circular(4),
-                          border: Border.all(
-                            color: kGreyColor,
-                          ),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: Text(
-                            "${data['kategori']}",
-                            style: whiteTextStyle,
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    ///KARTU KELUARGA
-                    if ("${data['kategori']}" == 'Kartu Keluarga')
-                      Positioned(
-                        top: 13,
-                        child: Container(
-                          width: 320.w,
-                          height: 530.h,
-                          decoration: BoxDecoration(
-                            color: kWhiteColor,
-                            borderRadius: BorderRadius.circular(4),
-                            border: Border.all(
-                              width: 1,
-                              color: kGreyColor,
-                            ),
-                          ),
-                          child: Container(
-                            padding: EdgeInsets.only(
-                              top: 20,
-                              left: 20,
-                              right: 20,
-                              bottom: 20,
-                            ),
-                            child: Container(
-                              width: Get.width * 0.5,
-                              height: 530.h,
-                              decoration: BoxDecoration(
-                                color: kWhiteColor,
-                                borderRadius: BorderRadius.circular(4),
-                                border: Border.all(
-                                  width: 1,
-                                  color: kGreyColor,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "${data['proses']}",
-                                          style: blackTextStyle.copyWith(
-                                              fontWeight: semiBold),
-                                        ),
-                                      ),
-
-                                      ///SUAMI
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK PEMOHON',
-                                        subtitle: "${data['nik']}",
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA LENGKAP',
-                                        subtitle: "${data['namaLengkap']}",
-                                      ),
-
-                                      ///NOMOR KK SEMULA
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NOMOR KK SEMULA',
-                                        subtitle: "${data['noKKSemula']}",
-                                      ),
-
-                                      ///KABUPATEN/KOTA
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KABUPATEN/KOTA PEMOHON',
-                                        subtitle: "${data['kabupaten/kota']}",
-                                      ),
-
-                                      ///PROVINSI
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'PROVINSI PEMOHON',
-                                        subtitle: "${data['provinsi']}",
-                                      ),
-
-                                      ///KECAMATAN
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KECAMATAN PEMOHON',
-                                        subtitle: "${data['kecamatan']}",
-                                      ),
-
-                                      ///DESA
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'DESA PEMOHON',
-                                        subtitle: "${data['desa']}",
-                                      ),
-
-                                      ///RT/RW
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'RT/RW',
-                                        subtitle: "${data['rt']}/${data['rw']}",
-                                      ),
-
-                                      ///KODE POS
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'KODE POS',
-                                        subtitle: "${data['kodePos']}",
-                                      ),
-
-                                      ///JUMLAH ANGGOTA KELUARGA
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title:
-                                            'JUMLAH ANGGOTA KELUARGA PEMOHON',
-                                        subtitle:
-                                            "${data['jmlAnggotaKeluarga']}",
-                                      ),
-
-                                      ///NOMOR TELEPON
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NOMOR TELEPON PEMOHON',
-                                        subtitle: "${data['noTelp']}",
-                                      ),
-
-                                      ///ALASAN PERMOHONAN
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'ALASAN PERMOHONAN',
-                                        subtitle: "${data['alasanPermohonan']}",
-                                      ),
-
-                                      ///NIK ANGGOTA 1
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK ANGGOTA 1',
-                                        subtitle: "${data['nikAnggota1']}",
-                                      ),
-
-                                      ///NAMA ANGGOTA 1
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA ANGGOTA 1',
-                                        subtitle: "${data['namaAnggota1']}",
-                                      ),
-
-                                      ///NIK ANGGOTA 2
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NIK ANGGOTA 2',
-                                        subtitle: "${data['nikAnggota2']}",
-                                      ),
-
-                                      ///NIK ANGGOTA 2
-                                      SizedBox(height: 10.h),
-                                      CustomOutputForm(
-                                        title: 'NAMA ANGGOTA 2',
-                                        subtitle: "${data['namaAnggota2']}",
-                                      ),
-
-                                      ///NIK ANGGOTA 3
-                                      if ("${data['nikAnggota3']}".isEmpty)
-                                        Container(),
-                                      if ("${data['nikAnggota3']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NIK ANGGOTA 3',
-                                              subtitle:
-                                                  "${data['nikAnggota3']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NAMA ANGGOTA 3
-                                      if ("${data['namaAnggota3']}".isEmpty)
-                                        Container(),
-                                      if ("${data['namaAnggota3']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NAMA ANGGOTA 3',
-                                              subtitle:
-                                                  "${data['namaAnggota3']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NIK ANGGOTA 4
-                                      if ("${data['nikAnggota4']}".isEmpty)
-                                        Container(),
-                                      if ("${data['nikAnggota4']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NIK ANGGOTA 4',
-                                              subtitle:
-                                                  "${data['nikAnggota4']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NAMA ANGGOTA 4
-
-                                      if ("${data['namaAnggota3']}".isEmpty)
-                                        Container(),
-                                      if ("${data['namaAnggota3']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NAMA ANGGOTA 3',
-                                              subtitle:
-                                                  "${data['namaAnggota3']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NIK ANGGOTA 5
-                                      if ("${data['nikAnggota5']}".isEmpty)
-                                        Container(),
-                                      if ("${data['nikAnggota5']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NIK ANGGOTA 5',
-                                              subtitle:
-                                                  "${data['nikAnggota5']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NAMA ANGGOTA 5
-
-                                      if ("${data['namaAnggota5']}".isEmpty)
-                                        Container(),
-                                      if ("${data['namaAnggota5']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NAMA ANGGOTA 5',
-                                              subtitle:
-                                                  "${data['namaAnggota5']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NIK ANGGOTA 6
-                                      if ("${data['nikAnggota6']}".isEmpty)
-                                        Container(),
-                                      if ("${data['nikAnggota6']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NIK ANGGOTA 6',
-                                              subtitle:
-                                                  "${data['nikAnggota6']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      ///NAMA ANGGOTA 6
-
-                                      if ("${data['namaAnggota6']}".isEmpty)
-                                        Container(),
-                                      if ("${data['namaAnggota6']}".isNotEmpty)
-                                        Column(
-                                          children: [
-                                            SizedBox(height: 10.h),
-                                            CustomOutputForm(
-                                              title: 'NAMA ANGGOTA 6',
-                                              subtitle:
-                                                  "${data['namaAnggota6']}",
-                                            ),
-                                          ],
-                                        ),
-
-                                      SizedBox(height: 10.h),
-
-                                      ///PROSES
                                       CustomOutputForm(
                                         title: 'STATUS',
                                         subtitle: "${data['proses']}",
@@ -2244,7 +1902,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ///ALAMAT ASAL
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
-                                        title: 'ALAMAT ASAL',
+                                        title: 'ALAMAT',
                                         subtitle: "${data['alamatAsal']}",
                                       ),
 
@@ -2292,6 +1950,14 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
 
                                       ///---TUJUAN
+                                      ///ALASAN PINDAH
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'ALASAN PINDAH',
+                                        subtitle: "${data['alasanPindah']}",
+                                      ),
+
+                                      SizedBox(height: 10.h),
 
                                       ///ALAMAT
                                       SizedBox(height: 10.h),

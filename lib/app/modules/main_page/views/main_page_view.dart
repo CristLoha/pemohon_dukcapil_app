@@ -45,7 +45,7 @@ class _MainPageViewState extends State<MainPageView> {
         ),
       ),
       bottomNavigationBar: BottomNavyBar(
-        iconSize: 30.h,
+        iconSize: 24.h,
         containerHeight: 54.h,
         itemCornerRadius: 30,
         showElevation: true,

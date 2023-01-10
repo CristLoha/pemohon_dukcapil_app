@@ -93,7 +93,7 @@ class PerubahanKtpController extends GetxController {
           'fotoKTP': fotoKTP,
           'tgl_lahir': dateC.text,
           "keyName": nameC.text.substring(0, 1).toUpperCase(),
-          'kategori': 'e-KTP (Hilang/Rusak)',
+          'kategori': 'Penggatian e-KTP',
           'kecamatan': kecamatanC.text,
           'email': userPemohon!.email,
           'desa': desaC.text,

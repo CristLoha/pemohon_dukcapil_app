@@ -355,7 +355,7 @@ class SuratKeteranganPindahView
                     }
                   },
                   readOnly: false,
-                  textEditingController: controller.alamatTujuanC,
+                  textEditingController: controller.alamatAsalC,
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
                 ),

@@ -166,7 +166,7 @@ class SuratKeteranganPindahController extends GetxController {
         'keyName': namaPemohonC.text.substring(0, 1).toUpperCase(),
 
         ///ALAMAT TUJUAN
-        'alasanPindah': noKKC.text,
+        'alasanPindah': alasanPindahC.text,
         'alamatTujuan': alamatTujuanC.text,
         'rtTujuan': rtTujuanC.text,
         'rwTujuan': rwTUjuanC.text,

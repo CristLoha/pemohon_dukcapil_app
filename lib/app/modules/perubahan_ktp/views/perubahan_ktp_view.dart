@@ -19,7 +19,7 @@ class PerubahanKtpView extends GetView<PerubahanKtpController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('e-KTP (Hilang/Rusak)'),
+        title: Text('Penggatian e-KTP'),
         backgroundColor: kPrimaryColor,
       ),
       body: Obx(
