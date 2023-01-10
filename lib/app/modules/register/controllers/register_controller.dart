@@ -85,6 +85,7 @@ class RegisterController extends GetxController {
                 ({
                   'nama': nameC.text,
                   'nik': nikC.text,
+                  'jenisKelamin': jenisKelaminC.text,
                   "keyName": nameC.text.substring(0, 1).toUpperCase(),
                   'email': emailC.text,
                   'nomor_telp': noTelpC.text,
