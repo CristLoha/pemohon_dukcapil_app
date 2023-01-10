@@ -154,7 +154,8 @@ class PerubahanKtpController extends GetxController {
         final file = File(dataImage.path);
         final sizeInBytes = file.lengthSync();
         if (sizeInBytes > 5 * 1024 * 1024) {
-          EasyLoading.showError('maksimal 5  mb');
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB');
         } else {
           pickedImageKK = dataImage;
         }
