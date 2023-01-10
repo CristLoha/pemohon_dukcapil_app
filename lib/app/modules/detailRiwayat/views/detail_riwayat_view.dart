@@ -1033,7 +1033,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                       ),
                     ),
 
-                    ///AKTA PERKAWINAN
+                    ///AKTA Nikah
                     if ("${data['kategori']}" == 'Akta Nikah')
                       Positioned(
                         top: 13,
@@ -1106,6 +1106,11 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'ANAK KE- (SUAMI)',
+                                        subtitle: "${data['tempatLahirSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'KEWARGANEGARAAN SUAMI',
                                         subtitle:
                                             "${data['kewarganegaraanSuami']}",
@@ -1135,9 +1140,65 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
                                       ),
                                       SizedBox(height: 10.h),
                                       CustomOutputForm(
+                                        title: 'ANAK KE (ISTRI)',
+                                        subtitle:
+                                            "${data['kewarganegaraanIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
                                         title: 'KEWARGANEGARAAN ISTRI',
                                         subtitle:
                                             "${data['kewarganegaraanIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///ORANG TUA SUAMI
+                                      CustomOutputForm(
+                                        title: 'NIK AYAH (AYAH DARI SUAMI)',
+                                        subtitle: "${data['nikAyahDariSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      CustomOutputForm(
+                                        title: 'NAMA AYAH (AYAH DARI SUAMI)',
+                                        subtitle:
+                                            "${data['namaAyahDariSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      CustomOutputForm(
+                                        title: 'NIK IBU (IBU DARI SUAMI)',
+                                        subtitle: "${data['nikIbuDariSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP (IBU DARI SUAMI)',
+                                        subtitle: "${data['namaIbuDariSuami']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      ///ORANG TUA ISTRI
+                                      CustomOutputForm(
+                                        title: 'NIK AYAH (AYAH DARI ISTRI)',
+                                        subtitle: "${data['nikAyahDariIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      CustomOutputForm(
+                                        title: 'NAMA AYAH (AYAH DARI ISTRI)',
+                                        subtitle:
+                                            "${data['namaAyahDariIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+
+                                      CustomOutputForm(
+                                        title: 'NIK IBU (IBU DARI ISTRI)',
+                                        subtitle: "${data['nikIbuDariIstri']}",
+                                      ),
+                                      SizedBox(height: 10.h),
+                                      CustomOutputForm(
+                                        title: 'NAMA LENGKAP (IBU DARI SUAMI)',
+                                        subtitle: "${data['namaIbuDariIstri']}",
                                       ),
                                       SizedBox(height: 10.h),
 
