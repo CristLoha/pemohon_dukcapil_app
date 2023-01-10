@@ -175,6 +175,13 @@ class RegistKiaView extends GetView<RegistKiaController> {
               CustomFormField(
                   textCapitalization: TextCapitalization.words,
                   readOnly: false,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.name,
                   textEditingController: controller.namaLengkapC),
@@ -274,6 +281,120 @@ class RegistKiaView extends GetView<RegistKiaController> {
       ),
       Step(
         title: Text(
+          'Orang Tua Anak',
+          style: blackTextStyle.copyWith(fontWeight: semiBold),
+        ),
+        content: Form(
+          key: controller.formKeys[1],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              CustomTitleWidget(title: 'Nomor KK'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.noKKC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NOMOR KK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap
+              CustomTitleWidget(title: 'Nama Lengkap Ayah'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaAyahC),
+
+              SizedBox(height: 20.h),
+
+              CustomTitleWidget(title: 'NIK Ayah'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.noKKC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+
+              SizedBox(height: 20.h),
+
+              /// Nama Lengkap
+              CustomTitleWidget(title: 'Nama Lengkap Ibu'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                  textCapitalization: TextCapitalization.words,
+                  readOnly: false,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Input tidak boleh kosong";
+                    } else {
+                      return null;
+                    }
+                  },
+                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.name,
+                  textEditingController: controller.namaIbuC),
+              SizedBox(height: 20.h),
+
+              /// NIK ANAK
+              CustomTitleWidget(title: 'NIK Ibu'),
+              SizedBox(height: 12.h),
+              CustomFormField(
+                readOnly: false,
+                textCapitalization: TextCapitalization.none,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.number,
+                textEditingController: controller.nikIbuC,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Input tidak boleh kosong";
+                  } else if (!GetUtils.isLengthEqualTo(value, 16)) {
+                    return 'NIK harus 16 karakter';
+                  }
+                  return null;
+                },
+              ),
+
+              SizedBox(height: 20.h),
+            ],
+          ),
+        ),
+        isActive: controller.currentStep.value >= 1,
+        state:
+            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+      ),
+      Step(
+        title: Text(
           'Pemohon',
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
@@ -293,7 +414,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 controller.nikPemohonC.text = snapshot.data!["nik"];
                 controller.nomorTelpC.text = snapshot.data!["nomor_telp"];
                 return Form(
-                  key: controller.formKeys[1],
+                  key: controller.formKeys[2],
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -377,9 +498,9 @@ class RegistKiaView extends GetView<RegistKiaController> {
                 );
               }
             }),
-        isActive: controller.currentStep.value >= 1,
+        isActive: controller.currentStep.value >= 2,
         state:
-            controller.currentStep > 1 ? StepState.complete : StepState.indexed,
+            controller.currentStep > 2 ? StepState.complete : StepState.indexed,
       ),
       Step(
         title: Text(
@@ -387,7 +508,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
           style: blackTextStyle.copyWith(fontWeight: semiBold),
         ),
         content: Form(
-          key: controller.formKeys[2],
+          key: controller.formKeys[3],
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
@@ -847,7 +968,7 @@ class RegistKiaView extends GetView<RegistKiaController> {
             ),
           ),
         ),
-        isActive: controller.currentStep.value >= 2,
+        isActive: controller.currentStep.value >= 3,
       ),
     ];
   }

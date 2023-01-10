@@ -37,6 +37,14 @@ class RegistKiaController extends GetxController {
   TextEditingController desaC = TextEditingController();
   TextEditingController keteranganC = TextEditingController();
 
+  ///ORANG TUA
+  TextEditingController noKKC = TextEditingController();
+  TextEditingController namaAyahC = TextEditingController();
+  TextEditingController namaIbuC = TextEditingController();
+  TextEditingController nikAyahC = TextEditingController();
+  TextEditingController nikIbuC = TextEditingController();
+
+  ///pemohon
   TextEditingController nikPemohonC = TextEditingController();
   TextEditingController namaLengkapPemohonC = TextEditingController();
   TextEditingController nomorTelpC = TextEditingController();
@@ -45,6 +53,7 @@ class RegistKiaController extends GetxController {
 
   int index = 0;
   List<GlobalKey<FormState>> formKeys = [
+    GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
@@ -124,6 +133,13 @@ class RegistKiaController extends GetxController {
           'desaPemohon': desaPemohonC.text,
           'noAktaKelahiran': noAktaKelahiranC.text,
           'nikPemohon': nikPemohonC.text,
+
+          ///orang tua
+          'namaAyah': namaAyahC.text,
+          'noKK': noKKC.text,
+          'nikAyah': nikAyahC.text,
+          'namaIbu': namaIbuC.text,
+          'nikIbu': nikIbuC.text,
           'kk': fotoKK,
           'fotoAnak': fotoAnak,
           'akta_kelahiran': fotoAktaKelahiran,
