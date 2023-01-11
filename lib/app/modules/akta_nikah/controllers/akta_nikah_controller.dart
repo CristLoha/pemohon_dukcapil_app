@@ -363,9 +363,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageSelfie = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageSelfie = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -388,9 +395,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageSuratNikah = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageSuratNikah = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -413,9 +427,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageSuketBNikah = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageSuketBNikah = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -423,11 +444,6 @@ class AktaNikahController extends GetxController {
       pickedImageSuketBNikah = null;
       update();
     }
-  }
-
-  void resetImageSuketBnikah() {
-    pickedImageSuketBNikah = null;
-    update();
   }
 
   ///KTP SUAMI ISTRI
@@ -438,9 +454,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTPsuamiIstri = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKTPsuamiIstri = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -461,11 +484,17 @@ class AktaNikahController extends GetxController {
       final dataImage = await imagePickerPasFotoSuamiIstri.pickImage(
         source: ImageSource.gallery,
       );
-
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImagepasFotoSuamiIstri = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImagepasFotoSuamiIstri = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -486,11 +515,17 @@ class AktaNikahController extends GetxController {
       final dataImage = await imagePickerAktaKelahiranSuami.pickImage(
         source: ImageSource.gallery,
       );
-
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageAktaKelahiranSuami = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageAktaKelahiranSuami = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -513,9 +548,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageAktaKelahiranIstri = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageAktaKelahiranIstri = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -538,9 +580,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTPsaksi1 = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKTPsaksi1 = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -563,9 +612,16 @@ class AktaNikahController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTPsaksi2 = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKTPsaksi2 = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -573,11 +629,6 @@ class AktaNikahController extends GetxController {
       pickedImageKTPsaksi2 = null;
       update();
     }
-  }
-
-  void resetImageKTPsaksi2() {
-    pickedImageKTPsaksi2 = null;
-    update();
   }
 
   void tglLahirSuami() async {

@@ -388,11 +388,17 @@ class AktaKelahiranController extends GetxController {
       final dataImage = await imagePickerSuket.pickImage(
         source: ImageSource.gallery,
       );
-
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageSuket = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageSuket = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -415,9 +421,16 @@ class AktaKelahiranController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKK = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -433,7 +446,6 @@ class AktaKelahiranController extends GetxController {
   }
 
   ///AKTA NIKAH
-  ///SUKET
   void selectImageAktaNikah() async {
     try {
       final dataImage = await imagePickerAktaNikah.pickImage(
@@ -441,9 +453,16 @@ class AktaKelahiranController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageAktaNikah = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageAktaNikah = dataImage;
+        }
       }
       update();
     } catch (err) {

@@ -287,7 +287,7 @@ class SuratKeteranganPindahController extends GetxController {
               'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
               duration: Duration(seconds: 5));
         } else {
-          pickedImageKK = dataImage;
+          pickedImageKTP = dataImage;
         }
       }
       update();
