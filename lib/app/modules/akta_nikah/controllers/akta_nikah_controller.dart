@@ -446,6 +446,11 @@ class AktaNikahController extends GetxController {
     }
   }
 
+  void resetImageSuketBnikah() {
+    pickedImageSuketBNikah = null;
+    update();
+  }
+
   ///KTP SUAMI ISTRI
   void selectImagektpSuamiIstri() async {
     try {
@@ -629,6 +634,11 @@ class AktaNikahController extends GetxController {
       pickedImageKTPsaksi2 = null;
       update();
     }
+  }
+
+  void resetImageKTPsaksi2() {
+    pickedImageKTPsaksi2 = null;
+    update();
   }
 
   void tglLahirSuami() async {

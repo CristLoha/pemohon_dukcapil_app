@@ -368,11 +368,17 @@ class RegisAktaKematianController extends GetxController {
       final dataImage = await imagePickerKTPJenazah.pickImage(
         source: ImageSource.gallery,
       );
-
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTPJenazah = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKTPJenazah = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -395,9 +401,16 @@ class RegisAktaKematianController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKK = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKK = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -446,9 +459,16 @@ class RegisAktaKematianController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKtpPelapor = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKtpPelapor = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -470,11 +490,17 @@ class RegisAktaKematianController extends GetxController {
       final dataImage = await imagePickerKKPelapor.pickImage(
         source: ImageSource.gallery,
       );
-
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKKPelapor = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKKPelapor = dataImage;
+        }
       }
       update();
     } catch (err) {
