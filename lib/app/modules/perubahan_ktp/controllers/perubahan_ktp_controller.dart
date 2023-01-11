@@ -155,7 +155,8 @@ class PerubahanKtpController extends GetxController {
         final sizeInBytes = file.lengthSync();
         if (sizeInBytes > 5 * 1024 * 1024) {
           EasyLoading.showError(
-              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB');
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
         } else {
           pickedImageKK = dataImage;
         }
@@ -176,9 +177,16 @@ class PerubahanKtpController extends GetxController {
       );
 
       if (dataImage != null) {
-        print(dataImage.name);
         print(dataImage.path);
-        pickedImageKTP = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImageKK = dataImage;
+        }
       }
       update();
     } catch (err) {
@@ -187,7 +195,6 @@ class PerubahanKtpController extends GetxController {
       update();
     }
   }
-
   // /// FOTO SURAT KETERANGAN HILANG
   // void selectImageSurket() async {
   //   try {

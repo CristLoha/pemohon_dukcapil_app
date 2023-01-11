@@ -124,24 +124,21 @@ class RekamananKtpController extends GetxController {
 
       if (dataImage != null) {
         print(dataImage.path);
-        pickedImage = dataImage;
+        final file = File(dataImage.path);
+        final sizeInBytes = file.lengthSync();
+        if (sizeInBytes > 5 * 1024 * 1024) {
+          EasyLoading.showError(
+              'Ukuran file terlalu besar, harap pilih file dengan ukuran kurang dari 5 MB',
+              duration: Duration(seconds: 5));
+        } else {
+          pickedImage = dataImage;
+        }
       }
       update();
     } catch (err) {
       print(err);
       pickedImage = null;
       update();
-    }
-  }
-
-  void uploadImage() async {
-    s.Reference storageRef = storage.ref("rekamanKTP/kk.jpg");
-    File file = File(pickedImage!.path);
-    try {
-      final dataUpload = await storageRef.putFile(file);
-      print(dataUpload);
-    } catch (e) {
-      print('err');
     }
   }
 
