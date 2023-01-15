@@ -20,7 +20,7 @@ class DetailRiwayatView extends GetView<DetailRiwayatController> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               var data = snapshot.data!.data() as Map<String, dynamic>;
-              // controller.namaC.text = data['kategori'];
+
               return Container(
                 padding: EdgeInsets.only(
                   left: 20,

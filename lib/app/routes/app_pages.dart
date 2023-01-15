@@ -8,6 +8,8 @@ import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/bindings/akta_nikah_
 import 'package:pemohon_dukcapil_app/app/modules/akta_nikah/views/akta_nikah_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/bindings/detail_riwayat_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/detailRiwayat/views/detail_riwayat_view.dart';
+import 'package:pemohon_dukcapil_app/app/modules/edit_dokumen/bindings/edit_dokumen_binding.dart';
+import 'package:pemohon_dukcapil_app/app/modules/edit_dokumen/views/edit_dokumen_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/bindings/history_binding.dart';
 import 'package:pemohon_dukcapil_app/app/modules/history/views/history_view.dart';
 import 'package:pemohon_dukcapil_app/app/modules/home/bindings/home_binding.dart';
@@ -134,6 +136,11 @@ class AppPages {
       name: _Paths.RESET_PASSWORD,
       page: () => ResetPasswordView(),
       binding: ResetPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_DOKUMEN,
+      page: () => EditDokumenView(),
+      binding: EditDokumenBinding(),
     ),
   ];
 }

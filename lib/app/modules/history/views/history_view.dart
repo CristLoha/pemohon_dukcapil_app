@@ -20,6 +20,13 @@ class HistoryView extends GetView<HistoryController> {
         ),
         backgroundColor: kPrimaryColor,
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: kPrimaryColor,
+        onPressed: () {},
+        child: Icon(
+          Icons.info,
+        ),
+      ),
       body: StreamBuilder<QuerySnapshot<Object?>>(
         stream: controller.getLayanan(),
         builder: (context, snapshot) {
@@ -49,183 +56,796 @@ class HistoryView extends GetView<HistoryController> {
 
                 return Column(
                   children: [
-                    ListTile(
-                      onTap: () => Get.toNamed(
-                        Routes.DETAIL_RIWAYAT,
-                        arguments: listAllDocs[index].id,
-                      ),
-                      title: Text(
-                        "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
-                        style: blackTextStyle.copyWith(
-                          fontWeight: semiBold,
-                          fontSize: 13.h,
+                    ///PENDING
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'PENDING')
+
+                      /// SIAP AMBIL
+                      ListTile(
+                        leading: Column(
+                          children: [
+                            IconButton(
+                              onPressed: () => Get.toNamed(
+                                Routes.EDIT_DOKUMEN,
+                                arguments: listAllDocs[index].id,
+                              ),
+                              icon: Icon(
+                                Icons.edit,
+                              ),
+                            )
+                          ],
+                        ),
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
+                          ),
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              ),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PENDING')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENDING",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
                         ),
                       ),
-                      trailing: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'PROSES VERIFIKASI')
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 5,
-                              ),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Color(0xffff7f50),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "PROSES VERIFIKASI",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            )
-                          else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'PENDING')
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "PENDING",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            )
-                          else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'DICETAK')
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 5,
-                              ),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 211, 90, 156),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "PENCETAKAN",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            )
-                          else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'SIAP AMBIL')
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: kGreenColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "SIAP AMBIL",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'SELESAI')
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: kGreenColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "SELESAI",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
-                              'DITOLAK')
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 10,
-                              ),
-                              child: Container(
-                                width: 102,
-                                height: 30,
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  color: kRedColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    "DITOLAK",
-                                    style: whiteTextStyle.copyWith(
-                                        fontSize: 9, fontWeight: semiBold),
-                                  ),
-                                ),
-                              ),
-                            ),
-                        ],
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            DateFormat(
-                              "d MMMM yyyy",
-                              "id_ID",
-                            ).format(
-                              DateTime.parse(
-                                "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
-                              ),
-                            ),
-                            style: greyTextStyle.copyWith(fontSize: 10.h),
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'SIAP AMBIL')
+                      ListTile(
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
                           ),
-                          Text(
-                            DateFormat(
-                              "hh:mm aaa",
-                              "id_ID",
-                            ).format(
-                              DateTime.parse(
-                                "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
                               ),
-                            ),
-                            style: greyTextStyle.copyWith(fontSize: 8.h),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SIAP AMBIL')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SIAP AMBIL",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+
+                    ///DITOLAK
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'DITOLAK')
+                      ListTile(
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
+                          ),
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              ),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'DITOLAK')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kRedColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "DITOLAK",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ///SELESAI
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'SELESAI')
+                      ListTile(
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
+                          ),
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              ),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PROSES VERIFIKASI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffff7f50),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PROSES VERIFIKASI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 8,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PENDING')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENDING",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'DICETAK')
+                                      Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 211, 90, 156),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENCETAKAN",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SIAP AMBIL')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SIAP AMBIL",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SELESAI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SELESAI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'USULAN DITOLAK')
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 10,
+                                        ),
+                                        child: Container(
+                                          padding: EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: kRedColor,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "DITOLAK",
+                                              style: whiteTextStyle.copyWith(
+                                                  fontSize: 9,
+                                                  fontWeight: semiBold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    /// PROSES VERIFIKASI
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'PROSES VERIFIKASI')
+                      ListTile(
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
+                          ),
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              ),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PROSES VERIFIKASI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffff7f50),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PROSES VERIFIKASI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 8,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PENDING')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENDING",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'DICETAK')
+                                      Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 211, 90, 156),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENCETAKAN",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SIAP AMBIL')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SIAP AMBIL",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SELESAI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SELESAI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'USULAN DITOLAK')
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 10,
+                                        ),
+                                        child: Container(
+                                          padding: EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: kRedColor,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "DITOLAK",
+                                              style: whiteTextStyle.copyWith(
+                                                  fontSize: 9,
+                                                  fontWeight: semiBold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
+                        ),
+                      ),
+
+                    ///DICETAK
+                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                        'DICETAK')
+                      ListTile(
+                        title: Text(
+                          "${(listAllDocs[index].data() as Map<String, dynamic>)["kategori"]}",
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 13.h,
+                          ),
+                        ),
+                        subtitle: GestureDetector(
+                          onTap: (() => Get.toNamed(
+                                Routes.DETAIL_RIWAYAT,
+                                arguments: listAllDocs[index].id,
+                              )),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Status:',
+                                style: greyTextStyle.copyWith(fontSize: 12),
+                              ),
+                              SizedBox(width: 5),
+                              Center(
+                                child: Column(
+                                  children: [
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PROSES VERIFIKASI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: Color(0xffff7f50),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PROSES VERIFIKASI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 8,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'PENDING')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kPrimaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENDING",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'DICETAK')
+                                      Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(255, 211, 90, 156),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "PENCETAKAN",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      )
+                                    else if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SIAP AMBIL')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SIAP AMBIL",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'SELESAI')
+                                      Container(
+                                        width: 80,
+                                        padding: EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                          color: kGreenColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "SELESAI",
+                                            style: whiteTextStyle.copyWith(
+                                                fontSize: 9,
+                                                fontWeight: semiBold),
+                                          ),
+                                        ),
+                                      ),
+                                    if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
+                                        'DITOLAK')
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 10,
+                                        ),
+                                        child: Container(
+                                          padding: EdgeInsets.all(8),
+                                          decoration: BoxDecoration(
+                                            color: kRedColor,
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "DITOLAK",
+                                              style: whiteTextStyle.copyWith(
+                                                  fontSize: 9,
+                                                  fontWeight: semiBold),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        trailing: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              DateFormat(
+                                "d MMMM yyyy",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 10.h),
+                            ),
+                            Text(
+                              DateFormat(
+                                "hh:mm aaa",
+                                "id_ID",
+                              ).format(
+                                DateTime.parse(
+                                  "${(listAllDocs[index].data() as Map<String, dynamic>)["updatedTime"]}",
+                                ),
+                              ),
+                              style: greyTextStyle.copyWith(fontSize: 9.h),
+                            ),
+                          ],
+                        ),
+                      ),
+
                     Container(height: 0.80, color: kGreyColor),
                   ],
                 );
