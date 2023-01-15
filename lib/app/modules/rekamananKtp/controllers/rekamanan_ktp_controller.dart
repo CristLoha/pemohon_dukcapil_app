@@ -15,7 +15,7 @@ import 'package:pemohon_dukcapil_app/app/shared/theme.dart';
 class RekamananKtpController extends GetxController {
   RxInt currentStep = 0.obs;
   Rx<DateTime> selectedDate = DateTime.now().obs;
-  final ImagePicker imagePicker = ImagePicker();
+
   TextEditingController nikC = TextEditingController();
   TextEditingController noTelpC = TextEditingController();
   TextEditingController nameC = TextEditingController();
@@ -35,6 +35,7 @@ class RekamananKtpController extends GetxController {
   ];
 
   XFile? pickedImage;
+  final ImagePicker imagePicker = ImagePicker();
   s.FirebaseStorage storage = s.FirebaseStorage.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseFirestore firestore2 = FirebaseFirestore.instance;

@@ -338,7 +338,7 @@ class HistoryView extends GetView<HistoryController> {
                                     if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
                                         'PROSES VERIFIKASI')
                                       Container(
-                                        width: 80,
+                                        width: 90,
                                         padding: EdgeInsets.all(5),
                                         decoration: BoxDecoration(
                                           color: Color(0xffff7f50),
@@ -517,7 +517,7 @@ class HistoryView extends GetView<HistoryController> {
                                     if ("${(listAllDocs[index].data() as Map<String, dynamic>)["proses"]}" ==
                                         'PROSES VERIFIKASI')
                                       Container(
-                                        width: 80,
+                                        width: 90,
                                         padding: EdgeInsets.all(5),
                                         decoration: BoxDecoration(
                                           color: Color(0xffff7f50),
