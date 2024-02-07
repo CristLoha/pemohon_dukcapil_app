@@ -101,20 +101,6 @@ class EditDokumenView extends GetView<EditDokumenController> {
               return ListView(
                 padding: EdgeInsets.all(20),
                 children: [
-                  if ("${data['kategori']}" == 'Akta Kelahiran')
-                    Column(
-                      children: [
-                        CustomTitleWidget(title: 'kabupaten Pemohon'),
-                        SizedBox(height: 12.h),
-                        CustomFormField(
-                          readOnly: true,
-                          textEditingController: controller.kabupatenC,
-                          keyboardType: TextInputType.name,
-                          textCapitalization: TextCapitalization.words,
-                        ),
-                      ],
-                    ),
-
                   ///perekaman eKTP
                   if ("${data['kategori']}" == 'Perekaman e-KTP')
                     Column(
@@ -466,6 +452,20 @@ class EditDokumenView extends GetView<EditDokumenController> {
                         ),
 
                         updateKTP(),
+                      ],
+                    ),
+
+                  if ("${data['kategori']}" == 'Akta Kelahiran')
+                    Column(
+                      children: [
+                        CustomTitleWidget(title: 'kabupaten Pemohon'),
+                        SizedBox(height: 12.h),
+                        CustomFormField(
+                          readOnly: true,
+                          textEditingController: controller.kabupatenC,
+                          keyboardType: TextInputType.name,
+                          textCapitalization: TextCapitalization.words,
+                        ),
                       ],
                     ),
                 ],
