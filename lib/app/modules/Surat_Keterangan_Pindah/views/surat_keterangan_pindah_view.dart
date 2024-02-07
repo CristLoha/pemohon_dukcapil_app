@@ -1,17 +1,12 @@
 import 'dart:io';
-
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
-
 import '../../../shared/theme.dart';
-import '../../../utils/custom_date_input.dart';
 import '../../../utils/custom_form_input.dart';
-import '../../../utils/custom_input_keterangan.dart';
 import '../../../utils/custom_tittle_form.dart';
 import '../controllers/surat_keterangan_pindah_controller.dart';
 

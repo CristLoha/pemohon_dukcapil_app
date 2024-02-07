@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart' as s;
@@ -479,44 +478,40 @@ class AktaKelahiranController extends GetxController {
 
   ///tgl lahir anak
   void tglLahirAnak() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tglLahirAnakC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
+    final DateTime? selectedDate = await showDatePicker(
+      context: Get.context!,
+      firstDate: DateTime(1960, 1, 1),
+      initialDate: DateTime.now(),
+      lastDate: DateTime.now(),
+    );
+    if (selectedDate != null) {
+      tglLahirAnakC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+    }
   }
 
-  ///tgl lahir ibu
+  ///tglLahirIbu
   void tglLahirIbu() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalLahirIbuC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
+    final DateTime? selectedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(1960, 1, 1),
+      lastDate: DateTime(2024, 12, 31),
+    );
+    if (selectedDate != null) {
+      tanggalLahirIbuC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+    }
   }
 
-  ///tgl lahir ayah
+  ///TglLahirAyah
+
   void tglLahirAyah() async {
-    await DatePicker.showDatePicker(
-      Get.context!,
-      locale: LocaleType.id,
-      minTime: DateTime(1960, 1, 1),
-      maxTime: DateTime.now(),
-    ).then((selectedDate) {
-      if (selectedDate != null) {
-        tanggalLahirAyahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
-      }
-    });
+    final DateTime? selectedDate = await showDatePicker(
+        context: Get.context!,
+        firstDate: DateTime(1960, 1, 1),
+        lastDate: DateTime.now());
+    if (selectedDate != null) {
+      tanggalLahirAyahC.text = DateFormat('yyyy-MM-dd').format(selectedDate);
+    }
   }
 
   ///tgl lahir pemohon
